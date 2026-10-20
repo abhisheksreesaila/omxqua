@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "id": "XOGEOwdb6Ug",
+    "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug",
+    "objective": "Review the Universal Language design system pages for visual and UX quality",
+    "description": "Audit showcase.html (Developer, Travel Azulejo, Kids Sticker families; Top islands and Dock shells; component Kit) and landing.html (A Statement, B Editorial, C Bento) against LANGUAGE.md and tokens.css: hierarchy, spacing, contrast and accessibility, touch targets, consistency across families, component states, navigation, and landing-page clarity. Report concrete, page-anchored issues.",
+    "autonomyLevel": "CREATE_SUGGESTIONS",
+    "createTime": "2026-10-20T20:53:40.423117Z",
+    "lastUserInteractTime": "2026-10-20T20:53:40.225723173Z",
+    "updateTime": "2026-10-20T20:53:40.423117Z"
+  }
+}

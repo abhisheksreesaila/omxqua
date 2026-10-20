@@ -1,0 +1,698 @@
+{
+  "success": true,
+  "data": {
+    "resource": "screen",
+    "id": "6ea344a92e4e473e98403b806d827a00",
+    "project": "16428631202563231164",
+    "title": "omxcore · Developer Graphite · PyPI Package",
+    "device": "DESKTOP",
+    "screenType": "DESIGN",
+    "canvasUrl": "https://stitch.google.com/projects/16428631202563231164?node-id=6ea344a92e4e473e98403b806d827a00",
+    "imageUrl": "https://lh3.googleusercontent.com/aida/AEtjO1Wf3ZVYAaXKSg4slUebXPOpWD6AQRtUUe8BbD8nzwR_d_8yaRnF0rQykZjUOR8s6EDj0u8qTehSWM-yOKIYbzZqjW7dL3FARjoLReJ_aHMLIDtUoPHZGFJAik9a4LR0lBeyRgOFf48JmY5qHx0Vr65pIfHBi0RwWrC9bvlGJX1MET_MsBd2pt6AfW6ND463r6FhTzEuLc001hdfgERp0V8W6WsLAvWBDfK10xByBsYUkSgoHTDszVXudFs",
+    "htmlCode": {
+      "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzMzMDgxMDYzOThjZjRkNWZiYjBjMmM5ZDZhODc4NGUxEgsSBxDOpomh_Q8YAZIBJAoKcHJvamVjdF9pZBIWQhQxNjQyODYzMTIwMjU2MzIzMTE2NA&filename=&opi=96797242",
+      "mimeType": "text/html",
+      "name": "projects/16428631202563231164/files/11dd4fc70365494a9c64839917f2cc3c"
+    },
+    "rawScreen": {
+      "outputComponents": [
+        {
+          "design": {
+            "screens": [
+              {
+                "designSystem": {
+                  "designSystem": {
+                    "displayName": "Universal Language",
+                    "styleGuidelines": "## Brand & Style\nThis design system establishes a unified visual language spanning applications, mobile, and web surfaces. It marries solid tonal surfaces and Material state layers with a deliberate, singular shadow scale. The aesthetic prioritizes absolute clarity, functional precision, and zero visual noise—relying on opaque surfaces, crisp borders, and deliberate typographic hierarchy rather than artificial glassmorphism or gradients.\n\n- **Personality:** Grounded, precise, uncompromisingly functional, yet approachable and systematic.\n- **Aesthetic Direction:** Modern minimal-utilitarianism with solid tonal layering, fine hair-line borders, and physical depth through precise shadow tiers.\n- **Emotional Response:** Trust, operational clarity, efficiency, and calmness.\n\n## Layout & Spacing\nContent is structured around a centralized column grid with a maximum content width of 1120px. \n\n- **Layout Model:** Fluid grid with fixed maximum constraints, allowing content to sit comfortably on large viewports while gracefully scaling down to mobile screens. \n- **Spacing Rhythm:** Built on a strict 4px/8px incremental rhythm. Padding and gaps rely on predictable tokens (`space-1` through `space-7`), ensuring uniform density across components.\n- **Adaptive Shells:** Navigation utilizes floating top islands and bottom docks rather than heavy sidebars on standard viewports. On mobile, bottom tab bars and bottom sheets supersede traditional modals and hamburgers.\n\n## Elevation & Depth\nDepth is conveyed strictly through tonal surface layering paired with a unified, restrained shadow scale. There is no use of glassmorphism, background blurs, translucency, or gradients.\n\n- **Surface 0 (`#eeeef1`):** The foundational base canvas.\n- **Surface 1 (`#ffffff`):** Standard cards and elevated containers, styled with `shadow-1` (`0 1px 2px rgba(16,16,20,.06), 0 0 0 1px rgba(16,16,20,.04)`).\n- **Surface 2:** Menus, popovers, and floating navigation islands, featuring `shadow-2` (`0 6px 18px rgba(16,16,20,.10)`).\n- **Surface 3:** Critical dialogs and modal sheets, anchored with `shadow-3` (`0 18px 48px rgba(16,16,20,.18)`) over a semi-opaque scrim.\n- **State Layers:** Hover, press, and selection states are indicated strictly by overlaying the active ink color at 8%, 12%, or 16% opacity respectively over the existing surface.\n\n## Components\nComponents are built for maximum informational clarity, interactive predictability, and strict adherence to the design tokens.\n\n- **Buttons:** Designed as full pills (9999px). Exactly one primary filled button (accent color + shadow-1 with a specific action verb) appears per card. Tonal buttons utilize surface-2 with shadow-1, while text buttons feature no fill.\n- **Chips & Badges:** Use pill shapes for filters/tags and 4px-radius rounded rectangles for technical status indicators with mono-badge typography and 1px hairline borders.\n- **Input Fields:** Outlined fields with a 10px radius, featuring floating labels that sit inside the field and transition into a gap in the border upon focus. Helper text and error sentences appear directly beneath in error red. No filled or underlined variants.\n- **Cards:** Clean surface-1 containers with subtle outer strokes and precise padding. Every content card concludes with a mono source line (query, command, or file path) separated by a hairline top border.\n- **Lists & Tables:** Hairline row dividers, sticky headers, right-aligned tabular monospace numbers, and internal scrolling for dense datasets. Skeleton loaders are mandatory during data fetching (never zeros).\n- **Beacon:** A signature persistent top pill showcasing live activity (progress rings, timer, or live metric) that morphs into a detailed card upon tapping.",
+                    "theme": {
+                      "bodyFont": "GEIST",
+                      "bodyFontFamily": "Geist",
+                      "colorMode": "LIGHT",
+                      "colorVariant": "FIDELITY",
+                      "customColor": "#0b0b0d",
+                      "designMd": "---\nname: Universal Language\ncolors:\n  surface: '#eeeef1'\n  surface-dim: '#ddd9d9'\n  surface-bright: '#ffffff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f7f3f2'\n  surface-container: '#ffffff'\n  surface-container-high: '#ebe7e7'\n  surface-container-highest: '#e5e2e1'\n  on-surface: '#0b0b0d'\n  on-surface-variant: '#5b5b63'\n  inverse-surface: '#313030'\n  inverse-on-surface: '#f4f0ef'\n  outline: '#c9c9cf'\n  outline-variant: '#e3e3e8'\n  surface-tint: '#5f5e60'\n  primary: '#000000'\n  on-primary: '#ffffff'\n  primary-container: '#1d1d21'\n  on-primary-container: '#858386'\n  inverse-primary: '#c8c6c8'\n  secondary: '#5e5e66'\n  on-secondary: '#ffffff'\n  secondary-container: '#e3e1eb'\n  on-secondary-container: '#64646c'\n  tertiary: '#000000'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#1e1b18'\n  on-tertiary-container: '#88837e'\n  error: '#c01f25'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#e5e1e4'\n  primary-fixed-dim: '#c8c6c8'\n  on-primary-fixed: '#1c1b1d'\n  on-primary-fixed-variant: '#474649'\n  secondary-fixed: '#e3e1eb'\n  secondary-fixed-dim: '#c7c5cf'\n  on-secondary-fixed: '#1a1b22'\n  on-secondary-fixed-variant: '#46464e'\n  tertiary-fixed: '#e8e1db'\n  tertiary-fixed-dim: '#ccc5c0'\n  on-tertiary-fixed: '#1e1b18'\n  on-tertiary-fixed-variant: '#4a4642'\n  background: '#eeeef1'\n  on-background: '#1c1b1b'\n  surface-variant: '#e5e2e1'\n  ok: '#137036'\n  warn: '#8f5400'\n  info: '#0960b5'\n  data-1: '#6d5cf0'\n  data-2: '#0a7fe0'\n  data-3: '#0f9483'\n  data-4: '#e0661a'\n  data-5: '#d42a2f'\n  data-6: '#a88400'\ntypography:\n  display-lg:\n    fontFamily: Geist\n    fontSize: 32px\n    fontWeight: '700'\n    lineHeight: 36px\n    letterSpacing: -0.6px\n  headline-lg:\n    fontFamily: Geist\n    fontSize: 22px\n    fontWeight: '650'\n    lineHeight: 28px\n    letterSpacing: -0.3px\n  headline-md:\n    fontFamily: Geist\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 22px\n  body:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '400'\n    lineHeight: 20px\n  body-medium:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '500'\n    lineHeight: 20px\n  caption:\n    fontFamily: Geist\n    fontSize: 12px\n    fontWeight: '400'\n    lineHeight: 16px\n  mono-data:\n    fontFamily: Geist Mono\n    fontSize: 13px\n    fontWeight: '500'\n    lineHeight: 18px\n  mono-badge:\n    fontFamily: Geist Mono\n    fontSize: 11px\n    fontWeight: '500'\n    lineHeight: 11px\n  mono-source:\n    fontFamily: Geist Mono\n    fontSize: 11.5px\n    fontWeight: '400'\n    lineHeight: 16px\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  gutter: 16px\n  margin: 24px\n  space-xs: 4px\n  space-sm: 8px\n  space-md: 16px\n  space-lg: 32px\n  space-xl: 48px\n---\n\nname: Universal Language\ncolors:\n  background: '#eeeef1'\n  on-background: '#0b0b0d'\n  surface: '#eeeef1'\n  surface-bright: '#ffffff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#ffffff'\n  surface-container: '#ffffff'\n  surface-container-high: '#ffffff'\n  surface-container-highest: '#ffffff'\n  on-surface: '#0b0b0d'\n  on-surface-variant: '#5b5b63'\n  inverse-surface: '#0b0b0d'\n  inverse-on-surface: '#ededef'\n  outline: '#c9c9cf'\n  outline-variant: '#e3e3e8'\n  primary: '#0b0b0d'\n  on-primary: '#ffffff'\n  primary-container: '#1d1d21'\n  on-primary-container: '#ededef'\n  secondary: '#5b5b63'\n  on-secondary: '#ffffff'\n  error: '#c01f25'\n  on-error: '#ffffff'\n  surface-0: '#eeeef1'\n  surface-1: '#ffffff'\n  surface-2: '#ffffff'\n  surface-3: '#ffffff'\n  ink: '#0b0b0d'\n  ink-2: '#5b5b63'\n  ink-faint: '#c9c9cf'\n  line: '#e3e3e8'\n  line-2: '#efeff2'\n  accent: '#0b0b0d'\n  on-accent: '#ffffff'\n  beacon: '#0b0b0d'\n  ok: '#137036'\n  warn: '#8f5400'\n  bad: '#c01f25'\n  info: '#0960b5'\n  data-1: '#6d5cf0'\n  data-2: '#0a7fe0'\n  data-3: '#0f9483'\n  data-4: '#e0661a'\n  data-5: '#d42a2f'\n  data-6: '#a88400'\ntypography:\n  display-lg:\n    fontFamily: Geist\n    fontSize: 32px\n    fontWeight: '700'\n    lineHeight: 36px\n    letterSpacing: -0.6px\n  headline-lg:\n    fontFamily: Geist\n    fontSize: 22px\n    fontWeight: '650'\n    lineHeight: 28px\n    letterSpacing: -0.3px\n  headline-md:\n    fontFamily: Geist\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 22px\n  body:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '400'\n    lineHeight: 20px\n  body-medium:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '500'\n    lineHeight: 20px\n  caption:\n    fontFamily: Geist\n    fontSize: 12px\n    fontWeight: '400'\n    lineHeight: 16px\n  mono-data:\n    fontFamily: Geist Mono\n    fontSize: 13px\n    fontWeight: '500'\n    lineHeight: 18px\n  mono-badge:\n    fontFamily: Geist Mono\n    fontSize: 11px\n    fontWeight: '500'\n    lineHeight: 11px\n  mono-source:\n    fontFamily: Geist Mono\n    fontSize: 11.5px\n    fontWeight: '400'\n    lineHeight: 16px\nrounded:\n  xs: 4px\n  sm: 8px\n  DEFAULT: 10px\n  md: 12px\n  lg: 16px\n  xl: 22px\n  full: 9999px\nspacing:\n  space-1: 4px\n  space-2: 8px\n  space-3: 12px\n  space-4: 16px\n  space-5: 24px\n  space-6: 32px\n  space-7: 48px\n  target: 44px\n  target-compact: 34px\n  column-max: 1120px\n---\n\n# Universal Language: Material texture, Liquid motion\n\nOne design language for every app, phone and web. Opaque tonal surfaces, Material state layers and one soft shadow scale. The front matter is the **Developer · Graphite (Light)** family; other families swap surfaces, accent and data palette (below) but keep every rule.\n\n## Texture\n- Depth is tone plus one shadow scale: page surface-0 (#eeeef1); cards surface-1 (#ffffff) + shadow-1 (0 1px 2px rgba(16,16,20,.06), 0 0 0 1px rgba(16,16,20,.04)); menus, popovers and floating islands surface-2 + shadow-2 (0 6px 18px rgba(16,16,20,.10)); dialogs surface-3 + shadow-3 (0 18px 48px rgba(16,16,20,.18)) over a scrim.\n- **No glass, no blur, no translucency, no gradients** on any chrome or surface.\n- Hover / press / selected = the ink colour at 8% / 12% / 16% over the surface. Never a new colour.\n\n## Shape\n- **Pill (9999px) = tappable**: buttons, chips, segmented controls, tabs, nav.\n- **Status = a 4px-radius mono badge** (e.g. `running`, `401`, `p50 exact`), 11px Geist Mono, 1px hairline border.\n- Cards 16px (12px compact / Developer), inputs 10px, menus 14px with 8px items. Concentric corners: inner radius = outer minus padding.\n\n## Type\n- Geist for words, Geist Mono for numbers, IDs, paths, commands, times and every source line. Tabular, right-aligned numbers in tables.\n- Developer body 13.5px; Travel 14px; Kids 15.5px with 32px titles.\n\n## Colour\n- **One accent per app**; it fills the one loud button per card and the focus ring, nothing else. Developer accent = ink (near-black in Light, near-white in Night).\n- **Data palette** data-1..6 is separate from the accent: chart series and kinds. A thing keeps its data colour everywhere. Never reuse the accent as a data colour.\n- States ok / warn / bad / info always come with the word, never colour alone.\n- Text is 4.5:1 on its surface. ink-faint is never text. A data colour used as a fill behind text must reach 4.5:1 with its text.\n\n## Families (an app picks one)\n| Family | For | Light page / accent | Night page / accent | Character |\n|---|---|---|---|---|\n| Developer · Graphite | libraries, PyPI packages, consoles | cool grey #eeeef1 / ink #0b0b0d | near-black #0b0b0d / #ededef | compact 34px controls, cards 12px, mono-forward, numbers and source lines everywhere |\n| Travel · Coast | trips, places, days | warm sand #f4f0e9, cards #fffdf9, ink #1d1a16 / sea teal #0b6e69 | deep sea #0b1214 / #5fd4c8 | 40px targets, cards 16px; kinds carry colour (flight #2f6fbf, stay #8a4fa8, food #c2462b, see sage #3f7a46), days never do |\n| Kids · Playground | children's apps | cream #fff6ea, ink #2a1d12 / tangerine #c2410c | plum #171221 / #ffad66 | roomy 48px targets, cards 22px, 15.5px type, big icon tiles, one hero card, a big \"I did it!\" button |\n\nSkins (same components, different surface and type): Travel **Azulejo** (paper + tile blue, Fraunces serif display, crisper corners), **Golden hour** (peach / espresso, amber accent, rounder). Kids **Sticker** (Nunito, chunky ledge shadows that press down 4px, sky-blue accent), **Crayon** (Nunito, pastel tiles tinted with their own colour, berry accent).\n\n## Shells (symmetric, preferred over a sidebar)\n- Content sits in a centred column, max 1120px. Content scrolls under floating islands.\n- **Top islands**: brand island top-left · one centred nav pill with a sliding accent thumb · Beacon top-right, all floating 14px from the top, solid surface-2 + shadow-2.\n- **Dock**: the nav pill floats at the bottom centre (identical to the phone tab bar) · Beacon top centre · brand island top-left.\n- **Nav island** (dense tools): the sidebar as a floating vertical pill, 60px wide, radius 26, icons only at rest (active item = accent pill), widens to 224px with labels on hover.\n- Phone: a floating bottom tab bar (3–5 items), never a hamburger for main nav. Bottom sheets instead of modals.\n\n## Signature components\n- **Beacon**: a near-black pill near the top (both themes) showing one live activity (a build, a flight, a timer): icon or progress ring + label + one mono value. Tapping morphs it into a card with details and up to 3 actions. One per app; hidden when nothing is live.\n- **Buttons**: pill. Filled = accent + shadow-1 with a specific verb (\"Publish 0.3.0\", not \"Submit\"); one filled button per card. Tonal = surface-2 + shadow-1. Text = no fill.\n- **Field**: outlined, 10px radius, floating label that sits inside and floats into a gap in the border on focus; help line below; error as a sentence under the field in bad red. No filled or underlined fields.\n- **Close button**: a 32px circle with a 16px x icon, top-right. Never a text glyph.\n- **Tables**: hairline rows, mono right-aligned numbers, sticky header; long lists scroll inside their card.\n- **Show your work**: every card ends in a mono source line (the query, command or file) on a hairline top border.\n- States: loading = skeleton rows (never zeros); empty = one line + the action; error = what happened + what to do.\n- Icons: Lucide-style line icons. Never SF Symbols, SF Pro, Segoe or Fluent icons. No emoji as icons.\n\n## Motion budget (for handoff; static screens show the resting state)\nThe more often something happens, the less it moves. Springs only for small things under the finger (press squash 0.96, toggles, segmented thumbs). Panels and sheets settle (fade + 12px slide, 280ms, no bounce). Menus and popovers are gentle (220ms fade + 4px drop). Keyboard-driven and live data: instant. No ripples, no halos.\n\n## Landing layer (marketing pages)\nSame family, turned up: hero type 64–168px at line-height ≤ 1 and −5% tracking (Geist 800 for Developer, Fraunces italic for Travel, Nunito 900 for Kids); two-tone headings (claim in ink, continuation in ink-2); one idea per screen, 140px between sections, centred column ≤ 1120px; the Top islands nav with one filled CTA; CTAs = one filled pill with a specific verb + a text link with ›. Show the real app in a frame. No gradient text, no glass, no carousels.",
+                      "font": "GEIST",
+                      "headlineFont": "GEIST",
+                      "headlineFontFamily": "Geist",
+                      "labelFontFamily": "Geist Mono",
+                      "namedColors": {
+                        "background": "#eeeef1",
+                        "data-1": "#6d5cf0",
+                        "data-2": "#0a7fe0",
+                        "data-3": "#0f9483",
+                        "data-4": "#e0661a",
+                        "data-5": "#d42a2f",
+                        "data-6": "#a88400",
+                        "error": "#c01f25",
+                        "error_container": "#ffdad6",
+                        "info": "#0960b5",
+                        "inverse_on_surface": "#f4f0ef",
+                        "inverse_primary": "#c8c6c8",
+                        "inverse_surface": "#313030",
+                        "ok": "#137036",
+                        "on-surface": "#0b0b0d",
+                        "on-surface-variant": "#5b5b63",
+                        "on_background": "#1c1b1b",
+                        "on_error": "#ffffff",
+                        "on_error_container": "#93000a",
+                        "on_primary": "#ffffff",
+                        "on_primary_container": "#858386",
+                        "on_primary_fixed": "#1c1b1d",
+                        "on_primary_fixed_variant": "#474649",
+                        "on_secondary": "#ffffff",
+                        "on_secondary_container": "#64646c",
+                        "on_secondary_fixed": "#1a1b22",
+                        "on_secondary_fixed_variant": "#46464e",
+                        "on_surface": "#1c1b1b",
+                        "on_surface_variant": "#47464a",
+                        "on_tertiary": "#ffffff",
+                        "on_tertiary_container": "#88837e",
+                        "on_tertiary_fixed": "#1e1b18",
+                        "on_tertiary_fixed_variant": "#4a4642",
+                        "outline": "#c9c9cf",
+                        "outline-variant": "#e3e3e8",
+                        "outline_variant": "#c8c5ca",
+                        "primary": "#000000",
+                        "primary-container": "#1d1d21",
+                        "primary_container": "#1c1b1d",
+                        "primary_fixed": "#e5e1e4",
+                        "primary_fixed_dim": "#c8c6c8",
+                        "secondary": "#5e5e66",
+                        "secondary_container": "#e3e1eb",
+                        "secondary_fixed": "#e3e1eb",
+                        "secondary_fixed_dim": "#c7c5cf",
+                        "surface": "#eeeef1",
+                        "surface-bright": "#ffffff",
+                        "surface-container": "#ffffff",
+                        "surface_bright": "#fdf8f8",
+                        "surface_container": "#f1edec",
+                        "surface_container_high": "#ebe7e7",
+                        "surface_container_highest": "#e5e2e1",
+                        "surface_container_low": "#f7f3f2",
+                        "surface_container_lowest": "#ffffff",
+                        "surface_dim": "#ddd9d9",
+                        "surface_tint": "#5f5e60",
+                        "surface_variant": "#e5e2e1",
+                        "tertiary": "#000000",
+                        "tertiary_container": "#1e1b18",
+                        "tertiary_fixed": "#e8e1db",
+                        "tertiary_fixed_dim": "#ccc5c0",
+                        "warn": "#8f5400"
+                      },
+                      "overridePrimaryColor": "#0b0b0d",
+                      "overrideSecondaryColor": "#5b5b63",
+                      "roundness": "ROUND_EIGHT",
+                      "spacing": {
+                        "gutter": "16px",
+                        "margin": "24px",
+                        "space-lg": "32px",
+                        "space-md": "16px",
+                        "space-sm": "8px",
+                        "space-xl": "48px",
+                        "space-xs": "4px"
+                      },
+                      "spacingScale": 2,
+                      "typography": {
+                        "body": {
+                          "fontFamily": "Geist",
+                          "fontSize": "13.5px",
+                          "fontWeight": "400",
+                          "lineHeight": "20px"
+                        },
+                        "body-medium": {
+                          "fontFamily": "Geist",
+                          "fontSize": "13.5px",
+                          "fontWeight": "500",
+                          "lineHeight": "20px"
+                        },
+                        "caption": {
+                          "fontFamily": "Geist",
+                          "fontSize": "12px",
+                          "fontWeight": "400",
+                          "lineHeight": "16px"
+                        },
+                        "display-lg": {
+                          "fontFamily": "Geist",
+                          "fontSize": "32px",
+                          "fontWeight": "700",
+                          "letterSpacing": "-0.6px",
+                          "lineHeight": "36px"
+                        },
+                        "headline-lg": {
+                          "fontFamily": "Geist",
+                          "fontSize": "22px",
+                          "fontWeight": "650",
+                          "letterSpacing": "-0.3px",
+                          "lineHeight": "28px"
+                        },
+                        "headline-md": {
+                          "fontFamily": "Geist",
+                          "fontSize": "16px",
+                          "fontWeight": "600",
+                          "lineHeight": "22px"
+                        },
+                        "mono-badge": {
+                          "fontFamily": "Geist Mono",
+                          "fontSize": "11px",
+                          "fontWeight": "500",
+                          "lineHeight": "11px"
+                        },
+                        "mono-data": {
+                          "fontFamily": "Geist Mono",
+                          "fontSize": "13px",
+                          "fontWeight": "500",
+                          "lineHeight": "18px"
+                        },
+                        "mono-source": {
+                          "fontFamily": "Geist Mono",
+                          "fontSize": "11.5px",
+                          "fontWeight": "400",
+                          "lineHeight": "16px"
+                        }
+                      }
+                    }
+                  },
+                  "name": "assets/ef0047a95e314e548e3f305e7c7b187b",
+                  "version": "1"
+                },
+                "deviceType": "DESKTOP",
+                "generatedBy": "figaro_agent",
+                "height": "2666",
+                "htmlCode": {
+                  "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzMzMDgxMDYzOThjZjRkNWZiYjBjMmM5ZDZhODc4NGUxEgsSBxDOpomh_Q8YAZIBJAoKcHJvamVjdF9pZBIWQhQxNjQyODYzMTIwMjU2MzIzMTE2NA&filename=&opi=96797242",
+                  "mimeType": "text/html",
+                  "name": "projects/16428631202563231164/files/11dd4fc70365494a9c64839917f2cc3c"
+                },
+                "id": "6ea344a92e4e473e98403b806d827a00",
+                "name": "projects/16428631202563231164/screens/6ea344a92e4e473e98403b806d827a00",
+                "prompt": "Developer package page for PyPI library 'omxcore' adhering strictly to the Universal Language 'Developer · Graphite' light aesthetic (#eeeef1 page background, #ffffff surface cards with shadow-1 hairline border, Geist words, Geist Mono for commands/metrics/statuses).\n\nKey Sections & Components:\n1. Shell / Top Islands:\n   - Left island: Brand mark 'ox' badge + 'omxcore' title\n   - Center island: Floating nav pill with active 'Overview', 'Releases', 'CI runs', 'Docs'\n   - Right island: Beacon pill with live status '● Release wheels 3/5' + mono indicator\n   - Action: Pill button with icon + 'Publish 0.3.0' (accent black pill, shadow-1)\n\n2. Header & Quick Install:\n   - Header title 'omxcore' with subtitle 'MX frame engine for agent-native apps · Apache-2.0', status badges: '● CI passing' (ok green 4px mono badge), 'v0.2.0', 'py3.11+'\n   - Pip install command line bar: 'pip install omxcore' with copy icon button and subtle mono prompt prefix\n   - Right side actions: '... More' secondary tonal button and 'Publish 0.3.0' primary action\n\n3. 4 Key Stats in a clean 4-column row:\n   - '5,912' downloads / week (+11% trend badge)\n   - '1,284' GitHub stars\n   - '7' open issues\n   - '91%' test coverage\n   - Show-your-work source line at bottom: '$ pypistats recent omxcore'\n\n4. Main Content Grid (2 columns or balanced layout):\n   - Left card: Downloads chart card with time segmented tabs (12 wk, 6 mo, 1 yr), smooth clean line graph (SVG polyline/path), axis from 0, and bottom source line '↳ thousands per week, axis from 0 · source: PyPI BigQuery'\n   - Right card: CI runs list with commit hashes, run durations, and 4px-radius Geist Mono status badges ('passed' in green ok, 'running' in amber warn, 'failed' in red bad). Runs: 'Release wheels · a3f9c21 · 4 min ago', 'Tests · py3.13 · a3f9c21 · running 2:41', 'Docs build · 9be04d7 · yesterday', 'Tests · py3.11 · 9be04d7 · yesterday'. Bottom source line: '$ gh run list --limit 4'\n\n5. Releases Table Card:\n   - Section title 'Releases' with segmented filters (All, Stable, Pre-release)\n   - Table columns: VERSION, DATE, WHEELS, SIZE, STATUS\n   - Rows:\n     * '0.3.0rc1' · '2026-10-19' · 'linux · macOS · win' · '4.1 MB' · '● pre-release'\n     * '0.2.0' · '2026-10-12' · 'linux · macOS · win' · '3.9 MB' · '● latest'\n     * '0.1.9' · '2026-09-28' · 'linux · macOS · win' · '3.8 MB' · 'stable'\n   - Right-aligned mono numbers and tabular layout\n\nTone & Detail:\nFollow Universal Language rules: 34px compact controls, cards 12px border radius, Geist Mono for codes/numbers, crisp 1px lines (#e3e3e8), and 'show your work' source lines on hairline top borders.",
+                "screenMetadata": {
+                  "agentType": "PRO_AGENT",
+                  "status": "COMPLETE"
+                },
+                "screenType": "DESIGN",
+                "screenshot": {
+                  "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1Wf3ZVYAaXKSg4slUebXPOpWD6AQRtUUe8BbD8nzwR_d_8yaRnF0rQykZjUOR8s6EDj0u8qTehSWM-yOKIYbzZqjW7dL3FARjoLReJ_aHMLIDtUoPHZGFJAik9a4LR0lBeyRgOFf48JmY5qHx0Vr65pIfHBi0RwWrC9bvlGJX1MET_MsBd2pt6AfW6ND463r6FhTzEuLc001hdfgERp0V8W6WsLAvWBDfK10xByBsYUkSgoHTDszVXudFs",
+                  "name": "projects/16428631202563231164/files/f16dd7a7b83f465baf263575c88a52d9"
+                },
+                "theme": {
+                  "bodyFont": "GEIST",
+                  "bodyFontFamily": "Geist",
+                  "colorMode": "LIGHT",
+                  "colorVariant": "FIDELITY",
+                  "customColor": "#0b0b0d",
+                  "font": "GEIST",
+                  "headlineFont": "GEIST",
+                  "headlineFontFamily": "Geist",
+                  "labelFontFamily": "Geist Mono",
+                  "namedColors": {
+                    "background": "#eeeef1",
+                    "data-1": "#6d5cf0",
+                    "data-2": "#0a7fe0",
+                    "data-3": "#0f9483",
+                    "data-4": "#e0661a",
+                    "data-5": "#d42a2f",
+                    "data-6": "#a88400",
+                    "error": "#c01f25",
+                    "error_container": "#ffdad6",
+                    "info": "#0960b5",
+                    "inverse_on_surface": "#f4f0ef",
+                    "inverse_primary": "#c8c6c8",
+                    "inverse_surface": "#313030",
+                    "ok": "#137036",
+                    "on-surface": "#0b0b0d",
+                    "on-surface-variant": "#5b5b63",
+                    "on_background": "#1c1b1b",
+                    "on_error": "#ffffff",
+                    "on_error_container": "#93000a",
+                    "on_primary": "#ffffff",
+                    "on_primary_container": "#858386",
+                    "on_primary_fixed": "#1c1b1d",
+                    "on_primary_fixed_variant": "#474649",
+                    "on_secondary": "#ffffff",
+                    "on_secondary_container": "#64646c",
+                    "on_secondary_fixed": "#1a1b22",
+                    "on_secondary_fixed_variant": "#46464e",
+                    "on_surface": "#1c1b1b",
+                    "on_surface_variant": "#47464a",
+                    "on_tertiary": "#ffffff",
+                    "on_tertiary_container": "#88837e",
+                    "on_tertiary_fixed": "#1e1b18",
+                    "on_tertiary_fixed_variant": "#4a4642",
+                    "outline": "#c9c9cf",
+                    "outline-variant": "#e3e3e8",
+                    "outline_variant": "#c8c5ca",
+                    "primary": "#000000",
+                    "primary-container": "#1d1d21",
+                    "primary_container": "#1c1b1d",
+                    "primary_fixed": "#e5e1e4",
+                    "primary_fixed_dim": "#c8c6c8",
+                    "secondary": "#5e5e66",
+                    "secondary_container": "#e3e1eb",
+                    "secondary_fixed": "#e3e1eb",
+                    "secondary_fixed_dim": "#c7c5cf",
+                    "surface": "#eeeef1",
+                    "surface-bright": "#ffffff",
+                    "surface-container": "#ffffff",
+                    "surface_bright": "#fdf8f8",
+                    "surface_container": "#f1edec",
+                    "surface_container_high": "#ebe7e7",
+                    "surface_container_highest": "#e5e2e1",
+                    "surface_container_low": "#f7f3f2",
+                    "surface_container_lowest": "#ffffff",
+                    "surface_dim": "#ddd9d9",
+                    "surface_tint": "#5f5e60",
+                    "surface_variant": "#e5e2e1",
+                    "tertiary": "#000000",
+                    "tertiary_container": "#1e1b18",
+                    "tertiary_fixed": "#e8e1db",
+                    "tertiary_fixed_dim": "#ccc5c0",
+                    "warn": "#8f5400"
+                  },
+                  "overridePrimaryColor": "#0b0b0d",
+                  "overrideSecondaryColor": "#5b5b63",
+                  "roundness": "ROUND_EIGHT",
+                  "spacing": {
+                    "gutter": "16px",
+                    "margin": "24px",
+                    "space-lg": "32px",
+                    "space-md": "16px",
+                    "space-sm": "8px",
+                    "space-xl": "48px",
+                    "space-xs": "4px"
+                  },
+                  "spacingScale": 2,
+                  "typography": {
+                    "body": {
+                      "fontFamily": "Geist",
+                      "fontSize": "13.5px",
+                      "fontWeight": "400",
+                      "lineHeight": "20px"
+                    },
+                    "body-medium": {
+                      "fontFamily": "Geist",
+                      "fontSize": "13.5px",
+                      "fontWeight": "500",
+                      "lineHeight": "20px"
+                    },
+                    "caption": {
+                      "fontFamily": "Geist",
+                      "fontSize": "12px",
+                      "fontWeight": "400",
+                      "lineHeight": "16px"
+                    },
+                    "display-lg": {
+                      "fontFamily": "Geist",
+                      "fontSize": "32px",
+                      "fontWeight": "700",
+                      "letterSpacing": "-0.6px",
+                      "lineHeight": "36px"
+                    },
+                    "headline-lg": {
+                      "fontFamily": "Geist",
+                      "fontSize": "22px",
+                      "fontWeight": "650",
+                      "letterSpacing": "-0.3px",
+                      "lineHeight": "28px"
+                    },
+                    "headline-md": {
+                      "fontFamily": "Geist",
+                      "fontSize": "16px",
+                      "fontWeight": "600",
+                      "lineHeight": "22px"
+                    },
+                    "mono-badge": {
+                      "fontFamily": "Geist Mono",
+                      "fontSize": "11px",
+                      "fontWeight": "500",
+                      "lineHeight": "11px"
+                    },
+                    "mono-data": {
+                      "fontFamily": "Geist Mono",
+                      "fontSize": "13px",
+                      "fontWeight": "500",
+                      "lineHeight": "18px"
+                    },
+                    "mono-source": {
+                      "fontFamily": "Geist Mono",
+                      "fontSize": "11.5px",
+                      "fontWeight": "400",
+                      "lineHeight": "16px"
+                    }
+                  }
+                },
+                "title": "omxcore · Developer Graphite · PyPI Package",
+                "width": "2560"
+              }
+            ],
+            "theme": {}
+          }
+        },
+        {
+          "text": "Here is the **Developer Graphite** package page for the PyPI library **`omxcore`** (omxcore · Developer Graphite · PyPI Package), designed according to your design system specifications:\n\n### Design Highlights\n- **Top Islands Shell**: Symmetric floating islands featuring the `omxcore` brand mark with version chip, centered navigation pill (`Overview`, `Releases`, `CI runs`, `Docs`), live build **Beacon** (`Release wheels 3/5 60%`), and the prominent **Publish 0.3.0** primary action pill.\n- **Header & Pip Install**: Library overview with metadata badges (`● CI passing`, `v0.2.0`, `py3.11+`), quick copyable `$ pip install omxcore` terminal block, and documentation quick links.\n- **4 Stat Metrics**: Compact Developer Graphite stat cards highlighting Weekly Downloads (`5,912` with growth indicator), GitHub Stars (`1,284`), Open Issues (`7`), and Test Coverage (`91%`), each complete with mono source traces.\n- **Downloads Chart & Live CI Runs**: Side-by-side workspace cards displaying the weekly pip download cadence chart with time-range segmented controls, paired with the real-time GitHub Actions CI runs list featuring 4px status badges (`running`, `passed`).\n- **Releases Table**: Comprehensive release distribution table displaying versions, release dates, multi-platform wheel chips (`linux`, `macOS`, `win`), asset sizes, and status tags with filter tabs (`All`, `Stable`, `Pre-release`).\n- **Show Your Work Discipline**: Monospace command/query metadata lines (`$ pypistats recent omxcore`, `$ gh run list`, `$ twine check dist/*`) anchored across each card footer."
+        },
+        {
+          "suggestion": "Create the dark/night mode variant for this omxcore page"
+        },
+        {
+          "suggestion": "Design the modal dialog triggered by clicking 'Publish 0.3.0'"
+        },
+        {
+          "suggestion": "Add an interactive CI runs drilldown view with log terminal output"
+        }
+      ],
+      "projectId": "16428631202563231164",
+      "sessionId": "15620190281590177380",
+      "designSystem": {
+        "designSystem": {
+          "displayName": "Universal Language",
+          "styleGuidelines": "## Brand & Style\nThis design system establishes a unified visual language spanning applications, mobile, and web surfaces. It marries solid tonal surfaces and Material state layers with a deliberate, singular shadow scale. The aesthetic prioritizes absolute clarity, functional precision, and zero visual noise—relying on opaque surfaces, crisp borders, and deliberate typographic hierarchy rather than artificial glassmorphism or gradients.\n\n- **Personality:** Grounded, precise, uncompromisingly functional, yet approachable and systematic.\n- **Aesthetic Direction:** Modern minimal-utilitarianism with solid tonal layering, fine hair-line borders, and physical depth through precise shadow tiers.\n- **Emotional Response:** Trust, operational clarity, efficiency, and calmness.\n\n## Layout & Spacing\nContent is structured around a centralized column grid with a maximum content width of 1120px. \n\n- **Layout Model:** Fluid grid with fixed maximum constraints, allowing content to sit comfortably on large viewports while gracefully scaling down to mobile screens. \n- **Spacing Rhythm:** Built on a strict 4px/8px incremental rhythm. Padding and gaps rely on predictable tokens (`space-1` through `space-7`), ensuring uniform density across components.\n- **Adaptive Shells:** Navigation utilizes floating top islands and bottom docks rather than heavy sidebars on standard viewports. On mobile, bottom tab bars and bottom sheets supersede traditional modals and hamburgers.\n\n## Elevation & Depth\nDepth is conveyed strictly through tonal surface layering paired with a unified, restrained shadow scale. There is no use of glassmorphism, background blurs, translucency, or gradients.\n\n- **Surface 0 (`#eeeef1`):** The foundational base canvas.\n- **Surface 1 (`#ffffff`):** Standard cards and elevated containers, styled with `shadow-1` (`0 1px 2px rgba(16,16,20,.06), 0 0 0 1px rgba(16,16,20,.04)`).\n- **Surface 2:** Menus, popovers, and floating navigation islands, featuring `shadow-2` (`0 6px 18px rgba(16,16,20,.10)`).\n- **Surface 3:** Critical dialogs and modal sheets, anchored with `shadow-3` (`0 18px 48px rgba(16,16,20,.18)`) over a semi-opaque scrim.\n- **State Layers:** Hover, press, and selection states are indicated strictly by overlaying the active ink color at 8%, 12%, or 16% opacity respectively over the existing surface.\n\n## Components\nComponents are built for maximum informational clarity, interactive predictability, and strict adherence to the design tokens.\n\n- **Buttons:** Designed as full pills (9999px). Exactly one primary filled button (accent color + shadow-1 with a specific action verb) appears per card. Tonal buttons utilize surface-2 with shadow-1, while text buttons feature no fill.\n- **Chips & Badges:** Use pill shapes for filters/tags and 4px-radius rounded rectangles for technical status indicators with mono-badge typography and 1px hairline borders.\n- **Input Fields:** Outlined fields with a 10px radius, featuring floating labels that sit inside the field and transition into a gap in the border upon focus. Helper text and error sentences appear directly beneath in error red. No filled or underlined variants.\n- **Cards:** Clean surface-1 containers with subtle outer strokes and precise padding. Every content card concludes with a mono source line (query, command, or file path) separated by a hairline top border.\n- **Lists & Tables:** Hairline row dividers, sticky headers, right-aligned tabular monospace numbers, and internal scrolling for dense datasets. Skeleton loaders are mandatory during data fetching (never zeros).\n- **Beacon:** A signature persistent top pill showcasing live activity (progress rings, timer, or live metric) that morphs into a detailed card upon tapping.",
+          "theme": {
+            "bodyFont": "GEIST",
+            "bodyFontFamily": "Geist",
+            "colorMode": "LIGHT",
+            "colorVariant": "FIDELITY",
+            "customColor": "#0b0b0d",
+            "designMd": "---\nname: Universal Language\ncolors:\n  surface: '#eeeef1'\n  surface-dim: '#ddd9d9'\n  surface-bright: '#ffffff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f7f3f2'\n  surface-container: '#ffffff'\n  surface-container-high: '#ebe7e7'\n  surface-container-highest: '#e5e2e1'\n  on-surface: '#0b0b0d'\n  on-surface-variant: '#5b5b63'\n  inverse-surface: '#313030'\n  inverse-on-surface: '#f4f0ef'\n  outline: '#c9c9cf'\n  outline-variant: '#e3e3e8'\n  surface-tint: '#5f5e60'\n  primary: '#000000'\n  on-primary: '#ffffff'\n  primary-container: '#1d1d21'\n  on-primary-container: '#858386'\n  inverse-primary: '#c8c6c8'\n  secondary: '#5e5e66'\n  on-secondary: '#ffffff'\n  secondary-container: '#e3e1eb'\n  on-secondary-container: '#64646c'\n  tertiary: '#000000'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#1e1b18'\n  on-tertiary-container: '#88837e'\n  error: '#c01f25'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#e5e1e4'\n  primary-fixed-dim: '#c8c6c8'\n  on-primary-fixed: '#1c1b1d'\n  on-primary-fixed-variant: '#474649'\n  secondary-fixed: '#e3e1eb'\n  secondary-fixed-dim: '#c7c5cf'\n  on-secondary-fixed: '#1a1b22'\n  on-secondary-fixed-variant: '#46464e'\n  tertiary-fixed: '#e8e1db'\n  tertiary-fixed-dim: '#ccc5c0'\n  on-tertiary-fixed: '#1e1b18'\n  on-tertiary-fixed-variant: '#4a4642'\n  background: '#eeeef1'\n  on-background: '#1c1b1b'\n  surface-variant: '#e5e2e1'\n  ok: '#137036'\n  warn: '#8f5400'\n  info: '#0960b5'\n  data-1: '#6d5cf0'\n  data-2: '#0a7fe0'\n  data-3: '#0f9483'\n  data-4: '#e0661a'\n  data-5: '#d42a2f'\n  data-6: '#a88400'\ntypography:\n  display-lg:\n    fontFamily: Geist\n    fontSize: 32px\n    fontWeight: '700'\n    lineHeight: 36px\n    letterSpacing: -0.6px\n  headline-lg:\n    fontFamily: Geist\n    fontSize: 22px\n    fontWeight: '650'\n    lineHeight: 28px\n    letterSpacing: -0.3px\n  headline-md:\n    fontFamily: Geist\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 22px\n  body:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '400'\n    lineHeight: 20px\n  body-medium:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '500'\n    lineHeight: 20px\n  caption:\n    fontFamily: Geist\n    fontSize: 12px\n    fontWeight: '400'\n    lineHeight: 16px\n  mono-data:\n    fontFamily: Geist Mono\n    fontSize: 13px\n    fontWeight: '500'\n    lineHeight: 18px\n  mono-badge:\n    fontFamily: Geist Mono\n    fontSize: 11px\n    fontWeight: '500'\n    lineHeight: 11px\n  mono-source:\n    fontFamily: Geist Mono\n    fontSize: 11.5px\n    fontWeight: '400'\n    lineHeight: 16px\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  gutter: 16px\n  margin: 24px\n  space-xs: 4px\n  space-sm: 8px\n  space-md: 16px\n  space-lg: 32px\n  space-xl: 48px\n---\n\nname: Universal Language\ncolors:\n  background: '#eeeef1'\n  on-background: '#0b0b0d'\n  surface: '#eeeef1'\n  surface-bright: '#ffffff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#ffffff'\n  surface-container: '#ffffff'\n  surface-container-high: '#ffffff'\n  surface-container-highest: '#ffffff'\n  on-surface: '#0b0b0d'\n  on-surface-variant: '#5b5b63'\n  inverse-surface: '#0b0b0d'\n  inverse-on-surface: '#ededef'\n  outline: '#c9c9cf'\n  outline-variant: '#e3e3e8'\n  primary: '#0b0b0d'\n  on-primary: '#ffffff'\n  primary-container: '#1d1d21'\n  on-primary-container: '#ededef'\n  secondary: '#5b5b63'\n  on-secondary: '#ffffff'\n  error: '#c01f25'\n  on-error: '#ffffff'\n  surface-0: '#eeeef1'\n  surface-1: '#ffffff'\n  surface-2: '#ffffff'\n  surface-3: '#ffffff'\n  ink: '#0b0b0d'\n  ink-2: '#5b5b63'\n  ink-faint: '#c9c9cf'\n  line: '#e3e3e8'\n  line-2: '#efeff2'\n  accent: '#0b0b0d'\n  on-accent: '#ffffff'\n  beacon: '#0b0b0d'\n  ok: '#137036'\n  warn: '#8f5400'\n  bad: '#c01f25'\n  info: '#0960b5'\n  data-1: '#6d5cf0'\n  data-2: '#0a7fe0'\n  data-3: '#0f9483'\n  data-4: '#e0661a'\n  data-5: '#d42a2f'\n  data-6: '#a88400'\ntypography:\n  display-lg:\n    fontFamily: Geist\n    fontSize: 32px\n    fontWeight: '700'\n    lineHeight: 36px\n    letterSpacing: -0.6px\n  headline-lg:\n    fontFamily: Geist\n    fontSize: 22px\n    fontWeight: '650'\n    lineHeight: 28px\n    letterSpacing: -0.3px\n  headline-md:\n    fontFamily: Geist\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 22px\n  body:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '400'\n    lineHeight: 20px\n  body-medium:\n    fontFamily: Geist\n    fontSize: 13.5px\n    fontWeight: '500'\n    lineHeight: 20px\n  caption:\n    fontFamily: Geist\n    fontSize: 12px\n    fontWeight: '400'\n    lineHeight: 16px\n  mono-data:\n    fontFamily: Geist Mono\n    fontSize: 13px\n    fontWeight: '500'\n    lineHeight: 18px\n  mono-badge:\n    fontFamily: Geist Mono\n    fontSize: 11px\n    fontWeight: '500'\n    lineHeight: 11px\n  mono-source:\n    fontFamily: Geist Mono\n    fontSize: 11.5px\n    fontWeight: '400'\n    lineHeight: 16px\nrounded:\n  xs: 4px\n  sm: 8px\n  DEFAULT: 10px\n  md: 12px\n  lg: 16px\n  xl: 22px\n  full: 9999px\nspacing:\n  space-1: 4px\n  space-2: 8px\n  space-3: 12px\n  space-4: 16px\n  space-5: 24px\n  space-6: 32px\n  space-7: 48px\n  target: 44px\n  target-compact: 34px\n  column-max: 1120px\n---\n\n# Universal Language: Material texture, Liquid motion\n\nOne design language for every app, phone and web. Opaque tonal surfaces, Material state layers and one soft shadow scale. The front matter is the **Developer · Graphite (Light)** family; other families swap surfaces, accent and data palette (below) but keep every rule.\n\n## Texture\n- Depth is tone plus one shadow scale: page surface-0 (#eeeef1); cards surface-1 (#ffffff) + shadow-1 (0 1px 2px rgba(16,16,20,.06), 0 0 0 1px rgba(16,16,20,.04)); menus, popovers and floating islands surface-2 + shadow-2 (0 6px 18px rgba(16,16,20,.10)); dialogs surface-3 + shadow-3 (0 18px 48px rgba(16,16,20,.18)) over a scrim.\n- **No glass, no blur, no translucency, no gradients** on any chrome or surface.\n- Hover / press / selected = the ink colour at 8% / 12% / 16% over the surface. Never a new colour.\n\n## Shape\n- **Pill (9999px) = tappable**: buttons, chips, segmented controls, tabs, nav.\n- **Status = a 4px-radius mono badge** (e.g. `running`, `401`, `p50 exact`), 11px Geist Mono, 1px hairline border.\n- Cards 16px (12px compact / Developer), inputs 10px, menus 14px with 8px items. Concentric corners: inner radius = outer minus padding.\n\n## Type\n- Geist for words, Geist Mono for numbers, IDs, paths, commands, times and every source line. Tabular, right-aligned numbers in tables.\n- Developer body 13.5px; Travel 14px; Kids 15.5px with 32px titles.\n\n## Colour\n- **One accent per app**; it fills the one loud button per card and the focus ring, nothing else. Developer accent = ink (near-black in Light, near-white in Night).\n- **Data palette** data-1..6 is separate from the accent: chart series and kinds. A thing keeps its data colour everywhere. Never reuse the accent as a data colour.\n- States ok / warn / bad / info always come with the word, never colour alone.\n- Text is 4.5:1 on its surface. ink-faint is never text. A data colour used as a fill behind text must reach 4.5:1 with its text.\n\n## Families (an app picks one)\n| Family | For | Light page / accent | Night page / accent | Character |\n|---|---|---|---|---|\n| Developer · Graphite | libraries, PyPI packages, consoles | cool grey #eeeef1 / ink #0b0b0d | near-black #0b0b0d / #ededef | compact 34px controls, cards 12px, mono-forward, numbers and source lines everywhere |\n| Travel · Coast | trips, places, days | warm sand #f4f0e9, cards #fffdf9, ink #1d1a16 / sea teal #0b6e69 | deep sea #0b1214 / #5fd4c8 | 40px targets, cards 16px; kinds carry colour (flight #2f6fbf, stay #8a4fa8, food #c2462b, see sage #3f7a46), days never do |\n| Kids · Playground | children's apps | cream #fff6ea, ink #2a1d12 / tangerine #c2410c | plum #171221 / #ffad66 | roomy 48px targets, cards 22px, 15.5px type, big icon tiles, one hero card, a big \"I did it!\" button |\n\nSkins (same components, different surface and type): Travel **Azulejo** (paper + tile blue, Fraunces serif display, crisper corners), **Golden hour** (peach / espresso, amber accent, rounder). Kids **Sticker** (Nunito, chunky ledge shadows that press down 4px, sky-blue accent), **Crayon** (Nunito, pastel tiles tinted with their own colour, berry accent).\n\n## Shells (symmetric, preferred over a sidebar)\n- Content sits in a centred column, max 1120px. Content scrolls under floating islands.\n- **Top islands**: brand island top-left · one centred nav pill with a sliding accent thumb · Beacon top-right, all floating 14px from the top, solid surface-2 + shadow-2.\n- **Dock**: the nav pill floats at the bottom centre (identical to the phone tab bar) · Beacon top centre · brand island top-left.\n- **Nav island** (dense tools): the sidebar as a floating vertical pill, 60px wide, radius 26, icons only at rest (active item = accent pill), widens to 224px with labels on hover.\n- Phone: a floating bottom tab bar (3–5 items), never a hamburger for main nav. Bottom sheets instead of modals.\n\n## Signature components\n- **Beacon**: a near-black pill near the top (both themes) showing one live activity (a build, a flight, a timer): icon or progress ring + label + one mono value. Tapping morphs it into a card with details and up to 3 actions. One per app; hidden when nothing is live.\n- **Buttons**: pill. Filled = accent + shadow-1 with a specific verb (\"Publish 0.3.0\", not \"Submit\"); one filled button per card. Tonal = surface-2 + shadow-1. Text = no fill.\n- **Field**: outlined, 10px radius, floating label that sits inside and floats into a gap in the border on focus; help line below; error as a sentence under the field in bad red. No filled or underlined fields.\n- **Close button**: a 32px circle with a 16px x icon, top-right. Never a text glyph.\n- **Tables**: hairline rows, mono right-aligned numbers, sticky header; long lists scroll inside their card.\n- **Show your work**: every card ends in a mono source line (the query, command or file) on a hairline top border.\n- States: loading = skeleton rows (never zeros); empty = one line + the action; error = what happened + what to do.\n- Icons: Lucide-style line icons. Never SF Symbols, SF Pro, Segoe or Fluent icons. No emoji as icons.\n\n## Motion budget (for handoff; static screens show the resting state)\nThe more often something happens, the less it moves. Springs only for small things under the finger (press squash 0.96, toggles, segmented thumbs). Panels and sheets settle (fade + 12px slide, 280ms, no bounce). Menus and popovers are gentle (220ms fade + 4px drop). Keyboard-driven and live data: instant. No ripples, no halos.\n\n## Landing layer (marketing pages)\nSame family, turned up: hero type 64–168px at line-height ≤ 1 and −5% tracking (Geist 800 for Developer, Fraunces italic for Travel, Nunito 900 for Kids); two-tone headings (claim in ink, continuation in ink-2); one idea per screen, 140px between sections, centred column ≤ 1120px; the Top islands nav with one filled CTA; CTAs = one filled pill with a specific verb + a text link with ›. Show the real app in a frame. No gradient text, no glass, no carousels.",
+            "font": "GEIST",
+            "headlineFont": "GEIST",
+            "headlineFontFamily": "Geist",
+            "labelFontFamily": "Geist Mono",
+            "namedColors": {
+              "background": "#eeeef1",
+              "data-1": "#6d5cf0",
+              "data-2": "#0a7fe0",
+              "data-3": "#0f9483",
+              "data-4": "#e0661a",
+              "data-5": "#d42a2f",
+              "data-6": "#a88400",
+              "error": "#c01f25",
+              "error_container": "#ffdad6",
+              "info": "#0960b5",
+              "inverse_on_surface": "#f4f0ef",
+              "inverse_primary": "#c8c6c8",
+              "inverse_surface": "#313030",
+              "ok": "#137036",
+              "on-surface": "#0b0b0d",
+              "on-surface-variant": "#5b5b63",
+              "on_background": "#1c1b1b",
+              "on_error": "#ffffff",
+              "on_error_container": "#93000a",
+              "on_primary": "#ffffff",
+              "on_primary_container": "#858386",
+              "on_primary_fixed": "#1c1b1d",
+              "on_primary_fixed_variant": "#474649",
+              "on_secondary": "#ffffff",
+              "on_secondary_container": "#64646c",
+              "on_secondary_fixed": "#1a1b22",
+              "on_secondary_fixed_variant": "#46464e",
+              "on_surface": "#1c1b1b",
+              "on_surface_variant": "#47464a",
+              "on_tertiary": "#ffffff",
+              "on_tertiary_container": "#88837e",
+              "on_tertiary_fixed": "#1e1b18",
+              "on_tertiary_fixed_variant": "#4a4642",
+              "outline": "#c9c9cf",
+              "outline-variant": "#e3e3e8",
+              "outline_variant": "#c8c5ca",
+              "primary": "#000000",
+              "primary-container": "#1d1d21",
+              "primary_container": "#1c1b1d",
+              "primary_fixed": "#e5e1e4",
+              "primary_fixed_dim": "#c8c6c8",
+              "secondary": "#5e5e66",
+              "secondary_container": "#e3e1eb",
+              "secondary_fixed": "#e3e1eb",
+              "secondary_fixed_dim": "#c7c5cf",
+              "surface": "#eeeef1",
+              "surface-bright": "#ffffff",
+              "surface-container": "#ffffff",
+              "surface_bright": "#fdf8f8",
+              "surface_container": "#f1edec",
+              "surface_container_high": "#ebe7e7",
+              "surface_container_highest": "#e5e2e1",
+              "surface_container_low": "#f7f3f2",
+              "surface_container_lowest": "#ffffff",
+              "surface_dim": "#ddd9d9",
+              "surface_tint": "#5f5e60",
+              "surface_variant": "#e5e2e1",
+              "tertiary": "#000000",
+              "tertiary_container": "#1e1b18",
+              "tertiary_fixed": "#e8e1db",
+              "tertiary_fixed_dim": "#ccc5c0",
+              "warn": "#8f5400"
+            },
+            "overridePrimaryColor": "#0b0b0d",
+            "overrideSecondaryColor": "#5b5b63",
+            "roundness": "ROUND_EIGHT",
+            "spacing": {
+              "gutter": "16px",
+              "margin": "24px",
+              "space-lg": "32px",
+              "space-md": "16px",
+              "space-sm": "8px",
+              "space-xl": "48px",
+              "space-xs": "4px"
+            },
+            "spacingScale": 2,
+            "typography": {
+              "body": {
+                "fontFamily": "Geist",
+                "fontSize": "13.5px",
+                "fontWeight": "400",
+                "lineHeight": "20px"
+              },
+              "body-medium": {
+                "fontFamily": "Geist",
+                "fontSize": "13.5px",
+                "fontWeight": "500",
+                "lineHeight": "20px"
+              },
+              "caption": {
+                "fontFamily": "Geist",
+                "fontSize": "12px",
+                "fontWeight": "400",
+                "lineHeight": "16px"
+              },
+              "display-lg": {
+                "fontFamily": "Geist",
+                "fontSize": "32px",
+                "fontWeight": "700",
+                "letterSpacing": "-0.6px",
+                "lineHeight": "36px"
+              },
+              "headline-lg": {
+                "fontFamily": "Geist",
+                "fontSize": "22px",
+                "fontWeight": "650",
+                "letterSpacing": "-0.3px",
+                "lineHeight": "28px"
+              },
+              "headline-md": {
+                "fontFamily": "Geist",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "lineHeight": "22px"
+              },
+              "mono-badge": {
+                "fontFamily": "Geist Mono",
+                "fontSize": "11px",
+                "fontWeight": "500",
+                "lineHeight": "11px"
+              },
+              "mono-data": {
+                "fontFamily": "Geist Mono",
+                "fontSize": "13px",
+                "fontWeight": "500",
+                "lineHeight": "18px"
+              },
+              "mono-source": {
+                "fontFamily": "Geist Mono",
+                "fontSize": "11.5px",
+                "fontWeight": "400",
+                "lineHeight": "16px"
+              }
+            }
+          }
+        },
+        "name": "assets/ef0047a95e314e548e3f305e7c7b187b",
+        "version": "1"
+      },
+      "deviceType": "DESKTOP",
+      "generatedBy": "figaro_agent",
+      "height": "2666",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzMzMDgxMDYzOThjZjRkNWZiYjBjMmM5ZDZhODc4NGUxEgsSBxDOpomh_Q8YAZIBJAoKcHJvamVjdF9pZBIWQhQxNjQyODYzMTIwMjU2MzIzMTE2NA&filename=&opi=96797242",
+        "mimeType": "text/html",
+        "name": "projects/16428631202563231164/files/11dd4fc70365494a9c64839917f2cc3c"
+      },
+      "id": "6ea344a92e4e473e98403b806d827a00",
+      "name": "projects/16428631202563231164/screens/6ea344a92e4e473e98403b806d827a00",
+      "prompt": "Developer package page for PyPI library 'omxcore' adhering strictly to the Universal Language 'Developer · Graphite' light aesthetic (#eeeef1 page background, #ffffff surface cards with shadow-1 hairline border, Geist words, Geist Mono for commands/metrics/statuses).\n\nKey Sections & Components:\n1. Shell / Top Islands:\n   - Left island: Brand mark 'ox' badge + 'omxcore' title\n   - Center island: Floating nav pill with active 'Overview', 'Releases', 'CI runs', 'Docs'\n   - Right island: Beacon pill with live status '● Release wheels 3/5' + mono indicator\n   - Action: Pill button with icon + 'Publish 0.3.0' (accent black pill, shadow-1)\n\n2. Header & Quick Install:\n   - Header title 'omxcore' with subtitle 'MX frame engine for agent-native apps · Apache-2.0', status badges: '● CI passing' (ok green 4px mono badge), 'v0.2.0', 'py3.11+'\n   - Pip install command line bar: 'pip install omxcore' with copy icon button and subtle mono prompt prefix\n   - Right side actions: '... More' secondary tonal button and 'Publish 0.3.0' primary action\n\n3. 4 Key Stats in a clean 4-column row:\n   - '5,912' downloads / week (+11% trend badge)\n   - '1,284' GitHub stars\n   - '7' open issues\n   - '91%' test coverage\n   - Show-your-work source line at bottom: '$ pypistats recent omxcore'\n\n4. Main Content Grid (2 columns or balanced layout):\n   - Left card: Downloads chart card with time segmented tabs (12 wk, 6 mo, 1 yr), smooth clean line graph (SVG polyline/path), axis from 0, and bottom source line '↳ thousands per week, axis from 0 · source: PyPI BigQuery'\n   - Right card: CI runs list with commit hashes, run durations, and 4px-radius Geist Mono status badges ('passed' in green ok, 'running' in amber warn, 'failed' in red bad). Runs: 'Release wheels · a3f9c21 · 4 min ago', 'Tests · py3.13 · a3f9c21 · running 2:41', 'Docs build · 9be04d7 · yesterday', 'Tests · py3.11 · 9be04d7 · yesterday'. Bottom source line: '$ gh run list --limit 4'\n\n5. Releases Table Card:\n   - Section title 'Releases' with segmented filters (All, Stable, Pre-release)\n   - Table columns: VERSION, DATE, WHEELS, SIZE, STATUS\n   - Rows:\n     * '0.3.0rc1' · '2026-10-19' · 'linux · macOS · win' · '4.1 MB' · '● pre-release'\n     * '0.2.0' · '2026-10-12' · 'linux · macOS · win' · '3.9 MB' · '● latest'\n     * '0.1.9' · '2026-09-28' · 'linux · macOS · win' · '3.8 MB' · 'stable'\n   - Right-aligned mono numbers and tabular layout\n\nTone & Detail:\nFollow Universal Language rules: 34px compact controls, cards 12px border radius, Geist Mono for codes/numbers, crisp 1px lines (#e3e3e8), and 'show your work' source lines on hairline top borders.",
+      "screenMetadata": {
+        "agentType": "PRO_AGENT",
+        "status": "COMPLETE"
+      },
+      "screenType": "DESIGN",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1Wf3ZVYAaXKSg4slUebXPOpWD6AQRtUUe8BbD8nzwR_d_8yaRnF0rQykZjUOR8s6EDj0u8qTehSWM-yOKIYbzZqjW7dL3FARjoLReJ_aHMLIDtUoPHZGFJAik9a4LR0lBeyRgOFf48JmY5qHx0Vr65pIfHBi0RwWrC9bvlGJX1MET_MsBd2pt6AfW6ND463r6FhTzEuLc001hdfgERp0V8W6WsLAvWBDfK10xByBsYUkSgoHTDszVXudFs",
+        "name": "projects/16428631202563231164/files/f16dd7a7b83f465baf263575c88a52d9"
+      },
+      "theme": {
+        "bodyFont": "GEIST",
+        "bodyFontFamily": "Geist",
+        "colorMode": "LIGHT",
+        "colorVariant": "FIDELITY",
+        "customColor": "#0b0b0d",
+        "font": "GEIST",
+        "headlineFont": "GEIST",
+        "headlineFontFamily": "Geist",
+        "labelFontFamily": "Geist Mono",
+        "namedColors": {
+          "background": "#eeeef1",
+          "data-1": "#6d5cf0",
+          "data-2": "#0a7fe0",
+          "data-3": "#0f9483",
+          "data-4": "#e0661a",
+          "data-5": "#d42a2f",
+          "data-6": "#a88400",
+          "error": "#c01f25",
+          "error_container": "#ffdad6",
+          "info": "#0960b5",
+          "inverse_on_surface": "#f4f0ef",
+          "inverse_primary": "#c8c6c8",
+          "inverse_surface": "#313030",
+          "ok": "#137036",
+          "on-surface": "#0b0b0d",
+          "on-surface-variant": "#5b5b63",
+          "on_background": "#1c1b1b",
+          "on_error": "#ffffff",
+          "on_error_container": "#93000a",
+          "on_primary": "#ffffff",
+          "on_primary_container": "#858386",
+          "on_primary_fixed": "#1c1b1d",
+          "on_primary_fixed_variant": "#474649",
+          "on_secondary": "#ffffff",
+          "on_secondary_container": "#64646c",
+          "on_secondary_fixed": "#1a1b22",
+          "on_secondary_fixed_variant": "#46464e",
+          "on_surface": "#1c1b1b",
+          "on_surface_variant": "#47464a",
+          "on_tertiary": "#ffffff",
+          "on_tertiary_container": "#88837e",
+          "on_tertiary_fixed": "#1e1b18",
+          "on_tertiary_fixed_variant": "#4a4642",
+          "outline": "#c9c9cf",
+          "outline-variant": "#e3e3e8",
+          "outline_variant": "#c8c5ca",
+          "primary": "#000000",
+          "primary-container": "#1d1d21",
+          "primary_container": "#1c1b1d",
+          "primary_fixed": "#e5e1e4",
+          "primary_fixed_dim": "#c8c6c8",
+          "secondary": "#5e5e66",
+          "secondary_container": "#e3e1eb",
+          "secondary_fixed": "#e3e1eb",
+          "secondary_fixed_dim": "#c7c5cf",
+          "surface": "#eeeef1",
+          "surface-bright": "#ffffff",
+          "surface-container": "#ffffff",
+          "surface_bright": "#fdf8f8",
+          "surface_container": "#f1edec",
+          "surface_container_high": "#ebe7e7",
+          "surface_container_highest": "#e5e2e1",
+          "surface_container_low": "#f7f3f2",
+          "surface_container_lowest": "#ffffff",
+          "surface_dim": "#ddd9d9",
+          "surface_tint": "#5f5e60",
+          "surface_variant": "#e5e2e1",
+          "tertiary": "#000000",
+          "tertiary_container": "#1e1b18",
+          "tertiary_fixed": "#e8e1db",
+          "tertiary_fixed_dim": "#ccc5c0",
+          "warn": "#8f5400"
+        },
+        "overridePrimaryColor": "#0b0b0d",
+        "overrideSecondaryColor": "#5b5b63",
+        "roundness": "ROUND_EIGHT",
+        "spacing": {
+          "gutter": "16px",
+          "margin": "24px",
+          "space-lg": "32px",
+          "space-md": "16px",
+          "space-sm": "8px",
+          "space-xl": "48px",
+          "space-xs": "4px"
+        },
+        "spacingScale": 2,
+        "typography": {
+          "body": {
+            "fontFamily": "Geist",
+            "fontSize": "13.5px",
+            "fontWeight": "400",
+            "lineHeight": "20px"
+          },
+          "body-medium": {
+            "fontFamily": "Geist",
+            "fontSize": "13.5px",
+            "fontWeight": "500",
+            "lineHeight": "20px"
+          },
+          "caption": {
+            "fontFamily": "Geist",
+            "fontSize": "12px",
+            "fontWeight": "400",
+            "lineHeight": "16px"
+          },
+          "display-lg": {
+            "fontFamily": "Geist",
+            "fontSize": "32px",
+            "fontWeight": "700",
+            "letterSpacing": "-0.6px",
+            "lineHeight": "36px"
+          },
+          "headline-lg": {
+            "fontFamily": "Geist",
+            "fontSize": "22px",
+            "fontWeight": "650",
+            "letterSpacing": "-0.3px",
+            "lineHeight": "28px"
+          },
+          "headline-md": {
+            "fontFamily": "Geist",
+            "fontSize": "16px",
+            "fontWeight": "600",
+            "lineHeight": "22px"
+          },
+          "mono-badge": {
+            "fontFamily": "Geist Mono",
+            "fontSize": "11px",
+            "fontWeight": "500",
+            "lineHeight": "11px"
+          },
+          "mono-data": {
+            "fontFamily": "Geist Mono",
+            "fontSize": "13px",
+            "fontWeight": "500",
+            "lineHeight": "18px"
+          },
+          "mono-source": {
+            "fontFamily": "Geist Mono",
+            "fontSize": "11.5px",
+            "fontWeight": "400",
+            "lineHeight": "16px"
+          }
+        }
+      },
+      "title": "omxcore · Developer Graphite · PyPI Package",
+      "width": "2560",
+      "agentText": "Here is the **Developer Graphite** package page for the PyPI library **`omxcore`** (omxcore · Developer Graphite · PyPI Package), designed according to your design system specifications:\n\n### Design Highlights\n- **Top Islands Shell**: Symmetric floating islands featuring the `omxcore` brand mark with version chip, centered navigation pill (`Overview`, `Releases`, `CI runs`, `Docs`), live build **Beacon** (`Release wheels 3/5 60%`), and the prominent **Publish 0.3.0** primary action pill.\n- **Header & Pip Install**: Library overview with metadata badges (`● CI passing`, `v0.2.0`, `py3.11+`), quick copyable `$ pip install omxcore` terminal block, and documentation quick links.\n- **4 Stat Metrics**: Compact Developer Graphite stat cards highlighting Weekly Downloads (`5,912` with growth indicator), GitHub Stars (`1,284`), Open Issues (`7`), and Test Coverage (`91%`), each complete with mono source traces.\n- **Downloads Chart & Live CI Runs**: Side-by-side workspace cards displaying the weekly pip download cadence chart with time-range segmented controls, paired with the real-time GitHub Actions CI runs list featuring 4px status badges (`running`, `passed`).\n- **Releases Table**: Comprehensive release distribution table displaying versions, release dates, multi-platform wheel chips (`linux`, `macOS`, `win`), asset sizes, and status tags with filter tabs (`All`, `Stable`, `Pre-release`).\n- **Show Your Work Discipline**: Monospace command/query metadata lines (`$ pypistats recent omxcore`, `$ gh run list`, `$ twine check dist/*`) anchored across each card footer.",
+      "suggestions": [
+        "Create the dark/night mode variant for this omxcore page",
+        "Design the modal dialog triggered by clicking 'Publish 0.3.0'",
+        "Add an interactive CI runs drilldown view with log terminal output"
+      ],
+      "imageUrl": "https://lh3.googleusercontent.com/aida/AEtjO1Wf3ZVYAaXKSg4slUebXPOpWD6AQRtUUe8BbD8nzwR_d_8yaRnF0rQykZjUOR8s6EDj0u8qTehSWM-yOKIYbzZqjW7dL3FARjoLReJ_aHMLIDtUoPHZGFJAik9a4LR0lBeyRgOFf48JmY5qHx0Vr65pIfHBi0RwWrC9bvlGJX1MET_MsBd2pt6AfW6ND463r6FhTzEuLc001hdfgERp0V8W6WsLAvWBDfK10xByBsYUkSgoHTDszVXudFs"
+    }
+  }
+}

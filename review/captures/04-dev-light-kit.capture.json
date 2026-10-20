@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "source": "headless_browser",
+    "port": 8801,
+    "url": "http://127.0.0.1:8801/showcase.html?fam=dev&theme=light&view=kit&shell=top&bare=1",
+    "route": "/showcase.html",
+    "title": "Capture /showcase.html",
+    "outputPath": "/home/abhisheksreesaila/.claude/skills/designer/languages/universal/review/captures/04-dev-light-kit.html",
+    "pageId": 1,
+    "screenshotPath": "/home/abhisheksreesaila/.claude/skills/designer/languages/universal/review/.stitch/verify-capture.png",
+    "matchedLiveTab": true,
+    "telemetry": {
+      "visibleTextLength": 1190,
+      "interactiveCount": 68,
+      "leafNodeCount": 173,
+      "loadingIndicatorsFound": []
+    },
+    "status": "saved",
+    "htmlBytes": 130172
+  }
+}

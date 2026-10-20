@@ -1,0 +1,50 @@
+{
+ "id": "1fdd41fa-a0fc-4558-93d1-e45eb94e8cdd",
+ "title": "Showcase interactive controls fail target size specifications",
+ "description": "Interactive elements in showcase.html fall below minimum target size specifications established across design families. Fixed-size controls including switcher buttons and copy buttons fail touch standards, while relative formulas systematically reduce small buttons, chips, and segmented controls below target thresholds. Root variable declarations further diverge from token defaults, creating misclick hazards across touch and pointer viewports.",
+ "state": "ACTIVE",
+ "priority": "P2",
+ "altitude": "LOW",
+ "goals": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "priorities": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "lastSubstantiveUpdateTime": "2026-10-20T21:06:12.809630Z",
+ "references": {
+  "1": {
+   "id": "1",
+   "note": {
+    "content": "/app/DESIGN.md:L113-L115, /app/DESIGN.md:L142-L146, and /app/LANGUAGE.md:L39-L44 define target size standards: 34px for Developer (.ul-family-dev), 40px for Travel (.ul-family-travel), 48px for Kids (.ul-family-kids), and 44px default roomy target."
+   }
+  },
+  "2": {
+   "id": "2",
+   "note": {
+    "content": "/app/tokens.css:L21, /app/tokens.css:L79, /app/tokens.css:L88, and /app/tokens.css:L97 specify CSS target tokens for default (44px), compact Developer (34px), Travel (40px), and Kids (48px) families."
+   }
+  },
+  "3": {
+   "id": "3",
+   "note": {
+    "content": "/app/showcase.html:L337-L339 sets top bar switcher buttons (.pseg button) to 27px height, and /app/showcase.html:L438-L439 sets copy buttons (.src .cp) to 17px height, failing all minimum target size standards."
+   }
+  },
+  "4": {
+   "id": "4",
+   "note": {
+    "content": "/app/showcase.html:L152, /app/showcase.html:L180, /app/showcase.html:L237, /app/showcase.html:L372, /app/showcase.html:L380, and /app/showcase.html:L415 define controls using fixed heights (26px pin buttons, 34px topnav and Beacon buttons) or subtractions like calc(var(--ul-target) - 8px) and calc(var(--ul-target) - 6px), forcing controls below family target thresholds."
+   }
+  },
+  "5": {
+   "id": "5",
+   "note": {
+    "content": "/app/showcase.html:L19 hardcodes --ul-target: 36px on .ul-root, diverging from the 44px default defined in /app/tokens.css:L21 and /app/DESIGN.md:L113."
+   }
+  }
+ },
+ "createTime": "2026-10-20T21:06:12.809630Z",
+ "updateTime": "2026-10-20T21:06:12.809630Z",
+ "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/insights/1fdd41fa-a0fc-4558-93d1-e45eb94e8cdd"
+}

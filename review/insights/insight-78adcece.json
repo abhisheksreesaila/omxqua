@@ -1,0 +1,44 @@
+{
+ "id": "78adcece-b904-4d88-a073-6db29b6b8af5",
+ "title": "Micro interaction animations lack state cleanup",
+ "description": "ul.js implements pointer-down squash feedback and SVG logo text write animations using the Web Animation API. The release animation omits persistent state cleanup, which causes element transforms to reset abruptly when animation playback completes. SVG logo text stroke animations also hardcode fixed stroke offsets without measuring dynamic text lengths, causing truncated stroke outlines for variable text content.",
+ "state": "ACTIVE",
+ "priority": "P2",
+ "altitude": "LOW",
+ "goals": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "priorities": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "lastSubstantiveUpdateTime": "2026-10-20T21:06:12.809630Z",
+ "references": {
+  "1": {
+   "id": "1",
+   "note": {
+    "content": "Universal Language specifies uniform press feedback for interactive controls and animated SVG logo write effects in /app/LANGUAGE.md:L105-L107 and /app/DESIGN.md:L168-L170."
+   }
+  },
+  "2": {
+   "id": "2",
+   "note": {
+    "content": "In /app/ul.js:L21-L24, the pointerup event listener triggers animation b without fill forwards or style persistence. When animation b completes after 320ms, the Web Animation API removes its keyframe effect, causing abrupt style shifts and visual jumps. The hardcoded 320ms duration in /app/ul.js:L23 also diverges from tokenized spring durations in /app/tokens.css:L27."
+   }
+  },
+  "3": {
+   "id": "3",
+   "note": {
+    "content": "In /app/ul.js:L38, the prepare function skips setting pathLength to 1 for SVG text elements. Lines /app/ul.js:L43-L47 and injected CSS at /app/ul.js:L55 fix stroke dash offsets and dash arrays at 120."
+   }
+  },
+  "4": {
+   "id": "4",
+   "note": {
+    "content": "Because /app/ul.js:L30-L52 does not measure dynamic text length, logo text strings exceeding 120px path length suffer from incomplete stroke paths and truncated write animations."
+   }
+  }
+ },
+ "createTime": "2026-10-20T21:06:12.809630Z",
+ "updateTime": "2026-10-20T21:06:12.809630Z",
+ "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/insights/78adcece-b904-4d88-a073-6db29b6b8af5"
+}

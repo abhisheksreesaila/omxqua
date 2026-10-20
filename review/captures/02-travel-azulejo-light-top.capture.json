@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "source": "headless_browser",
+    "port": 8801,
+    "url": "http://127.0.0.1:8801/showcase.html?fam=travel&skin=azulejo&theme=light&shell=top&bare=1",
+    "route": "/showcase.html",
+    "title": "Capture /showcase.html",
+    "outputPath": "/home/abhisheksreesaila/.claude/skills/designer/languages/universal/review/captures/02-travel-azulejo-light-top.html",
+    "pageId": 1,
+    "screenshotPath": "/home/abhisheksreesaila/.claude/skills/designer/languages/universal/review/.stitch/verify-capture.png",
+    "matchedLiveTab": true,
+    "telemetry": {
+      "visibleTextLength": 796,
+      "interactiveCount": 65,
+      "leafNodeCount": 186,
+      "loadingIndicatorsFound": []
+    },
+    "status": "saved",
+    "htmlBytes": 133841
+  }
+}

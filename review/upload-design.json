@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "data": {
+    "path": "DESIGN.md",
+    "project": "16428631202563231164",
+    "id": "15069450636830318642",
+    "status": "uploaded",
+    "applyCommand": "stitch edit screen <screen-id> --project 16428631202563231164 --design-system 15069450636830318642"
+  }
+}

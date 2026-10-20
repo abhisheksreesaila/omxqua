@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "source": "headless_browser",
+    "port": 8801,
+    "url": "http://127.0.0.1:8801/showcase.html?fam=kids&skin=sticker&theme=light&shell=dock&bare=1",
+    "route": "/showcase.html",
+    "title": "Capture /showcase.html",
+    "outputPath": "/home/abhisheksreesaila/.claude/skills/designer/languages/universal/review/captures/03-kids-sticker-light-dock.html",
+    "pageId": 1,
+    "screenshotPath": "/home/abhisheksreesaila/.claude/skills/designer/languages/universal/review/.stitch/verify-capture.png",
+    "matchedLiveTab": true,
+    "telemetry": {
+      "visibleTextLength": 535,
+      "interactiveCount": 63,
+      "leafNodeCount": 153,
+      "loadingIndicatorsFound": []
+    },
+    "status": "saved",
+    "htmlBytes": 131277
+  }
+}

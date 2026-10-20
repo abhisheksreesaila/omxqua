@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "data": {
+    "status": "uploaded",
+    "file": "captures/05-landing-a.html",
+    "project": "16428631202563231164",
+    "title": "Landing A · Statement",
+    "screenIds": [
+      "12855321475312023600"
+    ],
+    "canvasUrl": "https://stitch.google.com/projects/16428631202563231164?node-id=12855321475312023600",
+    "warnings": [
+      "This HTML references 1 local asset(s) (showcase.html?fam=dev&shell=top&theme=night&bare=1) that won't be uploaded, so they'll render broken on Canvas. Make it self-contained first: re-capture the page with 'stitch capture <url>', or run 'stitch capture <file> --origin http://localhost:<port>' to inline the assets from your dev server."
+    ]
+  }
+}

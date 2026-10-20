@@ -1,0 +1,50 @@
+{
+ "id": "8ca372ca-5049-4671-881f-768d47be1e23",
+ "title": "Landing page violates CTA and section specifications",
+ "description": "`landing.html` fails CTA layout and section spacing requirements defined in the design specifications. CTA blocks in concepts B and C omit secondary text links with `\u203a` and rely on generic verbs. Section spacing varies across concepts due to inline padding overrides, zero-padding rules, and absent spacing tokens.",
+ "state": "ACTIVE",
+ "priority": "P2",
+ "altitude": "MEDIUM",
+ "goals": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "priorities": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "lastSubstantiveUpdateTime": "2026-10-20T21:06:12.809630Z",
+ "references": {
+  "1": {
+   "id": "1",
+   "note": {
+    "content": "In /app/LANGUAGE.md:L118 and /app/LANGUAGE.md:L120, specifications mandate 140px section spacing. CTA blocks must combine one filled pill with a secondary text link with `\u203a`."
+   }
+  },
+  "2": {
+   "id": "2",
+   "note": {
+    "content": "In /app/DESIGN.md:L172, design specifications confirm landing CTA requirements. CTAs combine a filled pill verb button with a secondary text link with `\u203a`."
+   }
+  },
+  "3": {
+   "id": "3",
+   "note": {
+    "content": "In /app/landing.html:L140, L145, L155, L159, L164, L174, L178, L183, L193, CTAs use generic labels ('Get the alpha', 'Start a trip', 'Try it free'). Bottom CTAs at L174 and L193 omit the needed secondary text link with `\u203a`."
+   }
+  },
+  "4": {
+   "id": "4",
+   "note": {
+    "content": "In /app/landing.html:L35, default section padding is 140px. However, /app/landing.html:L68, L141, L160, L179, L185 override section padding to 0px or 20px, creating uneven section gaps."
+   }
+  },
+  "5": {
+   "id": "5",
+   "note": {
+    "content": "In /app/tokens.css:L18-L20, system design tokens define spacing values up to 48px (--ul-space-7) but omit a standard 140px section spacing token for marketing landing pages."
+   }
+  }
+ },
+ "createTime": "2026-10-20T21:06:12.809630Z",
+ "updateTime": "2026-10-20T21:06:12.809630Z",
+ "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/insights/8ca372ca-5049-4671-881f-768d47be1e23"
+}

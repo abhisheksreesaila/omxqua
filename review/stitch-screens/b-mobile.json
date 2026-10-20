@@ -1,0 +1,875 @@
+{
+  "success": true,
+  "data": {
+    "resource": "screen",
+    "id": "4f90fa1286a94279a358895aa0bd1717",
+    "project": "16428631202563231164",
+    "title": "Questly · Today · Maya (8) Mobile",
+    "device": "MOBILE",
+    "screenType": "DESIGN",
+    "canvasUrl": "https://stitch.google.com/projects/16428631202563231164?node-id=4f90fa1286a94279a358895aa0bd1717",
+    "imageUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UnkqyqZ1L7YD10CLT9bkf0Cr469c5l24LOrJGm9IitJ18L-m8irrQRa2eeK1PVLGhmoEMpEcFatzBTubm-MARnmDOnLa0j9Lc81_AknKOAv6FAtKI5V4CFpWRclEuwHLJvObwxrxRdc8tnKkCEhCSUp0SMOchN2nj7HptbgNK-Xur74C9n0iC5UVleqhDPbBH3sb-k1I9ZemAhXJOl8Cds54qtG9Rz_A6rMULpKlkON6s53_f6dmk3aII",
+    "htmlCode": {
+      "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzFlNjYyNDk3NTU3MTQ0MWU4M2YyOGY4OWJkNDEyN2EwEgsSBxDOpomh_Q8YAZIBJAoKcHJvamVjdF9pZBIWQhQxNjQyODYzMTIwMjU2MzIzMTE2NA&filename=&opi=96797242",
+      "mimeType": "text/html",
+      "name": "projects/16428631202563231164/files/2a5a2329edba487e8bde26388a179115"
+    },
+    "rawScreen": {
+      "outputComponents": [
+        {
+          "designSystem": {
+            "designSystem": {
+              "displayName": "Playground Sticker",
+              "styleGuidelines": "## Brand & Style\n\nThis design system embraces a **Tactile Playground & Sticker** aesthetic engineered specifically for young learners and family co-play. The experience treats digital surfaces like an interactive activity desk: warm, tangible, physical, and immensely encouraging. \n\n### Brand Personality & Audience\n- **Target Audience:** Children aged 5–11 and their co-piloting parents/educators. Interactions prioritize motor-skill accessibility, high readability, instant visual rewards, and zero cognitive friction.\n- **Tone & Mood:** Warm, adventurous, sunny, and celebrate-everything. The UI communicates momentum through chunky physical affordances, bright badge collectables, and soft tactile feedback rather than clinical minimalism.\n- **Design Philosophy:** Tactile Skeuomorphism meets Modern Flat. Surfaces avoid harsh digital synthetic darks; instead, they pair paper-like creamy undertones with punchy sticker-styled layers, thick \"pressable\" button ledges, and bouncy visual tokens. Every completed task feels like sticking a real gold foil star onto a workbook.\n\n## Layout & Spacing\n\nThe layout is built on a responsive fluid-grid structure that expands from a 4-column layout on mobile devices to an 8-column layout on tablet/co-play screens, and maxes out at a centered 12-column stage (max width 1120px) on desktop viewports.\n\n### Motor Accessibility Spacing\n- **Touch Perimeter:** No interactive element may sit closer than `space-sm` (0.75rem / 12px) to its neighbor.\n- **Section Rhythm:** Work spaces and quest decks are separated using `space-xl` (2.5rem), providing visual rest stops for developing eyes.\n- **Canvas Margins:** Mobile viewports retain a minimum `1rem` outer gutter to prevent thumbs from accidentally hitting off-canvas controls during two-handed tablet holding.\n\n## Elevation & Depth\n\nThis system discards diffuse, realistic drop-shadows in favor of **Tactile 3D Ledges** and crisp **Sticker Outlines**.\n\n### The Ledge Shadow Technique\nInstead of blur radii, actionable items (buttons, selectable cards, floating docks) project an offset solid bevel downward:\n- **Default Ledge (Resting):** `box-shadow: 0 4px 0 0 #0284C7;` (using a dark tint of the component's base hue, or `#2A1D12` at 15% alpha for cards).\n- **Active / Pressed State:** The button drops along the Y-axis by 3px (`transform: translateY(3px);`), reducing the ledge box-shadow to `0 1px 0 0 #0284C7;`. This provides instant tactile gratification.\n- **Sticker Card Elevation:** Cards and badges utilize a double-layer stroke: a clean 2px inner border (`#FFFFFF`) with a 2px outer ink stroke (`rgba(42, 29, 18, 0.08)`), combined with a flat pastel fill to resemble die-cut vinyl stickers.\n- **Floating Dock:** Bottom navigation floats 16px above the canvas bottom using an ambient dual shadow: `0 8px 0 0 rgba(42, 29, 18, 0.08), 0 16px 24px -4px rgba(42, 29, 18, 0.06)`.\n\n## Components\n\n### Buttons (Chunky Ledge Actions)\n- **Primary Play Button:** Pill-shaped, bright Sky Blue (`#0EA5E9`) surface with a 4px solid Ocean Blue (`#0284C7`) bottom ledge. White text, font weight 800. Minimum height 48px (56px for primary CTA).\n- **Completion / Affirmation Button:** Emerald Green (`#10B981`) surface with a 4px Forest Green (`#059669`) bottom ledge.\n- **Press State:** Translates 3px down on tap with an audible/haptic click response.\n\n### Quest & Adventure Cards\n- **Structure:** Rounded container (24px radius) in crisp White (`#FFFFFF`) or pastel tint (e.g., `#FEF3C7` for challenges, `#F0FDF4` for done states).\n- **Badge Integration:** Every quest card embeds a floating 48x48px sticker badge on the upper left, featuring a 2px white outline and vibrant reward icon.\n- **Ledge Border:** Flat bottom offset of 4px in soft cocoa-tan (`#E8DCB8`), making cards feel like physical tiles.\n\n### Star Counter & Streak Chips\n- **Design:** Compact pill capsules with a Sunny Gold (`#FBBF24`) circular coin icon docked at the left edge.\n- **Background:** Warm cream or translucent white with an ink label (`#2A1D12`) showing high-contrast numerals (`label-counter`).\n- **Animation:** Bounces +4px vertically when a star or gem is collected.\n\n### Playful Progress Bars\n- **Track:** 20px high pill trough filled with soft Oat Sand (`#EDE2CE`).\n- **Indicator:** Chunky rounded fluid fill in Emerald Green or Sky Blue. Includes a subtle white highlight stripe along the upper 30% of the bar to mimic a shiny candy or tube of juice.\n\n### Floating Bottom Navigation Dock\n- **Form:** Pill-shaped island centered horizontally, positioned 16px above the home indicator.\n- **Styling:** Solid White (`#FFFFFF`) shell, 2px border in `#F3E8D6`, padded with `space-xs` inside.\n- **Navigation Tabs:** Generous 52px circular touch targets. Selected tab transforms into an energetic Sky Blue pill with white icon and bold micro-label; unselected tabs remain playful cocoa line-art icons.\n\n### Checkboxes & Quest Toggles\n- **Shape:** 32x32px squircle (`rounded-xl`) with a 3px border in Sky Blue.\n- **Checked State:** Instant transition to Emerald Green with a chunky white checkmark and a slight rotation wiggle (+4deg to -4deg) to simulate a physical sticker being stamped.",
+              "theme": {
+                "bodyFont": "NUNITO_SANS",
+                "bodyFontFamily": "Nunito Sans",
+                "colorMode": "LIGHT",
+                "colorVariant": "FIDELITY",
+                "customColor": "#0ea5e9",
+                "designMd": "---\nname: Playground Sticker\ncolors:\n  surface: '#fff8f5'\n  surface-dim: '#eed6c4'\n  surface-bright: '#fff8f5'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#fff1e8'\n  surface-container: '#ffeadc'\n  surface-container-high: '#fde4d2'\n  surface-container-highest: '#f7decc'\n  on-surface: '#26190e'\n  on-surface-variant: '#3e4850'\n  inverse-surface: '#3c2d22'\n  inverse-on-surface: '#ffeee2'\n  outline: '#6e7881'\n  outline-variant: '#bec8d2'\n  surface-tint: '#006591'\n  primary: '#006591'\n  on-primary: '#ffffff'\n  primary-container: '#0ea5e9'\n  on-primary-container: '#003751'\n  inverse-primary: '#89ceff'\n  secondary: '#855300'\n  on-secondary: '#ffffff'\n  secondary-container: '#fea619'\n  on-secondary-container: '#684000'\n  tertiary: '#006c49'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#00b17b'\n  on-tertiary-container: '#003b26'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#c9e6ff'\n  primary-fixed-dim: '#89ceff'\n  on-primary-fixed: '#001e2f'\n  on-primary-fixed-variant: '#004c6e'\n  secondary-fixed: '#ffddb8'\n  secondary-fixed-dim: '#ffb95f'\n  on-secondary-fixed: '#2a1700'\n  on-secondary-fixed-variant: '#653e00'\n  tertiary-fixed: '#6ffbbe'\n  tertiary-fixed-dim: '#4edea3'\n  on-tertiary-fixed: '#002113'\n  on-tertiary-fixed-variant: '#005236'\n  background: '#fff8f5'\n  on-background: '#26190e'\n  surface-variant: '#f7decc'\ntypography:\n  display-hero:\n    fontFamily: Nunito Sans\n    fontSize: 44px\n    fontWeight: '900'\n    lineHeight: 52px\n    letterSpacing: -0.02em\n  display-hero-mobile:\n    fontFamily: Nunito Sans\n    fontSize: 34px\n    fontWeight: '900'\n    lineHeight: 42px\n    letterSpacing: -0.01em\n  headline-lg:\n    fontFamily: Nunito Sans\n    fontSize: 32px\n    fontWeight: '800'\n    lineHeight: 40px\n    letterSpacing: -0.01em\n  headline-lg-mobile:\n    fontFamily: Nunito Sans\n    fontSize: 26px\n    fontWeight: '800'\n    lineHeight: 34px\n  headline-md:\n    fontFamily: Nunito Sans\n    fontSize: 22px\n    fontWeight: '800'\n    lineHeight: 30px\n  headline-sm:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '800'\n    lineHeight: 24px\n  body-lg:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 28px\n  body-md:\n    fontFamily: Nunito Sans\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 24px\n  body-sm:\n    fontFamily: Nunito Sans\n    fontSize: 14px\n    fontWeight: '600'\n    lineHeight: 20px\n  label-pill:\n    fontFamily: Nunito Sans\n    fontSize: 15px\n    fontWeight: '800'\n    lineHeight: 18px\n    letterSpacing: 0.02em\n  label-counter:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '900'\n    lineHeight: 20px\nrounded:\n  sm: 0.5rem\n  DEFAULT: 1rem\n  md: 1.5rem\n  lg: 2rem\n  xl: 3rem\n  full: 9999px\nspacing:\n  gutter: 1.25rem\n  gutter-mobile: 0.75rem\n  margin: 2rem\n  margin-mobile: 1rem\n  space-xs: 0.375rem\n  space-sm: 0.75rem\n  space-md: 1.25rem\n  space-lg: 1.75rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system embraces a **Tactile Playground & Sticker** aesthetic engineered specifically for young learners and family co-play. The experience treats digital surfaces like an interactive activity desk: warm, tangible, physical, and immensely encouraging. \n\n### Brand Personality & Audience\n- **Target Audience:** Children aged 5–11 and their co-piloting parents/educators. Interactions prioritize motor-skill accessibility, high readability, instant visual rewards, and zero cognitive friction.\n- **Tone & Mood:** Warm, adventurous, sunny, and celebrate-everything. The UI communicates momentum through chunky physical affordances, bright badge collectables, and soft tactile feedback rather than clinical minimalism.\n- **Design Philosophy:** Tactile Skeuomorphism meets Modern Flat. Surfaces avoid harsh digital synthetic darks; instead, they pair paper-like creamy undertones with punchy sticker-styled layers, thick \"pressable\" button ledges, and bouncy visual tokens. Every completed task feels like sticking a real gold foil star onto a workbook.\n\n## Colors\n\nThe palette balances warm organic foundational tones with high-chroma gamified accents to create clear semantic hierarchies.\n\n### Palette Hierarchy & Intent\n- **Canvas & Backdrops:** Warm Cream (`#FFF6EA`) acts as the root background, reducing screen glare and providing a warm, paper-like foundation. Secondary containers use Soft Butter (`#FEF3C7`) and Tinted Cloud (`#F0F9FF`).\n- **Primary Ink & Text:** Deep Playful Ink (`#2A1D12`) replaces synthetic black. It softens contrast against the cream ground while retaining AA/AAA compliance for early readers. Muted subheadings use Cocoa Muted (`#6B5B4D`).\n- **Sky Blue (Primary Action):** Vibrant Sky (`#0EA5E9`) and its shaded ledge companion Ocean Blue (`#0284C7`) drive primary navigation, task cards, and core interactive triggers.\n- **Sunny Gold (Reward & Momentum):** Solar Gold (`#F59E0B`) with highlight Warm Honey (`#FBBF24`) serves as the star counter, streak status, and celebratory token hue.\n- **Emerald Green (Completion & Affirmation):** Spring Green (`#10B981`) and Forest Ledge (`#059669`) signify completed quests, correct answers, and celebration banners.\n- **Borders & Outlines:** Chunky interactive components utilize a soft ink outline (`rgba(42, 29, 18, 0.12)` or solid `#2A1D12` for sticker badges) paired with solid 3D shadow depths.\n\n## Typography\n\nThe typography uses **Nunito Sans** uniformly across headlines, body, and microcopy. Its naturally rounded terminal strokes and generous x-height prevent eye fatigue and match the curved sticker language of the UI.\n\n### Typography Rules\n- **Weights:** Heavy use of ExtraBold (800) and Black (900) ensures quick legibility at distance or in split-attention environments (e.g., tablet propped on a table).\n- **Body Comfort:** Body weights rest at SemiBold (600) rather than Regular (400) to ensure high stroke definition against tinted pastel cards.\n- **Scale Adaptation:** Display and headline tokens reduce font-size while increasing line-height proportionality on mobile viewports to prevent awkward three-line wrap on quest titles.\n\n## Layout & Spacing\n\nThe layout is built on a responsive fluid-grid structure that expands from a 4-column layout on mobile devices to an 8-column layout on tablet/co-play screens, and maxes out at a centered 12-column stage (max width 1120px) on desktop viewports.\n\n### Motor Accessibility Spacing\n- **Touch Perimeter:** No interactive element may sit closer than `space-sm` (0.75rem / 12px) to its neighbor.\n- **Section Rhythm:** Work spaces and quest decks are separated using `space-xl` (2.5rem), providing visual rest stops for developing eyes.\n- **Canvas Margins:** Mobile viewports retain a minimum `1rem` outer gutter to prevent thumbs from accidentally hitting off-canvas controls during two-handed tablet holding.\n\n## Elevation & Depth\n\nThis system discards diffuse, realistic drop-shadows in favor of **Tactile 3D Ledges** and crisp **Sticker Outlines**.\n\n### The Ledge Shadow Technique\nInstead of blur radii, actionable items (buttons, selectable cards, floating docks) project an offset solid bevel downward:\n- **Default Ledge (Resting):** `box-shadow: 0 4px 0 0 #0284C7;` (using a dark tint of the component's base hue, or `#2A1D12` at 15% alpha for cards).\n- **Active / Pressed State:** The button drops along the Y-axis by 3px (`transform: translateY(3px);`), reducing the ledge box-shadow to `0 1px 0 0 #0284C7;`. This provides instant tactile gratification.\n- **Sticker Card Elevation:** Cards and badges utilize a double-layer stroke: a clean 2px inner border (`#FFFFFF`) with a 2px outer ink stroke (`rgba(42, 29, 18, 0.08)`), combined with a flat pastel fill to resemble die-cut vinyl stickers.\n- **Floating Dock:** Bottom navigation floats 16px above the canvas bottom using an ambient dual shadow: `0 8px 0 0 rgba(42, 29, 18, 0.08), 0 16px 24px -4px rgba(42, 29, 18, 0.06)`.\n\n## Shapes\n\nThe design system operates on hyper-rounded geometry (`roundedness: 3`) to remove all sharp friction points and reinforce child safety and toy-like playability.\n\n### Curvature Tokens\n- **Pill Shapes (`rounded-full` / 9999px):** Applied to all interactive buttons, streak pills, counter badges, and the floating navigation dock.\n- **Ultra-Rounded Containers (`rounded-3xl` / 24px - 32px):** Applied to active quest cards, daily adventure dashboards, dialog popups, and parent setting trays.\n- **Micro-Badges (`rounded-2xl` / 16px):** Applied to inventory icons, category stamps, and floating star indicators.\n- **Touch Target Envelopes:** All clickable hitboxes enforce a minimum size of `48px x 48px`, even when the visual icon is smaller (e.g., 24px icon inside a 48px circle).\n\n## Components\n\n### Buttons (Chunky Ledge Actions)\n- **Primary Play Button:** Pill-shaped, bright Sky Blue (`#0EA5E9`) surface with a 4px solid Ocean Blue (`#0284C7`) bottom ledge. White text, font weight 800. Minimum height 48px (56px for primary CTA).\n- **Completion / Affirmation Button:** Emerald Green (`#10B981`) surface with a 4px Forest Green (`#059669`) bottom ledge.\n- **Press State:** Translates 3px down on tap with an audible/haptic click response.\n\n### Quest & Adventure Cards\n- **Structure:** Rounded container (24px radius) in crisp White (`#FFFFFF`) or pastel tint (e.g., `#FEF3C7` for challenges, `#F0FDF4` for done states).\n- **Badge Integration:** Every quest card embeds a floating 48x48px sticker badge on the upper left, featuring a 2px white outline and vibrant reward icon.\n- **Ledge Border:** Flat bottom offset of 4px in soft cocoa-tan (`#E8DCB8`), making cards feel like physical tiles.\n\n### Star Counter & Streak Chips\n- **Design:** Compact pill capsules with a Sunny Gold (`#FBBF24`) circular coin icon docked at the left edge.\n- **Background:** Warm cream or translucent white with an ink label (`#2A1D12`) showing high-contrast numerals (`label-counter`).\n- **Animation:** Bounces +4px vertically when a star or gem is collected.\n\n### Playful Progress Bars\n- **Track:** 20px high pill trough filled with soft Oat Sand (`#EDE2CE`).\n- **Indicator:** Chunky rounded fluid fill in Emerald Green or Sky Blue. Includes a subtle white highlight stripe along the upper 30% of the bar to mimic a shiny candy or tube of juice.\n\n### Floating Bottom Navigation Dock\n- **Form:** Pill-shaped island centered horizontally, positioned 16px above the home indicator.\n- **Styling:** Solid White (`#FFFFFF`) shell, 2px border in `#F3E8D6`, padded with `space-xs` inside.\n- **Navigation Tabs:** Generous 52px circular touch targets. Selected tab transforms into an energetic Sky Blue pill with white icon and bold micro-label; unselected tabs remain playful cocoa line-art icons.\n\n### Checkboxes & Quest Toggles\n- **Shape:** 32x32px squircle (`rounded-xl`) with a 3px border in Sky Blue.\n- **Checked State:** Instant transition to Emerald Green with a chunky white checkmark and a slight rotation wiggle (+4deg to -4deg) to simulate a physical sticker being stamped.",
+                "font": "NUNITO_SANS",
+                "headlineFont": "NUNITO_SANS",
+                "headlineFontFamily": "Nunito Sans",
+                "labelFont": "NUNITO_SANS",
+                "labelFontFamily": "Nunito Sans",
+                "namedColors": {
+                  "background": "#fff8f5",
+                  "error": "#ba1a1a",
+                  "error_container": "#ffdad6",
+                  "inverse_on_surface": "#ffeee2",
+                  "inverse_primary": "#89ceff",
+                  "inverse_surface": "#3c2d22",
+                  "on_background": "#26190e",
+                  "on_error": "#ffffff",
+                  "on_error_container": "#93000a",
+                  "on_primary": "#ffffff",
+                  "on_primary_container": "#003751",
+                  "on_primary_fixed": "#001e2f",
+                  "on_primary_fixed_variant": "#004c6e",
+                  "on_secondary": "#ffffff",
+                  "on_secondary_container": "#684000",
+                  "on_secondary_fixed": "#2a1700",
+                  "on_secondary_fixed_variant": "#653e00",
+                  "on_surface": "#26190e",
+                  "on_surface_variant": "#3e4850",
+                  "on_tertiary": "#ffffff",
+                  "on_tertiary_container": "#003b26",
+                  "on_tertiary_fixed": "#002113",
+                  "on_tertiary_fixed_variant": "#005236",
+                  "outline": "#6e7881",
+                  "outline_variant": "#bec8d2",
+                  "primary": "#006591",
+                  "primary_container": "#0ea5e9",
+                  "primary_fixed": "#c9e6ff",
+                  "primary_fixed_dim": "#89ceff",
+                  "secondary": "#855300",
+                  "secondary_container": "#fea619",
+                  "secondary_fixed": "#ffddb8",
+                  "secondary_fixed_dim": "#ffb95f",
+                  "surface": "#fff8f5",
+                  "surface_bright": "#fff8f5",
+                  "surface_container": "#ffeadc",
+                  "surface_container_high": "#fde4d2",
+                  "surface_container_highest": "#f7decc",
+                  "surface_container_low": "#fff1e8",
+                  "surface_container_lowest": "#ffffff",
+                  "surface_dim": "#eed6c4",
+                  "surface_tint": "#006591",
+                  "surface_variant": "#f7decc",
+                  "tertiary": "#006c49",
+                  "tertiary_container": "#00b17b",
+                  "tertiary_fixed": "#6ffbbe",
+                  "tertiary_fixed_dim": "#4edea3"
+                },
+                "overrideNeutralColor": "#2a1d12",
+                "overridePrimaryColor": "#0ea5e9",
+                "overrideSecondaryColor": "#f59e0b",
+                "overrideTertiaryColor": "#10b981",
+                "roundness": "ROUND_FULL",
+                "spacing": {
+                  "gutter": "1.25rem",
+                  "gutter-mobile": "0.75rem",
+                  "margin": "2rem",
+                  "margin-mobile": "1rem",
+                  "space-lg": "1.75rem",
+                  "space-md": "1.25rem",
+                  "space-sm": "0.75rem",
+                  "space-xl": "2.5rem",
+                  "space-xs": "0.375rem"
+                },
+                "spacingScale": 2,
+                "typography": {
+                  "body-lg": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "18px",
+                    "fontWeight": "600",
+                    "lineHeight": "28px"
+                  },
+                  "body-md": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "16px",
+                    "fontWeight": "600",
+                    "lineHeight": "24px"
+                  },
+                  "body-sm": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "14px",
+                    "fontWeight": "600",
+                    "lineHeight": "20px"
+                  },
+                  "display-hero": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "44px",
+                    "fontWeight": "900",
+                    "letterSpacing": "-0.02em",
+                    "lineHeight": "52px"
+                  },
+                  "display-hero-mobile": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "34px",
+                    "fontWeight": "900",
+                    "letterSpacing": "-0.01em",
+                    "lineHeight": "42px"
+                  },
+                  "headline-lg": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "32px",
+                    "fontWeight": "800",
+                    "letterSpacing": "-0.01em",
+                    "lineHeight": "40px"
+                  },
+                  "headline-lg-mobile": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "26px",
+                    "fontWeight": "800",
+                    "lineHeight": "34px"
+                  },
+                  "headline-md": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "22px",
+                    "fontWeight": "800",
+                    "lineHeight": "30px"
+                  },
+                  "headline-sm": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "18px",
+                    "fontWeight": "800",
+                    "lineHeight": "24px"
+                  },
+                  "label-counter": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "18px",
+                    "fontWeight": "900",
+                    "lineHeight": "20px"
+                  },
+                  "label-pill": {
+                    "fontFamily": "Nunito Sans",
+                    "fontSize": "15px",
+                    "fontWeight": "800",
+                    "letterSpacing": "0.02em",
+                    "lineHeight": "18px"
+                  }
+                }
+              }
+            },
+            "name": "assets/0f80e3c2bb9f4544ad8a5217734dbb8c",
+            "version": "1"
+          }
+        },
+        {
+          "design": {
+            "screens": [
+              {
+                "designSystem": {
+                  "designSystem": {
+                    "displayName": "Playground Sticker",
+                    "styleGuidelines": "## Brand & Style\n\nThis design system embraces a **Tactile Playground & Sticker** aesthetic engineered specifically for young learners and family co-play. The experience treats digital surfaces like an interactive activity desk: warm, tangible, physical, and immensely encouraging. \n\n### Brand Personality & Audience\n- **Target Audience:** Children aged 5–11 and their co-piloting parents/educators. Interactions prioritize motor-skill accessibility, high readability, instant visual rewards, and zero cognitive friction.\n- **Tone & Mood:** Warm, adventurous, sunny, and celebrate-everything. The UI communicates momentum through chunky physical affordances, bright badge collectables, and soft tactile feedback rather than clinical minimalism.\n- **Design Philosophy:** Tactile Skeuomorphism meets Modern Flat. Surfaces avoid harsh digital synthetic darks; instead, they pair paper-like creamy undertones with punchy sticker-styled layers, thick \"pressable\" button ledges, and bouncy visual tokens. Every completed task feels like sticking a real gold foil star onto a workbook.\n\n## Layout & Spacing\n\nThe layout is built on a responsive fluid-grid structure that expands from a 4-column layout on mobile devices to an 8-column layout on tablet/co-play screens, and maxes out at a centered 12-column stage (max width 1120px) on desktop viewports.\n\n### Motor Accessibility Spacing\n- **Touch Perimeter:** No interactive element may sit closer than `space-sm` (0.75rem / 12px) to its neighbor.\n- **Section Rhythm:** Work spaces and quest decks are separated using `space-xl` (2.5rem), providing visual rest stops for developing eyes.\n- **Canvas Margins:** Mobile viewports retain a minimum `1rem` outer gutter to prevent thumbs from accidentally hitting off-canvas controls during two-handed tablet holding.\n\n## Elevation & Depth\n\nThis system discards diffuse, realistic drop-shadows in favor of **Tactile 3D Ledges** and crisp **Sticker Outlines**.\n\n### The Ledge Shadow Technique\nInstead of blur radii, actionable items (buttons, selectable cards, floating docks) project an offset solid bevel downward:\n- **Default Ledge (Resting):** `box-shadow: 0 4px 0 0 #0284C7;` (using a dark tint of the component's base hue, or `#2A1D12` at 15% alpha for cards).\n- **Active / Pressed State:** The button drops along the Y-axis by 3px (`transform: translateY(3px);`), reducing the ledge box-shadow to `0 1px 0 0 #0284C7;`. This provides instant tactile gratification.\n- **Sticker Card Elevation:** Cards and badges utilize a double-layer stroke: a clean 2px inner border (`#FFFFFF`) with a 2px outer ink stroke (`rgba(42, 29, 18, 0.08)`), combined with a flat pastel fill to resemble die-cut vinyl stickers.\n- **Floating Dock:** Bottom navigation floats 16px above the canvas bottom using an ambient dual shadow: `0 8px 0 0 rgba(42, 29, 18, 0.08), 0 16px 24px -4px rgba(42, 29, 18, 0.06)`.\n\n## Components\n\n### Buttons (Chunky Ledge Actions)\n- **Primary Play Button:** Pill-shaped, bright Sky Blue (`#0EA5E9`) surface with a 4px solid Ocean Blue (`#0284C7`) bottom ledge. White text, font weight 800. Minimum height 48px (56px for primary CTA).\n- **Completion / Affirmation Button:** Emerald Green (`#10B981`) surface with a 4px Forest Green (`#059669`) bottom ledge.\n- **Press State:** Translates 3px down on tap with an audible/haptic click response.\n\n### Quest & Adventure Cards\n- **Structure:** Rounded container (24px radius) in crisp White (`#FFFFFF`) or pastel tint (e.g., `#FEF3C7` for challenges, `#F0FDF4` for done states).\n- **Badge Integration:** Every quest card embeds a floating 48x48px sticker badge on the upper left, featuring a 2px white outline and vibrant reward icon.\n- **Ledge Border:** Flat bottom offset of 4px in soft cocoa-tan (`#E8DCB8`), making cards feel like physical tiles.\n\n### Star Counter & Streak Chips\n- **Design:** Compact pill capsules with a Sunny Gold (`#FBBF24`) circular coin icon docked at the left edge.\n- **Background:** Warm cream or translucent white with an ink label (`#2A1D12`) showing high-contrast numerals (`label-counter`).\n- **Animation:** Bounces +4px vertically when a star or gem is collected.\n\n### Playful Progress Bars\n- **Track:** 20px high pill trough filled with soft Oat Sand (`#EDE2CE`).\n- **Indicator:** Chunky rounded fluid fill in Emerald Green or Sky Blue. Includes a subtle white highlight stripe along the upper 30% of the bar to mimic a shiny candy or tube of juice.\n\n### Floating Bottom Navigation Dock\n- **Form:** Pill-shaped island centered horizontally, positioned 16px above the home indicator.\n- **Styling:** Solid White (`#FFFFFF`) shell, 2px border in `#F3E8D6`, padded with `space-xs` inside.\n- **Navigation Tabs:** Generous 52px circular touch targets. Selected tab transforms into an energetic Sky Blue pill with white icon and bold micro-label; unselected tabs remain playful cocoa line-art icons.\n\n### Checkboxes & Quest Toggles\n- **Shape:** 32x32px squircle (`rounded-xl`) with a 3px border in Sky Blue.\n- **Checked State:** Instant transition to Emerald Green with a chunky white checkmark and a slight rotation wiggle (+4deg to -4deg) to simulate a physical sticker being stamped.",
+                    "theme": {
+                      "bodyFont": "NUNITO_SANS",
+                      "bodyFontFamily": "Nunito Sans",
+                      "colorMode": "LIGHT",
+                      "colorVariant": "FIDELITY",
+                      "customColor": "#0ea5e9",
+                      "designMd": "---\nname: Playground Sticker\ncolors:\n  surface: '#fff8f5'\n  surface-dim: '#eed6c4'\n  surface-bright: '#fff8f5'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#fff1e8'\n  surface-container: '#ffeadc'\n  surface-container-high: '#fde4d2'\n  surface-container-highest: '#f7decc'\n  on-surface: '#26190e'\n  on-surface-variant: '#3e4850'\n  inverse-surface: '#3c2d22'\n  inverse-on-surface: '#ffeee2'\n  outline: '#6e7881'\n  outline-variant: '#bec8d2'\n  surface-tint: '#006591'\n  primary: '#006591'\n  on-primary: '#ffffff'\n  primary-container: '#0ea5e9'\n  on-primary-container: '#003751'\n  inverse-primary: '#89ceff'\n  secondary: '#855300'\n  on-secondary: '#ffffff'\n  secondary-container: '#fea619'\n  on-secondary-container: '#684000'\n  tertiary: '#006c49'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#00b17b'\n  on-tertiary-container: '#003b26'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#c9e6ff'\n  primary-fixed-dim: '#89ceff'\n  on-primary-fixed: '#001e2f'\n  on-primary-fixed-variant: '#004c6e'\n  secondary-fixed: '#ffddb8'\n  secondary-fixed-dim: '#ffb95f'\n  on-secondary-fixed: '#2a1700'\n  on-secondary-fixed-variant: '#653e00'\n  tertiary-fixed: '#6ffbbe'\n  tertiary-fixed-dim: '#4edea3'\n  on-tertiary-fixed: '#002113'\n  on-tertiary-fixed-variant: '#005236'\n  background: '#fff8f5'\n  on-background: '#26190e'\n  surface-variant: '#f7decc'\ntypography:\n  display-hero:\n    fontFamily: Nunito Sans\n    fontSize: 44px\n    fontWeight: '900'\n    lineHeight: 52px\n    letterSpacing: -0.02em\n  display-hero-mobile:\n    fontFamily: Nunito Sans\n    fontSize: 34px\n    fontWeight: '900'\n    lineHeight: 42px\n    letterSpacing: -0.01em\n  headline-lg:\n    fontFamily: Nunito Sans\n    fontSize: 32px\n    fontWeight: '800'\n    lineHeight: 40px\n    letterSpacing: -0.01em\n  headline-lg-mobile:\n    fontFamily: Nunito Sans\n    fontSize: 26px\n    fontWeight: '800'\n    lineHeight: 34px\n  headline-md:\n    fontFamily: Nunito Sans\n    fontSize: 22px\n    fontWeight: '800'\n    lineHeight: 30px\n  headline-sm:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '800'\n    lineHeight: 24px\n  body-lg:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 28px\n  body-md:\n    fontFamily: Nunito Sans\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 24px\n  body-sm:\n    fontFamily: Nunito Sans\n    fontSize: 14px\n    fontWeight: '600'\n    lineHeight: 20px\n  label-pill:\n    fontFamily: Nunito Sans\n    fontSize: 15px\n    fontWeight: '800'\n    lineHeight: 18px\n    letterSpacing: 0.02em\n  label-counter:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '900'\n    lineHeight: 20px\nrounded:\n  sm: 0.5rem\n  DEFAULT: 1rem\n  md: 1.5rem\n  lg: 2rem\n  xl: 3rem\n  full: 9999px\nspacing:\n  gutter: 1.25rem\n  gutter-mobile: 0.75rem\n  margin: 2rem\n  margin-mobile: 1rem\n  space-xs: 0.375rem\n  space-sm: 0.75rem\n  space-md: 1.25rem\n  space-lg: 1.75rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system embraces a **Tactile Playground & Sticker** aesthetic engineered specifically for young learners and family co-play. The experience treats digital surfaces like an interactive activity desk: warm, tangible, physical, and immensely encouraging. \n\n### Brand Personality & Audience\n- **Target Audience:** Children aged 5–11 and their co-piloting parents/educators. Interactions prioritize motor-skill accessibility, high readability, instant visual rewards, and zero cognitive friction.\n- **Tone & Mood:** Warm, adventurous, sunny, and celebrate-everything. The UI communicates momentum through chunky physical affordances, bright badge collectables, and soft tactile feedback rather than clinical minimalism.\n- **Design Philosophy:** Tactile Skeuomorphism meets Modern Flat. Surfaces avoid harsh digital synthetic darks; instead, they pair paper-like creamy undertones with punchy sticker-styled layers, thick \"pressable\" button ledges, and bouncy visual tokens. Every completed task feels like sticking a real gold foil star onto a workbook.\n\n## Colors\n\nThe palette balances warm organic foundational tones with high-chroma gamified accents to create clear semantic hierarchies.\n\n### Palette Hierarchy & Intent\n- **Canvas & Backdrops:** Warm Cream (`#FFF6EA`) acts as the root background, reducing screen glare and providing a warm, paper-like foundation. Secondary containers use Soft Butter (`#FEF3C7`) and Tinted Cloud (`#F0F9FF`).\n- **Primary Ink & Text:** Deep Playful Ink (`#2A1D12`) replaces synthetic black. It softens contrast against the cream ground while retaining AA/AAA compliance for early readers. Muted subheadings use Cocoa Muted (`#6B5B4D`).\n- **Sky Blue (Primary Action):** Vibrant Sky (`#0EA5E9`) and its shaded ledge companion Ocean Blue (`#0284C7`) drive primary navigation, task cards, and core interactive triggers.\n- **Sunny Gold (Reward & Momentum):** Solar Gold (`#F59E0B`) with highlight Warm Honey (`#FBBF24`) serves as the star counter, streak status, and celebratory token hue.\n- **Emerald Green (Completion & Affirmation):** Spring Green (`#10B981`) and Forest Ledge (`#059669`) signify completed quests, correct answers, and celebration banners.\n- **Borders & Outlines:** Chunky interactive components utilize a soft ink outline (`rgba(42, 29, 18, 0.12)` or solid `#2A1D12` for sticker badges) paired with solid 3D shadow depths.\n\n## Typography\n\nThe typography uses **Nunito Sans** uniformly across headlines, body, and microcopy. Its naturally rounded terminal strokes and generous x-height prevent eye fatigue and match the curved sticker language of the UI.\n\n### Typography Rules\n- **Weights:** Heavy use of ExtraBold (800) and Black (900) ensures quick legibility at distance or in split-attention environments (e.g., tablet propped on a table).\n- **Body Comfort:** Body weights rest at SemiBold (600) rather than Regular (400) to ensure high stroke definition against tinted pastel cards.\n- **Scale Adaptation:** Display and headline tokens reduce font-size while increasing line-height proportionality on mobile viewports to prevent awkward three-line wrap on quest titles.\n\n## Layout & Spacing\n\nThe layout is built on a responsive fluid-grid structure that expands from a 4-column layout on mobile devices to an 8-column layout on tablet/co-play screens, and maxes out at a centered 12-column stage (max width 1120px) on desktop viewports.\n\n### Motor Accessibility Spacing\n- **Touch Perimeter:** No interactive element may sit closer than `space-sm` (0.75rem / 12px) to its neighbor.\n- **Section Rhythm:** Work spaces and quest decks are separated using `space-xl` (2.5rem), providing visual rest stops for developing eyes.\n- **Canvas Margins:** Mobile viewports retain a minimum `1rem` outer gutter to prevent thumbs from accidentally hitting off-canvas controls during two-handed tablet holding.\n\n## Elevation & Depth\n\nThis system discards diffuse, realistic drop-shadows in favor of **Tactile 3D Ledges** and crisp **Sticker Outlines**.\n\n### The Ledge Shadow Technique\nInstead of blur radii, actionable items (buttons, selectable cards, floating docks) project an offset solid bevel downward:\n- **Default Ledge (Resting):** `box-shadow: 0 4px 0 0 #0284C7;` (using a dark tint of the component's base hue, or `#2A1D12` at 15% alpha for cards).\n- **Active / Pressed State:** The button drops along the Y-axis by 3px (`transform: translateY(3px);`), reducing the ledge box-shadow to `0 1px 0 0 #0284C7;`. This provides instant tactile gratification.\n- **Sticker Card Elevation:** Cards and badges utilize a double-layer stroke: a clean 2px inner border (`#FFFFFF`) with a 2px outer ink stroke (`rgba(42, 29, 18, 0.08)`), combined with a flat pastel fill to resemble die-cut vinyl stickers.\n- **Floating Dock:** Bottom navigation floats 16px above the canvas bottom using an ambient dual shadow: `0 8px 0 0 rgba(42, 29, 18, 0.08), 0 16px 24px -4px rgba(42, 29, 18, 0.06)`.\n\n## Shapes\n\nThe design system operates on hyper-rounded geometry (`roundedness: 3`) to remove all sharp friction points and reinforce child safety and toy-like playability.\n\n### Curvature Tokens\n- **Pill Shapes (`rounded-full` / 9999px):** Applied to all interactive buttons, streak pills, counter badges, and the floating navigation dock.\n- **Ultra-Rounded Containers (`rounded-3xl` / 24px - 32px):** Applied to active quest cards, daily adventure dashboards, dialog popups, and parent setting trays.\n- **Micro-Badges (`rounded-2xl` / 16px):** Applied to inventory icons, category stamps, and floating star indicators.\n- **Touch Target Envelopes:** All clickable hitboxes enforce a minimum size of `48px x 48px`, even when the visual icon is smaller (e.g., 24px icon inside a 48px circle).\n\n## Components\n\n### Buttons (Chunky Ledge Actions)\n- **Primary Play Button:** Pill-shaped, bright Sky Blue (`#0EA5E9`) surface with a 4px solid Ocean Blue (`#0284C7`) bottom ledge. White text, font weight 800. Minimum height 48px (56px for primary CTA).\n- **Completion / Affirmation Button:** Emerald Green (`#10B981`) surface with a 4px Forest Green (`#059669`) bottom ledge.\n- **Press State:** Translates 3px down on tap with an audible/haptic click response.\n\n### Quest & Adventure Cards\n- **Structure:** Rounded container (24px radius) in crisp White (`#FFFFFF`) or pastel tint (e.g., `#FEF3C7` for challenges, `#F0FDF4` for done states).\n- **Badge Integration:** Every quest card embeds a floating 48x48px sticker badge on the upper left, featuring a 2px white outline and vibrant reward icon.\n- **Ledge Border:** Flat bottom offset of 4px in soft cocoa-tan (`#E8DCB8`), making cards feel like physical tiles.\n\n### Star Counter & Streak Chips\n- **Design:** Compact pill capsules with a Sunny Gold (`#FBBF24`) circular coin icon docked at the left edge.\n- **Background:** Warm cream or translucent white with an ink label (`#2A1D12`) showing high-contrast numerals (`label-counter`).\n- **Animation:** Bounces +4px vertically when a star or gem is collected.\n\n### Playful Progress Bars\n- **Track:** 20px high pill trough filled with soft Oat Sand (`#EDE2CE`).\n- **Indicator:** Chunky rounded fluid fill in Emerald Green or Sky Blue. Includes a subtle white highlight stripe along the upper 30% of the bar to mimic a shiny candy or tube of juice.\n\n### Floating Bottom Navigation Dock\n- **Form:** Pill-shaped island centered horizontally, positioned 16px above the home indicator.\n- **Styling:** Solid White (`#FFFFFF`) shell, 2px border in `#F3E8D6`, padded with `space-xs` inside.\n- **Navigation Tabs:** Generous 52px circular touch targets. Selected tab transforms into an energetic Sky Blue pill with white icon and bold micro-label; unselected tabs remain playful cocoa line-art icons.\n\n### Checkboxes & Quest Toggles\n- **Shape:** 32x32px squircle (`rounded-xl`) with a 3px border in Sky Blue.\n- **Checked State:** Instant transition to Emerald Green with a chunky white checkmark and a slight rotation wiggle (+4deg to -4deg) to simulate a physical sticker being stamped.",
+                      "font": "NUNITO_SANS",
+                      "headlineFont": "NUNITO_SANS",
+                      "headlineFontFamily": "Nunito Sans",
+                      "labelFont": "NUNITO_SANS",
+                      "labelFontFamily": "Nunito Sans",
+                      "namedColors": {
+                        "background": "#fff8f5",
+                        "error": "#ba1a1a",
+                        "error_container": "#ffdad6",
+                        "inverse_on_surface": "#ffeee2",
+                        "inverse_primary": "#89ceff",
+                        "inverse_surface": "#3c2d22",
+                        "on_background": "#26190e",
+                        "on_error": "#ffffff",
+                        "on_error_container": "#93000a",
+                        "on_primary": "#ffffff",
+                        "on_primary_container": "#003751",
+                        "on_primary_fixed": "#001e2f",
+                        "on_primary_fixed_variant": "#004c6e",
+                        "on_secondary": "#ffffff",
+                        "on_secondary_container": "#684000",
+                        "on_secondary_fixed": "#2a1700",
+                        "on_secondary_fixed_variant": "#653e00",
+                        "on_surface": "#26190e",
+                        "on_surface_variant": "#3e4850",
+                        "on_tertiary": "#ffffff",
+                        "on_tertiary_container": "#003b26",
+                        "on_tertiary_fixed": "#002113",
+                        "on_tertiary_fixed_variant": "#005236",
+                        "outline": "#6e7881",
+                        "outline_variant": "#bec8d2",
+                        "primary": "#006591",
+                        "primary_container": "#0ea5e9",
+                        "primary_fixed": "#c9e6ff",
+                        "primary_fixed_dim": "#89ceff",
+                        "secondary": "#855300",
+                        "secondary_container": "#fea619",
+                        "secondary_fixed": "#ffddb8",
+                        "secondary_fixed_dim": "#ffb95f",
+                        "surface": "#fff8f5",
+                        "surface_bright": "#fff8f5",
+                        "surface_container": "#ffeadc",
+                        "surface_container_high": "#fde4d2",
+                        "surface_container_highest": "#f7decc",
+                        "surface_container_low": "#fff1e8",
+                        "surface_container_lowest": "#ffffff",
+                        "surface_dim": "#eed6c4",
+                        "surface_tint": "#006591",
+                        "surface_variant": "#f7decc",
+                        "tertiary": "#006c49",
+                        "tertiary_container": "#00b17b",
+                        "tertiary_fixed": "#6ffbbe",
+                        "tertiary_fixed_dim": "#4edea3"
+                      },
+                      "overrideNeutralColor": "#2a1d12",
+                      "overridePrimaryColor": "#0ea5e9",
+                      "overrideSecondaryColor": "#f59e0b",
+                      "overrideTertiaryColor": "#10b981",
+                      "roundness": "ROUND_FULL",
+                      "spacing": {
+                        "gutter": "1.25rem",
+                        "gutter-mobile": "0.75rem",
+                        "margin": "2rem",
+                        "margin-mobile": "1rem",
+                        "space-lg": "1.75rem",
+                        "space-md": "1.25rem",
+                        "space-sm": "0.75rem",
+                        "space-xl": "2.5rem",
+                        "space-xs": "0.375rem"
+                      },
+                      "spacingScale": 2,
+                      "typography": {
+                        "body-lg": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "18px",
+                          "fontWeight": "600",
+                          "lineHeight": "28px"
+                        },
+                        "body-md": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "16px",
+                          "fontWeight": "600",
+                          "lineHeight": "24px"
+                        },
+                        "body-sm": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "14px",
+                          "fontWeight": "600",
+                          "lineHeight": "20px"
+                        },
+                        "display-hero": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "44px",
+                          "fontWeight": "900",
+                          "letterSpacing": "-0.02em",
+                          "lineHeight": "52px"
+                        },
+                        "display-hero-mobile": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "34px",
+                          "fontWeight": "900",
+                          "letterSpacing": "-0.01em",
+                          "lineHeight": "42px"
+                        },
+                        "headline-lg": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "32px",
+                          "fontWeight": "800",
+                          "letterSpacing": "-0.01em",
+                          "lineHeight": "40px"
+                        },
+                        "headline-lg-mobile": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "26px",
+                          "fontWeight": "800",
+                          "lineHeight": "34px"
+                        },
+                        "headline-md": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "22px",
+                          "fontWeight": "800",
+                          "lineHeight": "30px"
+                        },
+                        "headline-sm": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "18px",
+                          "fontWeight": "800",
+                          "lineHeight": "24px"
+                        },
+                        "label-counter": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "18px",
+                          "fontWeight": "900",
+                          "lineHeight": "20px"
+                        },
+                        "label-pill": {
+                          "fontFamily": "Nunito Sans",
+                          "fontSize": "15px",
+                          "fontWeight": "800",
+                          "letterSpacing": "0.02em",
+                          "lineHeight": "18px"
+                        }
+                      }
+                    }
+                  },
+                  "name": "assets/0f80e3c2bb9f4544ad8a5217734dbb8c",
+                  "version": "1"
+                },
+                "deviceType": "MOBILE",
+                "generatedBy": "figaro_agent",
+                "height": "3526",
+                "htmlCode": {
+                  "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzFlNjYyNDk3NTU3MTQ0MWU4M2YyOGY4OWJkNDEyN2EwEgsSBxDOpomh_Q8YAZIBJAoKcHJvamVjdF9pZBIWQhQxNjQyODYzMTIwMjU2MzIzMTE2NA&filename=&opi=96797242",
+                  "mimeType": "text/html",
+                  "name": "projects/16428631202563231164/files/2a5a2329edba487e8bde26388a179115"
+                },
+                "id": "4f90fa1286a94279a358895aa0bd1717",
+                "name": "projects/16428631202563231164/screens/4f90fa1286a94279a358895aa0bd1717",
+                "prompt": "A 390px mobile phone interface for Questly: Maya (8) Today screen.\nDesigned following the Kids · Playground (Kids Sticker) family:\n- Top bar: Brand logo \"Questly\" with star badge, Maya's profile tag (\"Maya · 8y\"), and streak pill (\"🔥 5 day streak\"). Optional subtle live activity pill (\"📖 Reading 12:04\").\n- Hero Greeting Card: Sky blue vibrant card (#0284c7 / #0ea5e9) with playful badge \"☀️ Saturday morning adventure\", cheerful bold headline \"Hi Maya! 👋\", subheading \"2 quests done. 4 to go before the park.\", and an embedded star vault pill/badge showing \"⭐ 12 stars (vault total · +4 today)\".\n- \"Today's quests\" section header: Shows title, \"2/6 completed\" badge, and filter pills [All (6), To do (4), Done (2)].\n- 6 Quest Tiles in a clean mobile list or 2-column child-friendly grid:\n  1. \"Read 20 minutes\" · Chapter 4 of Matilda · Book icon in coral tile · Status: Completed (+2 stars earned, checkmark badge)\n  2. \"Feed the plants\" · Kitchen and balcony · Sprout/plant icon in mint tile · Status: Completed (+2 stars earned, checkmark badge)\n  3. \"Piano practice\" · 15 minutes · Music note icon in lavender tile · Status: Ready · ⏱️ 15 min · ⭐ 2 stars reward\n  4. \"Draw a dragon\" · Any colours you like · Palette/art icon in pink tile · Status: Supplies on desk · 🎨 Creative · ⭐ 2 stars reward\n  5. \"Bike ride\" · With Dad, after lunch · Bicycle icon in sky blue tile · Status: 1:30 PM · 🚲 With Dad · ⭐ 3 stars reward\n  6. \"Brain teaser\" · Puzzle #12 · Lightbulb icon in amber tile · Status: 5 min riddle · 💡 Brain · ⭐ 1 star reward\n- \"Stars this week\" card: Pill badge \"best week yet\", child-friendly visual vertical bar chart showing days M, T, W, T, F, S, S with rounded pill bars filled with blue water/capsule style, total \"22 stars collected\", note \"a full bar is 5 stars\".\n- \"Next reward\" milestone card: Trophy icon badge, \"Goal Milestone: Trip to the zoo\", progress bar showing 24 / 32 stars (75%) or \"8 more stars to unlock ticket!\", description \"Maya can feed the giraffes and pick a souvenir plushie!\".\n- Prominent Action Button: Big chunky pill button spanning full width \"✓ I did a quest!\" in bright energetic blue with tap feedback style / shadow ledge.\n- Floating bottom navigation dock: Today (active pill), Week, Rewards, Learn.\n- Perfectly scaled, balanced margins (16px gutter), 48px touch targets, warm playful cream background (#fff6ea), delightful Nunito typography, and high visual craft.",
+                "screenMetadata": {
+                  "agentType": "PRO_AGENT",
+                  "status": "COMPLETE"
+                },
+                "screenType": "DESIGN",
+                "screenshot": {
+                  "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UnkqyqZ1L7YD10CLT9bkf0Cr469c5l24LOrJGm9IitJ18L-m8irrQRa2eeK1PVLGhmoEMpEcFatzBTubm-MARnmDOnLa0j9Lc81_AknKOAv6FAtKI5V4CFpWRclEuwHLJvObwxrxRdc8tnKkCEhCSUp0SMOchN2nj7HptbgNK-Xur74C9n0iC5UVleqhDPbBH3sb-k1I9ZemAhXJOl8Cds54qtG9Rz_A6rMULpKlkON6s53_f6dmk3aII",
+                  "name": "projects/16428631202563231164/files/dff5367062644d219c4bbeab816ff2c5"
+                },
+                "theme": {
+                  "bodyFont": "NUNITO_SANS",
+                  "bodyFontFamily": "Nunito Sans",
+                  "colorMode": "LIGHT",
+                  "colorVariant": "FIDELITY",
+                  "customColor": "#0ea5e9",
+                  "font": "NUNITO_SANS",
+                  "headlineFont": "NUNITO_SANS",
+                  "headlineFontFamily": "Nunito Sans",
+                  "labelFont": "NUNITO_SANS",
+                  "labelFontFamily": "Nunito Sans",
+                  "namedColors": {
+                    "background": "#fff8f5",
+                    "error": "#ba1a1a",
+                    "error_container": "#ffdad6",
+                    "inverse_on_surface": "#ffeee2",
+                    "inverse_primary": "#89ceff",
+                    "inverse_surface": "#3c2d22",
+                    "on_background": "#26190e",
+                    "on_error": "#ffffff",
+                    "on_error_container": "#93000a",
+                    "on_primary": "#ffffff",
+                    "on_primary_container": "#003751",
+                    "on_primary_fixed": "#001e2f",
+                    "on_primary_fixed_variant": "#004c6e",
+                    "on_secondary": "#ffffff",
+                    "on_secondary_container": "#684000",
+                    "on_secondary_fixed": "#2a1700",
+                    "on_secondary_fixed_variant": "#653e00",
+                    "on_surface": "#26190e",
+                    "on_surface_variant": "#3e4850",
+                    "on_tertiary": "#ffffff",
+                    "on_tertiary_container": "#003b26",
+                    "on_tertiary_fixed": "#002113",
+                    "on_tertiary_fixed_variant": "#005236",
+                    "outline": "#6e7881",
+                    "outline_variant": "#bec8d2",
+                    "primary": "#006591",
+                    "primary_container": "#0ea5e9",
+                    "primary_fixed": "#c9e6ff",
+                    "primary_fixed_dim": "#89ceff",
+                    "secondary": "#855300",
+                    "secondary_container": "#fea619",
+                    "secondary_fixed": "#ffddb8",
+                    "secondary_fixed_dim": "#ffb95f",
+                    "surface": "#fff8f5",
+                    "surface_bright": "#fff8f5",
+                    "surface_container": "#ffeadc",
+                    "surface_container_high": "#fde4d2",
+                    "surface_container_highest": "#f7decc",
+                    "surface_container_low": "#fff1e8",
+                    "surface_container_lowest": "#ffffff",
+                    "surface_dim": "#eed6c4",
+                    "surface_tint": "#006591",
+                    "surface_variant": "#f7decc",
+                    "tertiary": "#006c49",
+                    "tertiary_container": "#00b17b",
+                    "tertiary_fixed": "#6ffbbe",
+                    "tertiary_fixed_dim": "#4edea3"
+                  },
+                  "overrideNeutralColor": "#2a1d12",
+                  "overridePrimaryColor": "#0ea5e9",
+                  "overrideSecondaryColor": "#f59e0b",
+                  "overrideTertiaryColor": "#10b981",
+                  "roundness": "ROUND_FULL",
+                  "spacing": {
+                    "gutter": "1.25rem",
+                    "gutter-mobile": "0.75rem",
+                    "margin": "2rem",
+                    "margin-mobile": "1rem",
+                    "space-lg": "1.75rem",
+                    "space-md": "1.25rem",
+                    "space-sm": "0.75rem",
+                    "space-xl": "2.5rem",
+                    "space-xs": "0.375rem"
+                  },
+                  "spacingScale": 2,
+                  "typography": {
+                    "body-lg": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "18px",
+                      "fontWeight": "600",
+                      "lineHeight": "28px"
+                    },
+                    "body-md": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "16px",
+                      "fontWeight": "600",
+                      "lineHeight": "24px"
+                    },
+                    "body-sm": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "14px",
+                      "fontWeight": "600",
+                      "lineHeight": "20px"
+                    },
+                    "display-hero": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "44px",
+                      "fontWeight": "900",
+                      "letterSpacing": "-0.02em",
+                      "lineHeight": "52px"
+                    },
+                    "display-hero-mobile": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "34px",
+                      "fontWeight": "900",
+                      "letterSpacing": "-0.01em",
+                      "lineHeight": "42px"
+                    },
+                    "headline-lg": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "32px",
+                      "fontWeight": "800",
+                      "letterSpacing": "-0.01em",
+                      "lineHeight": "40px"
+                    },
+                    "headline-lg-mobile": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "26px",
+                      "fontWeight": "800",
+                      "lineHeight": "34px"
+                    },
+                    "headline-md": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "22px",
+                      "fontWeight": "800",
+                      "lineHeight": "30px"
+                    },
+                    "headline-sm": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "18px",
+                      "fontWeight": "800",
+                      "lineHeight": "24px"
+                    },
+                    "label-counter": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "18px",
+                      "fontWeight": "900",
+                      "lineHeight": "20px"
+                    },
+                    "label-pill": {
+                      "fontFamily": "Nunito Sans",
+                      "fontSize": "15px",
+                      "fontWeight": "800",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "18px"
+                    }
+                  }
+                },
+                "title": "Questly · Today · Maya (8) Mobile",
+                "width": "780"
+              }
+            ],
+            "theme": {}
+          }
+        },
+        {
+          "text": "Here is the mobile Today screen designed for **Maya (8)** on **Questly**, tailored to a 390px mobile viewport following the **Kids · Playground (Kids Sticker)** design language:\n\n### Key Design Decisions\n1. **Header & Context**:\n   - Compact top app bar displaying Maya's friendly adventurer avatar, \"Questly\", an active live task beacon (`📖 12:04`), and a `🔥 5 Streak` pill counter.\n2. **Hero Greeting Card**:\n   - Vibrant sky blue hero container with playful adventure tag (`☀️ Saturday morning adventure`), personalized greeting (`Hi Maya! 👋`), encouraging progress copy (*\"2 quests done. 4 to go before the park trip!\"*), and an illuminated star vault chip highlighting **12 stars (+4 today)**.\n3. **Six Interactive Quest Tiles**:\n   - Clean, touch-friendly quest list scaled for 48px targets with distinct color-coded pastel icon tiles:\n     - **Read 20 minutes** (Matilda) & **Feed the plants**: Completed states with green check indicators and earned star badges.\n     - **Piano practice**, **Draw a dragon**, **Bike ride (with Dad)**, and **Brain teaser**: Pending quests displaying time tags, star values (`+2`, `+3`, `+1`), and completion rings ready to tap.\n4. **\"I did a quest!\" Big Primary CTA**:\n   - Full-width chunky pill button positioned directly below the active quests with a tactile ledge drop effect for kid-friendly interaction.\n5. **Stars This Week Bar Chart**:\n   - Rounded capsule pill bars tracking Monday through Sunday progress against a 5-star daily benchmark, celebrating `22 ⭐ collected this week` and marked `Best week yet!`.\n6. **Next Reward Milestone**:\n   - Trophy card highlighting the **Trip to the Zoo! 🦒** goal with a 75% completed progress bar (24 / 32 stars) and clear motivation (*\"8 more to unlock ticket!\"*).\n7. **Floating Bottom Dock**:\n   - Rounded floating tab bar featuring **Today** (active highlighted pill), **Week**, **Rewards**, and **Learn**."
+        },
+        {
+          "suggestion": "Design the 'I did a quest!' celebration modal / sheet with star animation"
+        },
+        {
+          "suggestion": "Create the 'Week' overview screen with detailed streak statistics"
+        },
+        {
+          "suggestion": "Show the 'Rewards' screen with unlocked and locked family adventures"
+        }
+      ],
+      "projectId": "16428631202563231164",
+      "sessionId": "15269238598031155899",
+      "designSystem": {
+        "designSystem": {
+          "displayName": "Playground Sticker",
+          "styleGuidelines": "## Brand & Style\n\nThis design system embraces a **Tactile Playground & Sticker** aesthetic engineered specifically for young learners and family co-play. The experience treats digital surfaces like an interactive activity desk: warm, tangible, physical, and immensely encouraging. \n\n### Brand Personality & Audience\n- **Target Audience:** Children aged 5–11 and their co-piloting parents/educators. Interactions prioritize motor-skill accessibility, high readability, instant visual rewards, and zero cognitive friction.\n- **Tone & Mood:** Warm, adventurous, sunny, and celebrate-everything. The UI communicates momentum through chunky physical affordances, bright badge collectables, and soft tactile feedback rather than clinical minimalism.\n- **Design Philosophy:** Tactile Skeuomorphism meets Modern Flat. Surfaces avoid harsh digital synthetic darks; instead, they pair paper-like creamy undertones with punchy sticker-styled layers, thick \"pressable\" button ledges, and bouncy visual tokens. Every completed task feels like sticking a real gold foil star onto a workbook.\n\n## Layout & Spacing\n\nThe layout is built on a responsive fluid-grid structure that expands from a 4-column layout on mobile devices to an 8-column layout on tablet/co-play screens, and maxes out at a centered 12-column stage (max width 1120px) on desktop viewports.\n\n### Motor Accessibility Spacing\n- **Touch Perimeter:** No interactive element may sit closer than `space-sm` (0.75rem / 12px) to its neighbor.\n- **Section Rhythm:** Work spaces and quest decks are separated using `space-xl` (2.5rem), providing visual rest stops for developing eyes.\n- **Canvas Margins:** Mobile viewports retain a minimum `1rem` outer gutter to prevent thumbs from accidentally hitting off-canvas controls during two-handed tablet holding.\n\n## Elevation & Depth\n\nThis system discards diffuse, realistic drop-shadows in favor of **Tactile 3D Ledges** and crisp **Sticker Outlines**.\n\n### The Ledge Shadow Technique\nInstead of blur radii, actionable items (buttons, selectable cards, floating docks) project an offset solid bevel downward:\n- **Default Ledge (Resting):** `box-shadow: 0 4px 0 0 #0284C7;` (using a dark tint of the component's base hue, or `#2A1D12` at 15% alpha for cards).\n- **Active / Pressed State:** The button drops along the Y-axis by 3px (`transform: translateY(3px);`), reducing the ledge box-shadow to `0 1px 0 0 #0284C7;`. This provides instant tactile gratification.\n- **Sticker Card Elevation:** Cards and badges utilize a double-layer stroke: a clean 2px inner border (`#FFFFFF`) with a 2px outer ink stroke (`rgba(42, 29, 18, 0.08)`), combined with a flat pastel fill to resemble die-cut vinyl stickers.\n- **Floating Dock:** Bottom navigation floats 16px above the canvas bottom using an ambient dual shadow: `0 8px 0 0 rgba(42, 29, 18, 0.08), 0 16px 24px -4px rgba(42, 29, 18, 0.06)`.\n\n## Components\n\n### Buttons (Chunky Ledge Actions)\n- **Primary Play Button:** Pill-shaped, bright Sky Blue (`#0EA5E9`) surface with a 4px solid Ocean Blue (`#0284C7`) bottom ledge. White text, font weight 800. Minimum height 48px (56px for primary CTA).\n- **Completion / Affirmation Button:** Emerald Green (`#10B981`) surface with a 4px Forest Green (`#059669`) bottom ledge.\n- **Press State:** Translates 3px down on tap with an audible/haptic click response.\n\n### Quest & Adventure Cards\n- **Structure:** Rounded container (24px radius) in crisp White (`#FFFFFF`) or pastel tint (e.g., `#FEF3C7` for challenges, `#F0FDF4` for done states).\n- **Badge Integration:** Every quest card embeds a floating 48x48px sticker badge on the upper left, featuring a 2px white outline and vibrant reward icon.\n- **Ledge Border:** Flat bottom offset of 4px in soft cocoa-tan (`#E8DCB8`), making cards feel like physical tiles.\n\n### Star Counter & Streak Chips\n- **Design:** Compact pill capsules with a Sunny Gold (`#FBBF24`) circular coin icon docked at the left edge.\n- **Background:** Warm cream or translucent white with an ink label (`#2A1D12`) showing high-contrast numerals (`label-counter`).\n- **Animation:** Bounces +4px vertically when a star or gem is collected.\n\n### Playful Progress Bars\n- **Track:** 20px high pill trough filled with soft Oat Sand (`#EDE2CE`).\n- **Indicator:** Chunky rounded fluid fill in Emerald Green or Sky Blue. Includes a subtle white highlight stripe along the upper 30% of the bar to mimic a shiny candy or tube of juice.\n\n### Floating Bottom Navigation Dock\n- **Form:** Pill-shaped island centered horizontally, positioned 16px above the home indicator.\n- **Styling:** Solid White (`#FFFFFF`) shell, 2px border in `#F3E8D6`, padded with `space-xs` inside.\n- **Navigation Tabs:** Generous 52px circular touch targets. Selected tab transforms into an energetic Sky Blue pill with white icon and bold micro-label; unselected tabs remain playful cocoa line-art icons.\n\n### Checkboxes & Quest Toggles\n- **Shape:** 32x32px squircle (`rounded-xl`) with a 3px border in Sky Blue.\n- **Checked State:** Instant transition to Emerald Green with a chunky white checkmark and a slight rotation wiggle (+4deg to -4deg) to simulate a physical sticker being stamped.",
+          "theme": {
+            "bodyFont": "NUNITO_SANS",
+            "bodyFontFamily": "Nunito Sans",
+            "colorMode": "LIGHT",
+            "colorVariant": "FIDELITY",
+            "customColor": "#0ea5e9",
+            "designMd": "---\nname: Playground Sticker\ncolors:\n  surface: '#fff8f5'\n  surface-dim: '#eed6c4'\n  surface-bright: '#fff8f5'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#fff1e8'\n  surface-container: '#ffeadc'\n  surface-container-high: '#fde4d2'\n  surface-container-highest: '#f7decc'\n  on-surface: '#26190e'\n  on-surface-variant: '#3e4850'\n  inverse-surface: '#3c2d22'\n  inverse-on-surface: '#ffeee2'\n  outline: '#6e7881'\n  outline-variant: '#bec8d2'\n  surface-tint: '#006591'\n  primary: '#006591'\n  on-primary: '#ffffff'\n  primary-container: '#0ea5e9'\n  on-primary-container: '#003751'\n  inverse-primary: '#89ceff'\n  secondary: '#855300'\n  on-secondary: '#ffffff'\n  secondary-container: '#fea619'\n  on-secondary-container: '#684000'\n  tertiary: '#006c49'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#00b17b'\n  on-tertiary-container: '#003b26'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#c9e6ff'\n  primary-fixed-dim: '#89ceff'\n  on-primary-fixed: '#001e2f'\n  on-primary-fixed-variant: '#004c6e'\n  secondary-fixed: '#ffddb8'\n  secondary-fixed-dim: '#ffb95f'\n  on-secondary-fixed: '#2a1700'\n  on-secondary-fixed-variant: '#653e00'\n  tertiary-fixed: '#6ffbbe'\n  tertiary-fixed-dim: '#4edea3'\n  on-tertiary-fixed: '#002113'\n  on-tertiary-fixed-variant: '#005236'\n  background: '#fff8f5'\n  on-background: '#26190e'\n  surface-variant: '#f7decc'\ntypography:\n  display-hero:\n    fontFamily: Nunito Sans\n    fontSize: 44px\n    fontWeight: '900'\n    lineHeight: 52px\n    letterSpacing: -0.02em\n  display-hero-mobile:\n    fontFamily: Nunito Sans\n    fontSize: 34px\n    fontWeight: '900'\n    lineHeight: 42px\n    letterSpacing: -0.01em\n  headline-lg:\n    fontFamily: Nunito Sans\n    fontSize: 32px\n    fontWeight: '800'\n    lineHeight: 40px\n    letterSpacing: -0.01em\n  headline-lg-mobile:\n    fontFamily: Nunito Sans\n    fontSize: 26px\n    fontWeight: '800'\n    lineHeight: 34px\n  headline-md:\n    fontFamily: Nunito Sans\n    fontSize: 22px\n    fontWeight: '800'\n    lineHeight: 30px\n  headline-sm:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '800'\n    lineHeight: 24px\n  body-lg:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 28px\n  body-md:\n    fontFamily: Nunito Sans\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 24px\n  body-sm:\n    fontFamily: Nunito Sans\n    fontSize: 14px\n    fontWeight: '600'\n    lineHeight: 20px\n  label-pill:\n    fontFamily: Nunito Sans\n    fontSize: 15px\n    fontWeight: '800'\n    lineHeight: 18px\n    letterSpacing: 0.02em\n  label-counter:\n    fontFamily: Nunito Sans\n    fontSize: 18px\n    fontWeight: '900'\n    lineHeight: 20px\nrounded:\n  sm: 0.5rem\n  DEFAULT: 1rem\n  md: 1.5rem\n  lg: 2rem\n  xl: 3rem\n  full: 9999px\nspacing:\n  gutter: 1.25rem\n  gutter-mobile: 0.75rem\n  margin: 2rem\n  margin-mobile: 1rem\n  space-xs: 0.375rem\n  space-sm: 0.75rem\n  space-md: 1.25rem\n  space-lg: 1.75rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system embraces a **Tactile Playground & Sticker** aesthetic engineered specifically for young learners and family co-play. The experience treats digital surfaces like an interactive activity desk: warm, tangible, physical, and immensely encouraging. \n\n### Brand Personality & Audience\n- **Target Audience:** Children aged 5–11 and their co-piloting parents/educators. Interactions prioritize motor-skill accessibility, high readability, instant visual rewards, and zero cognitive friction.\n- **Tone & Mood:** Warm, adventurous, sunny, and celebrate-everything. The UI communicates momentum through chunky physical affordances, bright badge collectables, and soft tactile feedback rather than clinical minimalism.\n- **Design Philosophy:** Tactile Skeuomorphism meets Modern Flat. Surfaces avoid harsh digital synthetic darks; instead, they pair paper-like creamy undertones with punchy sticker-styled layers, thick \"pressable\" button ledges, and bouncy visual tokens. Every completed task feels like sticking a real gold foil star onto a workbook.\n\n## Colors\n\nThe palette balances warm organic foundational tones with high-chroma gamified accents to create clear semantic hierarchies.\n\n### Palette Hierarchy & Intent\n- **Canvas & Backdrops:** Warm Cream (`#FFF6EA`) acts as the root background, reducing screen glare and providing a warm, paper-like foundation. Secondary containers use Soft Butter (`#FEF3C7`) and Tinted Cloud (`#F0F9FF`).\n- **Primary Ink & Text:** Deep Playful Ink (`#2A1D12`) replaces synthetic black. It softens contrast against the cream ground while retaining AA/AAA compliance for early readers. Muted subheadings use Cocoa Muted (`#6B5B4D`).\n- **Sky Blue (Primary Action):** Vibrant Sky (`#0EA5E9`) and its shaded ledge companion Ocean Blue (`#0284C7`) drive primary navigation, task cards, and core interactive triggers.\n- **Sunny Gold (Reward & Momentum):** Solar Gold (`#F59E0B`) with highlight Warm Honey (`#FBBF24`) serves as the star counter, streak status, and celebratory token hue.\n- **Emerald Green (Completion & Affirmation):** Spring Green (`#10B981`) and Forest Ledge (`#059669`) signify completed quests, correct answers, and celebration banners.\n- **Borders & Outlines:** Chunky interactive components utilize a soft ink outline (`rgba(42, 29, 18, 0.12)` or solid `#2A1D12` for sticker badges) paired with solid 3D shadow depths.\n\n## Typography\n\nThe typography uses **Nunito Sans** uniformly across headlines, body, and microcopy. Its naturally rounded terminal strokes and generous x-height prevent eye fatigue and match the curved sticker language of the UI.\n\n### Typography Rules\n- **Weights:** Heavy use of ExtraBold (800) and Black (900) ensures quick legibility at distance or in split-attention environments (e.g., tablet propped on a table).\n- **Body Comfort:** Body weights rest at SemiBold (600) rather than Regular (400) to ensure high stroke definition against tinted pastel cards.\n- **Scale Adaptation:** Display and headline tokens reduce font-size while increasing line-height proportionality on mobile viewports to prevent awkward three-line wrap on quest titles.\n\n## Layout & Spacing\n\nThe layout is built on a responsive fluid-grid structure that expands from a 4-column layout on mobile devices to an 8-column layout on tablet/co-play screens, and maxes out at a centered 12-column stage (max width 1120px) on desktop viewports.\n\n### Motor Accessibility Spacing\n- **Touch Perimeter:** No interactive element may sit closer than `space-sm` (0.75rem / 12px) to its neighbor.\n- **Section Rhythm:** Work spaces and quest decks are separated using `space-xl` (2.5rem), providing visual rest stops for developing eyes.\n- **Canvas Margins:** Mobile viewports retain a minimum `1rem` outer gutter to prevent thumbs from accidentally hitting off-canvas controls during two-handed tablet holding.\n\n## Elevation & Depth\n\nThis system discards diffuse, realistic drop-shadows in favor of **Tactile 3D Ledges** and crisp **Sticker Outlines**.\n\n### The Ledge Shadow Technique\nInstead of blur radii, actionable items (buttons, selectable cards, floating docks) project an offset solid bevel downward:\n- **Default Ledge (Resting):** `box-shadow: 0 4px 0 0 #0284C7;` (using a dark tint of the component's base hue, or `#2A1D12` at 15% alpha for cards).\n- **Active / Pressed State:** The button drops along the Y-axis by 3px (`transform: translateY(3px);`), reducing the ledge box-shadow to `0 1px 0 0 #0284C7;`. This provides instant tactile gratification.\n- **Sticker Card Elevation:** Cards and badges utilize a double-layer stroke: a clean 2px inner border (`#FFFFFF`) with a 2px outer ink stroke (`rgba(42, 29, 18, 0.08)`), combined with a flat pastel fill to resemble die-cut vinyl stickers.\n- **Floating Dock:** Bottom navigation floats 16px above the canvas bottom using an ambient dual shadow: `0 8px 0 0 rgba(42, 29, 18, 0.08), 0 16px 24px -4px rgba(42, 29, 18, 0.06)`.\n\n## Shapes\n\nThe design system operates on hyper-rounded geometry (`roundedness: 3`) to remove all sharp friction points and reinforce child safety and toy-like playability.\n\n### Curvature Tokens\n- **Pill Shapes (`rounded-full` / 9999px):** Applied to all interactive buttons, streak pills, counter badges, and the floating navigation dock.\n- **Ultra-Rounded Containers (`rounded-3xl` / 24px - 32px):** Applied to active quest cards, daily adventure dashboards, dialog popups, and parent setting trays.\n- **Micro-Badges (`rounded-2xl` / 16px):** Applied to inventory icons, category stamps, and floating star indicators.\n- **Touch Target Envelopes:** All clickable hitboxes enforce a minimum size of `48px x 48px`, even when the visual icon is smaller (e.g., 24px icon inside a 48px circle).\n\n## Components\n\n### Buttons (Chunky Ledge Actions)\n- **Primary Play Button:** Pill-shaped, bright Sky Blue (`#0EA5E9`) surface with a 4px solid Ocean Blue (`#0284C7`) bottom ledge. White text, font weight 800. Minimum height 48px (56px for primary CTA).\n- **Completion / Affirmation Button:** Emerald Green (`#10B981`) surface with a 4px Forest Green (`#059669`) bottom ledge.\n- **Press State:** Translates 3px down on tap with an audible/haptic click response.\n\n### Quest & Adventure Cards\n- **Structure:** Rounded container (24px radius) in crisp White (`#FFFFFF`) or pastel tint (e.g., `#FEF3C7` for challenges, `#F0FDF4` for done states).\n- **Badge Integration:** Every quest card embeds a floating 48x48px sticker badge on the upper left, featuring a 2px white outline and vibrant reward icon.\n- **Ledge Border:** Flat bottom offset of 4px in soft cocoa-tan (`#E8DCB8`), making cards feel like physical tiles.\n\n### Star Counter & Streak Chips\n- **Design:** Compact pill capsules with a Sunny Gold (`#FBBF24`) circular coin icon docked at the left edge.\n- **Background:** Warm cream or translucent white with an ink label (`#2A1D12`) showing high-contrast numerals (`label-counter`).\n- **Animation:** Bounces +4px vertically when a star or gem is collected.\n\n### Playful Progress Bars\n- **Track:** 20px high pill trough filled with soft Oat Sand (`#EDE2CE`).\n- **Indicator:** Chunky rounded fluid fill in Emerald Green or Sky Blue. Includes a subtle white highlight stripe along the upper 30% of the bar to mimic a shiny candy or tube of juice.\n\n### Floating Bottom Navigation Dock\n- **Form:** Pill-shaped island centered horizontally, positioned 16px above the home indicator.\n- **Styling:** Solid White (`#FFFFFF`) shell, 2px border in `#F3E8D6`, padded with `space-xs` inside.\n- **Navigation Tabs:** Generous 52px circular touch targets. Selected tab transforms into an energetic Sky Blue pill with white icon and bold micro-label; unselected tabs remain playful cocoa line-art icons.\n\n### Checkboxes & Quest Toggles\n- **Shape:** 32x32px squircle (`rounded-xl`) with a 3px border in Sky Blue.\n- **Checked State:** Instant transition to Emerald Green with a chunky white checkmark and a slight rotation wiggle (+4deg to -4deg) to simulate a physical sticker being stamped.",
+            "font": "NUNITO_SANS",
+            "headlineFont": "NUNITO_SANS",
+            "headlineFontFamily": "Nunito Sans",
+            "labelFont": "NUNITO_SANS",
+            "labelFontFamily": "Nunito Sans",
+            "namedColors": {
+              "background": "#fff8f5",
+              "error": "#ba1a1a",
+              "error_container": "#ffdad6",
+              "inverse_on_surface": "#ffeee2",
+              "inverse_primary": "#89ceff",
+              "inverse_surface": "#3c2d22",
+              "on_background": "#26190e",
+              "on_error": "#ffffff",
+              "on_error_container": "#93000a",
+              "on_primary": "#ffffff",
+              "on_primary_container": "#003751",
+              "on_primary_fixed": "#001e2f",
+              "on_primary_fixed_variant": "#004c6e",
+              "on_secondary": "#ffffff",
+              "on_secondary_container": "#684000",
+              "on_secondary_fixed": "#2a1700",
+              "on_secondary_fixed_variant": "#653e00",
+              "on_surface": "#26190e",
+              "on_surface_variant": "#3e4850",
+              "on_tertiary": "#ffffff",
+              "on_tertiary_container": "#003b26",
+              "on_tertiary_fixed": "#002113",
+              "on_tertiary_fixed_variant": "#005236",
+              "outline": "#6e7881",
+              "outline_variant": "#bec8d2",
+              "primary": "#006591",
+              "primary_container": "#0ea5e9",
+              "primary_fixed": "#c9e6ff",
+              "primary_fixed_dim": "#89ceff",
+              "secondary": "#855300",
+              "secondary_container": "#fea619",
+              "secondary_fixed": "#ffddb8",
+              "secondary_fixed_dim": "#ffb95f",
+              "surface": "#fff8f5",
+              "surface_bright": "#fff8f5",
+              "surface_container": "#ffeadc",
+              "surface_container_high": "#fde4d2",
+              "surface_container_highest": "#f7decc",
+              "surface_container_low": "#fff1e8",
+              "surface_container_lowest": "#ffffff",
+              "surface_dim": "#eed6c4",
+              "surface_tint": "#006591",
+              "surface_variant": "#f7decc",
+              "tertiary": "#006c49",
+              "tertiary_container": "#00b17b",
+              "tertiary_fixed": "#6ffbbe",
+              "tertiary_fixed_dim": "#4edea3"
+            },
+            "overrideNeutralColor": "#2a1d12",
+            "overridePrimaryColor": "#0ea5e9",
+            "overrideSecondaryColor": "#f59e0b",
+            "overrideTertiaryColor": "#10b981",
+            "roundness": "ROUND_FULL",
+            "spacing": {
+              "gutter": "1.25rem",
+              "gutter-mobile": "0.75rem",
+              "margin": "2rem",
+              "margin-mobile": "1rem",
+              "space-lg": "1.75rem",
+              "space-md": "1.25rem",
+              "space-sm": "0.75rem",
+              "space-xl": "2.5rem",
+              "space-xs": "0.375rem"
+            },
+            "spacingScale": 2,
+            "typography": {
+              "body-lg": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "18px",
+                "fontWeight": "600",
+                "lineHeight": "28px"
+              },
+              "body-md": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "lineHeight": "24px"
+              },
+              "body-sm": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "14px",
+                "fontWeight": "600",
+                "lineHeight": "20px"
+              },
+              "display-hero": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "44px",
+                "fontWeight": "900",
+                "letterSpacing": "-0.02em",
+                "lineHeight": "52px"
+              },
+              "display-hero-mobile": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "34px",
+                "fontWeight": "900",
+                "letterSpacing": "-0.01em",
+                "lineHeight": "42px"
+              },
+              "headline-lg": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "32px",
+                "fontWeight": "800",
+                "letterSpacing": "-0.01em",
+                "lineHeight": "40px"
+              },
+              "headline-lg-mobile": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "26px",
+                "fontWeight": "800",
+                "lineHeight": "34px"
+              },
+              "headline-md": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "22px",
+                "fontWeight": "800",
+                "lineHeight": "30px"
+              },
+              "headline-sm": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "18px",
+                "fontWeight": "800",
+                "lineHeight": "24px"
+              },
+              "label-counter": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "18px",
+                "fontWeight": "900",
+                "lineHeight": "20px"
+              },
+              "label-pill": {
+                "fontFamily": "Nunito Sans",
+                "fontSize": "15px",
+                "fontWeight": "800",
+                "letterSpacing": "0.02em",
+                "lineHeight": "18px"
+              }
+            }
+          }
+        },
+        "name": "assets/0f80e3c2bb9f4544ad8a5217734dbb8c",
+        "version": "1"
+      },
+      "deviceType": "MOBILE",
+      "generatedBy": "figaro_agent",
+      "height": "3526",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzFlNjYyNDk3NTU3MTQ0MWU4M2YyOGY4OWJkNDEyN2EwEgsSBxDOpomh_Q8YAZIBJAoKcHJvamVjdF9pZBIWQhQxNjQyODYzMTIwMjU2MzIzMTE2NA&filename=&opi=96797242",
+        "mimeType": "text/html",
+        "name": "projects/16428631202563231164/files/2a5a2329edba487e8bde26388a179115"
+      },
+      "id": "4f90fa1286a94279a358895aa0bd1717",
+      "name": "projects/16428631202563231164/screens/4f90fa1286a94279a358895aa0bd1717",
+      "prompt": "A 390px mobile phone interface for Questly: Maya (8) Today screen.\nDesigned following the Kids · Playground (Kids Sticker) family:\n- Top bar: Brand logo \"Questly\" with star badge, Maya's profile tag (\"Maya · 8y\"), and streak pill (\"🔥 5 day streak\"). Optional subtle live activity pill (\"📖 Reading 12:04\").\n- Hero Greeting Card: Sky blue vibrant card (#0284c7 / #0ea5e9) with playful badge \"☀️ Saturday morning adventure\", cheerful bold headline \"Hi Maya! 👋\", subheading \"2 quests done. 4 to go before the park.\", and an embedded star vault pill/badge showing \"⭐ 12 stars (vault total · +4 today)\".\n- \"Today's quests\" section header: Shows title, \"2/6 completed\" badge, and filter pills [All (6), To do (4), Done (2)].\n- 6 Quest Tiles in a clean mobile list or 2-column child-friendly grid:\n  1. \"Read 20 minutes\" · Chapter 4 of Matilda · Book icon in coral tile · Status: Completed (+2 stars earned, checkmark badge)\n  2. \"Feed the plants\" · Kitchen and balcony · Sprout/plant icon in mint tile · Status: Completed (+2 stars earned, checkmark badge)\n  3. \"Piano practice\" · 15 minutes · Music note icon in lavender tile · Status: Ready · ⏱️ 15 min · ⭐ 2 stars reward\n  4. \"Draw a dragon\" · Any colours you like · Palette/art icon in pink tile · Status: Supplies on desk · 🎨 Creative · ⭐ 2 stars reward\n  5. \"Bike ride\" · With Dad, after lunch · Bicycle icon in sky blue tile · Status: 1:30 PM · 🚲 With Dad · ⭐ 3 stars reward\n  6. \"Brain teaser\" · Puzzle #12 · Lightbulb icon in amber tile · Status: 5 min riddle · 💡 Brain · ⭐ 1 star reward\n- \"Stars this week\" card: Pill badge \"best week yet\", child-friendly visual vertical bar chart showing days M, T, W, T, F, S, S with rounded pill bars filled with blue water/capsule style, total \"22 stars collected\", note \"a full bar is 5 stars\".\n- \"Next reward\" milestone card: Trophy icon badge, \"Goal Milestone: Trip to the zoo\", progress bar showing 24 / 32 stars (75%) or \"8 more stars to unlock ticket!\", description \"Maya can feed the giraffes and pick a souvenir plushie!\".\n- Prominent Action Button: Big chunky pill button spanning full width \"✓ I did a quest!\" in bright energetic blue with tap feedback style / shadow ledge.\n- Floating bottom navigation dock: Today (active pill), Week, Rewards, Learn.\n- Perfectly scaled, balanced margins (16px gutter), 48px touch targets, warm playful cream background (#fff6ea), delightful Nunito typography, and high visual craft.",
+      "screenMetadata": {
+        "agentType": "PRO_AGENT",
+        "status": "COMPLETE"
+      },
+      "screenType": "DESIGN",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UnkqyqZ1L7YD10CLT9bkf0Cr469c5l24LOrJGm9IitJ18L-m8irrQRa2eeK1PVLGhmoEMpEcFatzBTubm-MARnmDOnLa0j9Lc81_AknKOAv6FAtKI5V4CFpWRclEuwHLJvObwxrxRdc8tnKkCEhCSUp0SMOchN2nj7HptbgNK-Xur74C9n0iC5UVleqhDPbBH3sb-k1I9ZemAhXJOl8Cds54qtG9Rz_A6rMULpKlkON6s53_f6dmk3aII",
+        "name": "projects/16428631202563231164/files/dff5367062644d219c4bbeab816ff2c5"
+      },
+      "theme": {
+        "bodyFont": "NUNITO_SANS",
+        "bodyFontFamily": "Nunito Sans",
+        "colorMode": "LIGHT",
+        "colorVariant": "FIDELITY",
+        "customColor": "#0ea5e9",
+        "font": "NUNITO_SANS",
+        "headlineFont": "NUNITO_SANS",
+        "headlineFontFamily": "Nunito Sans",
+        "labelFont": "NUNITO_SANS",
+        "labelFontFamily": "Nunito Sans",
+        "namedColors": {
+          "background": "#fff8f5",
+          "error": "#ba1a1a",
+          "error_container": "#ffdad6",
+          "inverse_on_surface": "#ffeee2",
+          "inverse_primary": "#89ceff",
+          "inverse_surface": "#3c2d22",
+          "on_background": "#26190e",
+          "on_error": "#ffffff",
+          "on_error_container": "#93000a",
+          "on_primary": "#ffffff",
+          "on_primary_container": "#003751",
+          "on_primary_fixed": "#001e2f",
+          "on_primary_fixed_variant": "#004c6e",
+          "on_secondary": "#ffffff",
+          "on_secondary_container": "#684000",
+          "on_secondary_fixed": "#2a1700",
+          "on_secondary_fixed_variant": "#653e00",
+          "on_surface": "#26190e",
+          "on_surface_variant": "#3e4850",
+          "on_tertiary": "#ffffff",
+          "on_tertiary_container": "#003b26",
+          "on_tertiary_fixed": "#002113",
+          "on_tertiary_fixed_variant": "#005236",
+          "outline": "#6e7881",
+          "outline_variant": "#bec8d2",
+          "primary": "#006591",
+          "primary_container": "#0ea5e9",
+          "primary_fixed": "#c9e6ff",
+          "primary_fixed_dim": "#89ceff",
+          "secondary": "#855300",
+          "secondary_container": "#fea619",
+          "secondary_fixed": "#ffddb8",
+          "secondary_fixed_dim": "#ffb95f",
+          "surface": "#fff8f5",
+          "surface_bright": "#fff8f5",
+          "surface_container": "#ffeadc",
+          "surface_container_high": "#fde4d2",
+          "surface_container_highest": "#f7decc",
+          "surface_container_low": "#fff1e8",
+          "surface_container_lowest": "#ffffff",
+          "surface_dim": "#eed6c4",
+          "surface_tint": "#006591",
+          "surface_variant": "#f7decc",
+          "tertiary": "#006c49",
+          "tertiary_container": "#00b17b",
+          "tertiary_fixed": "#6ffbbe",
+          "tertiary_fixed_dim": "#4edea3"
+        },
+        "overrideNeutralColor": "#2a1d12",
+        "overridePrimaryColor": "#0ea5e9",
+        "overrideSecondaryColor": "#f59e0b",
+        "overrideTertiaryColor": "#10b981",
+        "roundness": "ROUND_FULL",
+        "spacing": {
+          "gutter": "1.25rem",
+          "gutter-mobile": "0.75rem",
+          "margin": "2rem",
+          "margin-mobile": "1rem",
+          "space-lg": "1.75rem",
+          "space-md": "1.25rem",
+          "space-sm": "0.75rem",
+          "space-xl": "2.5rem",
+          "space-xs": "0.375rem"
+        },
+        "spacingScale": 2,
+        "typography": {
+          "body-lg": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "18px",
+            "fontWeight": "600",
+            "lineHeight": "28px"
+          },
+          "body-md": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "16px",
+            "fontWeight": "600",
+            "lineHeight": "24px"
+          },
+          "body-sm": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "14px",
+            "fontWeight": "600",
+            "lineHeight": "20px"
+          },
+          "display-hero": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "44px",
+            "fontWeight": "900",
+            "letterSpacing": "-0.02em",
+            "lineHeight": "52px"
+          },
+          "display-hero-mobile": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "34px",
+            "fontWeight": "900",
+            "letterSpacing": "-0.01em",
+            "lineHeight": "42px"
+          },
+          "headline-lg": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "32px",
+            "fontWeight": "800",
+            "letterSpacing": "-0.01em",
+            "lineHeight": "40px"
+          },
+          "headline-lg-mobile": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "26px",
+            "fontWeight": "800",
+            "lineHeight": "34px"
+          },
+          "headline-md": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "22px",
+            "fontWeight": "800",
+            "lineHeight": "30px"
+          },
+          "headline-sm": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "18px",
+            "fontWeight": "800",
+            "lineHeight": "24px"
+          },
+          "label-counter": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "18px",
+            "fontWeight": "900",
+            "lineHeight": "20px"
+          },
+          "label-pill": {
+            "fontFamily": "Nunito Sans",
+            "fontSize": "15px",
+            "fontWeight": "800",
+            "letterSpacing": "0.02em",
+            "lineHeight": "18px"
+          }
+        }
+      },
+      "title": "Questly · Today · Maya (8) Mobile",
+      "width": "780",
+      "agentText": "Here is the mobile Today screen designed for **Maya (8)** on **Questly**, tailored to a 390px mobile viewport following the **Kids · Playground (Kids Sticker)** design language:\n\n### Key Design Decisions\n1. **Header & Context**:\n   - Compact top app bar displaying Maya's friendly adventurer avatar, \"Questly\", an active live task beacon (`📖 12:04`), and a `🔥 5 Streak` pill counter.\n2. **Hero Greeting Card**:\n   - Vibrant sky blue hero container with playful adventure tag (`☀️ Saturday morning adventure`), personalized greeting (`Hi Maya! 👋`), encouraging progress copy (*\"2 quests done. 4 to go before the park trip!\"*), and an illuminated star vault chip highlighting **12 stars (+4 today)**.\n3. **Six Interactive Quest Tiles**:\n   - Clean, touch-friendly quest list scaled for 48px targets with distinct color-coded pastel icon tiles:\n     - **Read 20 minutes** (Matilda) & **Feed the plants**: Completed states with green check indicators and earned star badges.\n     - **Piano practice**, **Draw a dragon**, **Bike ride (with Dad)**, and **Brain teaser**: Pending quests displaying time tags, star values (`+2`, `+3`, `+1`), and completion rings ready to tap.\n4. **\"I did a quest!\" Big Primary CTA**:\n   - Full-width chunky pill button positioned directly below the active quests with a tactile ledge drop effect for kid-friendly interaction.\n5. **Stars This Week Bar Chart**:\n   - Rounded capsule pill bars tracking Monday through Sunday progress against a 5-star daily benchmark, celebrating `22 ⭐ collected this week` and marked `Best week yet!`.\n6. **Next Reward Milestone**:\n   - Trophy card highlighting the **Trip to the Zoo! 🦒** goal with a 75% completed progress bar (24 / 32 stars) and clear motivation (*\"8 more to unlock ticket!\"*).\n7. **Floating Bottom Dock**:\n   - Rounded floating tab bar featuring **Today** (active highlighted pill), **Week**, **Rewards**, and **Learn**.",
+      "suggestions": [
+        "Design the 'I did a quest!' celebration modal / sheet with star animation",
+        "Create the 'Week' overview screen with detailed streak statistics",
+        "Show the 'Rewards' screen with unlocked and locked family adventures"
+      ],
+      "imageUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UnkqyqZ1L7YD10CLT9bkf0Cr469c5l24LOrJGm9IitJ18L-m8irrQRa2eeK1PVLGhmoEMpEcFatzBTubm-MARnmDOnLa0j9Lc81_AknKOAv6FAtKI5V4CFpWRclEuwHLJvObwxrxRdc8tnKkCEhCSUp0SMOchN2nj7HptbgNK-Xur74C9n0iC5UVleqhDPbBH3sb-k1I9ZemAhXJOl8Cds54qtG9Rz_A6rMULpKlkON6s53_f6dmk3aII"
+    }
+  }
+}

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>omxcore · PyPI Package Registry &amp; Developer Console</title>
+<!-- Fonts: Geist and Geist Mono via Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&amp;family=Geist:wght@400;500;600;650;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#c8c5ca",
+            "inverse-surface": "#313030",
+            "error-container": "#ffdad6",
+            "data-2": "#0a7fe0",
+            "data-1": "#6d5cf0",
+            "surface-tint": "#5f5e60",
+            "data-4": "#e0661a",
+            "surface-container-high": "#ebe7e7",
+            "tertiary-fixed": "#e8e1db",
+            "on-tertiary-fixed": "#1e1b18",
+            "on-tertiary-container": "#88837e",
+            "surface-bright": "#ffffff",
+            "surface-container": "#ffffff",
+            "secondary-fixed": "#e3e1eb",
+            "on-secondary": "#ffffff",
+            "error": "#c01f25",
+            "surface-dim": "#ddd9d9",
+            "on-secondary-fixed": "#1a1b22",
+            "on-surface": "#1c1b1b",
+            "inverse-on-surface": "#f4f0ef",
+            "on-error": "#ffffff",
+            "primary-container": "#1d1d21",
+            "info": "#0960b5",
+            "background": "#eeeef1",
+            "on-tertiary-fixed-variant": "#4a4642",
+            "data-3": "#0f9483",
+            "surface": "#eeeef1",
+            "on-surface-variant": "#5b5b63",
+            "tertiary-container": "#1e1b18",
+            "data-5": "#d42a2f",
+            "on-error-container": "#93000a",
+            "ok": "#137036",
+            "primary-fixed-dim": "#c8c6c8",
+            "secondary-fixed-dim": "#c7c5cf",
+            "on-primary-container": "#858386",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#c8c6c8",
+            "primary-fixed": "#e5e1e4",
+            "on-tertiary": "#ffffff",
+            "warn": "#8f5400",
+            "data-6": "#a88400",
+            "on-secondary-fixed-variant": "#46464e",
+            "tertiary": "#000000",
+            "secondary": "#5e5e66",
+            "on-primary-fixed": "#1c1b1d",
+            "outline": "#c9c9cf",
+            "surface-container-low": "#f7f3f2",
+            "on-secondary-container": "#64646c",
+            "tertiary-fixed-dim": "#ccc5c0",
+            "on-background": "#1c1b1b",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e5e2e1",
+            "primary": "#000000",
+            "on-primary-fixed-variant": "#474649",
+            "surface-variant": "#e5e2e1",
+            "secondary-container": "#e3e1eb"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "8px",
+            "space-lg": "32px",
+            "space-xs": "4px",
+            "space-xl": "48px",
+            "margin": "24px",
+            "space-md": "16px",
+            "gutter": "16px"
+          },
+          "fontFamily": {
+            "mono-data": ["Geist Mono", "monospace"],
+            "headline-md": ["Geist", "sans-serif"],
+            "mono-badge": ["Geist Mono", "monospace"],
+            "display-lg": ["Geist", "sans-serif"],
+            "caption": ["Geist", "sans-serif"],
+            "mono-source": ["Geist Mono", "monospace"],
+            "body-medium": ["Geist", "sans-serif"],
+            "headline-lg": ["Geist", "sans-serif"],
+            "body": ["Geist", "sans-serif"]
+          },
+          "fontSize": {
+            "mono-data": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "headline-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "mono-badge": ["11px", { "lineHeight": "11px", "fontWeight": "500" }],
+            "display-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.6px", "fontWeight": "700" }],
+            "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "mono-source": ["11.5px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-medium": ["13.5px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.3px", "fontWeight": "650" }],
+            "body": ["13.5px", { "lineHeight": "20px", "fontWeight": "400" }]
+          },
+          "boxShadow": {
+            "1": "0 1px 2px rgba(16, 16, 20, 0.06), 0 0 0 1px rgba(16, 16, 20, 0.04)",
+            "2": "0 6px 18px rgba(16, 16, 20, 0.10)",
+            "3": "0 18px 48px rgba(16, 16, 20, 0.18)"
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #eeeef1;
+      color: #1c1b1b;
+      font-family: 'Geist', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- ========================================================================= -->
+<!-- 1. FLOATING ISLAND TOP NAVIGATION (Shared Component Source of Truth)     -->
+<!-- ========================================================================= -->
+<header class="fixed top-4 inset-x-0 mx-auto max-w-[1120px] w-full px-4 py-2 z-50 flex items-center justify-between bg-surface-container border border-outline shadow-2 rounded-full">
+<!-- Brand / Identifier with Beacon Activity Pill -->
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary font-mono-data text-mono-data font-bold">
+          ox
+        </div>
+<span class="font-mono-data text-mono-data font-bold text-on-surface tracking-tight">omxcore</span>
+</a>
+<span class="px-2 py-0.5 rounded bg-surface-variant text-on-surface-variant font-mono-badge text-mono-badge border border-outline">
+        v0.2.0
+      </span>
+<!-- Beacon Component: Live Activity Progress -->
+<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high border border-outline text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-warn animate-pulse"></span>
+<span class="font-mono-badge text-mono-badge text-on-surface font-medium">Release wheels 3/5 60%</span>
+</div>
+</div>
+<!-- Navigation Links: "Overview" active by semantic mapping -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary font-medium border-b-2 border-primary pb-0.5 font-body text-body" href="#overview">Overview</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body text-body" href="#installation">Installation</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body text-body" href="#api">API Reference</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body text-body" href="#releases">Releases</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body text-body" href="#settings">Settings</a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-2">
+<button class="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full border border-outline hover:bg-surface-variant text-on-surface text-caption font-caption transition-colors">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span class="font-mono-data text-mono-data">ox-cli</span>
+</button>
+<button class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-on-primary hover:bg-inverse-surface shadow-1 active:scale-[0.98] transition-all duration-100 ease-out font-body-medium text-body-medium">
+<span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+<span>Publish 0.3.0</span>
+</button>
+</div>
+</header>
+<!-- Spacer to prevent content overlap beneath floating island -->
+<div class="h-24"></div>
+<!-- Main Viewport Canvas Container: max 1120px -->
+<main class="max-w-[1120px] mx-auto w-full px-4 sm:px-6 space-y-6 pb-16 flex-grow">
+<!-- ========================================================================= -->
+<!-- 2. HEADER HERO CARD                                                       -->
+<!-- ========================================================================= -->
+<section class="bg-surface-container rounded-xl border border-outline shadow-1 p-6 lg:p-7 relative overflow-hidden">
+<div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+<!-- Left Hero Segment -->
+<div class="space-y-4 max-w-2xl">
+<!-- Package Name & Badges Cluster -->
+<div class="flex flex-wrap items-center gap-2.5">
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">omxcore</h1>
+<div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high border border-outline">
+<span class="w-2 h-2 rounded-full bg-ok"></span>
+<span class="font-mono-badge text-mono-badge text-ok font-semibold">CI passing</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-on-surface">
+              v0.2.0
+            </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-on-surface-variant">
+              py3.11+
+            </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-on-surface-variant">
+              Apache-2.0
+            </span>
+</div>
+<!-- Package Description -->
+<p class="font-body text-body text-on-surface-variant leading-relaxed">
+            MX frame engine for agent-native apps · Zero-dependency high-throughput binary state multiplexer for distributed inference memory fabrics.
+          </p>
+<!-- Interactive CLI Installation Bar -->
+<div class="pt-1">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-1.5 rounded-lg bg-surface-container-low border border-outline">
+<div class="flex items-center gap-2 px-3 py-1.5 flex-grow font-mono-data text-mono-data text-on-surface selection:bg-secondary-fixed">
+<span class="text-on-surface-variant select-none">$</span>
+<span class="font-medium" id="install-cmd">pip install omxcore</span>
+</div>
+<div class="flex items-center gap-1.5 justify-end">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-outline hover:bg-surface-variant text-on-surface font-mono-data text-mono-data shadow-1 transition-colors active:scale-95" id="copy-btn" onclick="copyInstallCmd()">
+<span class="material-symbols-outlined text-[15px]" id="copy-icon">content_copy</span>
+<span id="copy-text">Copy</span>
+<kbd class="hidden md:inline px-1 py-0.5 text-[10px] rounded bg-surface-container-high text-on-surface-variant font-mono-data border border-outline">⌘C</kbd>
+</button>
+</div>
+</div>
+<!-- Contextual Quick Links -->
+<div class="flex items-center gap-4 mt-3 text-caption font-caption text-on-surface-variant">
+<a class="inline-flex items-center gap-1 hover:text-primary transition-colors" href="#api">
+<span class="material-symbols-outlined text-[15px]">menu_book</span>
+<span>Read API Guide</span>
+</a>
+<span class="text-outline">·</span>
+<a class="inline-flex items-center gap-1 hover:text-primary transition-colors" href="https://github.com" target="_blank">
+<span class="material-symbols-outlined text-[15px]">code</span>
+<span>GitHub (v0.2.0)</span>
+</a>
+<span class="text-outline">·</span>
+<span class="font-mono-source text-mono-source text-on-surface-variant">sha256:4a88f7e2...</span>
+</div>
+</div>
+</div>
+<!-- Right Action Cluster -->
+<div class="flex items-center lg:flex-col lg:items-end gap-2.5 pt-2 lg:pt-0">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-on-primary hover:bg-inverse-surface shadow-1 font-body-medium text-body-medium active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span>Publish 0.3.0</span>
+</button>
+<button class="p-2 rounded-full bg-surface-container border border-outline hover:bg-surface-variant text-on-surface shadow-1 transition-colors" title="Repository actions">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<div class="hidden lg:block text-right">
+<span class="inline-block px-2.5 py-1 rounded bg-surface-container-high border border-outline font-mono-source text-mono-source text-on-surface-variant">
+              Next tag target: v0.3.0-rc.2
+            </span>
+</div>
+</div>
+</div>
+<!-- Mandatory Mono Source Hairline Footer -->
+<div class="mt-6 pt-3 border-t border-outline flex items-center justify-between text-on-surface-variant font-mono-source text-mono-source">
+<span>↳ package index: pypi.org/project/omxcore · tier 1 active library</span>
+<span class="hidden sm:inline">status: nominal 200 OK</span>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 3. TELEMETRY STATS GRID (4-column row)                                    -->
+<!-- ========================================================================= -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric 1: Downloads -->
+<div class="bg-surface-container rounded-xl border border-outline shadow-1 p-4 flex flex-col justify-between">
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Weekly Downloads</span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-surface-container-high text-ok font-mono-badge text-mono-badge border border-outline">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+              +11%
+            </span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">5,912</div>
+</div>
+<div class="mt-4 pt-2 border-t border-outline font-mono-source text-mono-source text-on-surface-variant truncate">
+          $ pypistats recent omxcore
+        </div>
+</div>
+<!-- Metric 2: GitHub Stars -->
+<div class="bg-surface-container rounded-xl border border-outline shadow-1 p-4 flex flex-col justify-between">
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">GitHub Stars</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-mono-badge text-mono-badge border border-outline">
+              repo/omx
+            </span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">1,284</div>
+</div>
+<div class="mt-4 pt-2 border-t border-outline font-mono-source text-mono-source text-on-surface-variant truncate">
+          $ gh repo view --json stars
+        </div>
+</div>
+<!-- Metric 3: Open Issues -->
+<div class="bg-surface-container rounded-xl border border-outline shadow-1 p-4 flex flex-col justify-between">
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Open Issues</span>
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-ok font-mono-badge text-mono-badge border border-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-ok"></span>
+              SLA 12h
+            </span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">7</div>
+</div>
+<div class="mt-4 pt-2 border-t border-outline font-mono-source text-mono-source text-on-surface-variant truncate">
+          $ gh issue list --state open
+        </div>
+</div>
+<!-- Metric 4: Test Coverage -->
+<div class="bg-surface-container rounded-xl border border-outline shadow-1 p-4 flex flex-col justify-between">
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Test Coverage</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-data-2 font-mono-badge text-mono-badge border border-outline">
+              pytest-cov
+            </span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">91%</div>
+</div>
+<div class="mt-4 pt-2 border-t border-outline font-mono-source text-mono-source text-on-surface-variant truncate">
+          $ coverage report --precision=1
+        </div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 4. MAIN CONTENT ASYMMETRIC SPLIT (60% / 40%)                             -->
+<!-- ========================================================================= -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- ================= LEFT PANEL (60% ~ 7 cols) ================= -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Card 1: Download Cadence Chart Card -->
+<section class="bg-surface-container rounded-xl border border-outline shadow-1 p-5">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 gap-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Download Cadence</h2>
+<p class="font-caption text-caption text-on-surface-variant">Rolling binary downloads aggregated weekly</p>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center p-0.5 bg-surface-container-high rounded-full border border-outline text-caption font-caption">
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-medium shadow-1">12 wk</button>
+<button class="px-3 py-1 rounded-full text-on-surface-variant hover:text-on-surface transition-colors">6 mo</button>
+<button class="px-3 py-1 rounded-full text-on-surface-variant hover:text-on-surface transition-colors">1 yr</button>
+</div>
+</div>
+<!-- Clean Minimalist Line Chart SVG (utilitarian graphing) -->
+<div class="w-full h-48 py-2">
+<svg class="w-full h-full overflow-visible" fill="none" preserveaspectratio="none" viewbox="0 0 560 160">
+<!-- Grid Lines -->
+<line stroke="#e5e2e1" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="560" y1="20" y2="20"></line>
+<line stroke="#e5e2e1" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="560" y1="65" y2="65"></line>
+<line stroke="#e5e2e1" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="560" y1="110" y2="110"></line>
+<line stroke="#c9c9cf" stroke-width="1" x1="0" x2="560" y1="150" y2="150"></line>
+<!-- Baseline Area fill subtle tonal -->
+<path d="M 10 145 L 60 135 L 110 138 L 160 120 L 210 115 L 260 98 L 310 92 L 360 78 L 410 65 L 460 55 L 510 42 L 550 25 L 550 150 L 10 150 Z" fill="#f7f3f2"></path>
+<!-- Main Trend Stroke -->
+<path d="M 10 145 L 60 135 L 110 138 L 160 120 L 210 115 L 260 98 L 310 92 L 360 78 L 410 65 L 460 55 L 510 42 L 550 25" stroke="#1c1b1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<!-- Key Data Nodes -->
+<circle cx="10" cy="145" fill="#1c1b1b" r="3"></circle>
+<circle cx="260" cy="98" fill="#1c1b1b" r="3"></circle>
+<circle cx="410" cy="65" fill="#1c1b1b" r="3"></circle>
+<!-- Current Node Highlight -->
+<circle cx="550" cy="25" fill="#1c1b1b" r="4.5" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between items-center px-1 font-mono-source text-mono-source text-on-surface-variant pt-2">
+<span>W01 (1,120)</span>
+<span>W04 (2,450)</span>
+<span>W08 (3,890)</span>
+<span class="font-medium text-on-surface">W12 (5,912)</span>
+</div>
+<!-- Card Mono Line -->
+<div class="mt-4 pt-3 border-t border-outline flex items-center justify-between text-on-surface-variant font-mono-source text-mono-source">
+<span>↳ thousands per week, axis from 0 · source: PyPI BigQuery</span>
+<span class="text-ok font-medium">99.98% availability</span>
+</div>
+</section>
+<!-- Card 2: Releases Table Card -->
+<section class="bg-surface-container rounded-xl border border-outline shadow-1 p-5">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 gap-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Releases</h2>
+<p class="font-caption text-caption text-on-surface-variant">Archived distribution binaries &amp; wheel signatures</p>
+</div>
+<!-- Segmented Pill Filters -->
+<div class="flex items-center p-0.5 bg-surface-container-high rounded-full border border-outline text-caption font-caption">
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-medium shadow-1">All</button>
+<button class="px-3 py-1 rounded-full text-on-surface-variant hover:text-on-surface transition-colors">Stable</button>
+<button class="px-3 py-1 rounded-full text-on-surface-variant hover:text-on-surface transition-colors">Pre-release</button>
+</div>
+</div>
+<!-- Utilitarian Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline text-caption font-caption text-on-surface-variant">
+<th class="py-2.5 font-medium">Version</th>
+<th class="py-2.5 font-medium">Release Date</th>
+<th class="py-2.5 font-medium">Wheels Supported</th>
+<th class="py-2.5 font-medium text-right">Size</th>
+<th class="py-2.5 font-medium text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline font-body text-body">
+<!-- Row 1: 0.3.0rc1 (Pre-release) -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 font-mono-data text-mono-data">
+<span class="font-semibold text-on-surface">0.3.0rc1</span>
+<span class="ml-1.5 px-1.5 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-warn">
+                      rc
+                    </span>
+</td>
+<td class="py-3 text-on-surface-variant font-caption text-caption">Today, 14:20</td>
+<td class="py-3">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high border border-outline">linux-x86_64</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high border border-outline">macosx-arm64</span>
+</div>
+</td>
+<td class="py-3 text-right font-mono-source text-mono-source text-on-surface">1.84 MB</td>
+<td class="py-3 text-right">
+<span class="inline-flex items-center gap-1 font-mono-badge text-mono-badge text-warn">
+<span class="w-1.5 h-1.5 rounded-full bg-warn"></span>
+                      Staged
+                    </span>
+</td>
+</tr>
+<!-- Row 2: 0.2.0 (Latest Stable) -->
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-low/40">
+<td class="py-3 font-mono-data text-mono-data">
+<span class="font-semibold text-on-surface">0.2.0</span>
+<span class="ml-1.5 px-1.5 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-ok">
+                      latest
+                    </span>
+</td>
+<td class="py-3 text-on-surface-variant font-caption text-caption">Oct 12, 2024</td>
+<td class="py-3">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high border border-outline">linux</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high border border-outline">macos</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high border border-outline">win64</span>
+</div>
+</td>
+<td class="py-3 text-right font-mono-source text-mono-source text-on-surface">1.76 MB</td>
+<td class="py-3 text-right">
+<span class="inline-flex items-center gap-1 font-mono-badge text-mono-badge text-ok">
+<span class="w-1.5 h-1.5 rounded-full bg-ok"></span>
+                      Active
+                    </span>
+</td>
+</tr>
+<!-- Row 3: 0.1.9 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 font-mono-data text-mono-data">
+<span class="font-medium text-on-surface">0.1.9</span>
+</td>
+<td class="py-3 text-on-surface-variant font-caption text-caption">Sep 04, 2024</td>
+<td class="py-3">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high border border-outline">linux</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high border border-outline">macos</span>
+</div>
+</td>
+<td class="py-3 text-right font-mono-source text-mono-source text-on-surface">1.72 MB</td>
+<td class="py-3 text-right">
+<span class="font-mono-badge text-mono-badge text-on-surface-variant">
+                      Archived
+                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom hairline source line & pagination -->
+<div class="mt-4 pt-3 border-t border-outline flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-on-surface-variant font-mono-source text-mono-source">
+<span class="truncate">$ twine check dist/* &amp;&amp; pip index versions omxcore</span>
+<div class="flex items-center gap-2 select-none">
+<span>Showing 3 of 14 releases</span>
+<button class="hover:text-on-surface underline">all →</button>
+</div>
+</div>
+</section>
+</div>
+<!-- ================= RIGHT PANEL (40% ~ 5 cols) ================= -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Card 1: Recent CI Workflows -->
+<section class="bg-surface-container rounded-xl border border-outline shadow-1 p-5">
+<div class="flex items-center justify-between pb-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent CI Workflows</h2>
+<p class="font-caption text-caption text-on-surface-variant">GitHub Actions pipeline runners</p>
+</div>
+<a class="font-caption text-caption text-on-surface font-medium hover:underline inline-flex items-center gap-0.5" href="#">
+<span>View all</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<!-- List of Workflow Runs -->
+<div class="divide-y divide-outline">
+<!-- Item 1: Release wheels (Running) -->
+<div class="py-3 flex items-start justify-between gap-3">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-body-medium text-body-medium text-on-surface">Release wheels</span>
+<span class="font-mono-source text-mono-source text-on-surface-variant">a3f9c21</span>
+</div>
+<div class="flex items-center gap-2 font-caption text-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>Started 4 min ago</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-warn">
+<span class="w-1.5 h-1.5 rounded-full bg-warn animate-pulse"></span>
+<span>running</span>
+</div>
+</div>
+<!-- Item 2: Tests · py3.13 (Running) -->
+<div class="py-3 flex items-start justify-between gap-3">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-body-medium text-body-medium text-on-surface">Tests · py3.13</span>
+<span class="font-mono-source text-mono-source text-on-surface-variant">a3f9c21</span>
+</div>
+<div class="flex items-center gap-2 font-caption text-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>running 2:41</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-warn">
+<span class="w-1.5 h-1.5 rounded-full bg-warn animate-pulse"></span>
+<span>running</span>
+</div>
+</div>
+<!-- Item 3: Docs build (Passed) -->
+<div class="py-3 flex items-start justify-between gap-3">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-body-medium text-body-medium text-on-surface">Docs build</span>
+<span class="font-mono-source text-mono-source text-on-surface-variant">9be04d7</span>
+</div>
+<div class="flex items-center gap-2 font-caption text-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">check</span>
+<span>yesterday in 44s</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-ok">
+<span class="w-1.5 h-1.5 rounded-full bg-ok"></span>
+<span>passed</span>
+</div>
+</div>
+<!-- Item 4: Tests · py3.11 (Passed) -->
+<div class="py-3 flex items-start justify-between gap-3">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-body-medium text-body-medium text-on-surface">Tests · py3.11</span>
+<span class="font-mono-source text-mono-source text-on-surface-variant">9be04d7</span>
+</div>
+<div class="flex items-center gap-2 font-caption text-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">check</span>
+<span>yesterday in 3m 12s</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-ok">
+<span class="w-1.5 h-1.5 rounded-full bg-ok"></span>
+<span>passed</span>
+</div>
+</div>
+</div>
+<!-- CI Card Hairline Sub-line -->
+<div class="mt-3 pt-3 border-t border-outline flex items-center justify-between text-on-surface-variant font-mono-source text-mono-source">
+<span>$ gh run list --limit 4</span>
+<span>matrix: 4/4 online</span>
+</div>
+</section>
+<!-- Card 2: Quick Verification & Runtime Environment -->
+<section class="bg-surface-container rounded-xl border border-outline shadow-1 p-5">
+<div class="flex items-center justify-between pb-3">
+<h2 class="font-headline-md text-headline-md text-on-surface">Quick Verification</h2>
+<span class="px-2 py-0.5 rounded bg-surface-container-high border border-outline font-mono-badge text-mono-badge text-on-surface-variant">
+              smoke-test
+            </span>
+</div>
+<p class="font-body text-body text-on-surface-variant mb-3">
+            Run binary import check to verify ABI compatibility against your native interpreter:
+          </p>
+<!-- Interactive Code Box -->
+<div class="p-3 rounded-lg bg-surface-container-low border border-outline font-mono-data text-mono-data space-y-1">
+<div class="text-on-surface-variant select-none text-caption font-caption">// test dynamic linkage</div>
+<div class="text-on-surface">
+<span class="text-primary font-bold">$</span> python -c "import omx; print(omx.__version__)"
+            </div>
+<div class="text-ok font-semibold pt-1">
+              &gt; "0.2.0"
+            </div>
+</div>
+<!-- Environment Support Matrix mini-pills -->
+<div class="mt-4 pt-3 border-t border-outline">
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant mb-2">
+<span>Environment Target Matrix</span>
+<span class="font-mono-source text-mono-source">glibc 2.28+</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-caption font-caption">
+<div class="p-2 rounded bg-surface-container-high border border-outline flex items-center justify-between">
+<span>CPython 3.11</span>
+<span class="text-ok font-mono-badge text-mono-badge">supported</span>
+</div>
+<div class="p-2 rounded bg-surface-container-high border border-outline flex items-center justify-between">
+<span>CPython 3.12</span>
+<span class="text-ok font-mono-badge text-mono-badge">supported</span>
+</div>
+<div class="p-2 rounded bg-surface-container-high border border-outline flex items-center justify-between">
+<span>CPython 3.13</span>
+<span class="text-ok font-mono-badge text-mono-badge">supported</span>
+</div>
+<div class="p-2 rounded bg-surface-container-high border border-outline flex items-center justify-between">
+<span>PyPy 7.3+</span>
+<span class="text-on-surface-variant font-mono-badge text-mono-badge">partial</span>
+</div>
+</div>
+</div>
+<!-- Card Mono Line -->
+<div class="mt-4 pt-3 border-t border-outline font-mono-source text-mono-source text-on-surface-variant">
+            ↳ verified against 14 clean virtualenv containers
+          </div>
+</section>
+</div>
+</div>
+</main>
+<!-- ========================================================================= -->
+<!-- 5. FOOTER (Shared Component Source of Truth)                              -->
+<!-- ========================================================================= -->
+<footer class="w-full border-t border-outline bg-surface px-6 py-8 mt-auto">
+<div class="max-w-[1120px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<!-- Brand & License Claim -->
+<div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+<span class="font-mono-data text-mono-data font-semibold text-on-surface">omxcore</span>
+<span class="hidden sm:inline text-outline-variant">·</span>
+<span class="font-body text-body text-on-surface-variant">
+          © 2024 omxcore maintainers. Released under MIT License.
+        </span>
+</div>
+<!-- Links (Immutable exact strings from JSON) -->
+<div class="flex flex-wrap items-center justify-center gap-6">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#documentation">Documentation</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#pypi">PyPI Registry</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#github">GitHub Source</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#changelog">Changelog</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#security">Security</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#status">Status</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions JavaScript -->
+<script>
+    function copyInstallCmd() {
+      const cmd = "pip install omxcore";
+      navigator.clipboard.writeText(cmd).then(() => {
+        const textSpan = document.getElementById("copy-text");
+        const iconSpan = document.getElementById("copy-icon");
+        
+        textSpan.innerText = "Copied!";
+        iconSpan.innerText = "check";
+        
+        setTimeout(() => {
+          textSpan.innerText = "Copy";
+          iconSpan.innerText = "content_copy";
+        }, 2000);
+      }).catch(err => {
+        console.error("Failed to copy text: ", err);
+      });
+    }
+
+    // Keyboard shortcut handler for Command/Ctrl + C when not focused on an input
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'c' && window.getSelection().toString() === '') {
+        copyInstallCmd();
+      }
+    });
+  </script>
+</body></html>

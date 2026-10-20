@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# omxqua-sync <dest-dir> [--ref <tag-or-branch>]
+# Copies omxqua's src/ and fonts/ at a ref (default: the latest tag, else HEAD) into <dest-dir>/omxqua/,
+# keeping the two folders side by side so fonts.css's url(../fonts/...) still resolves.
+# Writes <dest-dir>/omxqua/VERSION (ref + commit). Needs git (and tar, which git archive pipes into).
+set -euo pipefail
+
+usage() { echo "usage: omxqua-sync <dest-dir> [--ref <tag-or-branch>]" >&2; exit 2; }
+
+dest="" ref=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --ref) [ $# -ge 2 ] || usage; ref="$2"; shift 2 ;;
+    --ref=*) ref="${1#--ref=}"; shift ;;
+    -h|--help) usage ;;
+    -*) echo "omxqua-sync: unknown option $1" >&2; usage ;;
+    *) [ -z "$dest" ] || usage; dest="$1"; shift ;;
+  esac
+done
+[ -n "$dest" ] || usage
+
+repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+git -C "$repo" rev-parse --git-dir >/dev/null 2>&1 || { echo "omxqua-sync: $repo is not a git repo" >&2; exit 1; }
+
+if [ -z "$ref" ]; then
+  tags="$(git -C "$repo" tag --list --sort=-v:refname)"
+  ref="${tags%%$'\n'*}"
+  [ -n "$ref" ] || ref="HEAD"
+fi
+commit="$(git -C "$repo" rev-parse --verify --quiet "${ref}^{commit}")" || { echo "omxqua-sync: unknown ref '$ref'" >&2; exit 1; }
+
+out="$dest/omxqua"
+tmp="$(mktemp -d)"
+trap 'rm -rf -- "$tmp"' EXIT
+git -C "$repo" archive --format=tar "$commit" src fonts | tar -x -C "$tmp"
+
+mkdir -p "$out"
+# replace only the folders this script owns, so a file removed upstream doesn't linger
+for d in src fonts; do
+  rm -rf -- "${out:?}/$d"
+  mv -- "$tmp/$d" "$out/$d"
+done
+printf 'ref: %s\ncommit: %s\n' "$ref" "$commit" > "$out/VERSION"
+
+echo "omxqua $ref (${commit:0:12}) -> $out"
+(cd "$out" && find src fonts -type f | LC_ALL=C sort | while read -r f; do printf '  %-40s %8s bytes\n' "$f" "$(wc -c < "$f" | tr -d ' ')"; done)
+echo "  VERSION"

@@ -1,0 +1,44 @@
+{
+ "id": "a8201851-9841-4227-b12d-dadd0af9a1ce",
+ "title": "App accent tokens fail night mode contrast",
+ "description": "App accent token CSS classes use static hex color definitions across light and night modes. Four of five standalone accent colors fail the 4.5:1 WCAG contrast ratio when rendered on dark surfaces in night mode. Also, white text on the amber accent background fails contrast guidelines in both themes. This violates design system requirements specifying theme-aware contrast ratios.",
+ "state": "ACTIVE",
+ "priority": "P2",
+ "altitude": "MEDIUM",
+ "goals": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "priorities": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "lastSubstantiveUpdateTime": "2026-10-20T21:06:12.809630Z",
+ "references": {
+  "1": {
+   "id": "1",
+   "note": {
+    "content": "In /app/tokens.css (lines 102-106), .ul-root.ul-app-teal, .ul-root.ul-app-amber, .ul-root.ul-app-violet, .ul-root.ul-app-sage, and .ul-root.ul-app-rose define static hex values for --ul-accent and white for --ul-on-accent without theme-dependent overrides for .ul-night, unlike .ul-night.ul-app-ink (lines 100-101)."
+   }
+  },
+  "2": {
+   "id": "2",
+   "note": {
+    "content": "When rendered on night surface-0 (#0b0b0d, line 45 of /app/tokens.css), teal (#0e7c86) yields 3.98:1, violet (#6d5cf0) yields 4.16:1, sage (#4f7a5a) yields 3.99:1, and rose (#c8243f) yields 3.54:1 contrast ratios. All four fail the WCAG 2.1 AA 4.5:1 minimum threshold."
+   }
+  },
+  "3": {
+   "id": "3",
+   "note": {
+    "content": "The amber accent (--ul-accent: #c27a00) with --ul-on-accent: #ffffff (line 103 of /app/tokens.css) yields a contrast ratio of only 3.46:1, failing the 4.5:1 requirement for white foreground text on filled accent buttons in both themes."
+   }
+  },
+  "4": {
+   "id": "4",
+   "note": {
+    "content": "/app/DESIGN.md (lines 140, 146) and /app/LANGUAGE.md (lines 34, 39-44) require text to maintain at least 4.5:1 contrast against surfaces in both Light and Night modes, and document theme-specific accent pairs for night themes."
+   }
+  }
+ },
+ "createTime": "2026-10-20T21:06:12.809630Z",
+ "updateTime": "2026-10-20T21:06:12.809630Z",
+ "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/insights/a8201851-9841-4227-b12d-dadd0af9a1ce"
+}

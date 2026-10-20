@@ -1,0 +1,50 @@
+{
+ "id": "720021d3-4311-4581-865c-1acb254b61bd",
+ "title": "Showcase components lack signature design system patterns",
+ "description": "Key signature components defined in the design specifications fail to match implementation across showcase and CSS tokens. Form controls lack floating field label logic, cards omit mandatory mono source lines, and close controls use custom classes instead of the standardized button token.",
+ "state": "ACTIVE",
+ "priority": "P2",
+ "altitude": "MEDIUM",
+ "goals": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "priorities": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "lastSubstantiveUpdateTime": "2026-10-20T21:06:12.809630Z",
+ "references": {
+  "1": {
+   "id": "1",
+   "note": {
+    "content": "DESIGN.md:L160-L164 and LANGUAGE.md:L89,L111-L112 define specifications for signature components including floating field labels, mono source lines, and standardized close buttons."
+   }
+  },
+  "2": {
+   "id": "2",
+   "note": {
+    "content": "tokens.css:L1-L118 defines the central token stylesheet which includes .ul-source at L112, but omits CSS rules for .field floating labels and .xbtn close buttons."
+   }
+  },
+  "3": {
+   "id": "3",
+   "note": {
+    "content": "showcase.html:L386-L398 defines form controls using a static label element above a plain input element instead of floating label markup."
+   }
+  },
+  "4": {
+   "id": "4",
+   "note": {
+    "content": "showcase.html:L435-L439, L756-L762, and L789 use a custom .src class rather than .ul-source, and omit source lines on map and quest cards."
+   }
+  },
+  "5": {
+   "id": "5",
+   "note": {
+    "content": "showcase.html:L183, L307-L312, and L905 define close buttons using non-standard .x classes with 28px dimensions rather than the standardized 32px .xbtn circle token."
+   }
+  }
+ },
+ "createTime": "2026-10-20T21:06:12.809630Z",
+ "updateTime": "2026-10-20T21:06:12.809630Z",
+ "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/insights/720021d3-4311-4581-865c-1acb254b61bd"
+}

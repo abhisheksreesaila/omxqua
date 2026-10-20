@@ -1,0 +1,19 @@
+{
+  "success": false,
+  "error": {
+    "code": "CLARIFICATION_REQUIRED",
+    "message": "The developer package page for the PyPI library **omxcore** is active on your canvas (`Showcase · Developer Graphite · Night · Top islands`), built strictly to the **Universal Language: Developer · Graphite** specifications:\n\n### Included Core Features:\n- **Header & Primary Action**: Top islands shell featuring the `omxcore` mark, active top navigation (`Overview`, `Releases`, `CI runs`, `Docs`), a live Beacon indicator (`Release wheels 3/5`), and the prominent accent pill button **`Publish 0.3.0`**.\n- **Installation Bar**: Dedicated mono install block (`pip install omxcore`) with one-click copy trigger and metadata badges (`Apache-2.0`, `CI passing`, `v0.2.0`, `py3.11+`).\n- **4 Key Telemetry Stats**:\n  - `5,912` (+11%) downloads / week\n  - `1,284` GitHub stars\n  - `7` open issues\n  - `91%` test coverage\n- **Downloads Chart**: Interactive time-series card with range segmented controls (`12 wk`, `6 mo`, `1 yr`) and provenance source line (`pypistats recent omxcore`).\n- **CI Runs List**: Real-time pipeline statuses (`Release wheels` · passed, `Tests · py3.13` · running, `Docs build` · failed, `Tests · py3.11` · passed) complete with mono status badges and execution timestamps.\n- **Releases Table**: Detailed release catalog breaking down versions (`0.3.0rc1`, `0.2.0`), release dates, wheel platform compatibility (`linux · macOS · win`), asset sizes, and status pill badges (`pre-release`, `latest`).",
+    "recoverable": true,
+    "remediation": "Re-run with --project and a more specific --prompt, or one of the suggestions.",
+    "details": {
+      "project": "16428631202563231164",
+      "suggestions": [
+        "Generate a Light mode variant of the omxcore package page",
+        "Add an interactive 'Publish 0.3.0' confirmation modal sheet",
+        "Create the PyPI package README / Documentation view"
+      ]
+    },
+    "isRecoverable": true,
+    "suggestion": "Re-run with --project and a more specific --prompt, or one of the suggestions."
+  }
+}

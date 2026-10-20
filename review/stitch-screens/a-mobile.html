@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>gitaway · Lisbon Day View</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-fixed": "#e5e1e4",
+            "error": "#c01f25",
+            "outline": "#c9c9cf",
+            "surface-container": "#ffffff",
+            "surface-bright": "#fdf8f8",
+            "primary-fixed-dim": "#c8c6c8",
+            "inverse-primary": "#c8c6c8",
+            "data-4": "#e0661a",
+            "tertiary-container": "#1e1b18",
+            "on-tertiary-container": "#88837e",
+            "ok": "#137036",
+            "surface-dim": "#ddd9d9",
+            "secondary": "#5e5e66",
+            "warn": "#8f5400",
+            "outline-variant": "#e3e3e8",
+            "info": "#0960b5",
+            "on-secondary-fixed": "#1a1b22",
+            "on-secondary-fixed-variant": "#46464e",
+            "tertiary-fixed": "#e8e1db",
+            "primary-container": "#1d1d21",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#ebe7e7",
+            "tertiary": "#000000",
+            "surface-tint": "#5f5e60",
+            "primary": "#000000",
+            "data-5": "#d42a2f",
+            "inverse-on-surface": "#f4f0ef",
+            "secondary-fixed-dim": "#c7c5cf",
+            "on-surface-variant": "#47464a",
+            "inverse-surface": "#313030",
+            "data-3": "#0f9483",
+            "on-tertiary-fixed": "#1e1b18",
+            "on-tertiary-fixed-variant": "#4a4642",
+            "on-surface": "#1c1b1b",
+            "surface-variant": "#e5e2e1",
+            "on-primary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-primary-container": "#858386",
+            "data-6": "#a88400",
+            "on-error": "#ffffff",
+            "data-2": "#0a7fe0",
+            "on-background": "#1c1b1b",
+            "secondary-container": "#e3e1eb",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e5e2e1",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ccc5c0",
+            "background": "#eeeef1",
+            "on-primary-fixed": "#1c1b1d",
+            "surface-container-low": "#f7f3f2",
+            "on-secondary-container": "#64646c",
+            "on-primary-fixed-variant": "#474649",
+            "secondary-fixed": "#e3e1eb",
+            "data-1": "#6d5cf0",
+            "surface": "#eeeef1"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            "space-xs": "4px",
+            "space-xl": "48px",
+            gutter: "16px",
+            "space-md": "16px",
+            "space-sm": "8px",
+            "space-lg": "32px",
+            margin: "24px"
+          },
+          fontFamily: {
+            "headline-lg": ["Geist", "sans-serif"],
+            "body": ["Geist", "sans-serif"],
+            "headline-md": ["Geist", "sans-serif"],
+            "caption": ["Geist", "sans-serif"],
+            "body-medium": ["Geist", "sans-serif"],
+            "mono-badge": ["Geist Mono", "monospace"],
+            "mono-data": ["Geist Mono", "monospace"],
+            "mono-source": ["Geist Mono", "monospace"],
+            "display-lg": ["Geist", "sans-serif"]
+          },
+          fontSize: {
+            "headline-lg": ["22px", { lineHeight: "28px", letterSpacing: "-0.3px", fontWeight: "650" }],
+            "body": ["13.5px", { lineHeight: "20px", fontWeight: "400" }],
+            "headline-md": ["16px", { lineHeight: "22px", fontWeight: "600" }],
+            "caption": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            "body-medium": ["13.5px", { lineHeight: "20px", fontWeight: "500" }],
+            "mono-badge": ["11px", { lineHeight: "11px", fontWeight: "500" }],
+            "mono-data": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+            "mono-source": ["11.5px", { lineHeight: "16px", fontWeight: "400" }],
+            "display-lg": ["32px", { lineHeight: "36px", letterSpacing: "-0.6px", fontWeight: "700" }]
+          },
+          boxShadow: {
+            '1': '0 1px 2px rgba(16,16,20,.06), 0 0 0 1px rgba(16,16,20,.04)',
+            '2': '0 6px 18px rgba(16,16,20,.10)',
+            '3': '0 18px 48px rgba(16,16,20,.18)'
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .scrollbar-none::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-none {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased font-body min-h-screen flex justify-center selection:bg-secondary-fixed">
+<!-- Mobile Container: 390px Viewport Simulation -->
+<main class="w-full max-w-[390px] min-h-screen bg-background relative flex flex-col pb-28">
+<!-- Top Chrome & Navigation Island (Shared Component TopAppBar) -->
+<header class="sticky top-2 z-50 flex justify-between items-center px-4 py-2 w-full">
+<div class="flex items-center justify-between w-full bg-surface-container border border-outline-variant rounded-full shadow-sm px-3.5 py-1.5 active:scale-95 transition-transform duration-150">
+<div class="flex items-center gap-2">
+<button aria-label="Back" class="flex items-center justify-center text-on-surface hover:text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex items-center gap-1.5 pl-1">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">gitaway</span>
+<span class="font-mono-badge text-mono-badge bg-primary-container text-on-primary px-1.5 py-0.5 rounded tracking-wide">LIS</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface hidden">Lisbon, Portugal</span>
+<button aria-label="More options" class="flex items-center justify-center p-1.5 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Contextual Live Beacon Pill -->
+<section class="px-4 pt-1 pb-2">
+<div class="bg-primary text-on-primary rounded-full px-3.5 py-2 flex items-center justify-between shadow-2 border border-outline/30 cursor-pointer hover:bg-primary-container active:scale-98 transition-all">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-ok"></span>
+</span>
+<span class="material-symbols-outlined text-inverse-primary text-[15px]">flight</span>
+<span class="font-body-medium text-body-medium text-white tracking-tight">TAP 1352 · boards 42 min</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-mono-badge text-mono-badge text-inverse-primary">GATE B22</span>
+<span class="material-symbols-outlined text-inverse-primary text-[14px]">arrow_forward</span>
+</div>
+</div>
+</section>
+<!-- Destination Header Section -->
+<section class="px-4 pt-3 pb-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-ok/10 text-ok border border-ok/20 font-caption text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-ok"></span>
+              Live trip
+            </span>
+<span class="font-mono-badge text-mono-badge text-on-surface-variant uppercase">Portugal · EU</span>
+</div>
+<h1 class="font-display-lg text-display-lg tracking-tight text-on-surface">Lisbon</h1>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">Oct 24 – 28 · 5 days · 2 travellers</p>
+</div>
+<div class="flex items-center gap-1.5 pt-1">
+<button aria-label="Share" class="h-8 px-2.5 rounded-full bg-surface-container border border-outline-variant shadow-1 text-on-surface font-caption text-caption flex items-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[15px]">share</span>
+<span>Share</span>
+</button>
+<button aria-label="Add to day" class="h-8 px-3 rounded-full bg-primary text-on-primary font-caption text-caption font-medium flex items-center gap-1 shadow-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[15px]">add</span>
+<span>Add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Horizontal Day Scroller -->
+<section class="pt-2 pb-2">
+<div class="flex items-center gap-2 overflow-x-auto scrollbar-none px-4">
+<!-- Active Day Pill -->
+<button class="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-on-primary shadow-1 font-body-medium text-body-medium active:scale-95 transition-transform">
+<span class="w-1.5 h-1.5 rounded-full bg-warn"></span>
+<span>Fri 24 Arrival</span>
+</button>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-caption text-caption hover:bg-surface-container-high active:scale-95 transition-all">
+          Sat 25 Alfama
+        </button>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-caption text-caption hover:bg-surface-container-high active:scale-95 transition-all">
+          Sun 26 Belém
+        </button>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-caption text-caption hover:bg-surface-container-high active:scale-95 transition-all">
+          Mon 27 Sintra
+        </button>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-caption text-caption hover:bg-surface-container-high active:scale-95 transition-all">
+          Tue 28 Departure
+        </button>
+<button aria-label="Filter days" class="flex-shrink-0 p-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+</button>
+</div>
+</section>
+<!-- Sub-header & View Toggle -->
+<section class="px-4 py-2 flex items-end justify-between border-b border-outline-variant/60 pb-3">
+<div>
+<span class="font-mono-badge text-mono-badge text-secondary uppercase tracking-widest">OCT 24, 2024</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold capitalize mt-0.5">Friday · arrival day</h2>
+</div>
+<div class="flex items-center p-0.5 bg-surface-container-highest rounded-full border border-outline-variant">
+<button class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface font-caption text-caption font-semibold shadow-1">Day</button>
+<button class="px-2.5 py-0.5 rounded-full text-on-surface-variant font-caption text-caption hover:text-on-surface">Week</button>
+</div>
+</section>
+<!-- Itinerary Timeline Section -->
+<section class="px-4 pt-4 pb-2">
+<div class="relative pl-6">
+<!-- Vertical Timeline Rail -->
+<div class="absolute left-2.5 top-2 bottom-3 w-0.5 bg-outline-variant"></div>
+<!-- Timeline Item 1: Flight -->
+<div class="relative mb-5">
+<div class="absolute -left-[19px] top-3 w-3 h-3 rounded-full bg-[#1e525a] border-2 border-background"></div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-mono-data text-mono-data text-on-surface font-semibold">08:40 WEST</span>
+<span class="font-mono-badge text-mono-badge px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">FLIGHT · TAP AIR</span>
+</div>
+<!-- Kind-Colored Card (Flight: Teal / Slate-Blue Theme) -->
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden shadow-1 transition-transform">
+<div class="p-3.5 border-l-4 border-[#1e525a]">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#1e525a] text-[17px]">flight_land</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">TAP 1352 · JFK ➔ LIS</h3>
+</div>
+<p class="font-body text-body text-on-surface-variant mt-1">Non-stop trans-Atlantic flight · Airbus A330neo</p>
+</div>
+<span class="font-mono-badge text-mono-badge bg-[#1e525a]/10 text-[#1e525a] px-2 py-0.5 rounded font-bold">SEAT 14C</span>
+</div>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-outline-variant/60">
+<div class="flex items-center gap-3 text-caption font-caption text-secondary">
+<span>Terminal 1</span>
+<span>·</span>
+<span>Baggage Belt 4</span>
+</div>
+<a class="font-caption text-caption font-semibold text-[#1e525a] hover:underline flex items-center gap-0.5" href="#">
+                  Boarding pass
+                  <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Mono Source Footer -->
+<div class="bg-surface-container-low px-3.5 py-1.5 border-t border-outline-variant/60 flex items-center justify-between font-mono-source text-mono-source text-secondary">
+<span>pnr: 7LK92M · e-ticket confirmed</span>
+<span>tap-air.pt</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2: Stay / Hotel -->
+<div class="relative mb-5">
+<div class="absolute -left-[19px] top-3 w-3 h-3 rounded-full bg-[#583759] border-2 border-background"></div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-mono-data text-mono-data text-on-surface font-semibold">21:30 WEST</span>
+<span class="font-mono-badge text-mono-badge px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">CHECK-IN · BOUTIQUE STAY</span>
+</div>
+<!-- Kind-Colored Card (Stay: Rich Purple / Aubergine Theme) -->
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden shadow-1 transition-transform">
+<div class="p-3.5 border-l-4 border-[#583759]">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#583759] text-[17px]">hotel</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Memmo Alfama</h3>
+</div>
+<p class="font-body text-body text-on-surface-variant mt-0.5">Travessa das Merceeiras 27, Alfama</p>
+</div>
+<span class="font-mono-badge text-mono-badge bg-[#583759]/10 text-[#583759] px-2 py-0.5 rounded font-bold">3 NIGHTS</span>
+</div>
+<div class="mt-2.5 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-ok/10 text-ok font-mono-badge text-mono-badge">
+<span class="material-symbols-outlined text-[12px]">key</span>
+                  Mobile key ready
+                </span>
+<span class="font-caption text-caption text-on-surface-variant">River View King · Room 204</span>
+</div>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-outline-variant/60">
+<span class="font-caption text-caption text-secondary">Front Desk: +351 210 494 300</span>
+<a class="font-caption text-caption font-semibold text-[#583759] hover:underline flex items-center gap-0.5" href="#">
+                  Voucher
+                  <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Mono Source Footer -->
+<div class="bg-surface-container-low px-3.5 py-1.5 border-t border-outline-variant/60 flex items-center justify-between font-mono-source text-mono-source text-secondary">
+<span>res: #MMO-91820 · paid in full</span>
+<span>itinerary/stay-alfama.json</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3: Food / Dining -->
+<div class="relative mb-2">
+<div class="absolute -left-[19px] top-3 w-3 h-3 rounded-full bg-[#a04928] border-2 border-background"></div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-mono-data text-mono-data text-on-surface font-semibold">22:15 WEST</span>
+<span class="font-mono-badge text-mono-badge px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">DINING · PETISCOS</span>
+</div>
+<!-- Kind-Colored Card (Food: Terracotta / Rust Theme) -->
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden shadow-1 transition-transform">
+<div class="p-3.5 border-l-4 border-[#a04928]">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#a04928] text-[17px]">restaurant</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Taberna da Rua das Flores</h3>
+</div>
+<p class="font-body text-body text-on-surface-variant mt-0.5">Table for 2 · Walk 6 min from hotel</p>
+</div>
+<span class="font-mono-badge text-mono-badge bg-[#a04928]/10 text-[#a04928] px-2 py-0.5 rounded font-bold">22:15 CONF</span>
+</div>
+<div class="mt-2.5 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">
+<span class="material-symbols-outlined text-[12px]">chat</span>
+                  Confirmed via WhatsApp
+                </span>
+<span class="font-caption text-caption text-secondary">Chef's daily blackboard menu</span>
+</div>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-outline-variant/60">
+<span class="font-caption text-caption text-secondary">Est. €45-€65 for two</span>
+<a class="font-caption text-caption font-semibold text-[#a04928] hover:underline flex items-center gap-0.5" href="#">
+                  Directions
+                  <span class="material-symbols-outlined text-[13px]">navigation</span>
+</a>
+</div>
+</div>
+<!-- Mono Source Footer -->
+<div class="bg-surface-container-low px-3.5 py-1.5 border-t border-outline-variant/60 flex items-center justify-between font-mono-source text-mono-source text-secondary">
+<span>loc: Rua das Flores 103, Chiado</span>
+<span>eat/petiscos-lisboa</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Neighborhood Geo & Interactive Map Card -->
+<section class="px-4 py-2">
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden shadow-1">
+<div class="p-3 flex items-center justify-between border-b border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-tight">Around Alfama</h3>
+<p class="font-caption text-caption text-secondary">Active radius 1.2 km</p>
+</div>
+</div>
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface">6 min walk to dinner</span>
+</div>
+<!-- Stylized Map Graphic Canvas with Data Location -->
+<div class="relative h-44 w-full bg-[#e8e6df] overflow-hidden" data-location="Lisbon" style="">
+<!-- Subtle Cartographic Grid Lines -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#1c1b1b 1px, transparent 1px); background-size: 16px 16px;"></div>
+<!-- Waterway Aesthetic (Tagus River Accent) -->
+<div class="absolute -bottom-6 -left-10 w-[450px] h-20 bg-[#cddbe1] rounded-[100%] opacity-80 transform -rotate-3"></div>
+<!-- Route Trail Vector Lines -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" fill="none" viewbox="0 0 358 176">
+<!-- Flight Approach Path -->
+<path d="M 10 10 Q 70 30 110 65" stroke="#1e525a" stroke-dasharray="3 3" stroke-width="2"></path>
+<!-- Transit from Airport to Alfama -->
+<path d="M 110 65 Q 150 110 200 95" stroke="#583759" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Walk route from Memmo Alfama to Taberna -->
+<path d="M 200 95 C 230 92, 260 115, 280 120" stroke="#a04928" stroke-dasharray="4 2" stroke-width="2.5"></path>
+</svg>
+<!-- Map Waypoints / Pins -->
+<div class="absolute top-14 left-24 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-5 h-5 rounded-full bg-[#1e525a] text-white flex items-center justify-center shadow-1">
+<span class="material-symbols-outlined text-[11px]">flight</span>
+</div>
+<span class="font-mono-badge text-[9px] bg-white/90 text-on-surface px-1 rounded shadow-sm mt-0.5">LIS</span>
+</div>
+<div class="absolute top-[90px] left-[195px] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-[#583759] text-white flex items-center justify-center ring-4 ring-[#583759]/20 shadow-1">
+<span class="material-symbols-outlined text-[12px]">hotel</span>
+</div>
+<span class="font-mono-badge text-[9px] bg-white/90 font-bold text-on-surface px-1.5 py-0.5 rounded shadow-sm mt-0.5">Memmo</span>
+</div>
+<div class="absolute top-[118px] left-[275px] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-5 h-5 rounded-full bg-[#a04928] text-white flex items-center justify-center shadow-1">
+<span class="material-symbols-outlined text-[11px]">restaurant</span>
+</div>
+<span class="font-mono-badge text-[9px] bg-white/90 text-on-surface px-1 rounded shadow-sm mt-0.5">Taberna</span>
+</div>
+<!-- Bottom Left Coordinates Badge -->
+<div class="absolute bottom-2 left-2 bg-surface-container/95 border border-outline-variant px-2 py-0.5 rounded font-mono-badge text-mono-badge text-secondary shadow-sm">
+            38.7107° N, 9.1306° W · Alfama Elev. 48m
+          </div>
+</div>
+<div class="bg-surface-container-low px-3.5 py-1.5 border-t border-outline-variant/60 flex items-center justify-between font-mono-source text-mono-source text-secondary">
+<span>layer: vector-terrain-lisbon-topo</span>
+<span class="text-on-surface font-medium hover:underline cursor-pointer">Open full map</span>
+</div>
+</div>
+</section>
+<!-- Budget Tracking Bento Card -->
+<section class="px-4 py-2">
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden shadow-1 p-3.5">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">wallet</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Budget overview</h3>
+</div>
+<span class="font-mono-badge text-mono-badge text-ok bg-ok/10 px-2 py-0.5 rounded font-semibold">ON TRACK · 62%</span>
+</div>
+<div class="flex items-baseline justify-between mt-1">
+<div>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">€1,240</span>
+<span class="font-body text-body text-secondary"> of €2,000 allocated</span>
+</div>
+<span class="font-caption text-caption text-ok font-semibold">€760 remaining</span>
+</div>
+<!-- Segmented Progress Bar -->
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden flex gap-0.5 mt-2.5">
+<!-- Flight: €680 (34%) -->
+<div class="h-full bg-[#1e525a]" style="width: 34%" title="Flights €680"></div>
+<!-- Stay: €410 (20.5%) -->
+<div class="h-full bg-[#583759]" style="width: 20.5%" title="Stay €410"></div>
+<!-- Food: €150 (7.5%) -->
+<div class="h-full bg-[#a04928]" style="width: 7.5%" title="Food €150"></div>
+<!-- Remaining: 38% uncolored -->
+</div>
+<!-- Segment Breakdown Chips -->
+<div class="grid grid-cols-3 gap-2 mt-3 pt-2 border-t border-outline-variant/60">
+<div class="flex flex-col">
+<span class="flex items-center gap-1 font-caption text-caption text-secondary">
+<span class="w-2 h-2 rounded-full bg-[#1e525a]"></span>
+              Flights
+            </span>
+<span class="font-mono-data text-mono-data font-semibold text-on-surface mt-0.5">€680</span>
+<span class="font-mono-badge text-[10px] text-secondary">TAP JFK-LIS</span>
+</div>
+<div class="flex flex-col">
+<span class="flex items-center gap-1 font-caption text-caption text-secondary">
+<span class="w-2 h-2 rounded-full bg-[#583759]"></span>
+              Stay
+            </span>
+<span class="font-mono-data text-mono-data font-semibold text-on-surface mt-0.5">€410</span>
+<span class="font-mono-badge text-[10px] text-secondary">Memmo Alfama</span>
+</div>
+<div class="flex flex-col">
+<span class="flex items-center gap-1 font-caption text-caption text-secondary">
+<span class="w-2 h-2 rounded-full bg-[#a04928]"></span>
+              Food/Dining
+            </span>
+<span class="font-mono-data text-mono-data font-semibold text-on-surface mt-0.5">€150</span>
+<span class="font-mono-badge text-[10px] text-secondary">Dinner &amp; café</span>
+</div>
+</div>
+<!-- Mono Footer -->
+<div class="mt-3 pt-2 border-t border-outline-variant/60 flex items-center justify-between font-mono-source text-mono-source text-secondary">
+<span>currency: EUR (€) · synced revolut</span>
+<span class="hover:underline cursor-pointer">Export breakdown</span>
+</div>
+</div>
+</section>
+<!-- Next Day Teaser Preview -->
+<section class="px-4 py-2 mb-4">
+<div class="bg-surface-container rounded-xl border border-outline-variant p-3 shadow-1">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="font-mono-badge text-mono-badge text-secondary uppercase tracking-wider">UP NEXT</span>
+<h4 class="font-headline-md text-headline-md text-on-surface font-medium">Saturday, Oct 25</h4>
+</div>
+<span class="font-caption text-caption text-secondary">4 stops planned</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#e8efe9] text-[#2d5a37] font-caption text-caption border border-[#c4d7c8]">
+<span class="material-symbols-outlined text-[13px]">fort</span>
+<span>Castelo de São Jorge</span>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#f8ede8] text-[#a04928] font-caption text-caption border border-[#eed4ca]">
+<span class="material-symbols-outlined text-[13px]">lunch_dining</span>
+<span>Time Out Market</span>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#eef0e5] text-[#4d5e2b] font-caption text-caption border border-[#d6dcbe]">
+<span class="material-symbols-outlined text-[13px]">tram</span>
+<span>Tram 28 Miradouro</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Shared Component: BottomNavBar (Fixed Floating Dock) -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-3 py-2 w-fit mx-auto bg-surface-container border border-outline-variant shadow-md rounded-full max-w-[280px]">
+<!-- Tab 1: Timeline / Days (Active for trip day view) -->
+<button aria-label="Itinerary Calendar" class="flex items-center justify-center bg-primary text-on-primary rounded-full p-2.5 active:scale-95 transition-transform duration-150" title="Itinerary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</button>
+<!-- Tab 2: Map -->
+<button aria-label="Trip Map" class="flex items-center justify-center text-on-surface-variant p-2.5 hover:bg-surface-container-highest rounded-full active:scale-95 transition-transform duration-150" title="Map">
+<span class="material-symbols-outlined">map</span>
+</button>
+<!-- Tab 3: Budget / Wallet -->
+<button aria-label="Budget &amp; Expenses" class="flex items-center justify-center text-on-surface-variant p-2.5 hover:bg-surface-container-highest rounded-full active:scale-95 transition-transform duration-150" title="Wallet">
+<span class="material-symbols-outlined">wallet</span>
+</button>
+<!-- Tab 4: Profile / Trips -->
+<button aria-label="User Profile" class="flex items-center justify-center text-on-surface-variant p-2.5 hover:bg-surface-container-highest rounded-full active:scale-95 transition-transform duration-150" title="Profile">
+<span class="material-symbols-outlined">person</span>
+</button>
+</nav>
+</main>
+</body></html>

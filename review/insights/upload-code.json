@@ -1,0 +1,32 @@
+{
+  "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/files/51ff6aa6-fee0-4e33-a79f-966e2b0aa35b",
+  "contributionId": "/aida/swebot/drop-zone/AP6rU837c8rlmn0G9iaBZAz0u49Y1ty-a-iOEexL9q9bKIgoq1AmkkkVSRc94tWIZ3Poc7QlDjkXMFI.ZePViizpKe9uBgL9",
+  "displayName": "Universal Language pages",
+  "mimeType": "application/zip",
+  "sizeBytes": "809576",
+  "description": "LANGUAGE.md rules, tokens.css, showcase.html (app screens: ?fam=dev|travel|kids&skin=&theme=&shell=top|dock&view=app|kit) and landing.html (?c=a|b|c), plus screenshots in captures/",
+  "annotations": {
+    "category": "codebase"
+  },
+  "createTime": "1970-01-01T00:00:00Z",
+  "id": "51ff6aa6-fee0-4e33-a79f-966e2b0aa35b",
+  "manifest": {
+    "fileCount": 13,
+    "includedFiles": [
+      "DESIGN.md",
+      "LANGUAGE.md",
+      "captures/01-dev-night-top.png",
+      "captures/02-travel-azulejo-light-top.png",
+      "captures/03-kids-sticker-light-dock.png",
+      "captures/04-dev-light-kit.png",
+      "captures/05-landing-a.png",
+      "captures/06-landing-b.png",
+      "captures/07-landing-c.png",
+      "landing.html",
+      "showcase.html",
+      "tokens.css",
+      "ul.js"
+    ],
+    "excludedFiles": []
+  }
+}

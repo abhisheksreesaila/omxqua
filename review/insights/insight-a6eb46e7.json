@@ -1,0 +1,44 @@
+{
+ "id": "a6eb46e7-3dd9-47f7-a1fa-bd243760c910",
+ "title": "Forbidden linear gradients and rectangular control shapes",
+ "description": "The showcase CSS contains linear gradients on range sliders and skeleton indicators. Also, copy buttons inside source lines use a four-pixel border radius instead of pill geometry. These implementations violate the explicit Universal Language texture rules that ban gradients on chrome and mandate that all tappable controls use pill shapes.",
+ "state": "ACTIVE",
+ "priority": "P2",
+ "altitude": "LOW",
+ "goals": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "priorities": [
+  "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/goals/XOGEOwdb6Ug"
+ ],
+ "lastSubstantiveUpdateTime": "2026-10-20T21:06:12.809630Z",
+ "references": {
+  "1": {
+   "id": "1",
+   "note": {
+    "content": "/app/showcase.html:L418, L462 \u2014 Line 418 uses `linear-gradient` for range slider track filling, and line 462 uses `linear-gradient` for skeleton loading animations."
+   }
+  },
+  "2": {
+   "id": "2",
+   "note": {
+    "content": "/app/showcase.html:L438 \u2014 Line 438 defines `.src .cp` copy buttons with `border-radius: 4px` instead of pill geometry (`9999px`)."
+   }
+  },
+  "3": {
+   "id": "3",
+   "note": {
+    "content": "/app/LANGUAGE.md:L19, L23, L83 \u2014 Line 19 prohibits gradients on chrome across any platform, line 23 requires pill shapes for tappable controls, and line 83 explicitly specifies pill shape for buttons."
+   }
+  },
+  "4": {
+   "id": "4",
+   "note": {
+    "content": "/app/DESIGN.md:L124, L128, L160 \u2014 Line 124 prohibits gradients on chrome and surfaces, line 128 mandates `Pill (9999px) = tappable`, and line 160 reinforces `Buttons: pill`."
+   }
+  }
+ },
+ "createTime": "2026-10-20T21:06:12.809630Z",
+ "updateTime": "2026-10-20T21:06:12.809630Z",
+ "name": "workspaces/9c0cc6c5-5f46-4872-b438-21a4bc369e1a/insights/a6eb46e7-3dd9-47f7-a1fa-bd243760c910"
+}
