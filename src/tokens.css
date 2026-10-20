@@ -153,3 +153,8 @@
   .oq-root * { transition-duration: 150ms !important; animation-duration: 150ms !important; }
   .oq-pressable:active { transform: none; }
 }
+
+/* reduced motion: every transition and animation becomes a short, calm fade, pseudo-elements included */
+@media (prefers-reduced-motion: reduce) {
+  .oq-root *, .oq-root *::before, .oq-root *::after { transition-duration: 150ms !important; transition-timing-function: ease-out !important; animation-duration: 150ms !important; animation-iteration-count: 1 !important; }
+}
