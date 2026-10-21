@@ -2,6 +2,10 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
+## v0.1.4 · 2026-10-20
+- Borrow it with an agent: `skills/omxqua/SKILL.md`, installable as a Claude Code plugin (`/plugin install omxqua --marketplace abhisheksreesaila/omxqua`) or copied into any agent's skills folder.
+- README: "Use it" covers the plugin, the skill, a copy-paste prompt for any agent, jsDelivr links for trying it, and vendoring for shipping.
+
 ## v0.1.3 · 2026-10-20
 - Source lines are a Developer-family rule; Travel and Kids leave them out (or use a `↳` note). The cover's terminal card says so.
 - Cover: the phones are 20% bigger with an "open full size" link each; "a few of our own" shows all three (top islands, the growing pill, a big logo that writes itself when it scrolls in or you tap it).

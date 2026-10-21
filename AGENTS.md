@@ -222,7 +222,7 @@ Not on landing pages: gradients on text, glass, autoplay video with sound, carou
 - Two filled buttons in one card.
 - Per-component press rules (`:active` scale). `omxqua.js` owns press.
 - A sidebar for a new app. Use Top islands (or Dock).
-- A font CDN. Fonts ship in `fonts/`.
+- A font service (Google Fonts and the like). Fonts ship in `fonts/`; vendor them with the rest of omxqua before shipping (jsDelivr links are for trying it out).
 
 ## 8. Dated decisions (2026-10-20, from LANGUAGE.md)
 

@@ -1,0 +1,16 @@
+{
+  "name": "omxqua",
+  "description": "omxqua, a touch-native design language, packaged as a Claude Code skill.",
+  "owner": {
+    "name": "Abhishek Sreesaila",
+    "url": "https://github.com/abhisheksreesaila"
+  },
+  "plugins": [
+    {
+      "name": "omxqua",
+      "source": "./",
+      "description": "The omxqua design language as a skill: Material texture, Liquid motion, touch-native.",
+      "version": "0.1.4"
+    }
+  ]
+}
