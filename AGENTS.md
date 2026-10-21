@@ -61,6 +61,8 @@ Every part below has hover, press, focus and disabled states built in. Press is 
 ```
 States: hover = state-layer tint (fill lifts 1 px to shadow-2); `[disabled]` = 45% and no pointer. Rule: **one `.fill` per card**, with a specific verb ("Serve qwen2.5-0.5b", never "Submit"); the rest tonal or text. Pill shape = tappable.
 
+**Flat inside panels:** put `.oq-flat` on a panel, blade, sheet or command bar and its buttons sit on the surface: no shadow, no hover lift, tonal gets a state tint. Elevation is for things that float (islands, the Beacon, menus), not buttons on a card.
+
 ### Close: `.xbtn`
 ```html
 <button class="xbtn" aria-label="Close"><svg class="ico">x</svg></button>
@@ -193,7 +195,7 @@ A near-black pill in both themes showing one live activity (icon or progress `.r
 
 | Tier | Motion | Gets it | Helper |
 |---|---|---|---|
-| Settle | fade + small rise in over 280 ms, decelerating; no scale, no bounce; out 160 ms; sheet rises 40 px over 320 ms | blades, side panels, sheets, a new view | `Omxqua.settle(el)` |
+| Settle | fade + 12 px rise in over 280 ms, decelerating; no scale, no bounce; out 160 ms; sheet rises 40 px over 320 ms | blades, side panels, sheets, a new view | `Omxqua.settle(el)` |
 | Gentle | in over 220 ms (fade, 4 px drop, 3% scale), out over 150 ms | menus, dropdowns, popovers, tooltips, toasts, confirm dialogs | `Omxqua.gentleIn/gentleOut(el)`, `Omxqua.toast` |
 | None | instant | anything repeated many times a minute, keyboard-driven (⌘K, arrows), live data | none |
 

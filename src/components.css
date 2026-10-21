@@ -335,3 +335,16 @@
   :where(.oq-root) .hide-n { display: none !important; }
 }
 :where(.oq-root) .wrap-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* Logo: omxqua.js turns .mark letters into <svg class="oq-logo"><text>, so the stroke can be drawn.
+   These rules used to be injected by the script; they live here so omxqua works under a strict CSP (default-src 'self'). */
+:where(.oq-root) .oq-logo, .oq-logo { width: 100%; height: 100%; display: block; overflow: visible; }
+.oq-logo text { fill: currentColor; stroke: currentColor; stroke-width: .8; stroke-dasharray: 120; stroke-dashoffset: 0; paint-order: stroke; }
+.mark svg path, .mark svg circle { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.mark { cursor: pointer; }
+
+/* Flat panel buttons: inside a panel, blade, sheet or command bar (.oq-flat), buttons sit on the surface.
+   No shadow, no hover lift; tonal gets a state tint instead. Elevation is for things that float (islands, Beacon, menus). */
+:where(.oq-root) .oq-flat .btn.fill, :where(.oq-root) .oq-flat .btn.tonal { box-shadow: none; }
+:where(.oq-root) .oq-flat .btn.fill:hover { box-shadow: none; transform: none; }
+:where(.oq-root) .oq-flat .btn.tonal { background: rgb(var(--oq-state) / .06); }

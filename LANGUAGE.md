@@ -81,7 +81,7 @@ Never a hamburger for main nav on phone. Top bar: mark, name, trust and speed ba
 
 ## Everyday parts
 Each with hover, press, focus, disabled and error states:
-- Buttons: one filled accent button per card, with a specific verb ("Serve qwen2.5-0.5b", not "Submit"); the rest tonal or text.
+- Buttons: one filled accent button per card, with a specific verb ("Serve qwen2.5-0.5b", not "Submit"); the rest tonal or text. Inside a panel, blade or command bar (`.oq-flat`) buttons are flat: no shadow, no hover lift (owner, 2026-10-20: "the button can be flat… no elevation in the detail view").
     - The detail (owner-approved 2026-10-20): pill shape; filled = accent + `shadow-1`, hover lifts 1px to `shadow-2`; tonal = `surface-2` + `shadow-1`; text = no fill; every button gets a state-layer tint on hover and a 0.96 squash on press (`--oq-spring-fast`).
 - Fields: label above, help line below, the error as a sentence under the field.
 - Dropdowns, menus, popovers: themed (never the browser's list), gentle tier.

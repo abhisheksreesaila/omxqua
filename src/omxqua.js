@@ -52,12 +52,6 @@
       p.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 700, easing: "cubic-bezier(.4,0,.2,1)" });
     });
   }
-  const style = document.createElement("style");
-  style.textContent = `.oq-logo { width: 100%; height: 100%; display: block; overflow: visible; }
-    .oq-logo text { fill: currentColor; stroke: currentColor; stroke-width: .8; stroke-dasharray: 120; stroke-dashoffset: 0; paint-order: stroke; }
-    .mark svg path, .mark svg circle { stroke-dasharray: 1; stroke-dashoffset: 0; }
-    .mark { cursor: pointer; }`;
-  document.head.appendChild(style);
   /* write each logo once when it first appears */
   const seen = new WeakSet();
   const scan = () => document.querySelectorAll(".mark").forEach(m => { if (!seen.has(m)) { seen.add(m); prepare(m); if (m.getClientRects().length) setTimeout(() => writeLogo(m), 250); } });
@@ -67,8 +61,8 @@
   /* ---- helpers (used by docs/showcase.html; same timings as LANGUAGE.md's motion budget) ---- */
   /* Segmented control, tabs, tab bar, top nav: the first child is the thumb; it slides under button.on. */
   function placeThumb(sg) { const on = sg.querySelector("button.on"), t = sg.firstElementChild; if (!on || !t) return; t.style.left = on.offsetLeft + "px"; t.style.width = on.offsetWidth + "px"; }
-  /* Settle tier: a panel or view arrives (fade + 6px rise, 280 ms, decelerating). */
-  function settle(el) { if (!reduce) el.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 280, easing: "cubic-bezier(.2,0,0,1)" }); }
+  /* Settle tier: a panel or view arrives (fade + 12px rise, 280 ms, decelerating). */
+  function settle(el) { if (!reduce) el.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 280, easing: "cubic-bezier(.2,0,0,1)" }); }
   /* Gentle tier: menus, popovers, tooltips ease in over 220 ms and fade out in 150 ms (then [hidden]). */
   function gentleIn(el) { el.hidden = false; if (!reduce) el.animate([{ opacity: 0, transform: "translateY(-4px) scale(.97)" }, { opacity: 1, transform: "none" }], { duration: 220, easing: "cubic-bezier(.2,0,0,1)" }); }
   function gentleOut(el) { if (el.hidden) return; if (reduce) { el.hidden = true; return; } el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 150, easing: "cubic-bezier(.3,0,1,1)" }).onfinish = () => el.hidden = true; }

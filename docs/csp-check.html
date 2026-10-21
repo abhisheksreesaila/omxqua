@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><title>omxqua · CSP check</title>
+<!-- Open over HTTP: omxqua must work under default-src 'self' (no inline <style>, no injected styles). The logo should draw; the first two buttons are flat, the third raised. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<link rel="stylesheet" href="../src/fonts.css"><link rel="stylesheet" href="../src/tokens.css"><link rel="stylesheet" href="../src/components.css">
+<script src="../src/omxqua.js" defer></script></head>
+<body><div class="oq-root oq-night oq-family-dev"><span class="mark" id="m">omx</span>
+<div class="oq-flat" id="f"><button class="btn tonal" id="t">Tonal</button><button class="btn fill" id="b">Fill</button></div>
+<button class="btn fill" id="b2">Raised</button></div></body></html>
