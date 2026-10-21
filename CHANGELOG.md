@@ -5,6 +5,7 @@ All notable changes to omxqua. Versions follow [semver](https://semver.org); eac
 ## v0.1.5 · 2026-10-20
 - New family: **Money · Ledger** (`oq-family-money`) for accounts, spending and budgets (finxplorer). Near-black or cool paper, one violet accent, 40 px targets, cards 16, every amount in mono. Its data colours are finxplorer's colour-blind-checked category cycle without the violet, so the accent never doubles as a category.
 - `tests/contrast.test.cjs`: every family's text, accent and state colours clear 4.5:1 on every surface, read from `src/tokens.css` (`node --test tests/`).
+- Fix: Travel · Coast night `bad` #f2555a was 4.26:1 on surface-3; now #f56065 (4.62:1). Found by the contrast test once it checked states on every surface.
 - Works under a strict CSP (`default-src 'self'`): `omxqua.js` no longer injects a `<style>` tag; the logo rules live in `components.css`.
 - `.oq-flat`: buttons inside a panel, blade, sheet or command bar are flat (no shadow, no hover lift; tonal gets a state tint).
 - `Omxqua.settle` rises 12 px, as LANGUAGE.md says (it was 6 px).
