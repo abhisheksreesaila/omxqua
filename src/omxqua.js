@@ -60,7 +60,56 @@
 
   /* ---- helpers (used by docs/showcase.html; same timings as LANGUAGE.md's motion budget) ---- */
   /* Segmented control, tabs, tab bar, top nav: the first child is the thumb; it slides under button.on. */
-  function placeThumb(sg) { const on = sg.querySelector("button.on"), t = sg.firstElementChild; if (!on || !t) return; t.style.left = on.offsetLeft + "px"; t.style.width = on.offsetWidth + "px"; }
+  /* Thumbs are liquid: moving to another button stretches the thumb along the way and lets it settle with a wobble
+     (a re-layout of the same button just moves it). */
+  function placeThumb(sg) {
+    const on = sg.querySelector("button.on"), t = sg.firstElementChild; if (!on || !t) return;
+    const from = parseFloat(t.style.left), to = on.offsetLeft, moved = t._on && t._on !== on; t._on = on;
+    t.style.left = to + "px"; t.style.width = on.offsetWidth + "px";
+    if (reduce || !moved || isNaN(from) || Math.abs(to - from) < 2 || !t.offsetParent) return;
+    const k = Math.min(0.35, Math.abs(to - from) / sg.offsetWidth * 0.6);
+    t.animate([{ scale: "1 1" }, { scale: `${1 + k} ${1 - k / 2}`, offset: 0.35 }, { scale: `${1 - k / 4} ${1 + k / 8}`, offset: 0.7 }, { scale: "1 1" }], { duration: 420, easing: "ease-out" });
+  }
+
+  /* Tab bar drag: hold the bar and slide; the thumb lifts, follows the finger, and drops on the tab you let go over.
+     omxqua.js clicks that tab for you (your click handler runs as for a tap); a cancelled gesture puts everything back. */
+  addEventListener("pointerdown", e => {
+    const bar = e.target.closest(".tabbar"), t = bar && bar.querySelector(".tb-thumb");
+    if (!t || e.button > 0 || !t.offsetParent || bar._drag) return;
+    const id = e.pointerId, x0 = e.clientX, btns = [...bar.querySelectorAll("button")], was = bar.querySelector("button.on");
+    let dragging = false, lx = x0; bar._drag = true;
+    const near = x => btns.reduce((a, b) => { const r = b.getBoundingClientRect(), d = Math.abs(x - (r.left + r.right) / 2); return d < a[1] ? [b, d] : a; }, [null, Infinity])[0];
+    const under = x => { const r = bar.getBoundingClientRect(); return x >= r.left && x <= r.right ? near(x) : null; }; /* gaps and padding count as the nearest tab */
+    const mark = on => btns.forEach(x => x.classList.toggle("on", x === on));
+    const move = ev => {
+      if (ev.pointerId !== id || (!dragging && Math.abs(ev.clientX - x0) < 8)) return;
+      if (!dragging) { dragging = true; t.style.transition = "none"; }
+      const r = bar.getBoundingClientRect(), w = t.offsetWidth;
+      t.style.left = Math.max(0, Math.min(r.width - w, ev.clientX - r.left - w / 2)) + "px";
+      if (!reduce) { const k = Math.min(0.18, Math.abs(ev.clientX - lx) / 120); t.style.scale = `${1.12 + k} ${1.12 - k / 2}`; }
+      lx = ev.clientX; const b = under(ev.clientX); if (b) mark(b);
+    };
+    const up = ev => {
+      if (ev.pointerId !== id) return;
+      removeEventListener("pointermove", move); removeEventListener("pointerup", up); removeEventListener("pointercancel", up); bar._drag = false;
+      if (!dragging) return;
+      t.style.transition = ""; t.style.scale = "";
+      if (!reduce) t.animate([{ scale: "1.12 1.12" }, { scale: "1 1" }], { duration: 320, easing: spring(t) });
+      const b = ev.type === "pointerup" && under(ev.clientX);
+      if (!b) { if (was) mark(was); placeThumb(bar); return; }
+      /* swallow the browser's own click that may follow the drag, then click the tab ourselves */
+      const eat = c => { if (!c.isTrusted || !bar.contains(c.target)) return; c.stopPropagation(); c.preventDefault(); };
+      addEventListener("click", eat, true); setTimeout(() => removeEventListener("click", eat, true), 300);
+      mark(b); b.click(); placeThumb(bar);
+    };
+    addEventListener("pointermove", move); addEventListener("pointerup", up); addEventListener("pointercancel", up);
+  }, true);
+  /* Scroll edge: once content scrolls under the islands, the root gets .oq-scrolled (the bare logo frosts over). */
+  addEventListener("scroll", e => {
+    const el = e.target === document ? document.scrollingElement : e.target;
+    const root = e.target === document ? document.querySelector("html.oq-root, body.oq-root") : el.matches(".oq-root .main") && el.closest(".oq-root");
+    if (root) root.classList.toggle("oq-scrolled", el.scrollTop > 4);
+  }, { capture: true, passive: true });
   /* Settle tier: a panel or view arrives (fade + 12px rise, 280 ms, decelerating). */
   function settle(el) { if (!reduce) el.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 280, easing: "cubic-bezier(.2,0,0,1)" }); }
   /* Gentle tier: menus, popovers, tooltips ease in over 220 ms and fade out in 150 ms (then [hidden]). */

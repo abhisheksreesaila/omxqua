@@ -22,8 +22,8 @@ oq-root  oq-night | oq-light  oq-family-<dev|travel|kids|money>  [oq-skin-<name>
 ```
 
 - `oq-top` (Top islands) is the default shell for new apps; `oq-dock` puts the nav pill at the bottom. `oq-islands` (side island) and no shell class (plain sidebar) exist for dense admin tools only.
-- The root element must also be a size container and a positioning box, because the phone rules are container queries and the islands are absolutely placed. The showcase's `.screen` does this:
-  `display: flex; flex-direction: column; container-type: inline-size; position: relative; overflow: hidden;`
+- The root element must also be a size container, because the phone rules are container queries. The islands (brand, nav pill, tab bar, Beacon) are `position: fixed`, so they stick while the page or `.main` scrolls. Full-page app: nothing else to do. Inside a frame or preview: give the frame `contain: layout` so they pin to it instead of the window. The showcase's `.screen` does this:
+  `display: flex; flex-direction: column; container-type: inline-size; position: relative; overflow: hidden; contain: layout;`
 - Components use `:where(.oq-root) .part`, so the scope adds no specificity: one class of yours overrides a part. Rules starting with a root class (`.oq-family-kids .mark`) are as specific as they look.
 - An app without a family can use `oq-app-<ink|teal|amber|violet|sage|rose>` for its accent and `oq-compact` for density (both in tokens.css).
 
@@ -45,7 +45,7 @@ A family sets surfaces, accent, data palette and character for Night and Light. 
 | `sticker` | kids | Nunito, chunky ledge shadows, buttons and tiles press down 4 px (`--oq-press: ledge`) | #4fb3ff / #1971c2 |
 | `crayon` | kids | Nunito, pastel tiles tinted with their own colour, berry accent, cards 28 | #ff8fb8 / #c2185b |
 
-Skins are candidates (owner to pick, 2026-10-20). Without a skin class you get the family's base look.
+**Picked looks (owner, 2026-10-21): Travel apps use `oq-skin-azulejo`; Kids apps use the base Playground (no skin class).** Coast, Golden hour, Sticker and Crayon stay available as alternates. Without a skin class you get the family's base look.
 
 Colour rules: one accent per app, used only for the one loud button per card and the focus ring. Data colours (`--oq-data-1..6`) are for series and kinds and never double as the accent. States (`ok`, `warn`, `bad`, `info`) always come with the word. `--oq-ink-faint` is never text.
 
@@ -164,7 +164,7 @@ All shells share one markup; root classes pick the layout.
       …cards…
     </main>
   </div>
-  <nav class="tabbar"><i class="tb-thumb"></i><button class="on"><svg class="ico">…</svg>Overview</button>…</nav>
+  <nav class="tabbar"><i class="tb-thumb"></i><button class="on" aria-label="Overview"><svg class="ico">…</svg>Overview</button>…</nav>
   <nav class="topnav" id="topnav"><i class="tb-thumb"></i><button class="on" data-i="0">…</button>…<button class="more" data-more>+<span>3</span></button></nav>
   <div class="brand-isl"><span class="mark">ox</span>omxcore</div>
   <div class="beacon">…</div>
@@ -174,8 +174,10 @@ All shells share one markup; root classes pick the layout.
 - **Top islands (`oq-top`, default):** brand island left · nav pill centre · Beacon right, all floating 14 px from the top; content in a centred column (max 1120 px) that scrolls under them.
 - **Dock (`oq-dock`):** the nav pill floats at the bottom centre (the same pill as the phone tab bar), Beacon top centre, brand island top left.
 - **Top nav pill (`.topnav`):** 4 items at rest plus `+N`; `+N` widens it to all items; it folds back 3.5 s after the pointer leaves. Call `Omxqua.layoutTopnav(nav)` after render; on `+N` call `Omxqua.openTopnav(nav, true)`; on pointer-out `Omxqua.foldTopnavLater(nav)`; on pointer-over `Omxqua.holdTopnav(nav)`. Items need `data-i` (0…n) and the `+N` button `data-more`.
-- **Phone (container ≤ 640 px), every shell:** the floating tab bar `.tabbar` (3 to 5 items, accent thumb `.tb-thumb` via `Omxqua.placeThumb`) at the bottom; `.side`, `.topnav` and `.brand-isl` hide; grids stack. Never a hamburger for main nav.
-- **Brand island (`.brand-isl`):** a `surface-2` pill holding `.mark` (letters or an icon) and the name, in the display face.
+- **Phone (container ≤ 640 px), every shell:** the floating tab bar `.tabbar` (3 to 5 items, **icons only**: the label stays in the markup as the accessible name; accent thumb `.tb-thumb` via `Omxqua.placeThumb`) at the bottom. The thumb is liquid: it stretches as it moves, and you can hold the bar and slide (the thumb lifts, follows the finger and drops on the tab you let go over; `omxqua.js` clicks that tab for you); `.side`, `.topnav` and `.brand-isl` hide; grids stack. Never a hamburger for main nav.
+- **Phone counterparts (container ≤ 640 px, same markup):** menu and select list → action sheet along the bottom edge (44 px rows, no shortcut hints; closing on a tap outside is your JS, as on desktop); tooltip → none (icon buttons carry `aria-label`); dialog → actions stack full width, verb on top; toast → above the tab bar; fields → 16 px text (iOS zooms below that); buttons → at least 44 px tall (`.sm` excepted, except Undo in a toast); `.xbtn` keeps its 32 px circle with a 44 px hit area. Touch screens (`hover: none`) get no hover lift or tint. See them side by side in the showcase's **Pairs** view (`?view=pairs`).
+- **Brand (`.brand-isl`):** `.mark` (letters or an icon) and the name in the display face, sitting straight on the page: no pill, no shadow. Once content scrolls under it (`.main` or the page scrolled past 4 px), `omxqua.js` adds `.oq-scrolled` to the root and the brand frosts over with the nav glass, so the name stays readable.
+- **Glass:** the nav pill and tab bar are frosted (`--oq-glass-mix` 58% of surface-2, `--oq-glass-blur`); they fall back to solid surface-2 under reduced transparency.
 - **Side island (`oq-islands`) and Sidebar (no shell class):** dense admin tools only. The island is a 64 px vertical pill that widens to 224 px on hover; `.pin-btn[data-pin]` toggles `.side.pinned`. Wrap each nav label in `<span class="lbl">`. Add `oq-sidebar-only` to hide the Beacon.
 
 ### Beacon (one per app, hidden when nothing is live)
@@ -217,7 +219,7 @@ Not on landing pages: gradients on text, glass, autoplay video with sound, carou
 
 ## 7. Never
 
-- Glass, blur or translucency, on any platform.
+- Glass, blur or translucency anywhere except the nav islands (nav pill, tab bar).
 - Gradients on chrome or text. Allowed: the slider's solid fill and the skeleton shimmer.
 - Emoji as icons. Use Lucide-style SVGs (vendor the real Lucide SVGs with its ISC licence).
 - Apple or Microsoft fonts, icons or names: no SF Pro, SF Symbols, New York, Segoe UI, Fluent; no "Dynamic Island", "Liquid Glass", "Live Activities", "Mica", "Acrylic". Ours are Beacon, Nav island, Settle.
@@ -234,9 +236,13 @@ Not on landing pages: gradients on text, glass, autoplay video with sound, carou
 - Buttons (owner-approved): pill; filled = accent + shadow-1, hover lifts 1 px to shadow-2; tonal = surface-2 + shadow-1; text = no fill; state-layer tint on hover, squash on press.
 - Symmetric shells over any sidebar (the sidebar "feels asymmetric"): Top islands and Dock.
 - Skins Azulejo, Golden hour, Sticker and Crayon are candidates for the owner to pick.
+- 2026-10-21: every desktop part gets a phone counterpart (menu → action sheet and the rest, §4), shown in the showcase's Pairs view; the islands are `position: fixed` and stick.
+- 2026-10-21: picked. Travel = Azulejo, Kids = Playground (base). The other skins stay as alternates.
 - Micro-interactions: one press for everything (`omxqua.js`); the logo writes itself; press-in on checkbox, radio, chips and icon buttons; Apple-style switch; no ripples or halos; our field with a floating label; one `.xbtn` close.
 - Console pattern: no editable sentence on action forms (it read as "very weird" on Serve a model); an action form is a normal form with one filled verb button and its CLI twin as the source line.
 - Google Stitch review (`review/FINDINGS.md`): agreed fixes applied; borrowed day-chip neighbourhoods, budget split by kind, reward chips on quest tiles.
+- 2026-10-21: the nav islands become frosted glass and the brand loses its pill (the logo blends into the page). Overrides "islands are solid" for the nav pill and tab bar only.
+- 2026-10-21: the phone tab bar is icons only, and its thumb is liquid (stretches when it moves, drag to switch tabs). Phones get every effect desktop has: press, logo, thumbs; no iOS grey tap flash, no double-tap delay.
 
 ## 9. Patterns in the showcase, not yet packaged
 

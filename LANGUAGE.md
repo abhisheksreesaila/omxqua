@@ -15,8 +15,11 @@ An app only adds to the layer above it, never overrides it.
    `Design: omxqua · accent ink · density compact · shell sidebar · patterns console`
 
 ## Texture
-- Depth is tone plus one shadow scale: page `surface-0`; cards `surface-1` + `shadow-1`; menus, popovers, islands `surface-2` + `shadow-2`; dialogs and the palette `surface-3` + `shadow-3` over a scrim.
-- **No glass, blur, translucency or gradients on chrome**, on any platform. (This replaces Liquid's glass control layer.)
+- Depth is tone plus one shadow scale: page `surface-0`; cards `surface-1` + `shadow-1`; menus and popovers `surface-2` + `shadow-2`; the nav islands frosted glass (below); dialogs and the palette `surface-3` + `shadow-3` over a scrim.
+- **Glass on the nav islands only** (decided 2026-10-21): the top nav pill and the tab bar are `surface-2` at 58% with a 20 px backdrop blur, so the page shows through as it scrolls under. Cards, menus, sheets, dialogs and the Beacon stay opaque. Solid again under `prefers-reduced-transparency` or where the browser can't blur.
+- **Every part has a phone counterpart** (decided 2026-10-21), from the same markup: menus and selects open as an action sheet along the bottom, tooltips give way to `aria-label`, dialog actions stack full width, toasts sit above the tab bar, fields use 16 px text, buttons are at least 44 px tall, and touch screens get no hover effects. The islands stick (`position: fixed`); the bare logo frosts once content scrolls under it. The showcase's Pairs view shows each pair.
+- **Phone tab bar: icons only** (decided 2026-10-21), 24 px icons in targets 60 px wide and at least 46 px tall (48 for Kids); the label stays in the markup and as `aria-label`. Its thumb is liquid: it stretches along the way when it moves and settles with a small wobble, and the bar can be dragged (thumb lifts and follows the finger, release picks the tab).
+- **No gradients on chrome**, on any platform.
 - Hover, press and selected are Material state layers: ink at 8% / 12% / 16% over the surface (`rgb(var(--oq-state) / .08)`), never a new colour.
 
 ## Shape
@@ -47,7 +50,7 @@ Each family sets surfaces, accent, data palette and character for Night and Ligh
 Rules:
 - The accent never doubles as a data colour (Travel's "see" is sage, not the teal accent).
 - A data colour used as a **fill behind text** must give 4.5:1 with its text (white in Light, dark ink in Night); a fill behind an **icon only** needs 3:1, else use a dark icon (Kids' yellow tile).
-- **Skins (candidates, owner to pick, 2026-10-20):** a family can offer alternative skins: same components, different surfaces, colour, type and texture. Root adds `oq-skin-<name>`. Travel: Coast (base), **Azulejo** (paper + tile blue, Fraunces serif display, crisper corners), **Golden hour** (peach / espresso, amber accent, rounder). Kids: Playground (base), **Sticker** (Nunito, chunky ledge shadows that press down 4px, sky-blue accent), **Crayon** (Nunito, pastel tiles tinted with their own colour, berry accent, pastel hero). Fonts ship in `fonts/` (Fraunces, Nunito: SIL OFL).
+- **Skins (picked 2026-10-21: Travel uses Azulejo, Kids uses the base Playground; the rest stay as alternates):** a family can offer alternative skins: same components, different surfaces, colour, type and texture. Root adds `oq-skin-<name>`. Travel: Coast (base), **Azulejo** (paper + tile blue, Fraunces serif display, crisper corners), **Golden hour** (peach / espresso, amber accent, rounder). Kids: Playground (base), **Sticker** (Nunito, chunky ledge shadows that press down 4px, sky-blue accent), **Crayon** (Nunito, pastel tiles tinted with their own colour, berry accent, pastel hero). Fonts ship in `fonts/` (Fraunces, Nunito: SIL OFL).
 - Money · Ledger added 2026-10-20 (owner approved on the finxplorer mockup); its data colours are finxplorer's colour-blind-checked category cycle without the violet.
 - New families (notes, health) are added here with the same table row and a contrast check.
 
@@ -78,7 +81,7 @@ When in doubt, drop a tier. Also:
 | Canvas | floating islands over the work; one round button opens nav | the same islands, tools in a bottom strip | editors, maps |
 | Docked | toolbar + content + docked inspector (reference 1180×760) | the same parts restacked; inspector becomes a bottom sheet | Explore apps |
 
-Never a hamburger for main nav on phone. Top bar: mark, name, trust and speed badges, search or ⌘K. Islands are solid `surface-2`, not glass.
+Never a hamburger for main nav on phone. Top bar: mark, name, trust and speed badges, search or ⌘K. The nav islands are frosted glass; the brand has no pill: mark and name sit straight on the page.
 
 ## Everyday parts
 Each with hover, press, focus, disabled and error states:
@@ -144,7 +147,7 @@ For watching and running things (mxconsole, abode).
 mxconsole concept (desktop + phone, Night + Light, motion budget applied): `~/Projects/mxstudio/docs/design/universal/mxconsole-concept.html`.
 
 ## What it isn't
-- Not Liquid Glass: no translucent controls anywhere.
+- Not Liquid Glass: only the nav islands are glass; every control, card and pop-up is opaque.
 - Not flat Material: springs, morphs and shape-on-press are half the language.
 - Not motion everywhere: the budget decides, and most things don't morph.
 

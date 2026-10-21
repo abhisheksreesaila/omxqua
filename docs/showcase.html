@@ -100,7 +100,7 @@ html, body { margin: 0; background: #08080a; }
 .stage:not(.phone) .screen { height: 820px; }
 body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare .stage { max-width: none; border-radius: 0; box-shadow: none; } body.bare .stage:not(.phone) .screen { height: 100vh; } body.bare .stage.phone { max-width: none; border-radius: 0; box-shadow: none; } body.bare .stage.phone .screen { height: 100vh; }
 .stage:not(.phone) .shell { min-height: 0; }
-.screen { min-height: 760px; display: flex; flex-direction: column; container-type: inline-size; position: relative; overflow: hidden; }
+.screen { min-height: 760px; display: flex; flex-direction: column; container-type: inline-size; position: relative; overflow: hidden; contain: layout; } /* contain: the fixed islands pin to this frame, not the window */
 @container (max-width: 640px) {
   .statusbar { display: flex !important; }
 }
@@ -163,6 +163,18 @@ body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare
 .week div { text-align: center; font-size: .8em; color: var(--oq-ink-2); }
 .week i { display: block; height: 70px; border-radius: 12px; background: var(--oq-line-2); margin-bottom: 6px; position: relative; overflow: hidden; }
 .week i em { position: absolute; left: 0; right: 0; bottom: 0; background: var(--oq-data-1); border-radius: 12px; }
+/* pairs: each part twice, same markup; the frame width alone picks desktop or phone (container queries) */
+.pairs { display: flex; flex-direction: column; gap: 30px; }
+.pair-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin: 0 0 10px; } .pair-h h3 { margin: 0; font-size: 1.05em; } .pair-h span { color: var(--oq-ink-2); font-size: .9em; }
+.pair-b { display: grid; grid-template-columns: 660px 360px; gap: 20px; align-items: start; }
+.pair figure { margin: 0; } .pair figcaption { font: 500 10.5px var(--oq-font-mono); color: var(--oq-ink-2); text-transform: uppercase; letter-spacing: .08em; margin-top: 7px; }
+.mini { position: relative; contain: layout; container-type: inline-size; overflow: hidden; border-radius: 14px; background: var(--oq-surface-0); box-shadow: 0 0 0 1px var(--oq-line); }
+.mini.mob { border-radius: 30px; width: 360px; }
+.mini-b { padding: 16px; display: flex; flex-direction: column; gap: 10px; } .mini.top .mini-b { padding-top: 74px; }
+.fl-row { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--oq-surface-1); box-shadow: var(--oq-shadow-1); font-size: .92em; }
+.fl-row i { width: 10px; height: 10px; border-radius: 3px; flex: none; } .fl-row span { margin-left: auto; color: var(--oq-ink-2); font: .85em var(--oq-font-mono); }
+.pair.wide .pair-b { grid-template-columns: 1fr; } /* a full desktop width: the islands need room */
+.stage.phone .pair-b { grid-template-columns: 1fr; } .stage.phone .pair figure:first-child { display: none; }
 /* kit */
 .kit { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
 .kit .card-b { display: flex; flex-direction: column; gap: 14px; }
@@ -179,7 +191,7 @@ body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare
   <div class="pseg" id="famSeg"><button class="on" data-f="dev">Developer</button><button data-f="travel">Travel</button><button data-f="kids">Kids</button></div>
   <div class="pseg" id="skinSeg"></div>
   <div class="pseg" id="shellSeg"><button class="on" data-h="top">Top islands</button><button data-h="dock">Dock</button><button data-h="islands">Side island</button><button data-h="sidebar">Sidebar</button></div>
-  <div class="pseg" id="viewSeg"><button class="on" data-v="app">App</button><button data-v="kit">Kit</button><button data-v="touch">Touch</button></div>
+  <div class="pseg" id="viewSeg"><button class="on" data-v="app">App</button><button data-v="kit">Kit</button><button data-v="pairs">Pairs</button><button data-v="touch">Touch</button></div>
   <div class="pseg" id="themeSeg"><button class="on" data-t="night">Night</button><button data-t="light">Light</button></div>
   <div class="pseg" id="sizeSeg"><button class="on" data-s="desk">Desktop</button><button data-s="phone">Phone</button></div>
 </div>
@@ -191,9 +203,9 @@ body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const root = $("#root");
-const state = { fam: "dev", view: "app", theme: "night", size: "desk", skin: "base", shell: "top" };
-const SKINS = { dev: [["base", "Graphite"]], travel: [["base", "Coast"], ["azulejo", "Azulejo"], ["golden", "Golden hour"]], kids: [["base", "Playground"], ["sticker", "Sticker"], ["crayon", "Crayon"]] };
-function skinSeg() { const opts = SKINS[state.fam]; if (!opts.some(o => o[0] === state.skin)) state.skin = "base"; const el = document.getElementById("skinSeg");
+const state = { fam: "dev", view: "app", theme: "night", size: "desk", skin: "", shell: "top" }; /* skin "" = the family's picked look (first option) */
+const SKINS = { dev: [["base", "Graphite"]], travel: [["azulejo", "Azulejo"], ["base", "Coast"], ["golden", "Golden hour"]], kids: [["base", "Playground"], ["sticker", "Sticker"], ["crayon", "Crayon"]] };
+function skinSeg() { const opts = SKINS[state.fam]; if (!opts.some(o => o[0] === state.skin)) state.skin = opts[0][0]; /* the first option is the family's picked look */ const el = document.getElementById("skinSeg");
   el.style.display = opts.length > 1 ? "" : "none"; el.innerHTML = opts.map(([k, n]) => `<button class="${k === state.skin ? "on" : ""}" data-k="${k}">${n}</button>`).join(""); }
 
 /* ---- icons (Lucide-style strokes) ---- */
@@ -217,7 +229,7 @@ const P = {
 const ic = (n, extra = "") => `<svg class="ico" viewBox="0 0 24 24" ${extra}>${P[n] || ""}</svg>`;
 const seg = (opts, on, k = "") => `<div class="seg2" data-k="${k}"><i></i>${opts.map(o => `<button class="${o === on ? "on" : ""}">${o}</button>`).join("")}</div>`;
 const tabs = (opts, on) => `<div class="tabs"><i></i>${opts.map(o => `<button class="${o === on ? "on" : ""}">${o}</button>`).join("")}</div>`;
-const tabbar = items => `<nav class="tabbar"><i class="tb-thumb"></i>${items.map((t, i) => `<button class="${i ? "" : "on"}">${ic(t[1])}${t[0]}</button>`).join("")}</nav>`;
+const tabbar = items => `<nav class="tabbar"><i class="tb-thumb"></i>${items.map((t, i) => `<button class="${i ? "" : "on"}" aria-label="${t[0]}">${ic(t[1])}${t[0]}</button>`).join("")}</nav>`;
 const NAV = {
   dev: [["Overview", "home"], ["Releases", "tag"], ["CI runs", "git"], ["Docs", "book"], ["Dependents", "users"], ["Security", "shield"], ["Settings", "gear"]],
   travel: [["Trips", "home"], ["Day", "cal"], ["Map", "map"], ["Budget", "tag"], ["Reminders", "bell"], ["Photos", "camera"], ["Settings", "gear"]],
@@ -474,6 +486,48 @@ function kit() {
   </div></main>`;
 }
 
+/* =========================== Pairs: desktop part ↔ its phone counterpart =========================== */
+const ROWS = {
+  dev: [["Release 0.3.0", "2 min"], ["CI · main", "passed"], ["Wheels · linux", "4.1 MB"], ["Docs build", "0:48"], ["Dependents", "212"]],
+  travel: [["TAP 1352 · JFK → LIS", "08:40"], ["Check in · Memmo", "21:30"], ["Dinner · Taberna", "22:15"], ["Castelo de São Jorge", "09:30"], ["Tram 28", "15:00"]],
+  kids: [["Read 20 minutes", "★ 3"], ["Feed the cat", "★ 1"], ["Spelling words", "★ 2"], ["Tidy your room", "★ 2"], ["Piano practice", "★ 3"]],
+};
+function pairs() {
+  const rows = ROWS[state.fam].map((r, i) => `<div class="fl-row"><i style="background:var(--oq-data-${i + 1})"></i><b>${r[0]}</b><span>${r[1]}</span></div>`).join("");
+  const bar = tabbar([...NAV[state.fam].slice(0, 3), ["More", "more"]]);
+  const brand = `<div class="brand-isl"><span class="mark">${BRAND[state.fam][0] ?? ic("plane")}</span>${BRAND[state.fam][1]}</div>`;
+  const menu = (lab, items, style) => `<div class="menu" style="${style}"><div class="lab">${lab}</div>${items}</div>`;
+  const acts = `<button class="mi">${ic("copy")}Copy link<kbd>⌘C</kbd></button><button class="mi">${ic("book")}Open details</button><button class="mi">${ic("bell")}Remind me<kbd>R</kbd></button><hr><button class="mi danger">${ic("x")}Remove</button>`;
+  const opts = `<button class="mi">3.10</button><button class="mi">${ic("check")}3.11 and newer</button><button class="mi">3.12 only</button>`;
+  const pair = (name, rule, inner, h, top) => `<section class="pair${top ? " wide" : ""}"><div class="pair-h"><h3>${name}</h3><span>${rule}</span></div><div class="pair-b">
+    <figure><div class="mini${top ? " top" : ""}" style="height:${h}px">${inner}</div><figcaption>Desktop · ${top ? "full width" : "660 px"}</figcaption></figure>
+    <figure><div class="mini mob${top ? " top" : ""}" style="height:${h}px">${inner}</div><figcaption>Phone · 360 px</figcaption></figure></div></section>`;
+  return `${status}<main class="main">
+  <div class="ph"><div><h1>Pairs</h1><div class="sub">every desktop part and its phone counterpart · same markup, the width decides</div></div></div>
+  <div class="pairs">
+  ${pair("Islands", "brand + nav pill + Beacon → Beacon on top, tab bar (icons only) at the bottom; both stay put while content scrolls under the glass",
+    `<div class="mini-b">${rows}${rows}</div>${brand}${topnav(NAV[state.fam]).replace(' id="topnav"', "")}${bar}${beacon().replace(' id="beacon"', "")}`, 330, true)}
+  ${pair("Menu → action sheet", "anchored under its button → slides along the bottom edge, 44 px rows, no shortcut hints",
+    `<div class="mini-b"><div><button class="btn tonal">${ic("down")}Actions</button></div></div>${menu("Item", acts, "top:62px;left:16px")}`, 290)}
+  ${pair("Select → picker sheet", "the same field; its list opens as a sheet on phone",
+    `<div class="mini-b"><button class="mo sel" style="font:inherit;color:inherit;text-align:left;border:0"><span class="fl">Python</span><span class="val">3.11 and newer</span><span class="chev">${ic("down")}</span></button></div>${menu("Python", opts, "top:74px;left:16px")}`, 260)}
+  ${pair("Tooltip → none", "hover hint → touch has no hover: icon buttons carry aria-label, and a label goes next to anything unclear",
+    `<div class="mini-b"><div class="wrap-row" style="margin-top:36px"><button class="btn tonal icon" aria-label="Search">${ic("search")}</button><button class="btn tonal icon" aria-label="More">${ic("more")}</button></div></div><div class="tip" style="top:14px;left:6px">Search<kbd>⌘K</kbd></div>`, 120)}
+  ${pair("Dialog", "centred → still centred, actions stack full width with the verb on top",
+    `<div class="mini-b">${rows}</div><div class="scrim"><div class="dialog"><h3>Remove this?</h3><p>It goes from every list. You can undo for 10 seconds.</p><div class="acts"><button class="btn text">Cancel</button><button class="btn fill">Remove</button></div></div></div>`, 270)}
+  ${pair("Toast", "bottom centre → lifted above the tab bar",
+    `<div class="mini-b">${rows}</div><div class="toast"><span>Saved</span><button class="btn text sm">Undo</button></div>${bar}`, 260)}
+  ${pair("Table", "all columns → the hide-n columns drop; long tables scroll inside their card",
+    `<div class="mini-b"><section class="card"><table class="tbl"><thead><tr><th>Name</th><th class="hide-n">Owner</th><th class="num">Size</th></tr></thead><tbody><tr><td>wheels-linux</td><td class="ink2 hide-n">ci</td><td class="num">4.1 MB</td></tr><tr><td>wheels-macos</td><td class="ink2 hide-n">ci</td><td class="num">3.8 MB</td></tr><tr><td>sdist</td><td class="ink2 hide-n">abhishek</td><td class="num">0.9 MB</td></tr></tbody></table></section></div>`, 200)}
+  ${pair("Stats and grids", "4 across → 2 across; two-column grids stack",
+    `<div class="mini-b"><section class="card"><div class="stats"><div><b>5,912<span class="delta up">+11%</span></b><span>this week</span></div><div><b>212</b><span>dependents</span></div><div><b>0.3.0</b><span>latest</span></div><div><b>98%</b><span>passing</span></div></div></section></div>`, 200)}
+  ${pair("Fields", "same field → 16 px text on phone so iOS doesn't zoom the page on focus",
+    `<div class="mini-b"><label class="mo"><input placeholder=" " value="Lisbon"><span class="fl">Where to</span></label></div>`, 90)}
+  ${pair("Buttons", "hover tint and lift → press squash only (no hover on touch), at least 44 px tall",
+    `<div class="mini-b"><div class="wrap-row"><button class="btn fill">${ic("check")}Save trip</button><button class="btn tonal">Preview</button><button class="btn text">Cancel</button></div></div>`, 80)}
+  </div></main>`;
+}
+
 /* =========================== Beacon (live activity) =========================== */
 const ring = p => `<svg class="ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#3f3f46" stroke-width="2.5"/><circle cx="10" cy="10" r="8" fill="none" stroke="var(--oq-beacon-accent)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="${(p * 50.3).toFixed(1)} 60" transform="rotate(-90 10 10)" data-ring/></svg>`;
 function beacon() {
@@ -518,14 +572,17 @@ root.addEventListener("pointerout", e => { const n = e.target.closest("#topnav")
 
 function render(animate) {
   skinSeg(); root.className = `oq-root oq-${state.theme} oq-family-${state.fam} oq-skin-${state.skin} screen`;
-  const body = state.view === "touch" ? touch() : state.view === "kit" ? kit() : { dev: devApp, travel: travelApp, kids: kidsApp }[state.fam]();
+  const body = state.view === "touch" ? touch() : state.view === "kit" ? kit() : state.view === "pairs" ? pairs() : { dev: devApp, travel: travelApp, kids: kidsApp }[state.fam]();
   root.innerHTML = body + overlays + (state.view === "app" ? beacon() : "");
-  root.classList.toggle("oq-islands", state.shell === "islands"); root.classList.toggle("oq-top", state.shell === "top"); root.classList.toggle("oq-dock", state.shell === "dock");
+  const sh = state.view === "pairs" ? "top" : state.shell; /* pairs always shows Top islands */
+  root.classList.toggle("oq-islands", sh === "islands"); root.classList.toggle("oq-top", sh === "top"); root.classList.toggle("oq-dock", sh === "dock");
   if (state.view === "app") root.insertAdjacentHTML("beforeend", topnav(NAV[state.fam]));
   wrapLabels(); layoutTopnav(false);
   if (state.view === "app") root.insertAdjacentHTML("beforeend", `<div class="brand-isl"><span class="mark">${BRAND[state.fam][0] ?? ic("plane")}</span>${BRAND[state.fam][1]}</div>`);
   const bk = $("#beacon", root); if (bk) requestAnimationFrame(() => sizeBeacon(bk, false));
+  $$(".mini .topnav", root).forEach(n => Omxqua.layoutTopnav(n, false)); requestAnimationFrame(() => $$(".mini .beacon", root).forEach(b => sizeBeacon(b, false)));
   requestAnimationFrame(() => { $$(".seg2, .tabs, .tabbar", root).forEach(placeThumb); });
+  root.classList.remove("oq-scrolled"); /* a fresh .main starts at the top */
   if (animate) settle($(".main", root));
 }
 

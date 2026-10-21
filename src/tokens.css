@@ -34,6 +34,8 @@
   --oq-ease-in: cubic-bezier(.2, 0, 0, 1);   /* decelerate: arriving */
   --oq-ease-out: cubic-bezier(.3, 0, 1, 1);  /* accelerate: leaving */
   --oq-press-scale: 0.96;
+  --oq-glass-mix: 58%;              /* nav islands: how much of surface-2 stays opaque (frosted glass, 2026-10-21) */
+  --oq-glass-blur: blur(20px) saturate(170%);
   --oq-island-spring: linear(0, 0.023, 0.079, 0.154, 0.237, 0.322, 0.405, 0.482, 0.553, 0.617, 0.674, 0.723, 0.766, 0.803, 0.835, 0.862, 0.885, 0.905, 0.921, 0.935, 0.946, 0.955, 0.963, 0.97, 0.975, 0.98, 0.983, 0.986, 0.989, 0.991, 0.993, 0.994, 0.995, 0.996, 0.997, 0.997, 0.998, 0.998, 0.999, 0.999, 1); /* = --oq-spring (k170 c26): islands, Beacon, top nav */
 
   font-family: var(--oq-font);
@@ -47,7 +49,7 @@
 }
 .oq-root.oq-compact { --oq-radius-card: 12px; --oq-target: 34px; }
 
-/* ---- themes: depth = tone + one shadow scale; no glass, blur or gradients ---- */
+/* ---- themes: depth = tone + one shadow scale; no gradients. Glass only on the nav islands (components.css) ---- */
 .oq-root.oq-night {
   --oq-surface-0: #0b0b0d; --oq-surface-1: #151518; --oq-surface-2: #1d1d21; --oq-surface-3: #25252a;
   --oq-ink: #ededef; --oq-ink-2: #a9a9b1; --oq-ink-faint: #3a3a40; /* faint is never text */

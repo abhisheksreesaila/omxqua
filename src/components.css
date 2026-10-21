@@ -56,7 +56,7 @@
 :where(.oq-root) .side:not(.pinned) .pin-btn .on { display: none; } :where(.oq-root) .side.pinned .pin-btn .off { display: none; }
 .oq-root:not(.oq-islands) .pin-btn { display: none; }
 /* Beacon: always a near-black pill (both themes), centred at the top; it morphs between compact and open */
-:where(.oq-root) .beacon { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 35; background: #0b0b0d; color: #f4f4f5; border-radius: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.06);
+:where(.oq-root) .beacon { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 35; background: #0b0b0d; color: #f4f4f5; border-radius: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.06);
   overflow: hidden; cursor: pointer; font-family: var(--oq-font); transition: width 460ms var(--oq-island-spring), height 460ms var(--oq-island-spring), border-radius 460ms var(--oq-island-spring); }
 .oq-root:not(.oq-islands) .beacon { display: none; }
 :where(.oq-root) .beacon.open { border-radius: 30px; cursor: default; }
@@ -92,7 +92,7 @@
 :where(.oq-root) .tabbar .tb-thumb { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--oq-accent); box-shadow: var(--oq-shadow-1); transition: left var(--oq-spring-fast-dur) var(--oq-spring-fast), width var(--oq-spring-fast-dur) var(--oq-spring-fast); z-index: 0; }
 :where(.oq-root) .tabbar button { position: relative; z-index: 1; }
 :where(.oq-root) .tabbar button.on { background: transparent !important; color: var(--oq-on-accent) !important; }
-:where(.oq-root) .brand-isl { display: none; position: absolute; top: 14px; left: 16px; z-index: 30; height: 44px; padding: 0 16px 0 8px; border-radius: 999px; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2);
+:where(.oq-root) .brand-isl { display: none; position: fixed; top: 14px; left: 8px; z-index: 30; height: 44px; padding: 0 16px 0 12px; border-radius: 999px; background: transparent; box-shadow: none; transition: background-color .25s, box-shadow .25s; /* no pill at rest: the logo sits on the page; it frosts once content scrolls under it (2026-10-21) */
   align-items: center; gap: 10px; font: 650 15px var(--oq-font-display); letter-spacing: -.02em; }
 :where(.oq-root) .brand-isl .mark { width: 30px; height: 30px; border-radius: 50%; font-size: 13px; }
 @container (min-width: 641px) {
@@ -101,7 +101,7 @@
   .oq-top .brand-isl, .oq-dock .brand-isl { display: flex; }
   .oq-top .main, .oq-dock .main { width: 100%; max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 84px 28px 30px; }
   .oq-dock .main { padding: 76px 28px 110px; }
-  .oq-top .tabbar, .oq-dock .tabbar { display: flex; position: absolute; left: 50%; transform: translateX(-50%); z-index: 30; gap: 2px; padding: 5px; border-radius: 999px; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2); }
+  .oq-top .tabbar, .oq-dock .tabbar { display: flex; position: fixed; left: 50%; transform: translateX(-50%); z-index: 30; gap: 2px; padding: 5px; border-radius: 999px; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2); }
   .oq-top .tabbar { top: 14px; }
   .oq-dock .tabbar { bottom: 20px; box-shadow: var(--oq-shadow-3); }
   .oq-top .tabbar button, .oq-dock .tabbar button { border: 0; background: none; display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--oq-ink-2); transition: color .2s, transform var(--oq-spring-fast-dur) var(--oq-spring-fast); }
@@ -125,11 +125,20 @@
 :where(.oq-root) .topnav { display: none; }
 @container (min-width: 641px) {
   .oq-top .tabbar, .oq-dock .tabbar { display: none !important; }
-  .oq-top .topnav, .oq-dock .topnav { display: flex; position: absolute; left: 50%; transform: translateX(-50%); z-index: 30; padding: 5px; border-radius: 999px; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2);
+  .oq-top .topnav, .oq-dock .topnav { display: flex; position: fixed; left: 50%; transform: translateX(-50%); z-index: 30; padding: 5px; border-radius: 999px; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2);
     overflow: hidden; white-space: nowrap; transition: width 520ms var(--oq-island-spring); }
   .oq-top .topnav { top: 14px; }
   .oq-dock .topnav { bottom: 20px; box-shadow: var(--oq-shadow-3); }
 }
+/* ---- Nav islands are frosted glass (2026-10-21): the page shows through as it scrolls under. Only the nav pill and tab bar;
+   cards, menus, sheets and the Beacon stay opaque. Solid again when the browser can't blur or the person asks for less transparency. ---- */
+:where(.oq-root) :is(.topnav, .tabbar) { background: color-mix(in srgb, var(--oq-surface-2) var(--oq-glass-mix), transparent) !important;
+  -webkit-backdrop-filter: var(--oq-glass-blur); backdrop-filter: var(--oq-glass-blur);
+  box-shadow: inset 0 0 0 1px rgb(var(--oq-state) / .09), 0 8px 28px rgba(0,0,0,.14) !important; }
+.oq-root.oq-scrolled .brand-isl { background: color-mix(in srgb, var(--oq-surface-2) var(--oq-glass-mix), transparent);
+  -webkit-backdrop-filter: var(--oq-glass-blur); backdrop-filter: var(--oq-glass-blur); box-shadow: inset 0 0 0 1px rgb(var(--oq-state) / .09), 0 8px 28px rgba(0,0,0,.14); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { :where(.oq-root) :is(.topnav, .tabbar), .oq-root.oq-scrolled .brand-isl { background: var(--oq-surface-2) !important; } }
+@media (prefers-reduced-transparency: reduce) { :where(.oq-root) :is(.topnav, .tabbar), .oq-root.oq-scrolled .brand-isl { background: var(--oq-surface-2) !important; -webkit-backdrop-filter: none; backdrop-filter: none; } }
 :where(.oq-root) .topnav .tb-thumb { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--oq-accent); box-shadow: var(--oq-shadow-1); transition: left var(--oq-spring-fast-dur) var(--oq-spring-fast), width var(--oq-spring-fast-dur) var(--oq-spring-fast); }
 :where(.oq-root) .topnav button { position: relative; z-index: 1; flex: none; border: 0; background: none; display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 15px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--oq-ink-2); transition: color .2s, transform var(--oq-spring-fast-dur) var(--oq-spring-fast), opacity .25s; }
 :where(.oq-root) .topnav button:hover { color: var(--oq-ink); }
@@ -172,6 +181,8 @@
    COMPONENTS
    ===================================================================== */
 .oq-root button { font: inherit; color: inherit; cursor: pointer; }
+.oq-root { -webkit-tap-highlight-color: transparent; } /* iOS grey tap flash off: our squash and state tint are the feedback */
+.oq-root :is(button, a, [data-press]) { touch-action: manipulation; } /* no double-tap zoom delay */
 :where(.oq-root) .mono { font-family: var(--oq-font-mono); }
 :where(.oq-root) .ink2 { color: var(--oq-ink-2); }
 :where(.oq-root) .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
@@ -285,7 +296,7 @@
 :where(.oq-root) .toast[hidden] { display: none; }
 :where(.oq-root) .scrim { position: absolute; inset: 0; z-index: 60; background: rgba(0,0,0,.42); display: grid; place-items: center; }
 :where(.oq-root) .scrim[hidden] { display: none; }
-:where(.oq-root) .dialog { width: min(420px, calc(100% - 32px)); background: var(--oq-surface-3); border-radius: calc(var(--oq-radius-card) + 4px); box-shadow: var(--oq-shadow-3); padding: 20px; }
+:where(.oq-root) .dialog { box-sizing: border-box; width: min(420px, calc(100% - 32px)); background: var(--oq-surface-3); border-radius: calc(var(--oq-radius-card) + 4px); box-shadow: var(--oq-shadow-3); padding: 20px; }
 :where(.oq-root) .dialog h3 { margin: 0 0 6px; font-size: 1.15em; }
 :where(.oq-root) .dialog p { margin: 0 0 18px; color: var(--oq-ink-2); line-height: 1.5; }
 :where(.oq-root) .dialog .acts { display: flex; justify-content: flex-end; gap: 8px; }
@@ -329,10 +340,39 @@
   :where(.oq-root) .stats > div:nth-child(3) { border-left: 0; }
   :where(.oq-root) .stats > div:nth-child(n+3) { border-top: 1px solid var(--oq-line-2); }
   :where(.oq-root) .ph .acts .hide-n { display: none; }
-  :where(.oq-root) .tabbar { display: flex; position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 30; gap: 2px; padding: 5px; border-radius: 999px; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2); }
+  :where(.oq-root) .tabbar { display: flex; position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 30; gap: 2px; padding: 5px; border-radius: 999px; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2); }
   :where(.oq-root) .tabbar button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 16px; border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--oq-ink-2); transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast), background .2s, color .2s; }
   :where(.oq-root) .tabbar button.on { background: var(--oq-accent); color: var(--oq-on-accent); }
+  /* Phone tab bar is icons only (2026-10-21): the label stays as the button's accessible name, font-size 0 just hides it. */
+  :where(.oq-root) .tabbar { touch-action: none; -webkit-user-select: none; user-select: none; }
+  :where(.oq-root) .tabbar button { font-size: 0; gap: 0; padding: 0; width: 60px; height: max(46px, var(--oq-target)); justify-content: center; -webkit-tap-highlight-color: transparent; }
+  :where(.oq-root) .tabbar button .ico { width: 24px; height: 24px; }
   :where(.oq-root) .hide-n { display: none !important; }
+  /* ---- Phone counterparts (2026-10-21): every desktop part has a touch version; same markup, the container picks ---- */
+  /* menu and select list → action sheet along the bottom edge, rows at least 44 px, no shortcut hints */
+  :where(.oq-root) .menu { position: fixed; left: 8px !important; right: 8px; top: auto !important; bottom: 8px; min-width: 0; z-index: 62; padding: 8px; border-radius: 22px; }
+  :where(.oq-root) .menu .mi { min-height: max(44px, var(--oq-target)); padding: 0 14px; font-size: 1em; border-radius: 12px; }
+  :where(.oq-root) .menu .mi kbd { display: none; }
+  /* tooltip → none: touch has no hover; icon buttons carry aria-label */
+  :where(.oq-root) .tip { display: none !important; }
+  /* dialog → full-width stacked actions, the verb on top within thumb reach */
+  :where(.oq-root) .dialog .acts { flex-direction: column-reverse; }
+  :where(.oq-root) .dialog .acts .btn { width: 100%; justify-content: center; }
+  /* toast → above the tab bar */
+  :where(.oq-root) .toast { bottom: 96px; }
+  /* fields → 16 px text, below that iOS Safari zooms the page on focus */
+  :where(.oq-root) .mo input { font-size: 16px; }
+  /* buttons → at least 44 px tall (small ones excepted) */
+  :where(.oq-root) .btn:not(.sm):not(.lg) { --h: max(var(--oq-target), 44px); }
+  :where(.oq-root) .toast .btn.sm { --h: 44px; } /* Undo sits under the thumb */
+  :where(.oq-root) .xbtn { position: relative; } :where(.oq-root) .xbtn::before { content: ""; position: absolute; inset: -6px; } /* 32 px circle, 44 px hit area */
+}
+/* Touch screens have no hover: no lift or tint left stuck on a button after a tap. */
+@media (hover: none) {
+  :where(.oq-root) .btn.fill:hover { transform: none; box-shadow: var(--oq-shadow-1); }
+  :where(.oq-root) .btn:hover::after { background: rgb(var(--oq-state) / 0); }
+  :where(.oq-root) .menu .mi:hover { background: none; }
+  :where(.oq-root) .xbtn:hover { background: rgb(var(--oq-state) / .06); }
 }
 :where(.oq-root) .wrap-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 
