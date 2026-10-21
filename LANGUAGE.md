@@ -41,6 +41,7 @@ Each family sets surfaces, accent, data palette and character for Night and Ligh
 | **Developer · Graphite** (`dev`) | libraries, PyPI packages, consoles (mxconsole, omxcore) | near-black #0b0b0d | cool grey #eeeef1 | ink (white / black) | compact (34 px), cards 12, mono-forward, numbers and source lines everywhere |
 | **Travel · Coast** (`travel`) | trips, places, days (gitaway) | deep sea #0b1214 | warm sand #f4f0e9 | sea teal #5fd4c8 / #0b6e69 | 40 px targets, cards 16, kinds carry colour (flight, stay, food, see), days never do |
 | **Kids · Playground** (`kids`) | children's apps (questly) | plum #171221 | cream #fff6ea | tangerine #ffad66 / #c2410c | roomy (48 px), cards 22, type 15.5 px, big icon tiles, one hero card, a big "I did it!" button |
+| **Notes · Paper** (`notes`) | notebooks, canvases, writing (Personal Note) | ink-blue night #0d1015, panels #171c24 | warm paper desk #ece7dd, panels #fffdf8 | ink (Paper #1f1b16) · mint #7ee7c8 (Night) · blue #2f6fe0 (Crayon) | the work is the hero: Canvas shell, islands over a dotted desk; display font per skin (Bricolage Grotesque; Night: Instrument Serif italic); content may carry colour (emoji note icons in tinted tiles), chrome stays monochrome |
 | **Money · Ledger** (`money`) | accounts, spending, budgets (finxplorer) | near-black #0d0c12 | cool paper #f1f0f5 | violet #b8aaff / #5b4bd6 | 40 px targets, cards 16, every amount mono and tabular, categories carry the data colours, in / out are ok / bad with the word |
 
 Rules:
