@@ -77,7 +77,7 @@
     const bar = e.target.closest(".tabbar"), t = bar && bar.querySelector(".tb-thumb");
     if (!t || e.button > 0 || !t.offsetParent || bar._drag) return;
     const id = e.pointerId, x0 = e.clientX, btns = [...bar.querySelectorAll("button")], was = bar.querySelector("button.on");
-    let dragging = false, lx = x0; bar._drag = true;
+    let dragging = false, lx = x0; bar._drag = true; if (bar._follow) { bar._follow = null; t.style.transition = ""; }
     const near = x => btns.reduce((a, b) => { const r = b.getBoundingClientRect(), d = Math.abs(x - (r.left + r.right) / 2); return d < a[1] ? [b, d] : a; }, [null, Infinity])[0];
     const under = x => { const r = bar.getBoundingClientRect(); return x >= r.left && x <= r.right ? near(x) : null; }; /* gaps and padding count as the nearest tab */
     const mark = on => btns.forEach(x => x.classList.toggle("on", x === on));
@@ -108,8 +108,31 @@
   addEventListener("scroll", e => {
     const el = e.target === document ? document.scrollingElement : e.target;
     const root = e.target === document ? document.querySelector("html.oq-root, body.oq-root") : el.matches(".oq-root .main") && el.closest(".oq-root");
-    if (root) root.classList.toggle("oq-scrolled", el.scrollTop > 4);
+    if (!root) return;
+    const y = el.scrollTop, max = el.scrollHeight - el.clientHeight;
+    root.classList.toggle("oq-scrolled", y > 4);
+    /* Tab bar minimizes after 12 px of scrolling down, comes back after 12 px up or at the top.
+       Distance counts from where the direction last flipped, so slow scrolls add up; the bottom rubber-band is ignored. */
+    const st = scrollState.get(el) || { last: y, anchor: y, dir: 0 }; scrollState.set(el, st);
+    const dir = Math.sign(y - st.last); if (dir && dir !== st.dir) { st.dir = dir; st.anchor = st.last; } st.last = y;
+    let min = root.classList.contains("oq-tabs-min");
+    if (y <= 4) min = false;
+    else if (st.dir > 0 && y - st.anchor > 12 && y > 60) min = true;
+    else if (st.dir < 0 && st.anchor - y > 12 && st.anchor <= max) min = false;
+    if (min !== root.classList.contains("oq-tabs-min")) { root.classList.toggle("oq-tabs-min", min); root.querySelectorAll(".tabbar").forEach(b => followThumb(b, 320)); }
   }, { capture: true, passive: true });
+  const scrollState = new WeakMap();
+  /* While the tab bar resizes, keep its thumb on the active button frame by frame (one loop per bar; a drag owns the thumb). */
+  function followThumb(bar, ms) {
+    const t = bar.querySelector(".tb-thumb"); if (!t || !bar.offsetParent || bar._drag) return;
+    const token = bar._follow = {}, end = performance.now() + ms; t.style.transition = "none";
+    const step = () => {
+      if (bar._follow !== token || bar._drag) return;
+      const on = bar.querySelector("button.on"); if (on) { t.style.left = on.offsetLeft + "px"; t.style.width = on.offsetWidth + "px"; }
+      if (performance.now() < end) requestAnimationFrame(step); else { t.style.transition = ""; bar._follow = null; }
+    };
+    step();
+  }
   /* Settle tier: a panel or view arrives (fade + 12px rise, 280 ms, decelerating). */
   function settle(el) { if (!reduce) el.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 280, easing: "cubic-bezier(.2,0,0,1)" }); }
   /* Gentle tier: menus, popovers, tooltips ease in over 220 ms and fade out in 150 ms (then [hidden]). */

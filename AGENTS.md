@@ -29,7 +29,7 @@ oq-root  oq-night | oq-light  oq-family-<dev|travel|kids|money>  [oq-skin-<name>
 
 ## 2. Families and skins
 
-A family sets surfaces, accent, data palette and character for Night and Light. A skin is an alternative look for a family: same components, different surfaces, colour, type and texture. All pairs pass 4.5:1.
+A family sets surfaces, accent, data palette and character for Night and Light. A skin is an alternative look for a family: same components, different surfaces, colour, type and texture. All pairs pass 4.5:1 (`tests/contrast.test.cjs` checks every family and skin).
 
 | Family (`oq-family-…`) | For | Night / Light surface-0 | Accent (Night / Light) | Targets, cards, type | Beacon accent |
 |---|---|---|---|---|---|
@@ -174,7 +174,7 @@ All shells share one markup; root classes pick the layout.
 - **Top islands (`oq-top`, default):** brand island left · nav pill centre · Beacon right, all floating 14 px from the top; content in a centred column (max 1120 px) that scrolls under them.
 - **Dock (`oq-dock`):** the nav pill floats at the bottom centre (the same pill as the phone tab bar), Beacon top centre, brand island top left.
 - **Top nav pill (`.topnav`):** 4 items at rest plus `+N`; `+N` widens it to all items; it folds back 3.5 s after the pointer leaves. Call `Omxqua.layoutTopnav(nav)` after render; on `+N` call `Omxqua.openTopnav(nav, true)`; on pointer-out `Omxqua.foldTopnavLater(nav)`; on pointer-over `Omxqua.holdTopnav(nav)`. Items need `data-i` (0…n) and the `+N` button `data-more`.
-- **Phone (container ≤ 640 px), every shell:** the floating tab bar `.tabbar` (3 to 5 items, **icons only**: the label stays in the markup as the accessible name; accent thumb `.tb-thumb` via `Omxqua.placeThumb`) at the bottom. The thumb is liquid: it stretches as it moves, and you can hold the bar and slide (the thumb lifts, follows the finger and drops on the tab you let go over; `omxqua.js` clicks that tab for you); `.side`, `.topnav` and `.brand-isl` hide; grids stack. Never a hamburger for main nav.
+- **Phone (container ≤ 640 px), every shell:** the floating tab bar `.tabbar` (3 to 5 items, **icon + label at rest, icons only while scrolling down**: `omxqua.js` sets `.oq-tabs-min` on the root as `.main` or the page scrolls down past 60 px and clears it on the way up; keep the label text and `aria-label` in each button; accent thumb `.tb-thumb` via `Omxqua.placeThumb`) at the bottom. The thumb is liquid: it stretches as it moves, and you can hold the bar and slide (the thumb lifts, follows the finger and drops on the tab you let go over; `omxqua.js` clicks that tab for you); `.side`, `.topnav` and `.brand-isl` hide; grids stack. Never a hamburger for main nav.
 - **Phone counterparts (container ≤ 640 px, same markup):** menu and select list → action sheet along the bottom edge (44 px rows, no shortcut hints; closing on a tap outside is your JS, as on desktop); tooltip → none (icon buttons carry `aria-label`); dialog → actions stack full width, verb on top; toast → above the tab bar; fields → 16 px text (iOS zooms below that); buttons → at least 44 px tall (`.sm` excepted, except Undo in a toast); `.xbtn` keeps its 32 px circle with a 44 px hit area. Touch screens (`hover: none`) get no hover lift or tint. See them side by side in the showcase's **Pairs** view (`?view=pairs`).
 - **Brand (`.brand-isl`):** `.mark` (letters or an icon) and the name in the display face, sitting straight on the page: no pill, no shadow. Once content scrolls under it (`.main` or the page scrolled past 4 px), `omxqua.js` adds `.oq-scrolled` to the root and the brand frosts over with the nav glass, so the name stays readable.
 - **Glass:** the nav pill and tab bar are frosted (`--oq-glass-mix` 58% of surface-2, `--oq-glass-blur`); they fall back to solid surface-2 under reduced transparency.
@@ -242,7 +242,7 @@ Not on landing pages: gradients on text, glass, autoplay video with sound, carou
 - Console pattern: no editable sentence on action forms (it read as "very weird" on Serve a model); an action form is a normal form with one filled verb button and its CLI twin as the source line.
 - Google Stitch review (`review/FINDINGS.md`): agreed fixes applied; borrowed day-chip neighbourhoods, budget split by kind, reward chips on quest tiles.
 - 2026-10-21: the nav islands become frosted glass and the brand loses its pill (the logo blends into the page). Overrides "islands are solid" for the nav pill and tab bar only.
-- 2026-10-21: the phone tab bar is icons only, and its thumb is liquid (stretches when it moves, drag to switch tabs). Phones get every effect desktop has: press, logo, thumbs; no iOS grey tap flash, no double-tap delay.
+- 2026-10-21: the phone tab bar shows labels at rest and goes icons-only while scrolling down (first tried icons only; the research says unlabeled icons get misread), and its thumb is liquid (stretches when it moves, drag to switch tabs). Phones get every effect desktop has: press, logo, thumbs; no iOS grey tap flash, no double-tap delay.
 
 ## 9. Patterns in the showcase, not yet packaged
 

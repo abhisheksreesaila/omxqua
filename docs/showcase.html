@@ -505,7 +505,7 @@ function pairs() {
   return `${status}<main class="main">
   <div class="ph"><div><h1>Pairs</h1><div class="sub">every desktop part and its phone counterpart · same markup, the width decides</div></div></div>
   <div class="pairs">
-  ${pair("Islands", "brand + nav pill + Beacon → Beacon on top, tab bar (icons only) at the bottom; both stay put while content scrolls under the glass",
+  ${pair("Islands", "brand + nav pill + Beacon → Beacon on top, tab bar at the bottom (labels at rest, icons only while scrolling down); both stay put while content scrolls under the glass",
     `<div class="mini-b">${rows}${rows}</div>${brand}${topnav(NAV[state.fam]).replace(' id="topnav"', "")}${bar}${beacon().replace(' id="beacon"', "")}`, 330, true)}
   ${pair("Menu → action sheet", "anchored under its button → slides along the bottom edge, 44 px rows, no shortcut hints",
     `<div class="mini-b"><div><button class="btn tonal">${ic("down")}Actions</button></div></div>${menu("Item", acts, "top:62px;left:16px")}`, 290)}

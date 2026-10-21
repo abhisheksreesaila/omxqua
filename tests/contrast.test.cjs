@@ -19,3 +19,12 @@ for (const fam of ["dev", "travel", "kids", "money"]) for (const theme of ["nigh
     }
   });
 }
+// Skins override surfaces, ink and accent on top of their family; the merged result must clear the same bar.
+for (const [fam, skin] of [["travel", "azulejo"], ["travel", "golden"], ["kids", "sticker"], ["kids", "crayon"]]) for (const theme of ["night", "light"]) {
+  test(`${fam} · ${skin} · ${theme}: text and states 4.5:1 on every surface`, () => {
+    const t = { ...block(`.oq-family-${fam}.oq-${theme}`), ...block(`.oq-family-${fam}.oq-skin-${skin}.oq-${theme}`) };
+    for (const s of ["surface-0", "surface-1", "surface-2", "surface-3"]) for (const k of ["ink", "ink-2", "accent", "ok", "warn", "bad", "info"])
+      assert.ok(ratio(t[k], t[s]) >= 4.5, `${k} on ${s}: ${ratio(t[k], t[s]).toFixed(2)}`);
+    assert.ok(ratio(t["on-accent"], t.accent) >= 4.5, "on-accent");
+  });
+}
