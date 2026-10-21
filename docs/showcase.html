@@ -98,7 +98,7 @@ html, body { margin: 0; background: #08080a; }
 .stage.phone { max-width: 390px; border-radius: 40px; box-shadow: 0 0 0 10px #050506, 0 0 0 11px #2a2a2e; }
 .stage.phone .screen { height: 844px; }
 .stage:not(.phone) .screen { height: 820px; }
-body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare .stage { max-width: none; border-radius: 0; box-shadow: none; } body.bare .stage:not(.phone) .screen { height: 100vh; }
+body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare .stage { max-width: none; border-radius: 0; box-shadow: none; } body.bare .stage:not(.phone) .screen { height: 100vh; } body.bare .stage.phone { max-width: none; border-radius: 0; box-shadow: none; } body.bare .stage.phone .screen { height: 100vh; }
 .stage:not(.phone) .shell { min-height: 0; }
 .screen { min-height: 760px; display: flex; flex-direction: column; container-type: inline-size; position: relative; overflow: hidden; }
 @container (max-width: 640px) {

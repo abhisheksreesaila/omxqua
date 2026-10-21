@@ -2,6 +2,11 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
+## v0.1.2 · 2026-10-20
+- Cover: "three apps, one feel": the developer, travel and kids apps live on three iPhones you can tap.
+- Showcase bare mode drops its own phone bezel when embedded.
+- Root index.html forwards to docs/ for GitHub Pages.
+
 ## v0.1.1 · 2026-10-20
 - docs/index.html is now the cover page: "every touch, a tiny joy." A live playground (press, toggles, segmented, floating label, Beacon), a squish pad, borrowed-honestly cards, size and contrast toys, light/night.
 - Reduced motion again covers ::before/::after and forces a calm ease-out (the v0.1.0 merge had weakened it).

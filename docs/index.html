@@ -142,6 +142,18 @@ h2 .two { color: var(--ink2); }
 .growpill i { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--aqua); transition: left .3s var(--spring), width .3s var(--spring); }
 .growpill .more2 { font: 600 13px var(--mono); }
 
+
+/* example apps on phones */
+.phones { display: flex; gap: 28px; justify-content: center; margin-top: 50px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 6px 26px; }
+.phone { flex: none; scroll-snap-align: center; text-align: center; }
+.phone .dev { width: 286px; height: 619px; border-radius: 48px; padding: 9px; background: #0b0b0d; box-shadow: var(--sh3), inset 0 0 0 1px #2a2a2e; position: relative; }
+.phone .scr { width: 268px; height: 601px; border-radius: 40px; overflow: hidden; position: relative; background: var(--s1); }
+.phone iframe { width: 390px; height: 844px; border: 0; transform: scale(.6872); transform-origin: 0 0; display: block; }
+.phone .isle { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 84px; height: 24px; border-radius: 999px; background: #0b0b0d; z-index: 2; pointer-events: none; }
+.phone b { display: block; margin-top: 18px; font: 700 17px var(--sans); letter-spacing: -.02em; }
+.phone span { color: var(--ink2); font: 13px var(--mono); }
+.phones-note { text-align: center; color: var(--ink2); font: 13px var(--mono); margin-top: 6px; }
+
 /* light as a feather */
 .nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 46px; }
 .num { background: var(--s1); border-radius: 22px; box-shadow: var(--sh1); padding: 22px; border: 0; text-align: left; }
@@ -192,7 +204,7 @@ footer a { color: var(--hi); }
 
 <header class="isles">
   <button class="isl brand" id="brand" aria-label="omxqua, press me"><span class="mark" id="mark"><svg viewBox="0 0 40 40"><text x="20" y="25.5" text-anchor="middle">oq</text></svg></span>omxqua</button>
-  <nav class="isl navpill" id="navpill"><i></i><a href="#touch" class="on">touch</a><a href="#borrowed">borrowed</a><a href="#light">light</a><a href="#read">readable</a><a href="#get">get it</a></nav>
+  <nav class="isl navpill" id="navpill"><i></i><a href="#touch" class="on">touch</a><a href="#borrowed">borrowed</a><a href="#apps">apps</a><a href="#light">light</a><a href="#read">readable</a><a href="#get">get it</a></nav>
   <div class="right">
     <button class="isl themebtn" id="theme" aria-label="switch light and night"><svg class="ico" viewBox="0 0 24 24" id="themeIco"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     <button class="beacon" id="press-count" aria-live="polite"><span class="dot"></span>presses<b id="pc">0</b></button>
@@ -246,6 +258,18 @@ footer a { color: var(--hi); }
   </div>
   <div class="ours rv"><div><span class="eyebrow">and a few of our own</span><h3>top islands, a nav pill that grows, a logo that writes itself.</h3><p>Navigation floats in the middle, not down a side. It shows four, and opens to show the rest, then folds back on its own.</p></div>
     <div class="growpill" id="grow"><i></i><button class="on" data-i="0">home</button><button data-i="1">trips</button><button data-i="2">map</button><button data-i="3">budget</button><button data-i="4" class="x">photos</button><button data-i="5" class="x">people</button><button class="more2" data-more>+2</button></div></div>
+</div></section>
+
+<section id="apps"><div class="wrap">
+  <div class="eyebrow rv">example apps</div>
+  <h2 class="rv">three apps, one feel. <span class="two">go on, tap them.</span></h2>
+  <p class="sub rv">The same parts in three families: a developer console, a trip planner and a kids' quest app. Live, on a phone. That black pill at the top of each one is the Beacon.</p>
+  <div class="phones">
+    <div class="phone rv"><div class="dev"><div class="scr"><iframe src="showcase.html?fam=dev&size=phone&theme=night&bare=1" title="omxcore, developer family" loading="lazy"></iframe></div></div><b>omxcore</b><span>developer · graphite · night</span></div>
+    <div class="phone rv"><div class="dev"><div class="scr"><iframe src="showcase.html?fam=travel&skin=azulejo&size=phone&theme=light&bare=1" title="gitaway, travel family" loading="lazy"></iframe></div></div><b>gitaway</b><span>travel · azulejo · light</span></div>
+    <div class="phone rv"><div class="dev"><div class="scr"><iframe src="showcase.html?fam=kids&skin=sticker&size=phone&theme=light&bare=1" title="questly, kids family" loading="lazy"></iframe></div></div><b>questly</b><span>kids · sticker · light</span></div>
+  </div>
+  <p class="phones-note rv">real pages, not screenshots · <a href="showcase.html" style="color:var(--hi)">open the full kit ›</a></p>
 </div></section>
 
 <section id="light"><div class="wrap">
@@ -317,7 +341,7 @@ const allThumbs = () => $$("#navpill, [data-seg], #grow").forEach(thumb);
 addEventListener("load", allThumbs); addEventListener("resize", allThumbs); document.fonts && document.fonts.ready.then(allThumbs);
 
 /* nav pill follows the section you're reading */
-const secs = ["touch", "borrowed", "light", "read", "get"].map(id => document.getElementById(id));
+const secs = ["touch", "borrowed", "apps", "light", "read", "get"].map(id => document.getElementById(id));
 const navIO = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; $$("#navpill a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id)); thumb($("#navpill")); }), { rootMargin: "-45% 0px -50% 0px" });
 secs.forEach(s => s && navIO.observe(s));
 $$("#navpill a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); document.querySelector(a.getAttribute("href")).scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }));

@@ -1,5 +1,8 @@
 # omxqua
 
+**Live:** https://abhisheksreesaila.github.io/omxqua/ (cover) · [kit](https://abhisheksreesaila.github.io/omxqua/docs/showcase.html) · [landing layouts](https://abhisheksreesaila.github.io/omxqua/docs/landing.html)
+
+
 omxqua (omx + aqua, always lowercase) is the design language I use for every app, on the phone and on the web. It's touch-native: every press springs back, toggles stretch toward where they're going, and the Beacon morphs open from the pill you tapped. I borrowed the best of Apple (the motion), Google (Material's solid, tonal surfaces and state layers) and the terminal (mono numbers and a source line under every card), and left out the glass, the ripples and anyone's trademarks.
 
 ## Quick start
