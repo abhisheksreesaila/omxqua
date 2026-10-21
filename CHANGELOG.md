@@ -4,6 +4,7 @@ All notable changes to omxqua. Versions follow [semver](https://semver.org); eac
 
 ## v0.1.4 · 2026-10-20
 - Borrow it with an agent: `skills/omxqua/SKILL.md`, installable as a Claude Code plugin (`/plugin install omxqua --marketplace abhisheksreesaila/omxqua`) or copied into any agent's skills folder.
+- README rewritten for skimmers: the live site and a screenshot first, why, the three families, "hand it to your agent", the rest folded away.
 - README: "Use it" covers the plugin, the skill, a copy-paste prompt for any agent, jsDelivr links for trying it, and vendoring for shipping.
 
 ## v0.1.3 · 2026-10-20

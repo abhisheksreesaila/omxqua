@@ -1,25 +1,67 @@
-# omxqua
+<div align="center">
 
-**Live:** https://abhisheksreesaila.github.io/omxqua/ (cover) · [kit](https://abhisheksreesaila.github.io/omxqua/docs/showcase.html) · [landing layouts](https://abhisheksreesaila.github.io/omxqua/docs/landing.html)
+# 🫧 omxqua
 
+### every touch, a tiny joy.
 
-omxqua (omx + aqua, always lowercase) is the design language I use for every app, on the phone and on the web. It's touch-native: every press springs back, toggles stretch toward where they're going, and the Beacon morphs open from the pill you tapped. I borrowed the best of Apple (the motion), Google (Material's solid, tonal surfaces and state layers) and the terminal (for developer apps: mono numbers and the command behind each card), and left out the glass, the ripples and anyone's trademarks.
+**👉 [See it live: abhisheksreesaila.github.io/omxqua](https://abhisheksreesaila.github.io/omxqua/) 👈**
 
-## Use it
+Press things. They press back. Best on a phone. 📱
 
-### With Claude Code: install the skill
+[![omxqua cover: every touch, a tiny joy](docs/readme/cover.png)](https://abhisheksreesaila.github.io/omxqua/)
+
+[🎛️ the full kit](https://abhisheksreesaila.github.io/omxqua/docs/showcase.html) · [🖼️ landing layouts](https://abhisheksreesaila.github.io/omxqua/docs/landing.html) · [📜 changelog](CHANGELOG.md) · MIT
+
+</div>
+
+---
+
+## 💡 Why
+
+Most apps feel like forms. I want mine to feel like toys that do serious work.
+
+omxqua is the design language I use for every app I build, on the phone and on the web. It's **touch-native**: every button squishes and springs back, switches stretch when you hold them, and live things sit in a little black pill up top that grows when something's happening.
+
+It's just my taste, borrowed honestly and rebuilt from scratch:
+
+| from | we took | we left |
+|---|---|---|
+| 🍎 Apple | springs, motion with weight, a live pill up top | the glass, the fonts, the names |
+| 🤖 Google | solid tonal surfaces, one soft shadow, floating labels | the ripples |
+| 💻 the terminal | mono numbers, the command behind each card (dev apps only) | the green-on-black |
+
+Plain HTML, CSS and JS. No framework, no build step, 16 KB gzipped (plus fonts).
+
+## 🎨 One feel, three families
+
+[![three example apps on iPhones: a developer console, a trip planner, a kids' quest app](docs/readme/apps.png)](https://abhisheksreesaila.github.io/omxqua/#apps)
+
+| family | for | vibe |
+|---|---|---|
+| 🛠️ **Developer** · Graphite | libraries, packages, consoles | ink on near-black, compact, mono numbers |
+| ✈️ **Travel** · Coast | trips, places, days | sand and sea, skins Azulejo 🔷 and Golden hour 🌅 |
+| 🧸 **Kids** · Playground | children's apps | cream and tangerine, big targets, skins Sticker and Crayon 🖍️ |
+
+<a id="use-it"></a>
+## 🤖 Hand it to your agent
+
+You describe the screen. Your agent builds it in omxqua.
+
+### Claude Code: one line
 
 ```
 /plugin install omxqua --marketplace abhisheksreesaila/omxqua
 ```
 
-On older Claude Code, add the marketplace first: `/plugin marketplace add abhisheksreesaila/omxqua`, then `/plugin install omxqua@omxqua`. After that, ask for things like "a trip planner home screen in omxqua" and Claude reads the reference, picks a family and builds with the real parts.
+Then just ask: *"a trip planner home screen in omxqua"*. The skill makes Claude read the reference, pick a family, use the real parts and check it on a phone-sized screen.
 
-### With another agent that reads skills (Codex, Cursor, and others)
+<sub>Older Claude Code: `/plugin marketplace add abhisheksreesaila/omxqua`, then `/plugin install omxqua@omxqua`.</sub>
 
-Copy [`skills/omxqua/`](skills/omxqua/SKILL.md) into the agent's skills folder (for Claude Code without the plugin: `~/.claude/skills/omxqua/`). The skill fetches `AGENTS.md` from this repo when it isn't next to it.
+### Codex, Cursor, or any agent that reads skills
 
-### With any agent or chat: paste this prompt
+Copy [`skills/omxqua/`](skills/omxqua/SKILL.md) into its skills folder. Done.
+
+### Anything else (ChatGPT, v0, Lovable…): paste this
 
 ```text
 Build this UI in omxqua, a touch-native design language (Material texture, Liquid motion).
@@ -39,9 +81,27 @@ no :active scale rules. Check it at 390 px wide and on desktop, in light and nig
 What I want: <describe the screen>
 ```
 
-### By hand
+## ✋ By hand
 
-Try it from the CDN with the four links above. To ship it, vendor the files so nothing loads from a third party: copy `src/` and `fonts/` side by side into your project, or from a clone run:
+Four links and a class:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/components.css">
+<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/omxqua.js" defer></script>
+
+<html class="oq-root oq-light oq-family-travel oq-top">
+```
+
+Then build with the parts in [AGENTS.md](AGENTS.md). The CDN is for trying it; when you ship, copy `src/` and `fonts/` into your project (more below).
+
+---
+
+<details>
+<summary><b>📦 Shipping it in a real project</b></summary>
+
+Vendor the files so nothing loads from a third party. Copy `src/` and `fonts/` side by side, or from a clone:
 
 ```sh
 bin/omxqua-sync static/                 # -> static/omxqua/{src,fonts,VERSION}, latest tag
@@ -53,13 +113,14 @@ bin/omxqua-sync static/ --ref v0.1.4    # a specific tag
 <link rel="stylesheet" href="/static/omxqua/src/tokens.css">
 <link rel="stylesheet" href="/static/omxqua/src/components.css">
 <script src="/static/omxqua/src/omxqua.js" defer></script>
-
-<html class="oq-root oq-night oq-family-dev oq-top">
 ```
 
-The root element also needs `container-type: inline-size; position: relative`. Theme `oq-night | oq-light`, family `oq-family-dev | travel | kids`, optional skin `oq-skin-azulejo | golden` (travel) or `sticker | crayon` (kids), shell `oq-top` (default) or `oq-dock`. Then build with the parts in [AGENTS.md](AGENTS.md).
+The root element also needs `container-type: inline-size; position: relative`. Theme `oq-night | oq-light`, family `oq-family-dev | travel | kids`, optional skin `oq-skin-azulejo | golden` (travel) or `sticker | crayon` (kids), shell `oq-top` (default) or `oq-dock`.
 
-## Structure
+</details>
+
+<details>
+<summary><b>🗂️ What's in the repo</b></summary>
 
 ```
 src/tokens.css       every --oq-* value: core, themes, families, skins, accents
@@ -67,28 +128,34 @@ src/components.css   every reusable part, scoped under .oq-root
 src/fonts.css        @font-face for Geist, Geist Mono, Fraunces, Nunito
 src/omxqua.js        press, the self-writing logo, motion helpers (window.Omxqua)
 fonts/               the four variable woff2 files and their licences
-docs/showcase.html   every family, skin, shell and component, live (App, Kit, Touch views)
-docs/landing.html    the landing layer: A Statement, B Editorial, C Bento
-docs/index.html      start page
+docs/index.html      the cover (the live site)
+docs/showcase.html   every family, skin, shell and component, live
+docs/landing.html    the landing layer: Statement, Editorial, Bento
+AGENTS.md            the reference agents (and people) build from
 LANGUAGE.md          the rules and why
-AGENTS.md            quick reference for agents building screens
-review/              the 2026-10-20 Google Stitch review (historical)
-bin/omxqua-sync      copies src/ and fonts/ at a ref into another project
-skills/omxqua/       the skill agents load (SKILL.md)
+skills/omxqua/       the skill agents load
 .claude-plugin/      Claude Code plugin + marketplace manifests
+bin/omxqua-sync      copies src/ and fonts/ at a tag into another project
+review/              the 2026-10-20 Google Stitch review
 ```
 
-## Docs
+To open the docs pages locally, serve the repo root (`python3 -m http.server`); they don't work as files.
 
-- [AGENTS.md](AGENTS.md): load order, root classes, every component with markup, shells, Beacon, motion budget, the Never list, how to verify a screen.
-- [LANGUAGE.md](LANGUAGE.md): texture, shape, type, colour, families, motion, shells, patterns, licences, dated decisions.
-- `docs/showcase.html` and `docs/landing.html`: open them over HTTP (`python3 -m http.server` in the repo root), not as files.
+</details>
 
-## Versioning
+<details>
+<summary><b>🏷️ Versions and licences</b></summary>
 
-Semver tags (`v0.1.0`, …) with every change listed in [CHANGELOG.md](CHANGELOG.md). Renaming or removing a token, class or helper is a breaking change. Projects pin a tag with `omxqua-sync --ref`; the copied `omxqua/VERSION` records the ref and commit.
-
-## Licences
+Semver tags, every change in [CHANGELOG.md](CHANGELOG.md). Renaming or removing a token, class or helper is a breaking change, so pin a tag.
 
 - Code (CSS, JS, docs, scripts): MIT, see [LICENSE](LICENSE).
-- Fonts: Geist and Geist Mono (Vercel), Fraunces and Nunito (their project authors), each under the SIL Open Font License 1.1; the licence files sit next to the fonts in `fonts/`. The MIT licence doesn't cover them.
+- Fonts: Geist and Geist Mono (Vercel), Fraunces and Nunito (their authors), each under the SIL Open Font License 1.1. Their licence files sit next to them in `fonts/`; MIT doesn't cover them.
+- No Apple or Microsoft fonts, icons or names. Ours are the Beacon, the nav island and Settle.
+
+</details>
+
+<div align="center">
+
+made with springs 🌀 · take what you like
+
+</div>
