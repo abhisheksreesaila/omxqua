@@ -12,6 +12,7 @@ All notable changes to omxqua. Versions follow [semver](https://semver.org); eac
 - `omxqua.js` now relies on `components.css` for the logo's look; a page that loads only the script styles `.mark svg` itself (as `docs/landing.html` does).
 - `tests/csp.test.cjs`: no injected styles in `omxqua.js`, and the `.oq-flat` rules exist.
 - README, the skill and the prompt pin `v0.1.5`.
+- `fonts.css`: `font-display: swap`, so text never waits for a font.
 
 ## v0.1.4 · 2026-10-20
 - Borrow it with an agent: `skills/omxqua/SKILL.md`, installable as a Claude Code plugin (`/plugin install omxqua --marketplace abhisheksreesaila/omxqua`) or copied into any agent's skills folder.
