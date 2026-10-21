@@ -2,6 +2,10 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
+## Unreleased
+- New family: **Money · Ledger** (`oq-family-money`) for accounts, spending and budgets (finxplorer). Near-black or cool paper, one violet accent, 40 px targets, cards 16, every amount in mono. Its data colours are finxplorer's colour-blind-checked category cycle without the violet, so the accent never doubles as a category.
+- `tests/contrast.test.cjs`: every family's text, accent and state colours clear 4.5:1 on every surface, read from `src/tokens.css` (`node --test tests/`).
+
 ## v0.1.4 · 2026-10-20
 - Borrow it with an agent: `skills/omxqua/SKILL.md`, installable as a Claude Code plugin (`/plugin install omxqua --marketplace abhisheksreesaila/omxqua`) or copied into any agent's skills folder.
 - Fix: Kids quest tiles: the "+1 ★" chip sat on top of the subtitle; it now shares a row with it and the subtitle ends in "…".

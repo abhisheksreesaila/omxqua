@@ -1,5 +1,5 @@
 /* omxqua tokens: Material texture, Liquid motion.
-   Root: <html class="oq-root oq-night|oq-light oq-family-<dev|travel|kids> [oq-skin-<name>] [oq-top|oq-dock]">
+   Root: <html class="oq-root oq-night|oq-light oq-family-<dev|travel|kids|money> [oq-skin-<name>] [oq-top|oq-dock]">
    (or oq-app-<accent> [oq-compact] for an app without a family).
    Springs are Liquid's real spring curves (k/c in comments). Values follow docs/showcase.html;
    keep these variable names so projects don't break. Load before components.css. */
@@ -102,6 +102,16 @@
   --oq-accent:#ffad66; --oq-on-accent:#2a1405; --oq-ok:#3ccf6e; --oq-warn:#f5a524; --oq-bad:#ff6b70; --oq-info:#7cc0ff;
   --oq-data-1:#7cc0ff; --oq-data-2:#5fdc8f; --oq-data-3:#ffd25e; --oq-data-4:#ff7fae; --oq-data-5:#b998ff; --oq-data-6:#ff9a6b; }
 .oq-family-kids { --oq-radius-card: 22px; --oq-radius-in: 14px; --oq-target: 48px; --oq-text: 15.5px; --oq-title: 32px; --oq-beacon-accent: #ffad66; }
+
+/* Money · "Ledger": accounts, spending, budgets (finxplorer). Near-neutral ink by night, cool paper by day, one violet accent.
+   Every amount is mono and tabular. Data colours are the categories (they match finxplorer's validated cycle; no violet, so the accent never doubles as a category). In / out are states (ok / bad) with the word, never colour alone. */
+.oq-family-money.oq-night { --oq-surface-0:#0d0c12; --oq-surface-1:#16151d; --oq-surface-2:#1e1c27; --oq-surface-3:#262431; --oq-ink:#eeedf4; --oq-ink-2:#aba8ba; --oq-ink-faint:#3b3946; --oq-line:#2b2936; --oq-line-2:#211f2a; --oq-state:238 237 244;
+  --oq-accent:#b8aaff; --oq-on-accent:#120d2b; --oq-ok:#4ade9b; --oq-warn:#f5c04a; --oq-bad:#ff8a78; --oq-info:#6cb6ff;
+  --oq-data-1:#229e7e; --oq-data-2:#dc6632; --oq-data-3:#4f8fe6; --oq-data-4:#d2559e; --oq-data-5:#ad8812; --oq-data-6:#2397b2; }
+.oq-family-money.oq-light { --oq-surface-0:#f1f0f5; --oq-surface-1:#ffffff; --oq-surface-2:#ffffff; --oq-surface-3:#ffffff; --oq-ink:#14121f; --oq-ink-2:#5d5a6c; --oq-ink-faint:#cbc9d4; --oq-line:#e4e2ec; --oq-line-2:#efeef4; --oq-state:20 18 31;
+  --oq-accent:#5b4bd6; --oq-on-accent:#ffffff; --oq-ok:#0e7a52; --oq-warn:#8f5400; --oq-bad:#c2412d; --oq-info:#0960b5;
+  --oq-data-1:#14967a; --oq-data-2:#e0662e; --oq-data-3:#3a86e8; --oq-data-4:#c2418f; --oq-data-5:#b58a00; --oq-data-6:#0e8fa8; }
+.oq-family-money { --oq-radius-card: 16px; --oq-target: 40px; --oq-text: 14px; --oq-beacon-accent: #4ade9b; }
 
 /* =====================================================================
    SKINS: a family may offer alternative skins. Same components, different surfaces, colour, type and texture.

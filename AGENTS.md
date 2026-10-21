@@ -18,7 +18,7 @@ Copy the package into your project with `bin/omxqua-sync <dest-dir>` (see README
 Root classes go on one element (usually `<html>` or the app frame):
 
 ```
-oq-root  oq-night | oq-light  oq-family-<dev|travel|kids>  [oq-skin-<name>]  [oq-top | oq-dock]
+oq-root  oq-night | oq-light  oq-family-<dev|travel|kids|money>  [oq-skin-<name>]  [oq-top | oq-dock]
 ```
 
 - `oq-top` (Top islands) is the default shell for new apps; `oq-dock` puts the nav pill at the bottom. `oq-islands` (side island) and no shell class (plain sidebar) exist for dense admin tools only.
@@ -36,6 +36,7 @@ A family sets surfaces, accent, data palette and character for Night and Light. 
 | `dev` · Graphite | libraries, PyPI packages, consoles | #0b0b0d / #eeeef1 | ink #ededef / #0b0b0d | 34 px, cards 12, 13.5 px, mono-forward | #3ccf6e |
 | `travel` · Coast | trips, places, days | #0b1214 / #f4f0e9 | sea teal #5fd4c8 / #0b6e69 | 40 px, cards 16, 14 px; kinds carry colour, days never do | #5fd4c8 |
 | `kids` · Playground | children's apps | #171221 / #fff6ea | tangerine #ffad66 / #c2410c | 48 px, cards 22, inputs 14, 15.5 px, title 32 | #ffad66 |
+| `money` · Ledger | accounts, spending, budgets | #0d0c12 / #f1f0f5 | violet #b8aaff / #5b4bd6 | 40 px, cards 16, 14 px; every amount mono and tabular, categories carry the data colours | #4ade9b |
 
 | Skin (`oq-skin-…`) | Family | Character | Accent (Night / Light) |
 |---|---|---|---|

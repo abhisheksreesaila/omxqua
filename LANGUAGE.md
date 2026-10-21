@@ -34,19 +34,21 @@ One sans for words, one mono for numbers, ids, paths, commands and every source 
 - **Contrast**: text 4.5:1 on its surface in Light and Night; `ink-faint` is never text.
 
 ## Families (an app class picks one)
-Each family sets surfaces, accent, data palette and character for Night and Light. Root: `oq-root oq-night|oq-light oq-family-<dev|travel|kids>`. All pairs below pass 4.5:1. Live: `docs/showcase.html` (App and Kit views, Night/Light, desktop/phone).
+Each family sets surfaces, accent, data palette and character for Night and Light. Root: `oq-root oq-night|oq-light oq-family-<dev|travel|kids|money>`. All pairs below pass 4.5:1. Live: `docs/showcase.html` (App and Kit views, Night/Light, desktop/phone).
 
 | Family | For | Night | Light | Accent | Character |
 |---|---|---|---|---|---|
 | **Developer · Graphite** (`dev`) | libraries, PyPI packages, consoles (mxconsole, omxcore) | near-black #0b0b0d | cool grey #eeeef1 | ink (white / black) | compact (34 px), cards 12, mono-forward, numbers and source lines everywhere |
 | **Travel · Coast** (`travel`) | trips, places, days (gitaway) | deep sea #0b1214 | warm sand #f4f0e9 | sea teal #5fd4c8 / #0b6e69 | 40 px targets, cards 16, kinds carry colour (flight, stay, food, see), days never do |
 | **Kids · Playground** (`kids`) | children's apps (questly) | plum #171221 | cream #fff6ea | tangerine #ffad66 / #c2410c | roomy (48 px), cards 22, type 15.5 px, big icon tiles, one hero card, a big "I did it!" button |
+| **Money · Ledger** (`money`) | accounts, spending, budgets (finxplorer) | near-black #0d0c12 | cool paper #f1f0f5 | violet #b8aaff / #5b4bd6 | 40 px targets, cards 16, every amount mono and tabular, categories carry the data colours, in / out are ok / bad with the word |
 
 Rules:
 - The accent never doubles as a data colour (Travel's "see" is sage, not the teal accent).
 - A data colour used as a **fill behind text** must give 4.5:1 with its text (white in Light, dark ink in Night); a fill behind an **icon only** needs 3:1, else use a dark icon (Kids' yellow tile).
 - **Skins (candidates, owner to pick, 2026-10-20):** a family can offer alternative skins: same components, different surfaces, colour, type and texture. Root adds `oq-skin-<name>`. Travel: Coast (base), **Azulejo** (paper + tile blue, Fraunces serif display, crisper corners), **Golden hour** (peach / espresso, amber accent, rounder). Kids: Playground (base), **Sticker** (Nunito, chunky ledge shadows that press down 4px, sky-blue accent), **Crayon** (Nunito, pastel tiles tinted with their own colour, berry accent, pastel hero). Fonts ship in `fonts/` (Fraunces, Nunito: SIL OFL).
-- New families (money, notes, health) are added here with the same table row and a contrast check.
+- Money · Ledger added 2026-10-20 (owner approved on the finxplorer mockup); its data colours are finxplorer's colour-blind-checked category cycle without the violet.
+- New families (notes, health) are added here with the same table row and a contrast check.
 
 ## Motion (Liquid)
 Springs (`--oq-spring-fast` mostly) are for small things under your finger: press squash, segmented thumbs, toggles, drag release. Panels and pop-ups never bounce (owner, 2026-10-20: the detail view must have "very little motion, subtle").

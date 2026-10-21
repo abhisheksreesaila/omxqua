@@ -41,6 +41,7 @@ Plain HTML, CSS and JS. No framework, no build step, 16 KB gzipped (plus fonts).
 | 🛠️ **Developer** · Graphite | libraries, packages, consoles | ink on near-black, compact, mono numbers |
 | ✈️ **Travel** · Coast | trips, places, days | sand and sea, skins Azulejo 🔷 and Golden hour 🌅 |
 | 🧸 **Kids** · Playground | children's apps | cream and tangerine, big targets, skins Sticker and Crayon 🖍️ |
+| 💳 **Money** · Ledger | accounts, spending, budgets | near-black or cool paper, one violet accent, every amount in mono |
 
 <a id="use-it"></a>
 ## 🤖 Hand it to your agent
@@ -73,7 +74,7 @@ https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/tokens.css
 https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/components.css
 https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/omxqua.js (defer)
 Put the root classes on <html>: oq-root, oq-light or oq-night, a family
-(oq-family-dev for tools, oq-family-travel for trips, oq-family-kids for children),
+(oq-family-dev for tools, oq-family-travel for trips, oq-family-kids for children, oq-family-money for money apps),
 and oq-top for the top-island shell. Use only the classes and --oq-* tokens in the
 reference. One filled button per card, no glass, no gradients, no emoji icons,
 no :active scale rules. Check it at 390 px wide and on desktop, in light and night.
@@ -115,7 +116,7 @@ bin/omxqua-sync static/ --ref v0.1.4    # a specific tag
 <script src="/static/omxqua/src/omxqua.js" defer></script>
 ```
 
-The root element also needs `container-type: inline-size; position: relative`. Theme `oq-night | oq-light`, family `oq-family-dev | travel | kids`, optional skin `oq-skin-azulejo | golden` (travel) or `sticker | crayon` (kids), shell `oq-top` (default) or `oq-dock`.
+The root element also needs `container-type: inline-size; position: relative`. Theme `oq-night | oq-light`, family `oq-family-dev | travel | kids | money`, optional skin `oq-skin-azulejo | golden` (travel) or `sticker | crayon` (kids), shell `oq-top` (default) or `oq-dock`.
 
 </details>
 
