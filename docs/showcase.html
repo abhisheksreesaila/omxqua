@@ -152,7 +152,9 @@ body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare
 .tile .ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: #fff; }
 .tile .ic .ico { width: 24px; height: 24px; stroke-width: 2.2; }
 .tile b { font-size: 1.08em; }
-.tile .rw { position: absolute; right: 14px; bottom: 14px; font: 700 12px var(--oq-font-mono); font-style: normal; padding: 4px 8px; border-radius: 999px; background: rgb(var(--oq-state) / .07); color: var(--oq-ink-2); }
+.tile { min-width: 0; } .tile .ft { min-width: 0; display: flex; align-items: center; gap: 8px; margin-top: auto; font-size: inherit; color: inherit; }
+.tile .ft span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile .rw { flex: none; font: 700 12px var(--oq-font-mono); font-style: normal; padding: 4px 8px; border-radius: 999px; background: rgb(var(--oq-state) / .07); color: var(--oq-ink-2); }
 .tile.done .rw { background: color-mix(in srgb, var(--oq-ok) 18%, transparent); color: var(--oq-ok); } .tile span { font-size: .85em; color: var(--oq-ink-2); }
 .tile.done { background: color-mix(in srgb, var(--oq-ok) 12%, var(--oq-surface-1)); }
 .tile.done::after { content: "✓"; position: absolute; top: 12px; right: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--oq-ok); color: #fff; display: grid; place-items: center; font-weight: 700; }
@@ -364,7 +366,7 @@ function kidsApp() {
   <main class="main">
     <div class="hero"><div><h2>Hi Maya!</h2><p>2 quests done. 4 to go before the park.</p></div><div class="stars">12<small>stars</small></div></div>
     <div class="ph"><div><h1 style="font-size:1.6em">Today's quests</h1></div><span class="sp"></span>${seg(["All", "To do", "Done"], "All")}</div>
-    <div class="tiles">${T.map(([a, i, c, s, d]) => `<button class="tile${d ? " done" : ""}" data-quest style="--c:var(${c})"><span class="ic" style="background:var(--c)${c === "--oq-data-3" ? ";color:#2a1d12" : ""}">${ic(i)}</span><b>${a}</b><span>${s}</span><em class="rw">+1 ★</em></button>`).join("")}</div>
+    <div class="tiles">${T.map(([a, i, c, s, d]) => `<button class="tile${d ? " done" : ""}" data-quest style="--c:var(${c})"><span class="ic" style="background:var(--c)${c === "--oq-data-3" ? ";color:#2a1d12" : ""}">${ic(i)}</span><b>${a}</b><span class="ft"><span>${s}</span><em class="rw">+1 ★</em></span></button>`).join("")}</div>
     <div class="grid g-2e">
       <section class="card"><div class="card-h"><h3>Stars this week</h3><span class="sp"></span><span class="badge ok"><i></i>best week yet</span></div>
         <div class="week">${[["M", 60], ["T", 85], ["W", 40], ["T", 100], ["F", 70], ["S", 20], ["S", 0]].map(([d, v]) => `<div><i><em style="height:${v}%"></em></i>${d}</div>`).join("")}</div>
