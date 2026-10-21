@@ -2,6 +2,12 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
+## v0.1.3 · 2026-10-20
+- Source lines are a Developer-family rule; Travel and Kids leave them out (or use a `↳` note). The cover's terminal card says so.
+- Cover: the phones are 20% bigger with an "open full size" link each; "a few of our own" shows all three (top islands, the growing pill, a big logo that writes itself when it scrolls in or you tap it).
+- Cover: the header Beacon shows a live status (the section you're in and how far down the page) and says what it is when tapped; the old press counter is gone.
+- Fix: the terminal demo's `$` prompts picked up the playground tile style.
+
 ## v0.1.2 · 2026-10-20
 - Cover: "three apps, one feel": the developer, travel and kids apps live on three iPhones you can tap.
 - Showcase bare mode drops its own phone bezel when embedded.

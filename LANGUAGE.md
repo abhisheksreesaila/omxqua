@@ -86,7 +86,7 @@ Each with hover, press, focus, disabled and error states:
 - Tables: hairline rows, mono right-aligned numbers, sticky header; a long list scrolls inside its card, which never grows past the screen.
 - Toast with Undo, tooltip with shortcut, command palette, dialog with scrim, bottom sheet (grabber, peek / half / full).
 - States: loading = skeleton rows (never zeros); empty = one line + the action that fills it; error = what happened + what to do; offline = a badge in the top bar.
-- **Show your work**: every card ends in a mono source line (the query, the command, the file); say what was left out.
+- **Show your work** (Developer family): every card ends in a mono source line (the query, the command, the file); say what was left out. Travel and Kids skip it; a card there may end in a plain `↳` note when something was left out.
 
 **Density**: roomy (phone and consumer apps, 44 px targets) or compact (desktop tools, 32–36 px controls, tighter rows, smaller corners).
 
@@ -132,7 +132,7 @@ For asking questions of data (omxplorer, finxplorer).
 
 ## Pattern: Console (opt in)
 For watching and running things (mxconsole, abode).
-1. Every view is a command: each card's source line is its CLI twin, copyable.
+1. Every view is a command (consoles and dev tools only, e.g. mxconsole): each card's source line is its CLI twin, copyable.
 2. Live status: one lane per running thing (dot, name, trace, two numbers); state as dot + word.
 3. No editable sentence on action forms (owner, 2026-10-20: it read as "very weird" on Serve a model). An action form is a normal form: a pick-list of options with fit badges, segmented controls for settings, a labelled meter for the cost (memory, quota), and a footer with a one-line plain summary + the one filled button with a specific verb. The CLI twin is the source line under it.
 4. One signature moment per page; the rest stays quiet.

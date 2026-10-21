@@ -118,7 +118,7 @@ The track is a solid fill to `--v` (the one allowed gradient syntax).
   <div class="src">pypistats recent omxcore <button class="cp">copy</button></div>
 </section>
 ```
-Rule: **every card ends in a mono source line** (the query, the command, the file). `.src` prints `$`; `.src.note` prints `↳` for a plain note ("3 of 14 shown").
+Rule (Developer family): **every card ends in a mono source line** (the query, the command, the file). Travel and Kids leave it out, or use `.src.note` when something was left out. `.src` prints `$`; `.src.note` prints `↳` for a plain note ("3 of 14 shown").
 
 ### Table: `.tbl` (`th.num`, `td.num`) · Stats: `.stats` + `.delta.up | .down`
 ```html
@@ -252,5 +252,5 @@ These live only in `docs/showcase.html` (inline CSS, demo JS). Copy them from th
 2. **Touch targets:** at least the family's `--oq-target`: Developer 34 px, Travel 40 px, Kids 48 px (base 36 px; 44 px on consumer phone screens).
 3. **Phone at 390 px:** tab bar visible, nothing overflows sideways, grids stacked, cards scroll inside.
 4. **Reduced motion:** turn it on in DevTools (Rendering → prefers-reduced-motion); nothing springs, everything still opens in the right place.
-5. **Rules:** one filled button per card, every card ends in a source line, no glass, gradients, emoji icons or `:active` scale rules.
+5. **Rules:** one filled button per card, Developer cards end in a source line, no glass, gradients, emoji icons or `:active` scale rules.
 6. **Compare:** put it next to `docs/showcase.html` with the same family, skin, theme and size (`?fam=travel&skin=azulejo&theme=light&size=phone&shell=top&view=app`).
