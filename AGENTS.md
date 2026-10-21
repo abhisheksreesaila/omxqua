@@ -12,7 +12,7 @@ Copy the package into your project with `bin/omxqua-sync <dest-dir>` (see README
 <link rel="stylesheet" href="omxqua/src/fonts.css">       <!-- Geist, Geist Mono, Fraunces, Nunito (self-hosted) -->
 <link rel="stylesheet" href="omxqua/src/tokens.css">      <!-- every --oq-* value: themes, families, skins, accents -->
 <link rel="stylesheet" href="omxqua/src/components.css">  <!-- every reusable part, scoped under .oq-root -->
-<script src="omxqua/src/omxqua.js" defer></script>        <!-- press, logo, motion helpers on window.Omxqua -->
+<script src="omxqua/src/omxqua.js" defer></script>        <!-- press, logo, motion helpers on window.Omxqua (the logo's look is in components.css) -->
 ```
 
 Root classes go on one element (usually `<html>` or the app frame):

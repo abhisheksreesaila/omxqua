@@ -1,6 +1,6 @@
 {
   "name": "omxqua",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A touch-native design language for the web and the phone: Material texture, Liquid motion. Adds the omxqua skill so Claude builds screens with its tokens and parts.",
   "author": { "name": "Abhishek Sreesaila", "url": "https://github.com/abhisheksreesaila" },
   "homepage": "https://abhisheksreesaila.github.io/omxqua/",

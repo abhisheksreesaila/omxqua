@@ -69,10 +69,10 @@ Build this UI in omxqua, a touch-native design language (Material texture, Liqui
 Before writing any markup, read the reference:
 https://raw.githubusercontent.com/abhisheksreesaila/omxqua/main/AGENTS.md
 Link these four files in this order, pinned to a tag:
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/fonts.css
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/tokens.css
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/components.css
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/omxqua.js (defer)
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/fonts.css
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/tokens.css
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/components.css
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/omxqua.js (defer)
 Put the root classes on <html>: oq-root, oq-light or oq-night, a family
 (oq-family-dev for tools, oq-family-travel for trips, oq-family-kids for children, oq-family-money for money apps),
 and oq-top for the top-island shell. Use only the classes and --oq-* tokens in the
@@ -87,10 +87,10 @@ What I want: <describe the screen>
 Four links and a class:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/components.css">
-<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/omxqua.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/components.css">
+<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/omxqua.js" defer></script>
 
 <html class="oq-root oq-light oq-family-travel oq-top">
 ```
@@ -106,7 +106,7 @@ Vendor the files so nothing loads from a third party. Copy `src/` and `fonts/` s
 
 ```sh
 bin/omxqua-sync static/                 # -> static/omxqua/{src,fonts,VERSION}, latest tag
-bin/omxqua-sync static/ --ref v0.1.4    # a specific tag
+bin/omxqua-sync static/ --ref v0.1.5    # a specific tag
 ```
 
 ```html

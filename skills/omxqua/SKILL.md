@@ -21,10 +21,10 @@ The full reference is `AGENTS.md`: every component with its markup, the shells, 
 Trying it out or prototyping: link it from jsDelivr, pinned to a tag (the fonts come along):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/components.css">
-<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.4/src/omxqua.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/components.css">
+<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/omxqua.js" defer></script>
 ```
 
 Shipping it: vendor the files into the project so nothing loads from a third party. Copy `src/` and `fonts/` side by side (for example `static/omxqua/src` and `static/omxqua/fonts`), or run `bin/omxqua-sync <dest-dir> --ref <tag>` from a clone. Keep the four links in the same order.
