@@ -2,6 +2,11 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
+## Unreleased
+- Chips have no outline: off is a light state tint with `ink-2` text, on is a 16% accent tint with ink text.
+- Coloured icons: `.ic-tile` (an icon on a 15% tint of its data colour, `.lg` = 36 px), `.ico-c`, and `--c` on `.topnav` / `.tabbar` items. New token `--oq-icon-mix` darkens the glyph toward ink in Light (88%, Kids 60%); `tests/contrast.test.cjs` checks every glyph at 3:1 on its tile, the card and the nav, in every family and skin.
+- `docs/showcase.html` is now **Contoso**: one made-up trip planner in every theme, web and phone side by side per screen, a component | web | phone table (every part in AGENTS §3–4 except the admin-only side island and sidebar), and seven agent concepts on the Beacon. `?bare=1&size=phone&screen=…&theme=…&mode=…` renders one screen for iframes. The earlier three-app kit is `docs/kit-v1.html` (the landing page still frames it).
+
 ## v0.1.5 · 2026-10-20
 - New family: **Money · Ledger** (`oq-family-money`) for accounts, spending and budgets (finxplorer). Near-black or cool paper, one violet accent, 40 px targets, cards 16, every amount in mono. Its data colours are finxplorer's colour-blind-checked category cycle without the violet, so the accent never doubles as a category.
 - `tests/contrast.test.cjs`: every family's text, accent and state colours clear 4.5:1 on every surface, read from `src/tokens.css` (`node --test tests/`).

@@ -61,6 +61,7 @@
   --oq-shadow-4: 0 1px 0 rgba(255,255,255,.05) inset, 0 32px 80px rgba(0,0,0,.7);
   --oq-ok: #3ccf6e; --oq-warn: #f5a524; --oq-bad: #f2555a; --oq-info: #52a9ff;
   --oq-data-1: #8b7bff; --oq-data-2: #3aa0ff; --oq-data-3: #2bc3ad; --oq-data-4: #ff8a3d; --oq-data-5: #f2555a; --oq-data-6: #e0b400;
+  --oq-icon-mix: 100%;
 }
 .oq-root.oq-light {
   --oq-surface-0: #eeeef1; --oq-surface-1: #ffffff; --oq-surface-2: #ffffff; --oq-surface-3: #ffffff;
@@ -73,6 +74,7 @@
   --oq-shadow-4: 0 32px 80px rgba(16,16,20,.24), 0 0 0 1px rgba(16,16,20,.06);
   --oq-ok: #137036; --oq-warn: #8f5400; --oq-bad: #c01f25; --oq-info: #0960b5; /* 4.5:1 on surface-0 and -1 */
   --oq-data-1: #6d5cf0; --oq-data-2: #0a7fe0; --oq-data-3: #0f9483; --oq-data-4: #e0661a; --oq-data-5: #d42a2f; --oq-data-6: #a88400;
+  --oq-icon-mix: 88%; /* coloured icons: this much data colour, the rest ink, so every glyph clears 3:1 (tests/contrast.test.cjs) */
 }
 
 /* =====================================================================
@@ -99,7 +101,7 @@
 /* Kids · "Playground": big, friendly, cheerful. Cream by day, plum by night, tangerine accent, bigger shapes and type. */
 .oq-family-kids.oq-light { --oq-surface-0:#fff6ea; --oq-surface-1:#ffffff; --oq-surface-2:#ffffff; --oq-surface-3:#ffffff; --oq-ink:#2a1d12; --oq-ink-2:#6b5646; --oq-line:#f1e2cf; --oq-line-2:#f8eddf; --oq-state:42 29 18;
   --oq-accent:#c2410c; --oq-on-accent:#ffffff; --oq-ok:#137036; --oq-warn:#8f5400; --oq-bad:#c01f25; --oq-info:#0960b5;
-  --oq-data-1:#2f80ed; --oq-data-2:#1e8a4c; --oq-data-3:#f2a900; --oq-data-4:#e0457b; --oq-data-5:#8e5be8; --oq-data-6:#f2662f; }
+  --oq-data-1:#2f80ed; --oq-data-2:#1e8a4c; --oq-data-3:#f2a900; --oq-data-4:#e0457b; --oq-data-5:#8e5be8; --oq-data-6:#f2662f;  --oq-icon-mix: 60%; /* the Playground yellows need more ink */ }
 .oq-family-kids.oq-night { --oq-surface-0:#171221; --oq-surface-1:#211a2d; --oq-surface-2:#2a2238; --oq-surface-3:#332a43; --oq-ink:#f6eefc; --oq-ink-2:#bfb1cc; --oq-line:#3a3049; --oq-line-2:#2c2439; --oq-state:246 238 252;
   --oq-accent:#ffad66; --oq-on-accent:#2a1405; --oq-ok:#3ccf6e; --oq-warn:#f5a524; --oq-bad:#ff6b70; --oq-info:#7cc0ff;
   --oq-data-1:#7cc0ff; --oq-data-2:#5fdc8f; --oq-data-3:#ffd25e; --oq-data-4:#ff7fae; --oq-data-5:#b998ff; --oq-data-6:#ff9a6b; }

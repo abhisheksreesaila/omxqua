@@ -28,3 +28,28 @@ for (const [fam, skin] of [["travel", "azulejo"], ["travel", "golden"], ["kids",
     assert.ok(ratio(t["on-accent"], t.accent) >= 4.5, "on-accent");
   });
 }
+// Coloured icons (2026-10-24): an icon in its data colour, darkened toward ink by --oq-icon-mix, sits on a 15% tint of
+// that colour (.ic-tile) or bare on a card or nav island. The glyph has to clear 3:1 on all three.
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mix = (a, b, p) => "#" + hex(a).map((v, i) => Math.round(v * p + hex(b)[i] * (1 - p)).toString(16).padStart(2, "0")).join("");
+const pct = (sel, fallback) => { const m = css.match(new RegExp(sel.replace(/\./g, "\\.") + "\\s*\\{([^}]*)\\}")); const v = m && m[1].match(/--oq-icon-mix:\s*([\d.]+)%/); return v ? +v[1] / 100 : fallback; };
+for (const [fam, skin] of [["dev"], ["travel"], ["travel", "azulejo"], ["travel", "golden"], ["kids"], ["kids", "sticker"], ["kids", "crayon"], ["money"]]) for (const theme of ["night", "light"]) {
+  test(`${fam}${skin ? " · " + skin : ""} · ${theme}: coloured icons 3:1 on their tile, the card and the nav`, () => {
+    const t = { ...block(`.oq-root.oq-${theme}`), ...block(`.oq-family-${fam}.oq-${theme}`), ...(skin ? block(`.oq-family-${fam}.oq-skin-${skin}.oq-${theme}`) : {}) };
+    let p = pct(`.oq-root.oq-${theme}`, 1); p = pct(`.oq-family-${fam}.oq-${theme}`, p); if (skin) p = pct(`.oq-family-${fam}.oq-skin-${skin}.oq-${theme}`, p);
+    for (let i = 1; i <= 6; i++) { const c = t["data-" + i], g = mix(c, t.ink, p);
+      for (const [name, bg] of [["tile", mix(c, t["surface-1"], .15)], ["surface-1", t["surface-1"]], ["surface-2", t["surface-2"]]])
+        assert.ok(ratio(g, bg) >= 3, `data-${i} icon on ${name}: ${ratio(g, bg).toFixed(2)}`); }
+  });
+}
+// Chips (2026-10-24) have no outline: off = ink-2 on a 6% ink tint, on = ink on a 16% accent tint, on a card or the page. Text 4.5:1.
+for (const [fam, skin] of [["dev"], ["travel"], ["travel", "azulejo"], ["travel", "golden"], ["kids"], ["kids", "sticker"], ["kids", "crayon"], ["money"]]) for (const theme of ["night", "light"]) {
+  test(`${fam}${skin ? " · " + skin : ""} · ${theme}: chip text 4.5:1 off and on`, () => {
+    const t = { ...block(`.oq-root.oq-${theme}`), ...block(`.oq-family-${fam}.oq-${theme}`), ...(skin ? block(`.oq-family-${fam}.oq-skin-${skin}.oq-${theme}`) : {}) };
+    for (const s of ["surface-0", "surface-1"]) {
+      const off = mix(t.ink, t[s], .06), on = mix(t.accent, t[s], .16);
+      assert.ok(ratio(t["ink-2"], off) >= 4.5, `off chip on ${s}: ${ratio(t["ink-2"], off).toFixed(2)}`);
+      assert.ok(ratio(t.ink, on) >= 4.5, `on chip on ${s}: ${ratio(t.ink, on).toFixed(2)}`);
+    }
+  });
+}

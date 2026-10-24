@@ -10,7 +10,7 @@ Press things. They press back. Best on a phone. 📱
 
 [![omxqua cover: every touch, a tiny joy](docs/readme/cover.png)](https://abhisheksreesaila.github.io/omxqua/)
 
-[🎛️ the full kit](https://abhisheksreesaila.github.io/omxqua/docs/showcase.html) · [🖼️ landing layouts](https://abhisheksreesaila.github.io/omxqua/docs/landing.html) · [📜 changelog](CHANGELOG.md) · MIT
+[🎛️ the showcase](https://abhisheksreesaila.github.io/omxqua/docs/showcase.html) · [🖼️ landing layouts](https://abhisheksreesaila.github.io/omxqua/docs/landing.html) · [📜 changelog](CHANGELOG.md) · MIT
 
 </div>
 
@@ -130,7 +130,8 @@ src/fonts.css        @font-face for Geist, Geist Mono, Fraunces, Nunito
 src/omxqua.js        press, the self-writing logo, motion helpers (window.Omxqua)
 fonts/               the four variable woff2 files and their licences
 docs/index.html      the cover (the live site)
-docs/showcase.html   every family, skin, shell and component, live
+docs/showcase.html   Contoso: one app in every theme, web + phone, all the parts
+docs/kit-v1.html     the earlier three-app kit (every family, skin and shell)
 docs/landing.html    the landing layer: Statement, Editorial, Bento
 AGENTS.md            the reference agents (and people) build from
 LANGUAGE.md          the rules and why

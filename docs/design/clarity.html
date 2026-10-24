@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crisp, Soft or Clear · omxqua</title>
+<link rel="stylesheet" href="../../src/fonts.css">
+<link rel="stylesheet" href="../../src/tokens.css">
+<link rel="stylesheet" href="../../src/components.css">
+<style>
+/* page chrome: neutral; only the cells are themed */
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.45 "Geist", system-ui, sans-serif; color: var(--foreground, #18181b); background: var(--background, #ececea); -webkit-font-smoothing: antialiased; }
+.top { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 0 0 14px; }
+.top b { font: 500 11px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .08em; opacity: .65; }
+.seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--card, #fff); box-shadow: inset 0 0 0 1px var(--border, #d9d9d5); }
+.seg button { border: 0; background: none; font: 550 12.5px "Geist", sans-serif; color: inherit; opacity: .7; padding: 5px 11px; border-radius: 999px; cursor: pointer; }
+.seg button.on { background: var(--foreground, #18181b); color: var(--background, #fff); opacity: 1; }
+.cmp { width: 100%; border-collapse: separate; border-spacing: 0 10px; table-layout: fixed; }
+.cmp th { text-align: left; font: 500 10.5px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .07em; opacity: .65; padding: 0 6px; }
+.cmp td { vertical-align: top; padding: 0 6px; }
+.cmp td.k b { display: block; font-size: 14px; }
+.cmp td.k span { display: block; font-size: 12.5px; opacity: .8; margin-top: 3px; }
+.cmp .verdict { display: block; margin-top: 6px; font: 500 11.5px "Geist Mono", monospace; }
+.cell { border-radius: 12px; padding: 14px; min-height: 100%; display: flex; flex-direction: column; gap: 10px; background: var(--oq-surface-1); color: var(--oq-ink); container-type: inline-size; }
+.cell > small { font: 500 10.5px var(--oq-font-mono); color: var(--oq-ink-2); }
+.cell .mo { max-width: none; }
+.m { font: 500 10.5px var(--oq-font-mono); color: var(--oq-ink-2); }
+.m.bad { color: var(--oq-bad); } .m.ok { color: var(--oq-ok); }
+.wide { overflow: hidden; }
+.wide .tbl { font-size: 12px; } .wide .tbl td, .wide .tbl th { padding: 7px 8px; white-space: nowrap; }
+.li { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; padding: 9px 0; font-size: 13px; }
+.li .t { font: 500 11.5px var(--oq-font-mono); color: var(--oq-ink-2); } .li b { display: block; font-weight: 600; } .li span { color: var(--oq-ink-2); font-size: 12px; }
+.ir { display: flex; align-items: center; gap: 12px; padding: 8px 0; font-size: 13px; }
+.ir .tile { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; flex: none; } .ir .tile .ico { width: 17px; height: 17px; }
+
+@media (max-width: 900px) {
+  .cmp, .cmp thead, .cmp tbody { display: block; } .cmp col { display: none; }
+  .cmp tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
+  .cmp th:first-child { display: none; } .cmp td, .cmp th { padding: 0; } .cmp td.k { grid-column: 1 / -1; margin-bottom: 2px; }
+  .cell { padding: 10px; }
+}
+/* ---------- Crisp: today's package, untouched ---------- */
+.f-crisp .li + .li { border-top: 1px solid var(--oq-line-2); }
+.f-crisp .ir + .ir { border-top: 1px solid var(--oq-line-2); }
+.f-crisp .ir .tile .ico { color: var(--oq-ink-2); }
+
+/* ---------- Soft: the console mock's look ---------- */
+.f-soft .mo { box-shadow: none; background: rgb(var(--oq-state) / .06); } .f-soft .mo .fl { background: transparent; } .f-soft .mo:hover { box-shadow: none; background: rgb(var(--oq-state) / .09); } .f-soft .mo:focus-within { box-shadow: inset 0 0 0 2px var(--oq-accent); }
+.f-soft .chip { border: 0; background: rgb(var(--oq-state) / .06); color: var(--oq-ink-2); } .f-soft .chip.on { background: color-mix(in srgb, var(--oq-accent) 16%, transparent); color: var(--oq-ink); }
+.f-soft .tbl th, .f-soft .tbl td { border-bottom: 0; } .f-soft .tbl tbody tr:nth-child(odd) td { background: rgb(var(--oq-state) / .03); }
+.f-soft .li { background: rgb(var(--oq-state) / .04); border-radius: 12px; padding: 9px 10px; margin-bottom: 6px; }
+.f-soft .badge { border: 0; border-radius: 999px; padding: 4px 9px; font: 550 11.5px/1 var(--oq-font); background: rgb(var(--oq-state) / .06); }
+.f-soft .badge.ok { background: color-mix(in srgb, var(--oq-ok) 14%, transparent); } .f-soft .badge.warn { background: color-mix(in srgb, var(--oq-warn) 14%, transparent); } .f-soft .badge.bad { background: color-mix(in srgb, var(--oq-bad) 14%, transparent); }
+.f-soft .btn.tonal { box-shadow: none; background: rgb(var(--oq-state) / .07); }
+.f-soft .ir .tile { background: color-mix(in srgb, var(--c) 15%, transparent); } .f-soft .ir .tile .ico { color: var(--c); }
+.f-soft .tabs { border-bottom: 0; padding: 4px; border-radius: 999px; background: rgb(var(--oq-state) / .05); width: max-content; } .f-soft .tabs button { border-radius: 999px; padding: 6px 13px; position: relative; z-index: 1; } .f-soft .tabs > i { top: 4px; bottom: 4px; height: auto; border-radius: 999px; background: var(--oq-surface-1); box-shadow: var(--oq-shadow-1); z-index: 0; }
+
+/* ---------- Clear: what Apple's HIG and Google's Material 3 do, plus WCAG 2.2 ----------
+   One new colour role, like Material's "outline": a boundary you must see to use the control, 3:1 against the card.
+   The existing --oq-line stays as the decorative divider (Material's "outline-variant", Apple's separator). */
+.f-clear { --rx-outline: color-mix(in srgb, var(--oq-ink) 50%, var(--oq-surface-1)); }
+.f-clear .mo { box-shadow: inset 0 0 0 1px var(--rx-outline); } .f-clear .mo:hover { box-shadow: inset 0 0 0 1px var(--oq-ink); } .f-clear .mo:focus-within { box-shadow: inset 0 0 0 2px var(--oq-accent); }
+.f-clear .chip { border-color: var(--rx-outline); background: transparent; } .f-clear .chip.on { border-color: transparent; background: color-mix(in srgb, var(--oq-accent) 16%, var(--oq-surface-1)); }
+.f-clear .chip .ck { width: 14px; height: 14px; }
+.f-clear .grp { background: rgb(var(--oq-state) / .045); border-radius: 12px; padding: 0 12px; }
+.f-clear .grp .li + .li { box-shadow: inset 0 1px 0 var(--oq-line); }
+.f-clear .grp .li + .li { border: 0; } .f-clear .grp .li { position: relative; } .f-clear .grp .li + .li::before { content: ""; position: absolute; top: 0; left: 54px; right: 0; border-top: 1px solid var(--oq-line); } .f-clear .grp .li + .li { box-shadow: none; }
+.f-clear .badge { border: 0; border-radius: 999px; padding: 4px 9px; font: 550 11.5px/1 var(--oq-font); background: color-mix(in srgb, currentColor 13%, var(--oq-surface-1)); }
+.f-clear .badge.bad { color: color-mix(in srgb, var(--oq-bad) 85%, var(--oq-ink)); }
+.f-clear .btn.tonal { box-shadow: none; background: color-mix(in srgb, var(--oq-accent) 18%, var(--oq-surface-1)); color: var(--oq-ink); }
+.f-clear .btn.fill { box-shadow: none; }
+.f-clear .ir .tile { background: var(--c); } .f-clear .ir .tile .ico { color: var(--on, #fff); }
+.f-clear .ir + .ir { border-top: 1px solid var(--oq-line-2); }
+</style>
+</head>
+<body>
+<div class="top">
+  <b>Theme</b><div class="seg" id="th"><button data-v="graphite">Graphite</button><button data-v="azulejo" class="on">Azulejo</button><button data-v="playground">Playground</button><button data-v="ledger">Ledger</button></div>
+  <div class="seg" id="md"><button data-v="light" class="on">Light</button><button data-v="night">Night</button></div>
+</div>
+<table class="cmp"><colgroup><col style="width:22%"><col><col><col></colgroup>
+<thead><tr><th>Component · the risk</th><th>Crisp · today</th><th>Soft · your mock</th><th>Clear · Apple + Google</th></tr></thead>
+<tbody id="rows"></tbody></table>
+
+<script src="../../src/omxqua.js"></script>
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const P = { check: '<path d="M20 6 9 17l-5-5"/>', bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/>', plane: '<path d="M2 16l20-6-20-6 4 6z"/>',
+  lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>', star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' };
+const ic = (n, c = "") => `<svg class="ico ${c}" viewBox="0 0 24 24">${P[n]}</svg>`;
+const TH = { graphite: "oq-family-dev", azulejo: "oq-family-travel oq-skin-azulejo", playground: "oq-family-kids", ledger: "oq-family-money" };
+const st = { th: "azulejo", md: "light" };
+
+const ROWS = [
+  { k: "Text field", r: "An empty field has to look like a field. Today's outline is so faint (1.3:1) that on a phone in sunlight an empty field reads as blank space. WCAG and Material ask for 3:1.", v: "Clear: one darker outline",
+    html: f => `<label class="mo"><input placeholder=" "><span class="fl">Where to</span></label><label class="mo"><input placeholder=" " value="Lisbon"><span class="fl">City</span></label>` },
+  { k: "Filter chips", r: "You need to see which filters are on. If 'on' is only a slightly darker tint, people can't tell. Material adds a check mark, and WCAG says colour alone isn't enough.", v: "Clear: outline when off, fill and check when on",
+    html: f => `<div class="wrap-row">${[["Food", 1], ["Open now", 1], ["Under €30", 0], ["Saved", 0]].map(c => `<button class="chip ${c[1] ? "on" : ""}">${c[1] && f === "clear" ? ic("check", "ck") : ""}${c[0]}</button>`).join("")}</div>` },
+  { k: "Wide table", r: "With six columns, your eye has to follow one row across the screen. Without lines, the stripes on alternate rows are too faint to follow (1.05:1). Apple and Google both draw thin dividers here.", v: "Clear = Crisp: keep the hairlines",
+    html: f => `<div class="wide"><table class="tbl"><thead><tr><th>Trip</th><th>Dates</th><th>People</th><th>Stay</th><th class="num">Budget</th><th class="num">Spent</th></tr></thead><tbody>${[["Lisbon", "Oct 24", "4", "Memmo", "€2,000", "€1,840"], ["Kyoto", "Nov 12", "2", "Hoshinoya", "€3,400", "€410"], ["Reykjavík", "Jan 3", "3", "Ion", "€2,600", "€0"], ["Mexico City", "Feb 14", "2", "Condesa", "€1,800", "€220"]].map(r => `<tr>${r.map((c, i) => `<td class="${i > 3 ? "num" : ""}">${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>` },
+  { k: "List rows", r: "Low risk. Rows of plain text don't need strong edges. Soft's tiles are fine; Apple groups the rows on one rounded panel with lines starting after the time column.", v: "Either is fine; Clear = Apple's grouped list",
+    html: f => { const rows = [["08:40", "TAP 1352 · JFK → LIS", "Seat 14C"], ["21:30", "Check in · Memmo Alfama", "3 nights"], ["22:15", "Dinner · Taberna", "Table for 4"]].map(r => `<div class="li"><span class="t">${r[0]}</span><div><b>${r[1]}</b><span>${r[2]}</span></div></div>`).join(""); return f === "clear" ? `<div class="grp">${rows}</div>` : `<div>${rows}</div>`; } },
+  { k: "Status", r: "The word is what matters, so the shape is a matter of taste. The pill has to keep its text at 4.5:1; Ledger Light's 'cancelled' was 4.2.", v: "Clear: pill, red darkened to pass",
+    html: f => `<div class="wrap-row"><span class="badge ok"><i></i>booked</span><span class="badge warn"><i></i>waitlist</span><span class="badge bad"><i></i>cancelled</span></div>` },
+  { k: "Tonal button", r: "A second button has to look pressable. Soft's 7% tint is nearly invisible on a card (1.15:1). Material's tonal button uses a stronger tint of the accent and no shadow; so do Apple's tinted buttons.", v: "Clear: accent-tinted, no shadow",
+    html: f => `<div class="wrap-row"><button class="btn fill">Add to Friday</button><button class="btn tonal">Preview</button><button class="btn text">Cancel</button></div>` },
+  { k: "Coloured icons", r: "A coloured icon on a pale tint of its own colour can vanish: try Playground, where yellow is 1.8:1. Apple's Settings uses a solid tile with a white or black glyph; Material keeps icons one colour.", v: "Clear: solid tile, glyph in the colour that reads best",
+    html: f => [["bell", 1, "Notifications"], ["lock", 2, "Privacy"], ["star", 3, "Saved places"], ["sun", 6, "Appearance"]].map(r => `<div class="ir"><span class="tile" style="--c:var(--oq-data-${r[1]})">${ic(r[0])}</span>${r[2]}</div>`).join("") },
+  { k: "Tabs vs segmented", r: "Tabs move you to another page; a segmented control changes how this one looks. Soft draws both as the same pill, so you can't tell them apart. Material keeps an underline for tabs, and Apple uses a pill for segmented controls.", v: "Clear = Crisp: underline tabs, pill segmented",
+    html: f => `<div class="tabs"><i></i><button class="on">Plans</button><button>Budget</button><button>People</button></div><div><div class="seg2"><i></i><button class="on">List</button><button>Calendar</button></div></div>` },
+];
+const lum = rgb => { const c = rgb.match(/[\d.]+/g).slice(0, 3).map(v => v / 255).map(v => v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; };
+const ratio = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+/* read a computed colour as solid rgb, composited over what's under it (default: the cell's card colour) */
+let under = "#fff";
+const rgbOf = (el, prop) => { const v = getComputedStyle(el)[prop]; const ctx = document.createElement("canvas").getContext("2d"); ctx.fillStyle = under; ctx.fillRect(0, 0, 1, 1); ctx.fillStyle = v; ctx.fillRect(0, 0, 1, 1); const d = ctx.getImageData(0, 0, 1, 1).data; return `rgb(${d[0]},${d[1]},${d[2]})`; };
+
+function render() {
+  const root = f => `oq-root oq-${st.md} ${TH[st.th]} cell f-${f}`;
+  $("#rows").innerHTML = ROWS.map((r, i) => `<tr><td class="k"><b>${r.k}</b><span>${r.r}</span><span class="verdict">→ ${r.v}</span></td>${["crisp", "soft", "clear"].map(f => `<td><div class="${root(f)}" data-row="${i}" data-f="${f}">${r.html(f)}<small class="meas"></small></div></td>`).join("")}</tr>`).join("");
+  requestAnimationFrame(() => {
+    $$(".seg2, .tabs").forEach(Omxqua.placeThumb);
+    /* Clear's icon tiles: white or near-black glyph, whichever reads better on the tile */
+    $$(".f-clear .tile").forEach(t => { const bg = rgbOf(t, "backgroundColor"); t.style.setProperty("--on", ratio(bg, "rgb(255,255,255)") >= ratio(bg, "rgb(17,17,17)") ? "#fff" : "#111"); });
+    /* measured: the boundary that tells you it's a control, or the icon against its tile */
+    $$(".cell").forEach(c => { const out = $(".meas", c), f = c.dataset.f; under = "#fff"; const card = rgbOf(c, "backgroundColor"); under = card; let txt = "";
+      const mo = $(".mo", c); if (mo) { const sh = getComputedStyle(mo).boxShadow, col = sh.match(/rgba?\([^)]+\)|oklab\([^)]+\)|color\([^)]+\)/); const edge = f === "soft" ? rgbOf(mo, "backgroundColor") : col ? (() => { const t = document.createElement("i"); t.style.color = col[0]; c.appendChild(t); const v = rgbOf(t, "color"); t.remove(); return v; })() : card; txt = `edge ${ratio(edge, card).toFixed(2)}:1 · needs 3`; out.className = "meas m " + (ratio(edge, card) >= 3 ? "ok" : "bad"); }
+      const tile = $$(".tile", c); if (tile.length) { const w = Math.min(...tile.map(t => { const g = rgbOf($(".ico", t), "color"), b = f === "crisp" ? card : rgbOf(t, "backgroundColor"); return ratio(g, b); })); txt = `weakest icon ${w.toFixed(2)}:1 · needs 3`; out.className = "meas m " + (w >= 3 ? "ok" : "bad"); }
+      const bt = $(".btn.tonal", c); if (bt) { const b = rgbOf(bt, "backgroundColor"), r = ratio(b, card), sh = getComputedStyle(bt).boxShadow !== "none"; txt = `button vs card ${r.toFixed(2)}:1${sh ? " + shadow" : ""} · no rule; Material's ≈ 1.3`; out.className = "meas m " + (r >= 1.25 || sh ? "ok" : "bad"); }
+      const bad = $(".badge.bad", c); if (bad) { const fg = rgbOf(bad, "color"), b = rgbOf(bad, "backgroundColor"); const r = ratio(fg, b); txt = `'cancelled' ${r.toFixed(2)}:1 · needs 4.5`; out.className = "meas m " + (r >= 4.5 ? "ok" : "bad"); }
+      out.textContent = txt; });
+  });
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".seg button"); if (b) { st[b.parentElement.id] = b.dataset.v; $$("button", b.parentElement).forEach(x => x.classList.toggle("on", x === b)); render(); return; }
+  const g = e.target.closest(".seg2 button, .tabs button"); if (g) { $$("button", g.parentElement).forEach(x => x.classList.toggle("on", x === g)); Omxqua.placeThumb(g.parentElement); }
+  const c = e.target.closest(".cell .chip"); if (c) { c.classList.toggle("on"); const cell = c.closest(".cell"); if (cell.dataset.f === "clear") { const has = $(".ck", c); if (c.classList.contains("on") && !has) c.insertAdjacentHTML("afterbegin", ic("check", "ck")); if (!c.classList.contains("on") && has) has.remove(); } }
+});
+const q = new URLSearchParams(location.search); if (q.get("theme")) st.th = q.get("theme"); if (q.get("mode")) st.md = q.get("mode");
+$$("#th button").forEach(x => x.classList.toggle("on", x.dataset.v === st.th)); $$("#md button").forEach(x => x.classList.toggle("on", x.dataset.v === st.md));
+render();
+})();
+</script>
+</body>
+</html>

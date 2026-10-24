@@ -206,10 +206,19 @@
 :where(.oq-root) .badge { font: 500 11px/1 var(--oq-font-mono); padding: 4px 6px; border-radius: var(--oq-radius-xs); border: 1px solid var(--oq-line); background: var(--oq-surface-1); color: var(--oq-ink-2); white-space: nowrap; display: inline-flex; gap: 5px; align-items: center; }
 :where(.oq-root) .badge i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 :where(.oq-root) .badge.ok { color: var(--oq-ok); } :where(.oq-root) .badge.warn { color: var(--oq-warn); } :where(.oq-root) .badge.bad { color: var(--oq-bad); } :where(.oq-root) .badge.info { color: var(--oq-info); }
-:where(.oq-root) .chip { height: calc(var(--oq-target) - 6px); padding: 0 12px; border-radius: var(--oq-radius-full); border: 1px solid var(--oq-line); background: var(--oq-surface-1); font-size: .9em; font-weight: 500; display: inline-flex; gap: 6px; align-items: center;
+:where(.oq-root) .chip { height: calc(var(--oq-target) - 6px); padding: 0 12px; border-radius: var(--oq-radius-full); border: 0; background: rgb(var(--oq-state) / .06); color: var(--oq-ink-2); font-size: .9em; font-weight: 500; display: inline-flex; gap: 6px; align-items: center;
   transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast), background .15s; }
-:where(.oq-root) .chip:hover { background: var(--oq-surface-2); }
-:where(.oq-root) .chip.on { background: rgb(var(--oq-state) / .1); border-color: transparent; font-weight: 600; }
+:where(.oq-root) .chip:hover { background: rgb(var(--oq-state) / .09); }
+:where(.oq-root) .chip.on { background: color-mix(in srgb, var(--oq-accent) 16%, transparent); color: var(--oq-ink); font-weight: 600; } /* tinted, no outline (owner, 2026-10-24) */
+/* Coloured icons (owner, 2026-10-24): set --c to a data colour. .ic-tile = the icon on a 15% tint of its colour; .ico-c = a bare coloured icon.
+   The glyph is darkened toward ink by --oq-icon-mix so it clears 3:1 in every theme (tests/contrast.test.cjs). */
+:where(.oq-root) .ic-tile { --s: 28px; width: var(--s); height: var(--s); border-radius: calc(var(--s) * .32); display: inline-grid; place-items: center; flex: none; background: color-mix(in srgb, var(--c) 15%, transparent); }
+:where(.oq-root) .ic-tile .ico, :where(.oq-root) .ico-c { color: color-mix(in srgb, var(--c) var(--oq-icon-mix), var(--oq-ink)); }
+:where(.oq-root) .ic-tile .ico { width: calc(var(--s) * .54); height: calc(var(--s) * .54); }
+:where(.oq-root) .ic-tile.lg { --s: 36px; }
+:where(.oq-root) .card-h h3:has(.ic-tile) { display: flex; align-items: center; gap: 9px; }
+/* nav items with --c show their icon in colour until picked */
+:where(.oq-root) :is(.topnav, .tabbar) button:not(.on) .ico { color: color-mix(in srgb, var(--c) var(--oq-icon-mix), var(--oq-ink)); }
 :where(.oq-root) .chip .x { opacity: .6; }
 /* fields */
 :where(.oq-root) .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }

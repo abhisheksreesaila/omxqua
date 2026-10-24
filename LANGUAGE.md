@@ -17,7 +17,7 @@ An app only adds to the layer above it, never overrides it.
 ## Texture
 - Depth is tone plus one shadow scale: page `surface-0`; cards `surface-1` + `shadow-1`; menus and popovers `surface-2` + `shadow-2`; the nav islands frosted glass (below); dialogs and the palette `surface-3` + `shadow-3` over a scrim.
 - **Glass on the nav islands only** (decided 2026-10-21): the top nav pill and the tab bar are `surface-2` at 58% with a 20 px backdrop blur, so the page shows through as it scrolls under. Cards, menus, sheets, dialogs and the Beacon stay opaque. Solid again under `prefers-reduced-transparency` or where the browser can't blur.
-- **Every part has a phone counterpart** (decided 2026-10-21), from the same markup: menus and selects open as an action sheet along the bottom, tooltips give way to `aria-label`, dialog actions stack full width, toasts sit above the tab bar, fields use 16 px text, buttons are at least 44 px tall, and touch screens get no hover effects. The islands stick (`position: fixed`); the bare logo frosts once content scrolls under it. The showcase's Pairs view shows each pair.
+- **Every part has a phone counterpart** (decided 2026-10-21), from the same markup: menus and selects open as an action sheet along the bottom, tooltips give way to `aria-label`, dialog actions stack full width, toasts sit above the tab bar, fields use 16 px text, buttons are at least 44 px tall, and touch screens get no hover effects. The islands stick (`position: fixed`); the bare logo frosts once content scrolls under it. The showcase's Components view shows each pair.
 - **Phone tab bar: labels at rest, icons only while scrolling down** (decided 2026-10-21, revised the same day: icons alone get guessed wrong, see `docs/research.html`). At rest each tab is a 22 px icon over a 10.5 px label (68 × 52 px); scrolling down past 60 px shrinks it to icons only (54 × 44 px, never below the family target), scrolling up or reaching the top brings the labels back (our take on iOS 26's opt-in collapsing tab bar). The label stays the accessible name. Its thumb is liquid: it stretches along the way when it moves and settles with a small wobble, and the bar can be dragged (thumb lifts and follows the finger, release picks the tab).
 - **No gradients on chrome**, on any platform.
 - Hover, press and selected are Material state layers: ink at 8% / 12% / 16% over the surface (`rgb(var(--oq-state) / .08)`), never a new colour.
@@ -37,12 +37,12 @@ One sans for words, one mono for numbers, ids, paths, commands and every source 
 - **Contrast**: text 4.5:1 on its surface in Light and Night; `ink-faint` is never text.
 
 ## Families (an app class picks one)
-Each family sets surfaces, accent, data palette and character for Night and Light. Root: `oq-root oq-night|oq-light oq-family-<dev|travel|kids|money>`. All pairs below pass 4.5:1. Live: `docs/showcase.html` (App and Kit views, Night/Light, desktop/phone).
+Each family sets surfaces, accent, data palette and character for Night and Light. Root: `oq-root oq-night|oq-light oq-family-<dev|travel|kids|money>`. All pairs below pass 4.5:1. Live: `docs/showcase.html` (Contoso, one app in every theme, web and phone side by side).
 
 | Family | For | Night | Light | Accent | Character |
 |---|---|---|---|---|---|
 | **Developer · Graphite** (`dev`) | libraries, PyPI packages, consoles (mxconsole, omxcore) | near-black #0b0b0d | cool grey #eeeef1 | ink (white / black) | compact (34 px), cards 12, mono-forward, numbers and source lines everywhere |
-| **Travel · Coast** (`travel`) | trips, places, days (gitaway) | deep sea #0b1214 | warm sand #f4f0e9 | sea teal #5fd4c8 / #0b6e69 | 40 px targets, cards 16, kinds carry colour (flight, stay, food, see), days never do |
+| **Travel · Coast** (`travel`) | trips, places, days (Contoso) | deep sea #0b1214 | warm sand #f4f0e9 | sea teal #5fd4c8 / #0b6e69 | 40 px targets, cards 16, kinds carry colour (flight, stay, food, see), days never do |
 | **Kids · Playground** (`kids`) | children's apps (questly) | plum #171221 | cream #fff6ea | tangerine #ffad66 / #c2410c | roomy (48 px), cards 22, type 15.5 px, big icon tiles, one hero card, a big "I did it!" button |
 | **Notes · Paper** (`notes`) | notebooks, canvases, writing (Personal Note) | ink-blue night #0d1015, panels #171c24 | warm paper desk #ece7dd, panels #fffdf8 | ink (Paper #1f1b16) · mint #7ee7c8 (Night) · blue #2f6fe0 (Crayon) | the work is the hero: Canvas shell, islands over a dotted desk; display font per skin (Bricolage Grotesque; Night: Instrument Serif italic); content may carry colour (emoji note icons in tinted tiles), chrome stays monochrome |
 | **Money · Ledger** (`money`) | accounts, spending, budgets (finxplorer) | near-black #0d0c12 | cool paper #f1f0f5 | violet #b8aaff / #5b4bd6 | 40 px targets, cards 16, every amount mono and tabular, categories carry the data colours, in / out are ok / bad with the word |
@@ -88,6 +88,8 @@ Each with hover, press, focus, disabled and error states:
 - Buttons: one filled accent button per card, with a specific verb ("Serve qwen2.5-0.5b", not "Submit"); the rest tonal or text. Inside a panel, blade or command bar (`.oq-flat`) buttons are flat: no shadow, no hover lift (owner, 2026-10-20: "the button can be flat… no elevation in the detail view").
     - The detail (owner-approved 2026-10-20): pill shape; filled = accent + `shadow-1`, hover lifts 1px to `shadow-2`; tonal = `surface-2` + `shadow-1`; text = no fill; every button gets a state-layer tint on hover and a 0.96 squash on press (`--oq-spring-fast`).
 - Fields: label above, help line below, the error as a sentence under the field.
+- Chips: no outline; off is a light state tint, on is a tint of the accent with ink text (decided 2026-10-24).
+- Coloured icons (decided 2026-10-24): a card title or list row may carry its icon in a data colour on a 15% tint of it (`.ic-tile`); nav items may colour their icons until picked. The colour says what a thing is, never its state; every glyph clears 3:1 (`--oq-icon-mix` darkens it toward ink in Light).
 - Dropdowns, menus, popovers: themed (never the browser's list), gentle tier.
 - Tables: hairline rows, mono right-aligned numbers, sticky header; a long list scrolls inside its card, which never grows past the screen.
 - Toast with Undo, tooltip with shortcut, command palette, dialog with scrim, bottom sheet (grabber, peek / half / full).
@@ -125,7 +127,7 @@ Same family, fonts and colours as the app, turned up: the app is quiet and dense
 - **Nav:** the app's Top islands, lighter: brand left, a pill of section links centre, one filled CTA right; solid background (no blur).
 - **CTAs:** one filled pill with a specific verb + a text link with `›`.
 - **Motion happens on scroll, never on idle:** the hero's words rise in once (staggered, ~70 ms apart); sections rise 28 px as they enter; the product frame unfolds (scale 0.82 → 1, corners 40 → 14 px) while sticky; one read-along paragraph lights up word by word; numbers count up once. Reduced motion: everything static and visible.
-- **Show the real app,** live in a frame (`docs/showcase.html?bare=1`), never a fake screenshot. Bento tiles hold real components (Beacon, quest tiles, charts).
+- **Show the real app,** live in a frame (`docs/showcase.html?bare=1&screen=home&theme=…`), never a fake screenshot. Bento tiles hold real components (Beacon, quest tiles, charts).
 - **Gradient syntax is fine for solid fills and loading states** (a slider track filled to its value, a skeleton shimmer); the ban is on decorative colour gradients on chrome or text.
 - **Not on landing pages:** gradients on text, glass, autoplay video with sound, carousels, cookie walls in front of the hero.
 
@@ -152,4 +154,5 @@ mxconsole concept (desktop + phone, Night + Light, motion budget applied): `~/Pr
 - Not motion everywhere: the budget decides, and most things don't morph.
 
 ## Reviews
+- 2026-10-24 · Crisp vs Soft vs Clear (`docs/design/clarity.html`): the owner kept Crisp and borrowed Soft's chips and coloured icons. Noted, not adopted: the field outline (`--oq-line`) is 1.3:1 against the card, below WCAG's 3:1 for a control's edge.
 - 2026-10-20 · Google Stitch: `review/FINDINGS.md` (agreed fixes applied the same day; borrowed day-chip neighbourhoods, budget split by kind, reward chips on quest tiles).

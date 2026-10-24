@@ -3,212 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>omxqua · showcase</title>
+<title>Contoso · omxqua showcase</title>
 <link rel="stylesheet" href="../src/fonts.css">
 <link rel="stylesheet" href="../src/tokens.css">
 <link rel="stylesheet" href="../src/components.css">
 <style>
-/* Demo only: the page bar, the stage, the Touch lab and the demo apps' parts (days, rail, tiles, hero, week, kit).
-   Everything reusable is in ../src/components.css. */
-.hero h2, .day b, .tile b { font-family: var(--oq-font-display); }
-.oq-skin-azulejo .blk { border-radius: 6px; }
-.oq-skin-azulejo .day { border-radius: 8px; }
-.oq-skin-azulejo .day b { font-weight: 600; }
-.oq-skin-golden .blk { border-radius: 16px; }
-.oq-skin-golden .day { border-radius: 16px; }
-.oq-skin-sticker .hero h2, .oq-skin-sticker .tile b { font-weight: 850; }
-.oq-skin-sticker .tile { --oq-press: ledge; }
-.oq-skin-sticker .hero { box-shadow: 0 4px 0 color-mix(in srgb, var(--oq-accent) 62%, #000); }
-.oq-skin-sticker .tile { box-shadow: inset 0 0 0 2px var(--oq-line), 0 4px 0 var(--oq-line); }
-.oq-skin-sticker .tile:hover { transform: none; box-shadow: inset 0 0 0 2px var(--oq-line), 0 4px 0 var(--oq-line); filter: brightness(1.02); }
-.oq-skin-sticker .tile:active { box-shadow: inset 0 0 0 2px var(--oq-line); }
-.oq-skin-sticker .tile.done { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--oq-ok) 55%, transparent), 0 4px 0 color-mix(in srgb, var(--oq-ok) 55%, transparent); }
-.oq-skin-sticker .tile .ic { box-shadow: 0 3px 0 color-mix(in srgb, var(--c) 60%, #000); }
-.oq-skin-sticker .week em { background: var(--oq-accent) !important; }
-.oq-skin-crayon .hero h2, .oq-skin-crayon .tile b { font-weight: 850; }
-.oq-skin-crayon .tile { background: color-mix(in srgb, var(--c) 15%, var(--oq-surface-1)); box-shadow: none; }
-.oq-skin-crayon .tile .ic { border-radius: 50%; }
-.oq-skin-crayon .tile.done { background: color-mix(in srgb, var(--oq-ok) 18%, var(--oq-surface-1)); }
-.oq-skin-crayon .hero { background: color-mix(in srgb, var(--oq-data-5) 18%, var(--oq-surface-1)); color: var(--oq-ink); box-shadow: none; }
-.oq-skin-crayon .hero .stars { color: var(--oq-accent); }
-.oq-skin-crayon .week div:nth-child(7n+1) em { background: var(--oq-data-1); } .oq-skin-crayon .week div:nth-child(7n+2) em { background: var(--oq-data-2); } .oq-skin-crayon .week div:nth-child(7n+3) em { background: var(--oq-data-3); }
-.oq-skin-crayon .week div:nth-child(7n+4) em { background: var(--oq-data-4); } .oq-skin-crayon .week div:nth-child(7n+5) em { background: var(--oq-data-5); } .oq-skin-crayon .week div:nth-child(7n+6) em { background: var(--oq-data-6); }
-/* =====================================================================
-   TOUCH LAB: Material-style micro-interactions next to ours
-   ===================================================================== */
-.tl { display: grid; grid-template-columns: 150px 1fr 1fr 1.25fr; border-radius: var(--oq-radius-card); background: var(--oq-surface-1); box-shadow: var(--oq-shadow-1); overflow: hidden; }
-.tl > div { padding: 18px 16px; border-bottom: 1px solid var(--oq-line-2); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; min-width: 0; }
-.tl > .h { font: 500 11px var(--oq-font-mono); color: var(--oq-ink-2); text-transform: uppercase; letter-spacing: .07em; padding: 10px 16px; background: var(--oq-surface-0); }
-.tl .nm { font-weight: 600; font-size: .95em; }
-.tl .note { font-size: .84em; color: var(--oq-ink-2); line-height: 1.45; display: block; }
-.tl .note b { color: var(--oq-ink); font-weight: 600; }
-.tl .note .fit { color: var(--oq-ok); font-weight: 600; } .tl .note .clash { color: var(--oq-warn); font-weight: 600; }
-@container (max-width: 640px) {
-  .tl { grid-template-columns: 1fr; }
-  .tl > .h { display: none; }
-  .tl > div:nth-child(4n+1) { background: var(--oq-surface-0); padding: 10px 16px; }
-}
-/* halo: a soft state-layer circle behind small controls; pulses once in the accent on check */
-.mh { position: relative; display: inline-grid; place-items: center; }
-.mh::before { content: ""; position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgb(var(--oq-state) / 0); transform: scale(.6); transition: background .2s, transform .25s var(--oq-ease-in); pointer-events: none; }
-.mh:hover::before { background: rgb(var(--oq-state) / .08); transform: scale(1); }
-.mh:active::before { background: rgb(var(--oq-state) / .16); transform: scale(1); }
-.mh.pulse::after { content: ""; position: absolute; width: 18px; height: 18px; border-radius: 50%; animation: mpulse .5s var(--oq-ease-in) forwards; pointer-events: none; }
-@keyframes mpulse { from { box-shadow: 0 0 0 0 color-mix(in srgb, var(--oq-accent) 45%, transparent); } to { box-shadow: 0 0 0 16px color-mix(in srgb, var(--oq-accent) 0%, transparent); } }
-/* checkbox: box fills from the centre, tick draws itself */
-.mcheck { width: 18px; height: 18px; border-radius: 5px; border: 0; padding: 0; background: none; box-shadow: inset 0 0 0 2px var(--oq-ink-2); position: relative; display: grid; place-items: center; transition: box-shadow .2s; }
-.mcheck i { position: absolute; inset: 0; border-radius: 5px; background: var(--oq-accent); transform: scale(0); transition: transform .22s var(--oq-ease-in); }
-.mcheck svg { position: relative; width: 14px; height: 14px; fill: none; stroke: var(--oq-on-accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 16; stroke-dashoffset: 16; transition: stroke-dashoffset .22s var(--oq-ease-in) .08s; }
-.mcheck.on { box-shadow: inset 0 0 0 2px var(--oq-accent); } .mcheck.on i { transform: scale(1); } .mcheck.on svg { stroke-dashoffset: 0; }
-.mradio { width: 18px; height: 18px; border-radius: 50%; border: 0; padding: 0; background: none; box-shadow: inset 0 0 0 2px var(--oq-ink-2); display: grid; place-items: center; transition: box-shadow .2s; }
-.mradio::after { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--oq-accent); transform: scale(0); transition: transform .22s var(--oq-ease-in); }
-.mradio.on { box-shadow: inset 0 0 0 2px var(--oq-accent); } .mradio.on::after { transform: scale(1); }
-/* switch: thumb grows when on (Material 3), halo around the thumb */
-.mswitch { width: 46px; height: 28px; border-radius: 999px; border: 0; padding: 0; background: var(--oq-surface-0); box-shadow: inset 0 0 0 2px var(--oq-ink-2); position: relative; transition: background .2s, box-shadow .2s; }
-.mswitch b { position: absolute; left: 7px; top: 7px; width: 14px; height: 14px; border-radius: 50%; background: var(--oq-ink-2); transition: all .26s var(--oq-ease-in); }
-.mswitch b::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; background: rgb(var(--oq-state) / 0); transition: background .2s; }
-.mswitch:hover b::before { background: rgb(var(--oq-state) / .08); } .mswitch:active b { width: 26px; height: 26px; left: 1px; top: 1px; }
-.mswitch.on { background: var(--oq-accent); box-shadow: none; } .mswitch.on b { left: 21px; top: 3px; width: 22px; height: 22px; background: var(--oq-on-accent); }
-.mswitch.on:active b { left: 19px; top: 1px; width: 26px; height: 26px; }
-/* filled text field: label inside, floats up on focus; underline grows from where you clicked */
-.mf { position: relative; display: block; width: 100%; max-width: 260px; height: 56px; border-radius: 10px 10px 0 0; background: rgb(var(--oq-state) / .05); box-shadow: inset 0 -1px 0 var(--oq-ink-2); cursor: text; transition: background .2s; }
-.mf:hover { background: rgb(var(--oq-state) / .08); }
-.mf input { all: unset; position: absolute; inset: 0; padding: 24px 14px 6px; font: inherit; color: var(--oq-ink); box-sizing: border-box; width: 100%; }
-.mf .fl { position: absolute; left: 14px; top: 18px; color: var(--oq-ink-2); transform-origin: 0 0; transition: transform .2s var(--oq-ease-in), color .2s; pointer-events: none; white-space: nowrap; }
-.mf input:focus + .fl, .mf input:not(:placeholder-shown) + .fl { transform: translateY(-10px) scale(.75); }
-.mf input:focus + .fl { color: var(--oq-accent); }
-.mf .ul { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--oq-accent); transform: scaleX(0); transition: transform .28s var(--oq-ease-in); }
-.mf:focus-within .ul { transform: scaleX(1); }
-.mf.err { box-shadow: inset 0 -1px 0 var(--oq-bad); } .mf.err .ul { background: var(--oq-bad); } .mf.err .fl { color: var(--oq-bad) !important; }
-/* ripple: a disc spreads from where you pressed */
-.rp { overflow: hidden; }
-.rp .ripple { position: absolute; border-radius: 50%; background: currentColor; opacity: .22; transform: scale(0); animation: ripple .55s var(--oq-ease-in) forwards; pointer-events: none; }
-@keyframes ripple { to { transform: scale(1); opacity: 0; } }
-/* =====================================================================
-   PAGE AROUND THE STAGE
-   ===================================================================== */
-html, body { margin: 0; background: #08080a; }
-.bar { position: sticky; top: 0; z-index: 100; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 10px 14px; background: #08080a; border-bottom: 1px solid #1d1d22; font: 13px "Geist", system-ui; color: #a9a9b1; }
-.bar b { color: #ededef; font-weight: 600; margin-right: 6px; }
-.pseg { display: inline-flex; padding: 3px; border-radius: 999px; background: #18181c; }
-.pseg button { border: 0; background: none; color: #a9a9b1; font: 500 12.5px "Geist"; padding: 6px 12px; border-radius: 999px; cursor: pointer; }
-.pseg button.on { background: #ededef; color: #0b0b0d; }
-.stagewrap { padding: 18px; display: flex; justify-content: center; }
-.stage { width: 100%; max-width: 1240px; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px #1d1d22; transition: max-width .4s var(--oq-ease-in, ease); }
-.stage.phone { max-width: 390px; border-radius: 40px; box-shadow: 0 0 0 10px #050506, 0 0 0 11px #2a2a2e; }
-.stage.phone .screen { height: 844px; }
-.stage:not(.phone) .screen { height: 820px; }
-body.bare .bar { display: none; } body.bare .stagewrap { padding: 0; } body.bare .stage { max-width: none; border-radius: 0; box-shadow: none; } body.bare .stage:not(.phone) .screen { height: 100vh; } body.bare .stage.phone { max-width: none; border-radius: 0; box-shadow: none; } body.bare .stage.phone .screen { height: 100vh; }
-.stage:not(.phone) .shell { min-height: 0; }
-.screen { min-height: 760px; display: flex; flex-direction: column; container-type: inline-size; position: relative; overflow: hidden; contain: layout; } /* contain: the fixed islands pin to this frame, not the window */
-@container (max-width: 640px) {
-  .statusbar { display: flex !important; }
-}
-.statusbar { display: none; height: 46px; align-items: flex-end; justify-content: space-between; padding: 0 28px 6px; font-weight: 600; font-size: 14px; }
-/* =====================================================================
-   APP-SPECIFIC PARTS
-   ===================================================================== */
-/* developer */
-.install { display: flex; align-items: center; gap: 10px; background: var(--oq-surface-0); border-radius: var(--oq-radius-in); padding: 0 6px 0 12px; height: var(--oq-target); font: 12.5px var(--oq-font-mono); box-shadow: inset 0 0 0 1px var(--oq-line); }
-.install span { flex: 1; }
-.chart { width: 100%; height: 190px; display: block; }
-.runs { list-style: none; margin: 0; padding: 0 8px 8px; }
-.runs li { display: grid; grid-template-columns: 10px 1fr auto; gap: 10px; align-items: center; padding: 9px 8px; border-radius: 8px; font-size: .92em; }
-.runs li:hover { background: rgb(var(--oq-state) / .05); }
-.runs .meta { font: 11.5px var(--oq-font-mono); color: var(--oq-ink-2); }
-.dot { width: 8px; height: 8px; border-radius: 50%; }
-/* travel */
-.days { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
-.day { flex: none; border: 1px solid var(--oq-line); background: var(--oq-surface-1); border-radius: 12px; padding: 7px 12px; text-align: center; font-size: .82em; color: var(--oq-ink-2); transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast); }
-.day b { display: block; font-size: 1.35em; color: var(--oq-ink); letter-spacing: -.02em; }
-.day small { display: block; font-size: .78em; margin-top: 2px; opacity: .8; white-space: nowrap; }
-.day.on { background: var(--oq-ink); border-color: var(--oq-ink); color: var(--oq-surface-1); } .day.on b { color: var(--oq-surface-1); }
-.rail { display: grid; grid-template-columns: 52px 1fr; gap: 0 12px; padding: 4px 16px 14px; }
-.rail .t { font: 500 12px var(--oq-font-mono); color: var(--oq-ink-2); padding-top: 12px; text-align: right; }
-.blk { border-radius: 12px; padding: 10px 12px; margin: 5px 0; color: #fff; display: flex; gap: 10px; align-items: flex-start; cursor: pointer; transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast), box-shadow .2s; box-shadow: var(--oq-shadow-1); }
-.blk:hover { box-shadow: var(--oq-shadow-2); }
-.blk b { display: block; font-weight: 600; font-size: .95em; } .blk span { font-size: .82em; opacity: .9; }
-.oq-night .blk { color: var(--oq-surface-0); }
-.map { height: 220px; border-radius: 12px; margin: 0 16px; background: var(--oq-surface-0); position: relative; overflow: hidden; }
-.map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.pin { position: absolute; width: 26px; height: 26px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: grid; place-items: center; box-shadow: var(--oq-shadow-2); }
-.pin i { transform: rotate(45deg); font: 700 11px var(--oq-font-mono); color: #fff; font-style: normal; }
-.legend { display: flex; gap: 14px; flex-wrap: wrap; padding: 10px 16px 14px; font-size: .82em; color: var(--oq-ink-2); }
-.legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 6px; }
-/* kids */
-.hero { border-radius: var(--oq-radius-card); padding: 20px 22px; display: flex; gap: 18px; align-items: center; background: var(--oq-accent); color: var(--oq-on-accent); box-shadow: var(--oq-shadow-2); }
-.hero h2 { margin: 0 0 4px; font-size: 1.5em; letter-spacing: -.02em; }
-.hero p { margin: 0; opacity: .9; }
-.hero .stars { margin-left: auto; text-align: center; font-weight: 700; font-size: 2.2em; line-height: 1; }
-.hero .stars small { display: block; font-size: .36em; font-weight: 600; opacity: .9; margin-top: 4px; }
-.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-@container (max-width: 640px) {
-  .tiles { grid-template-columns: 1fr 1fr; }
-  .hero { flex-wrap: wrap; }
-}
-.tile { border: 0; text-align: left; border-radius: var(--oq-radius-card); padding: 16px; display: flex; flex-direction: column; gap: 10px; min-height: 132px; background: var(--oq-surface-1); box-shadow: var(--oq-shadow-1); position: relative;
-  transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast), box-shadow .2s; }
-.tile:hover { box-shadow: var(--oq-shadow-2); transform: translateY(-2px); }
-.tile .ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: #fff; }
-.tile .ic .ico { width: 24px; height: 24px; stroke-width: 2.2; }
-.tile b { font-size: 1.08em; }
-.tile { min-width: 0; } .tile .ft { min-width: 0; display: flex; align-items: center; gap: 8px; margin-top: auto; font-size: inherit; color: inherit; }
-.tile .ft span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tile .rw { flex: none; font: 700 12px var(--oq-font-mono); font-style: normal; padding: 4px 8px; border-radius: 999px; background: rgb(var(--oq-state) / .07); color: var(--oq-ink-2); }
-.tile.done .rw { background: color-mix(in srgb, var(--oq-ok) 18%, transparent); color: var(--oq-ok); } .tile span { font-size: .85em; color: var(--oq-ink-2); }
-.tile.done { background: color-mix(in srgb, var(--oq-ok) 12%, var(--oq-surface-1)); }
-.tile.done::after { content: "✓"; position: absolute; top: 12px; right: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--oq-ok); color: #fff; display: grid; place-items: center; font-weight: 700; }
-.oq-night .tile .ic { color: var(--oq-surface-0); }
-.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; padding: 0 16px 16px; }
-.week div { text-align: center; font-size: .8em; color: var(--oq-ink-2); }
-.week i { display: block; height: 70px; border-radius: 12px; background: var(--oq-line-2); margin-bottom: 6px; position: relative; overflow: hidden; }
-.week i em { position: absolute; left: 0; right: 0; bottom: 0; background: var(--oq-data-1); border-radius: 12px; }
-/* pairs: each part twice, same markup; the frame width alone picks desktop or phone (container queries) */
-.pairs { display: flex; flex-direction: column; gap: 30px; }
-.pair-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin: 0 0 10px; } .pair-h h3 { margin: 0; font-size: 1.05em; } .pair-h span { color: var(--oq-ink-2); font-size: .9em; }
-.pair-b { display: grid; grid-template-columns: 660px 360px; gap: 20px; align-items: start; }
-.pair figure { margin: 0; } .pair figcaption { font: 500 10.5px var(--oq-font-mono); color: var(--oq-ink-2); text-transform: uppercase; letter-spacing: .08em; margin-top: 7px; }
-.mini { position: relative; contain: layout; container-type: inline-size; overflow: hidden; border-radius: 14px; background: var(--oq-surface-0); box-shadow: 0 0 0 1px var(--oq-line); }
-.mini.mob { border-radius: 30px; width: 360px; }
-.mini-b { padding: 16px; display: flex; flex-direction: column; gap: 10px; } .mini.top .mini-b { padding-top: 74px; }
-.fl-row { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--oq-surface-1); box-shadow: var(--oq-shadow-1); font-size: .92em; }
-.fl-row i { width: 10px; height: 10px; border-radius: 3px; flex: none; } .fl-row span { margin-left: auto; color: var(--oq-ink-2); font: .85em var(--oq-font-mono); }
-.pair.wide .pair-b { grid-template-columns: 1fr; } /* a full desktop width: the islands need room */
-.stage.phone .pair-b { grid-template-columns: 1fr; } .stage.phone .pair figure:first-child { display: none; }
-/* kit */
-.kit { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-.kit .card-b { display: flex; flex-direction: column; gap: 14px; }
-.swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
-.swatches i { height: 34px; border-radius: 8px; display: block; }
-.swatches span { font: 10px var(--oq-font-mono); color: var(--oq-ink-2); text-align: center; display: block; margin-top: 4px; }
-.surfs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.surfs div { height: 56px; border-radius: 10px; display: flex; align-items: flex-end; padding: 6px; font: 10px var(--oq-font-mono); color: var(--oq-ink-2); }
+/* ---------- showcase chrome: neutral, never themed (only the frames change with the theme) ---------- */
+:root { --sc-bg: #ececea; --sc-ink: #18181b; --sc-ink2: #63636b; --sc-line: #d9d9d5; --sc-card: #ffffff; --sc-on: #18181b; --sc-on-ink: #ffffff; color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body.bare .sc-bar { display: none; } body.bare { overflow: hidden; }
+body { background: var(--background, var(--sc-bg)); color: var(--foreground, var(--sc-ink)); font: 14px/1.4 "Geist", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.sc-bar { position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 12px 18px; background: var(--background, var(--sc-bg)); border-bottom: 1px solid var(--border, var(--sc-line)); }
+.sc-bar h1 { font: 650 15px "Geist", sans-serif; margin: 0; letter-spacing: -.01em; }
+.sc-bar h1 span { color: var(--muted-foreground, var(--sc-ink2)); font-weight: 500; }
+.sc-sp { flex: 1; }
+.sc-grp { display: flex; align-items: center; gap: 8px; }
+.sc-grp > b { font: 500 11px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground, var(--sc-ink2)); }
+.sc-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--card, var(--sc-card)); box-shadow: inset 0 0 0 1px var(--border, var(--sc-line)); }
+.sc-seg button { border: 0; background: none; font: 550 13px "Geist", sans-serif; color: var(--muted-foreground, var(--sc-ink2)); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.sc-seg button.on { background: var(--foreground, var(--sc-on)); color: var(--background, var(--sc-on-ink)); }
+.sc-sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: -1px; }
+/* option A: rail + stage */
+.sc-a { display: grid; grid-template-columns: 210px 1fr; min-height: calc(100vh - 60px); }
+.sc-rail { padding: 16px 10px; border-right: 1px solid var(--border, var(--sc-line)); position: sticky; top: 58px; align-self: start; max-height: calc(100vh - 60px); overflow: auto; }
+.sc-rail h4 { margin: 14px 10px 6px; font: 500 11px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground, var(--sc-ink2)); }
+.sc-rail button { display: block; width: 100%; text-align: left; border: 0; background: none; font: 500 14px "Geist", sans-serif; color: inherit; padding: 8px 10px; border-radius: 10px; cursor: pointer; }
+.sc-rail button.on { background: var(--card, var(--sc-card)); box-shadow: 0 0 0 1px var(--border, var(--sc-line)); font-weight: 650; }
+.sc-stage { padding: 18px 22px 40px; }
+.sc-pair { display: flex; gap: 22px; align-items: flex-start; }
+.sc-note { color: var(--muted-foreground, var(--sc-ink2)); margin: 0 0 14px; max-width: 900px; }
+.sc-note b { color: var(--foreground, var(--sc-ink)); }
+/* option B: storyboard */
+.sc-b { padding: 18px 22px 60px; display: flex; flex-direction: column; gap: 34px; }
+.sc-jump { display: flex; flex-wrap: wrap; gap: 6px; }
+.sc-jump a { font: 500 12.5px "Geist", sans-serif; color: inherit; text-decoration: none; padding: 5px 11px; border-radius: 999px; background: var(--card, var(--sc-card)); box-shadow: inset 0 0 0 1px var(--border, var(--sc-line)); }
+.sc-row h2 { font: 650 17px "Geist", sans-serif; margin: 0 0 4px; letter-spacing: -.01em; }
+.sc-row p { margin: 0 0 12px; color: var(--muted-foreground, var(--sc-ink2)); }
+/* frames */
+figure.fr { margin: 0; flex: none; }
+figure.fr figcaption { font: 500 11.5px "Geist Mono", monospace; color: var(--muted-foreground, var(--sc-ink2)); margin: 0 0 7px; letter-spacing: .02em; }
+.fr-clip { overflow: hidden; border-radius: 12px; box-shadow: 0 0 0 1px rgba(0,0,0,.12), 0 12px 30px rgba(0,0,0,.10); }
+.fr.phone .fr-clip { box-shadow: 0 0 0 7px #0d0d0f, 0 0 0 8px #3a3a3f, 0 18px 40px rgba(0,0,0,.18); }
+.fr-scale { transform-origin: 0 0; }
+.cx-screen { display: flex; flex-direction: column; container-type: inline-size; position: relative; overflow: hidden; contain: layout; background: var(--oq-surface-0); color: var(--oq-ink); }
+.cx-screen > .shell { flex: 1; min-height: 0; }
+.cx-screen .main { height: 100%; box-sizing: border-box; }
+.cx-status { flex: none; height: 46px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 30px 6px; font: 650 15px var(--oq-font); }
+/* table page */
+.sc-t { padding: 18px 22px 60px; }
+.sc-t table { border-collapse: separate; border-spacing: 0 14px; width: 100%; }
+.sc-t th { text-align: left; font: 500 11px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground, var(--sc-ink2)); padding: 0 12px; }
+.sc-t td { vertical-align: top; padding: 0 12px; }
+.sc-t td:first-child { width: 190px; }
+.sc-t td:first-child b { display: block; font: 650 15px "Geist", sans-serif; }
+.sc-t td:first-child span { display: block; color: var(--muted-foreground, var(--sc-ink2)); font-size: 13px; margin-top: 4px; line-height: 1.45; }
+.cx-cell { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+/* ---------- Contoso: app-level layout (the app's own CSS, built from tokens) ---------- */
+.cx-si { margin: auto; width: min(400px, calc(100% - 32px)); display: flex; flex-direction: column; gap: 14px; padding: 24px 0; }
+.cx-si .brandrow { display: flex; align-items: center; gap: 10px; font: 650 18px var(--oq-font-display); letter-spacing: -.02em; }
+.cx-si h1 { margin: 10px 0 0; font: 700 calc(var(--oq-title, 28px) * .95) / 1.1 var(--oq-font-display); letter-spacing: -.03em; }
+.cx-si .sub { color: var(--oq-ink-2); margin-top: -6px; }
+.cx-si .btn { width: 100%; justify-content: center; }
+.cx-si .rowsp { display: flex; align-items: center; justify-content: space-between; white-space: nowrap; }
+.cx-or { display: flex; align-items: center; gap: 10px; color: var(--oq-ink-2); font-size: .85em; } .cx-or::before, .cx-or::after { content: ""; flex: 1; border-top: 1px solid var(--oq-line); }
+.cx-next { background: var(--oq-ink); color: var(--oq-surface-0); border-radius: var(--oq-radius-card); box-shadow: var(--oq-shadow-2); padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; }
+.cx-next .k { font: 500 12px var(--oq-font-mono); opacity: .7; text-transform: uppercase; letter-spacing: .08em; }
+.cx-next .t { font: 700 calc(var(--oq-title, 28px) * 1.25) / 1 var(--oq-font-display); letter-spacing: -.03em; }
+.cx-next .m { opacity: .75; }
+.cx-next .prog { background: color-mix(in srgb, var(--oq-surface-0) 22%, transparent); }
+.cx-next .prog > i { background: var(--oq-surface-0); }
+.cx-next .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cx-avs { display: flex; } .cx-avs .avatar { box-shadow: 0 0 0 2px var(--oq-ink); margin-left: -6px; } .cx-avs .avatar:first-child { margin-left: 0; }
+.cx-it { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--oq-line-2); }
+.cx-it:first-child { border-top: 0; }
+.cx-it .t { font: 500 .85em var(--oq-font-mono); color: var(--oq-ink-2); }
+.cx-it b { display: block; font-weight: 600; } .cx-it span { color: var(--oq-ink-2); font-size: .9em; }
+.cx-res { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid var(--oq-line-2); }
+.cx-res:first-child { border-top: 0; }
+.cx-res b { display: block; } .cx-res span { color: var(--oq-ink-2); font-size: .9em; }
+.cx-acct { display: flex; align-items: center; gap: 14px; } .cx-acct .avatar { width: 48px; height: 48px; font-size: 16px; } .cx-acct b { display: block; font-size: 1.05em; } .cx-acct span { color: var(--oq-ink-2); }
+.cx-form { display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
+.cx-form .mo { max-width: none; }
+.cx-lab { font-size: .85em; color: var(--oq-ink-2); margin: 0 0 6px; }
+.cx-foot { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--oq-line-2); }
+@container (max-width: 640px) { .cx-foot .btn { flex: 1; justify-content: center; } }
+/* ---------- agent concepts: the Beacon is the assistant's one presence (concepts for review) ---------- */
+.beacon .ag-ring { flex: none; transform: rotate(-90deg); } .beacon .ag-ring circle { fill: none; stroke-width: 2.6; } .beacon .ag-ring .bg { stroke: #3f3f46; } .beacon .ag-ring .fg { stroke: var(--oq-beacon-accent); stroke-linecap: round; transition: stroke-dashoffset .6s linear; }
+.beacon .ag-stack { display: flex; } .beacon .ag-stack .ag-ring { background: #0b0b0d; border-radius: 50%; } .beacon .ag-stack .ag-ring + .ag-ring { margin-left: -5px; }
+.beacon .ag-needs { background: var(--oq-beacon-accent); color: #0b0b0d; font: 650 10.5px var(--oq-font-mono); text-transform: uppercase; letter-spacing: .07em; padding: 3px 8px; border-radius: 999px; }
+.beacon .bc-open .ag-needs { display: inline-block; margin-bottom: 10px; }
+.beacon .ag-opt { display: grid; grid-template-columns: 16px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; margin-top: 8px; border-radius: 14px; background: #18181b; cursor: pointer; }
+.beacon .ag-opt.on { box-shadow: inset 0 0 0 1.5px var(--oq-beacon-accent); }
+.beacon .ag-opt .r { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px #71717a; transition: box-shadow .2s; } .beacon .ag-opt.on .r { box-shadow: inset 0 0 0 5px var(--oq-beacon-accent); }
+.beacon .ag-opt b { display: block; font-size: 13.5px; font-weight: 600; } .beacon .ag-opt span { font-size: 12px; color: #a1a1aa; } .beacon .ag-opt .p { font: 600 13px var(--oq-font-mono); color: #f4f4f5; }
+.beacon .ag-note { font: 12px var(--oq-font-mono); color: #a1a1aa; margin-top: 10px; }
+.beacon .ag-diff { margin-top: 12px; display: grid; gap: 2px; font-size: 13px; }
+.beacon .ag-diff div { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 7px 0; border-top: 1px solid #27272a; } .beacon .ag-diff div:first-child { border-top: 0; }
+.beacon .ag-diff s { font: 12px var(--oq-font-mono); color: #a1a1aa; } .beacon .ag-diff b { font: 600 12.5px var(--oq-font-mono); color: var(--oq-beacon-accent); }
+.beacon .ag-lv { display: flex; align-items: center; gap: 2px; height: 18px; } .beacon .ag-lv i { width: 3px; height: 30%; border-radius: 2px; background: var(--oq-beacon-accent); transition: height .12s linear; }
+.beacon .bc-open .ag-lv { height: 34px; gap: 3px; margin-top: 12px; } .beacon .bc-open .ag-lv i { width: 4px; }
+.beacon .ag-said { font: 500 18px/1.35 var(--oq-font); margin-top: 10px; letter-spacing: -.01em; } .beacon .ag-said em { font-style: normal; color: #a1a1aa; }
+.beacon .ag-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; } .beacon .ag-tags span { font: 500 12px var(--oq-font-mono); padding: 4px 9px; border-radius: 8px; background: #27272a; color: #e4e4e7; }
+.beacon .ag-task { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-top: 1px solid #27272a; font-size: 13px; } .beacon .ag-task:first-of-type { border-top: 0; margin-top: 6px; }
+.beacon .ag-task b { display: block; font-weight: 600; } .beacon .ag-task span { color: #a1a1aa; font-size: 12px; } .beacon .ag-task .mono { font: 12px var(--oq-font-mono); color: #d4d4d8; }
+.cx-draft { background: color-mix(in srgb, var(--oq-accent) 8%, transparent); border-radius: 10px; margin: 0 -10px; padding: 10px; border-top-color: transparent !important; }
+.cx-draft .skel { height: 10px; margin-top: 6px; }
+.cx-by { display: flex; align-items: center; gap: 5px; font: 500 .78em var(--oq-font-mono); color: var(--oq-ink-2); margin-top: 3px; } .cx-by .ico { width: 13px; height: 13px; color: var(--oq-accent); }
+.cx-ask { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; } .cx-ask .mo { flex: 1 1 300px; max-width: none; }
+@container (max-width: 640px) { .cx-ask .btn.fill { flex: 1; justify-content: center; } }
+.cx-task { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--oq-line-2); } .cx-task:first-child { border-top: 0; }
+.cx-task b { display: block; font-weight: 600; } .cx-task span { color: var(--oq-ink-2); font-size: .9em; }
+.cx-task .ag-ring { transform: rotate(-90deg); } .cx-task .ag-ring circle { fill: none; stroke-width: 2.6; } .cx-task .ag-ring .bg { stroke: var(--oq-line); } .cx-task .ag-ring .fg { stroke: var(--oq-accent); stroke-linecap: round; }
+.cx-task .ok { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--oq-surface-2); } .cx-task .ok .ico { width: 15px; height: 15px; }
+.cx-pick { display: grid; grid-template-columns: 18px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: var(--oq-radius-in, 12px); box-shadow: inset 0 0 0 1px var(--oq-line); } .cx-pick.on { box-shadow: inset 0 0 0 1.5px var(--oq-accent); }
+.cx-pick b { display: block; font-weight: 600; } .cx-pick span { color: var(--oq-ink-2); font-size: .9em; }
 </style>
 </head>
 <body>
-<div class="bar">
-  <b>omxqua</b>
-  <div class="pseg" id="famSeg"><button class="on" data-f="dev">Developer</button><button data-f="travel">Travel</button><button data-f="kids">Kids</button></div>
-  <div class="pseg" id="skinSeg"></div>
-  <div class="pseg" id="shellSeg"><button class="on" data-h="top">Top islands</button><button data-h="dock">Dock</button><button data-h="islands">Side island</button><button data-h="sidebar">Sidebar</button></div>
-  <div class="pseg" id="viewSeg"><button class="on" data-v="app">App</button><button data-v="kit">Kit</button><button data-v="pairs">Pairs</button><button data-v="touch">Touch</button></div>
-  <div class="pseg" id="themeSeg"><button class="on" data-t="night">Night</button><button data-t="light">Light</button></div>
-  <div class="pseg" id="sizeSeg"><button class="on" data-s="desk">Desktop</button><button data-s="phone">Phone</button></div>
-</div>
-<div class="stagewrap"><div class="stage" id="stage"><div class="oq-root oq-night oq-family-dev screen" id="root"></div></div></div>
+<header class="sc-bar">
+  <h1><a href="./" style="color:inherit;text-decoration:none">omxqua</a> <span>· Contoso, one app in every theme</span></h1>
+  <div class="sc-grp"><b>View</b><div class="sc-seg" id="optSeg"><button data-v="a" class="on">Screens</button><button data-v="b">All screens</button><button data-v="t">Components</button></div></div>
+  <span class="sc-sp"></span>
+  <div class="sc-grp"><b>Theme</b><div class="sc-seg" id="themeSeg"></div></div>
+  <div class="sc-grp"><div class="sc-seg" id="modeSeg"><button data-v="light" class="on">Light</button><button data-v="night">Night</button></div></div>
+</header>
+<div id="view"></div>
 
 <script src="../src/omxqua.js"></script>
 <script>
 (() => {
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const root = $("#root");
-const state = { fam: "dev", view: "app", theme: "night", size: "desk", skin: "", shell: "top" }; /* skin "" = the family's picked look (first option) */
-const SKINS = { dev: [["base", "Graphite"]], travel: [["azulejo", "Azulejo"], ["base", "Coast"], ["golden", "Golden hour"]], kids: [["base", "Playground"], ["sticker", "Sticker"], ["crayon", "Crayon"]] };
-function skinSeg() { const opts = SKINS[state.fam]; if (!opts.some(o => o[0] === state.skin)) state.skin = opts[0][0]; /* the first option is the family's picked look */ const el = document.getElementById("skinSeg");
-  el.style.display = opts.length > 1 ? "" : "none"; el.innerHTML = opts.map(([k, n]) => `<button class="${k === state.skin ? "on" : ""}" data-k="${k}">${n}</button>`).join(""); }
-
-/* ---- icons (Lucide-style strokes) ---- */
 const P = {
   home: '<path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/>', box: '<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
   tag: '<path d="M20 12 12 20l-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/>', book: '<path d="M4 19V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2zM20 19v2H6"/>',
@@ -226,423 +151,297 @@ const P = {
   bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/>', git: '<circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 8v8M18 10c0 4-6 3-10 6"/>',
   shield: '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/>', users: '<circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M16 4a3.5 3.5 0 0 1 0 7M22 21c0-3-1.5-5-4-5.7"/>',
 };
+Object.assign(P, {
+  heart: '<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+  key: '<circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3M17 6l3 3M15 8l2 2"/>', alert: '<path d="M12 3 2 21h20z"/><path d="M12 10v4M12 17.5v.5"/>',
+  refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/>', trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
+  sparkle: '<path d="M12 3l1.9 5.6L19.5 10.5 13.9 12.4 12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>', undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
+  share: '<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="m8.2 10.8 7.6-3.6M8.2 13.2l7.6 3.6"/>',
+});
 const ic = (n, extra = "") => `<svg class="ico" viewBox="0 0 24 24" ${extra}>${P[n] || ""}</svg>`;
-const seg = (opts, on, k = "") => `<div class="seg2" data-k="${k}"><i></i>${opts.map(o => `<button class="${o === on ? "on" : ""}">${o}</button>`).join("")}</div>`;
-const tabs = (opts, on) => `<div class="tabs"><i></i>${opts.map(o => `<button class="${o === on ? "on" : ""}">${o}</button>`).join("")}</div>`;
-const tabbar = items => `<nav class="tabbar"><i class="tb-thumb"></i>${items.map((t, i) => `<button class="${i ? "" : "on"}" aria-label="${t[0]}">${ic(t[1])}${t[0]}</button>`).join("")}</nav>`;
-const NAV = {
-  dev: [["Overview", "home"], ["Releases", "tag"], ["CI runs", "git"], ["Docs", "book"], ["Dependents", "users"], ["Security", "shield"], ["Settings", "gear"]],
-  travel: [["Trips", "home"], ["Day", "cal"], ["Map", "map"], ["Budget", "tag"], ["Reminders", "bell"], ["Photos", "camera"], ["Settings", "gear"]],
-  kids: [["Today", "star"], ["Week", "cal"], ["Rewards", "trophy"], ["Learn", "bulb"], ["Music", "music"], ["Me", "smile"]],
-};
-const topnav = items => `<nav class="topnav" id="topnav"><i class="tb-thumb"></i>${items.map((t, i) => `<button class="${i ? "" : "on"}${i >= 4 ? " extra" : ""}" data-i="${i}">${ic(t[1])}${t[0]}</button>`).join("")}<button class="more" data-more>+<span>${items.length - 4}</span></button></nav>`;
-const BRAND = { dev: ["ox", "omxcore"], travel: [null, "gitaway"], kids: ["★", "questly"] };
-const pinBtn = `<button class="pin-btn" data-pin title="Keep open"><svg class="ico off" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><svg class="ico on" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>`;
-const status = `<div class="statusbar"><span>9:41</span><span>●●● ▮</span></div>`;
 
-/* =========================== DEVELOPER: a PyPI package =========================== */
-function devApp() {
-  const wk = [2.1, 2.4, 2.2, 2.9, 3.1, 3.0, 3.6, 4.2, 4.0, 4.8, 5.3, 5.9];
-  const mx = 6.5, W = 600, H = 190;
-  const pts = wk.map((v, i) => [i / (wk.length - 1) * W, H - 18 - v / mx * (H - 36)]);
-  const line = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1)).join("");
-  return `${status}<div class="shell">
-  <aside class="side">
-    <div class="brand"><span class="mark">ox</span><span class="brand-name">omxcore</span>${pinBtn}</div>
-    <button class="nav on">${ic("home")}Overview</button>
-    <button class="nav">${ic("tag")}Releases<span class="n">14</span></button>
-    <button class="nav">${ic("git")}CI runs</button>
-    <button class="nav">${ic("book")}Docs</button>
-    <button class="nav">${ic("users")}Dependents<span class="n">37</span></button>
-    <div class="grp">Package</div>
-    <button class="nav">${ic("shield")}Security</button>
-    <button class="nav">${ic("gear")}Settings</button>
-    <div class="foot"><span class="avatar" style="background:var(--oq-data-1)">AS</span><span>abhishek<br><span class="ink2 mono" style="font-size:11px">maintainer</span></span></div>
-  </aside>
-  <main class="main">
-    <div class="ph">
-      <div><h1>omxcore</h1><div class="sub">MX frame engine for agent-native apps · Apache-2.0</div></div>
-      <span class="badge ok"><i></i>CI passing</span><span class="badge">v0.2.0</span><span class="badge info"><i></i>py3.11+</span>
-      <span class="sp"></span>
-      <div class="acts"><button class="btn tonal hide-n" data-menu>${ic("more")}More</button><button class="btn fill" data-dialog>${ic("tag")}Publish 0.3.0</button></div>
-    </div>
-    <div class="install"><span>pip install omxcore</span><button class="btn text sm" data-toast="Copied pip install omxcore">${ic("copy")}Copy</button></div>
-    <section class="card"><div class="stats">
-      <div><b>5,912<span class="delta up">+11%</span></b><span>downloads / week</span></div>
-      <div><b>1,284</b><span>GitHub stars</span></div>
-      <div><b>7</b><span>open issues</span></div>
-      <div><b>91%</b><span>test coverage</span></div>
-    </div><div class="src">pypistats recent omxcore <button class="cp">copy</button></div></section>
+/* ---------- themes: one app, four families; a theme changes everything the tokens set ---------- */
+const THEMES = [
+  ["graphite", "Graphite", "oq-family-dev", "#0b0b0d"],
+  ["azulejo", "Azulejo", "oq-family-travel oq-skin-azulejo", "#1f4f8f"],
+  ["playground", "Playground", "oq-family-kids", "#c2410c"],
+  ["ledger", "Ledger", "oq-family-money", "#5b4bd6"],
+];
+const st = { opt: "a", theme: "azulejo", mode: "light", screen: "home" };
+const themeName = () => THEMES.find(t => t[0] === st.theme)[1];
+const rootCls = () => `oq-root oq-${st.mode} ${THEMES.find(t => t[0] === st.theme)[2]} oq-top cx-screen`;
+
+/* ---------- Contoso: shared chrome ---------- */
+const NAV = [["Home", "home"], ["Trips", "plane"], ["Assistant", "sparkle"], ["Search", "search"], ["Bookings", "bed"], ["Saved", "heart"], ["Settings", "gear"]];
+const TABS = [["Home", "home"], ["Trips", "plane"], ["Assistant", "sparkle"], ["Search", "search"], ["Settings", "gear"]];
+const navOn = { home: 0, trips: 1, trip: 1, edit: 1, empty: 1, error: 1, loading: 1, search: 3, settings: 6, delete: 6,
+  assistant: 2, "agent-run": 1, "agent-ask": 1, "agent-notice": 0, "agent-many": 1, "agent-voice": 1, "agent-done": 1 };
+const tabOn = { ...navOn, search: 3, settings: 4, delete: 4 };
+const topnav = on => `<nav class="topnav"><i class="tb-thumb"></i>${NAV.map((t, i) => `<button class="${i === on ? "on" : ""}" data-i="${i}" style="--c:var(--oq-data-${i % 6 + 1})">${ic(t[1])}${t[0]}</button>`).join("")}<button class="more" data-more>+<span>2</span></button></nav>`;
+const tabbar = on => `<nav class="tabbar"><i class="tb-thumb"></i>${TABS.map((t, i) => `<button class="${i === on ? "on" : ""}" aria-label="${t[0]}" style="--c:var(--oq-data-${i % 6 + 1})">${ic(t[1])}${t[0]}</button>`).join("")}</nav>`;
+const brand = `<div class="brand-isl"><span class="mark">co</span>Contoso</div>`;
+const beacon = `<div class="beacon"><div class="bc-compact"><span class="live"></span>${ic("plane")}TAP 1352<span class="mono">boards 42 min</span></div>
+  <div class="bc-open"><button class="x" aria-label="Close">${ic("x")}</button><h4>${ic("plane")}JFK → LIS · TAP 1352</h4><div class="sub2">Gate B12 · Seat 14C</div><div class="big">42 min</div><div class="bar2"><i style="width:30%"></i></div><div class="bacts"><button class="bbtn pri">Boarding pass</button><button class="bbtn">Directions</button></div></div></div>`;
+const bcn = (compact, open, on = false) => `<div class="beacon${on ? " open" : ""}"><div class="bc-compact">${compact}</div><div class="bc-open"><button class="x" aria-label="Close">${ic("x")}</button>${open}</div></div>`;
+const ring = (p, big) => { const r = big ? 11 : 7.5, c = 2 * Math.PI * r, z = big ? 28 : 20; return `<svg class="ag-ring" viewBox="0 0 ${z} ${z}" width="${z}" height="${z}"><circle class="bg" cx="${z / 2}" cy="${z / 2}" r="${r}"/><circle class="fg" cx="${z / 2}" cy="${z / 2}" r="${r}" stroke-dasharray="${c.toFixed(2)}" stroke-dashoffset="${(c * (1 - p)).toFixed(2)}"/></svg>`; };
+const av = (t, c) => `<span class="avatar" style="background:var(--oq-data-${c})">${t}</span>`;
+const ph = (h, sub, acts = "") => `<div class="ph"><div><h1>${h}</h1><div class="sub">${sub}</div></div><span class="sp"></span><div class="acts">${acts}</div></div>`;
+
+/* ---------- Contoso screens ---------- */
+const TRIPS = [["Lisbon", "Oct 24 – 28", "4", "€2,000", "ok", "booked"], ["Kyoto", "Nov 12 – 20", "2", "€3,400", "warn", "planning"], ["Reykjavík", "Jan 3 – 8", "3", "€2,600", "info", "new"], ["Mexico City", "Feb 14 – 19", "2", "€1,800", "warn", "planning"], ["Cape Town", "Mar 2 – 11", "5", "€4,100", "info", "new"]];
+const SCREENS = [
+  { id: "signin", g: "Get in", t: "Sign in", n: "Fields (with an error), checkbox, one filled button, a passkey as the tonal option.", nav: false, body: () => `
+    <div class="cx-si">
+      <div class="brandrow"><span class="mark">co</span>Contoso</div>
+      <h1>Welcome back</h1><div class="sub">Plan trips with the people you travel with.</div>
+      <label class="mo has-lead"><span class="lead">${ic("mail")}</span><input placeholder=" " value="maya@contoso.com"><span class="fl">Email</span></label>
+      <div><label class="mo err has-lead"><span class="lead">${ic("lock")}</span><input type="password" placeholder=" " value="hunter22"><span class="fl">Password</span></label>
+        <div class="mf-help err">That password doesn't match. Try again or reset it.</div></div>
+      <div class="rowsp"><div class="row-ctl"><button class="check on" aria-label="Keep me signed in"></button>Keep me signed in</div><button class="btn text sm">Forgot password?</button></div>
+      <button class="btn fill lg">Sign in</button>
+      <div class="cx-or">or</div>
+      <button class="btn tonal lg">${ic("key")}Sign in with a passkey</button>
+      <button class="btn text">New to Contoso? Create an account</button>
+    </div>` },
+  { id: "home", g: "Plan", t: "Home", n: "Top islands with the Beacon, a focal 'Up next' card, stats, cards in a grid.", beacon: true, body: () => `
+    ${ph("Good morning, Maya", "2 trips coming up · 1 needs a decision", `<button class="btn tonal hide-n">${ic("users")}Invite</button><button class="btn fill">${ic("plus")}New trip</button>`)}
+    <div class="cx-next"><div class="k">Up next · in 2 days</div><div class="t">Lisbon</div><div class="m">Oct 24 – 28 · 4 travellers · Alfama</div>
+      <div class="row"><div class="cx-avs">${av("MS", 1)}${av("JR", 2)}${av("AK", 3)}${av("TL", 4)}</div><span class="sp" style="flex:1"></span><span class="m">Packing 6 of 9</span></div>
+      <div class="prog"><i style="width:66%"></i></div></div>
+    <section class="card"><div class="stats"><div><b>7<span class="delta up">+2</span></b><span>trips this year</span></div><div><b>38</b><span>days away</span></div><div><b>5</b><span>countries</span></div><div><b>112</b><span>saved places</span></div></div></section>
     <div class="grid g-2">
-      <section class="card">
-        <div class="card-h"><h3>Downloads</h3><span class="sp"></span>${seg(["12 wk", "6 mo", "1 yr"], "12 wk")}</div>
-        <svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
-          ${[0, 1, 2, 3].map(i => `<line x1="0" x2="${W}" y1="${18 + i * (H - 36) / 3}" y2="${18 + i * (H - 36) / 3}" stroke="var(--oq-line-2)"/>`).join("")}
-          <path d="${line}L${W},${H - 18}L0,${H - 18}Z" fill="var(--oq-data-1)" opacity=".12"/>
-          <path d="${line}" fill="none" stroke="var(--oq-data-1)" stroke-width="2.2"/>
-          <circle cx="${pts.at(-1)[0] - 3}" cy="${pts.at(-1)[1]}" r="4" fill="var(--oq-data-1)"/>
-        </svg>
-        <div class="src note">thousands per week, axis from 0 · source: PyPI BigQuery</div>
-      </section>
-      <section class="card">
-        <div class="card-h"><h3>CI runs</h3><span class="sp"></span><span class="badge">main</span></div>
-        <ul class="runs">
-          <li><span class="dot" style="background:var(--oq-ok)"></span><div>Release wheels<div class="meta">a3f9c21 · 4 min ago</div></div><span class="badge ok"><i></i>passed</span></li>
-          <li><span class="dot" style="background:var(--oq-warn)"></span><div>Tests · py3.13<div class="meta">a3f9c21 · running 2:41</div></div><span class="badge warn"><i></i>running</span></li>
-          <li><span class="dot" style="background:var(--oq-bad)"></span><div>Docs build<div class="meta">9be04d7 · yesterday</div></div><span class="badge bad"><i></i>failed</span></li>
-          <li><span class="dot" style="background:var(--oq-ok)"></span><div>Tests · py3.11<div class="meta">9be04d7 · yesterday</div></div><span class="badge ok"><i></i>passed</span></li>
-        </ul>
-        <div class="src">gh run list --limit 4 <button class="cp">copy</button></div>
-      </section>
-    </div>
-    <section class="card">
-      <div class="card-h"><h3>Releases</h3><span class="sp"></span>${tabs(["All", "Stable", "Pre-release"], "All")}</div>
-      <table class="tbl"><thead><tr><th>Version</th><th>Date</th><th>Wheels</th><th class="num">Size</th><th>Status</th></tr></thead><tbody>
-        <tr><td class="mono">0.3.0rc1</td><td>2026-10-19</td><td class="ink2">linux · macOS · win</td><td class="num">4.1 MB</td><td><span class="badge warn"><i></i>pre-release</span></td></tr>
-        <tr><td class="mono">0.2.0</td><td>2026-10-12</td><td class="ink2">linux · macOS · win</td><td class="num">3.9 MB</td><td><span class="badge ok"><i></i>latest</span></td></tr>
-        <tr><td class="mono">0.1.4</td><td>2026-09-30</td><td class="ink2">linux · macOS</td><td class="num">3.6 MB</td><td><span class="badge">yanked</span></td></tr>
-      </tbody></table>
-      <div class="src note">3 of 14 releases shown · older ones under Releases</div>
-    </section>
-  </main></div>
-  ${tabbar([["Overview", "home"], ["Releases", "tag"], ["CI", "git"], ["More", "more"]])}`;
-}
-
-/* =========================== TRAVEL: a trip =========================== */
-function travelApp() {
-  const K = { flight: ["--oq-data-3", "plane"], stay: ["--oq-data-5", "bed"], food: ["--oq-data-2", "fork"], see: ["--oq-data-1", "camera"] };
-  const items = [["08:40", "flight", "TAP 1352 · JFK → LIS", "Seat 14C · lands 20:55"], ["21:30", "stay", "Check in · Memmo Alfama", "3 nights · conf. 88213"],
-    ["22:15", "food", "Dinner · Taberna da Rua das Flores", "Table for 2 · walk 6 min"]];
-  const day2 = [["09:30", "see", "Castelo de São Jorge", "2 h · tickets in wallet"], ["12:30", "food", "Lunch · Time Out Market", "Walk-in"], ["15:00", "see", "Tram 28 to Estrela", "40 min"]];
-  const blk = ([t, k, a, b]) => `<div class="t">${t}</div><div class="blk" style="background:var(${K[k][0]})">${ic(K[k][1])}<div><b>${a}</b><span>${b}</span></div></div>`;
-  return `${status}<div class="shell">
-  <aside class="side">
-    <div class="brand"><span class="mark">${ic("plane")}</span><span class="brand-name">gitaway</span>${pinBtn}</div>
-    <button class="nav">${ic("home")}Trips</button>
-    <button class="nav on">${ic("cal")}Lisbon · Oct<span class="n">5 d</span></button>
-    <button class="nav">${ic("map")}Map</button>
-    <button class="nav">${ic("bell")}Reminders<span class="n">2</span></button>
-    <div class="grp">Upcoming</div>
-    <button class="nav">${ic("pin")}Kyoto · Mar</button>
-    <button class="nav">${ic("pin")}Banff · Jul</button>
-    <div class="foot"><span class="avatar" style="background:var(--oq-data-2)">AS</span><span class="avatar" style="background:var(--oq-data-3);margin-left:-14px">PR</span><span>2 travellers</span></div>
-  </aside>
-  <main class="main">
-    <div class="ph">
-      <div><h1>Lisbon</h1><div class="sub">Oct 24 – 28 · 5 days · 2 travellers</div></div>
-      <span class="sp"></span>
-      <div class="acts"><button class="btn tonal hide-n" data-menu>${ic("more")}Share</button><button class="btn fill" data-sheet>${ic("plus")}Add to day</button></div>
-    </div>
-    <div class="days">${[["Fri 24", "Alfama"], ["Sat 25", "Belém"], ["Sun 26", "Sintra"], ["Mon 27", "Chiado"], ["Tue 28", "Fly home"]].map(([d, h], i) => `<button class="day${i ? "" : " on"}">${d.split(" ")[0]}<b>${d.split(" ")[1]}</b><small>${h}</small></button>`).join("")}</div>
+      <section class="card"><div class="card-h"><h3>Friday in Lisbon</h3><span class="sp"></span><span class="badge ok"><i></i>booked</span></div><div class="card-b">
+        <div class="cx-it"><span class="t">08:40</span><div><b>TAP 1352 · JFK → LIS</b><span>Seat 14C · lands 20:55</span></div><span class="badge">flight</span></div>
+        <div class="cx-it"><span class="t">21:30</span><div><b>Check in · Memmo Alfama</b><span>3 nights</span></div><span class="badge">stay</span></div>
+        <div class="cx-it"><span class="t">22:15</span><div><b>Dinner · Taberna</b><span>Table for 4</span></div><span class="badge">food</span></div></div></section>
+      <section class="card"><div class="card-h"><h3>Budget</h3><span class="sp"></span><span class="badge warn"><i></i>tight</span></div><div class="card-b" style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between"><b class="mono">€1,840 of €2,000</b><span class="ink2">92%</span></div><div class="prog"><i style="width:92%"></i></div>
+        <div class="wrap-row"><button class="chip on">All</button><button class="chip">Stays</button><button class="chip">Food</button></div></div></section>
+    </div>` },
+  { id: "trips", g: "Plan", t: "Trip list", n: "Segmented control, filter chips, a table with status badges, a row menu (an action sheet on phone).", body: () => `
+    ${ph("Trips", "12 trips · 5 upcoming", `<div class="seg2"><i></i><button class="on">List</button><button>Calendar</button></div><button class="btn fill">${ic("plus")}New trip</button>`)}
+    <div class="wrap-row"><button class="chip on">Upcoming</button><button class="chip">Past</button><button class="chip">Shared with me</button><button class="chip">${ic("plus", 'style="width:13px;height:13px"')}Filter</button></div>
+    <section class="card"><table class="tbl"><thead><tr><th>Trip</th><th>Dates</th><th class="hide-n">People</th><th class="num hide-n">Budget</th><th>Status</th><th></th></tr></thead><tbody>
+      ${TRIPS.map(r => `<tr><td><b>${r[0]}</b></td><td class="ink2">${r[1]}</td><td class="hide-n">${r[2]}</td><td class="num hide-n">${r[3]}</td><td><span class="badge ${r[4]}"><i></i>${r[5]}</span></td><td style="width:40px"><button class="xbtn" aria-label="More for ${r[0]}">${ic("more")}</button></td></tr>`).join("")}
+    </tbody></table><div class="src note">5 of 12 shown · sorted by date</div></section>`,
+    over: () => `<div class="menu" style="top:352px;left:935px"><div class="lab">Kyoto</div><button class="mi">${ic("edit")}Rename<kbd>R</kbd></button><button class="mi">${ic("copy")}Duplicate trip</button><button class="mi">${ic("share")}Share link<kbd>⌘L</kbd></button><hr><button class="mi danger">${ic("trash")}Delete trip</button></div>` },
+  { id: "trip", g: "Plan", t: "Trip detail", n: "Tabs, an itinerary card, budget progress, people; a tooltip on the icon button (desktop only).", body: (dinner) => `
+    ${ph("Lisbon", "Oct 24 – 28 · 4 travellers", `<button class="btn tonal icon" aria-label="Edit trip">${ic("edit")}</button><button class="btn tonal hide-n">${ic("share")}Share</button><button class="btn fill">${ic("plus")}Add plan</button>`)}
+    <div class="tabs"><i></i><button class="on">Plans</button><button>Budget</button><button>People</button><button>Files</button></div>
     <div class="grid g-2">
-      <section class="card">
-        <div class="card-h"><h3>Friday</h3><span class="ink2" style="font-size:.85em">arrival day</span><span class="sp"></span>${seg(["Day", "Week"], "Day")}</div>
-        <div class="rail">${items.map(blk).join("")}</div>
-        <div class="card-h" style="padding-top:0"><h3>Saturday</h3><span class="sp"></span></div>
-        <div class="rail">${day2.map(blk).join("")}</div>
-        <div class="src note">times are local · Lisbon (WEST, UTC+1)</div>
-      </section>
-      <div class="grid" style="align-content:start">
-        <section class="card">
-          <div class="card-h"><h3>Around Alfama</h3><span class="sp"></span><button class="btn text sm">${ic("map")}Open map</button></div>
-          <div class="map"><svg viewBox="0 0 300 220" preserveAspectRatio="none"><path d="M0 160 C60 140 90 180 150 150 S240 120 300 140 L300 220 L0 220Z" fill="var(--oq-data-3)" opacity=".14"/>
-            <path d="M20 40 L120 70 L180 50 L280 90 M60 0 L90 200 M200 0 L170 220" stroke="var(--oq-line)" stroke-width="3" fill="none"/></svg>
-            <span class="pin" style="left:30%;top:28%;background:var(--oq-data-5)"><i>1</i></span><span class="pin" style="left:58%;top:40%;background:var(--oq-data-2)"><i>2</i></span><span class="pin" style="left:44%;top:16%;background:var(--oq-data-1)"><i>3</i></span></div>
-          <div class="legend"><span><i style="background:var(--oq-data-3)"></i>flight</span><span><i style="background:var(--oq-data-5)"></i>stay</span><span><i style="background:var(--oq-data-2)"></i>food</span><span><i style="background:var(--oq-data-1)"></i>see</span></div>
-        </section>
-        <section class="card">
-          <div class="card-h"><h3>Budget</h3><span class="sp"></span><span class="badge ok"><i></i>on track</span></div>
-          <div class="card-b"><div style="display:flex;justify-content:space-between;font-size:.9em;margin-bottom:8px"><span><b style="font-size:1.4em;letter-spacing:-.02em">€1,240</b> <span class="ink2">of €2,000</span></span><span class="ink2 mono" style="font-size:12px">62%</span></div>
-          <div class="prog" style="display:flex;gap:2px;background:var(--oq-line)"><i style="width:31%;background:var(--oq-data-3);border-radius:4px 0 0 4px" title="flights €620"></i><i style="width:21%;background:var(--oq-data-5);border-radius:0" title="stays €420"></i><i style="width:10%;background:var(--oq-data-2);border-radius:0 4px 4px 0" title="food €200"></i></div><div class="legend" style="padding:10px 0 0"><span><i style="background:var(--oq-data-3)"></i>flights €620</span><span><i style="background:var(--oq-data-5)"></i>stays €420</span><span><i style="background:var(--oq-data-2)"></i>food €200</span></div></div>
-          <div class="src note">flights and stays booked · food estimated</div>
-        </section>
-      </div>
-    </div>
-  </main></div>
-  ${tabbar([["Trips", "home"], ["Day", "cal"], ["Map", "map"], ["More", "more"]])}`;
-}
-
-/* =========================== KIDS: a week of quests =========================== */
-function kidsApp() {
-  const T = [["Read 20 minutes", "book", "--oq-data-1", "Chapter 4 of Matilda", 1], ["Feed the plants", "sprout", "--oq-data-2", "Kitchen and balcony", 1], ["Piano practice", "music", "--oq-data-5", "15 minutes", 0],
-    ["Draw a dragon", "brush", "--oq-data-4", "Any colours you like", 0], ["Bike ride", "bike", "--oq-data-6", "With Dad, after lunch", 0], ["Brain teaser", "bulb", "--oq-data-3", "Puzzle #12", 0]];
-  return `${status}<div class="shell">
-  <aside class="side">
-    <div class="brand"><span class="mark">★</span><span class="brand-name">questly</span>${pinBtn}</div>
-    <button class="nav on">${ic("star")}Today</button>
-    <button class="nav">${ic("cal")}My week</button>
-    <button class="nav">${ic("trophy")}Rewards<span class="n">3</span></button>
-    <button class="nav">${ic("smile")}Me</button>
-    <div class="foot"><span class="avatar" style="background:var(--oq-data-4);width:34px;height:34px">M</span><span>Maya, 8</span></div>
-  </aside>
-  <main class="main">
-    <div class="hero"><div><h2>Hi Maya!</h2><p>2 quests done. 4 to go before the park.</p></div><div class="stars">12<small>stars</small></div></div>
-    <div class="ph"><div><h1 style="font-size:1.6em">Today's quests</h1></div><span class="sp"></span>${seg(["All", "To do", "Done"], "All")}</div>
-    <div class="tiles">${T.map(([a, i, c, s, d]) => `<button class="tile${d ? " done" : ""}" data-quest style="--c:var(${c})"><span class="ic" style="background:var(--c)${c === "--oq-data-3" ? ";color:#2a1d12" : ""}">${ic(i)}</span><b>${a}</b><span class="ft"><span>${s}</span><em class="rw">+1 ★</em></span></button>`).join("")}</div>
+      <section class="card"><div class="card-h"><h3>Friday · arrival</h3><span class="sp"></span><span class="ink2 mono" style="font-size:.85em">Oct 24</span></div><div class="card-b">
+        <div class="cx-it"><span class="t">08:40</span><div><b>TAP 1352 · JFK → LIS</b><span>Seat 14C</span></div><span class="badge ok"><i></i>checked in</span></div>
+        <div class="cx-it"><span class="t">21:30</span><div><b>Memmo Alfama</b><span>conf. 88213</span></div><span class="badge ok"><i></i>booked</span></div>
+        ${dinner || `<div class="cx-it"><span class="t">22:15</span><div><b>Taberna da Rua das Flores</b><span>walk 6 min</span></div><span class="badge warn"><i></i>waitlist</span></div>`}</div></section>
+      <section class="card"><div class="card-h"><h3>People</h3></div><div class="card-b" style="display:flex;flex-direction:column;gap:12px">
+        ${[["MS", 1, "Maya Silva", "organiser"], ["JR", 2, "Jon Reyes", "can edit"], ["AK", 3, "Ana Kim", "can edit"], ["TL", 4, "Tom Lee", "invited"]].map(p => `<div style="display:flex;align-items:center;gap:10px">${av(p[0], p[1])}<b style="flex:1;font-weight:550">${p[2]}</b><span class="ink2">${p[3]}</span></div>`).join("")}
+        <div><button class="btn tonal sm">${ic("users")}Invite</button></div></div></section>
+    </div>`,
+    over: () => `<div class="tip" style="top:132px;left:880px">Edit trip<kbd>E</kbd></div>` },
+  { id: "edit", g: "Plan", t: "Add / edit", n: "Every input: text, select, segmented, slider, switch, checkbox, radio; one filled verb.", body: () => `
+    ${ph("New plan", "Lisbon · Friday, Oct 24")}
+    <section class="card"><div class="card-b" style="padding-top:18px"><div class="cx-form">
+      <label class="mo"><input placeholder=" " value="Dinner at Taberna"><span class="fl">What</span></label>
+      <button class="mo sel" style="font:inherit;color:inherit;text-align:left;border:0"><span class="fl">Kind</span><span class="val">Food</span><span class="chev">${ic("down")}</span></button>
+      <div><div class="cx-lab">When</div><div class="seg2"><i></i><button>Morning</button><button>Afternoon</button><button class="on">Evening</button></div></div>
+      <div><div class="cx-lab">Budget · €80</div><input type="range" class="slider" value="40" style="--v:40%"></div>
+      <div class="row-ctl"><button class="switch on" aria-pressed="true" aria-label="Remind me"></button>Remind me an hour before</div>
+      <div class="row-ctl"><button class="check on" aria-label="Split"></button>Split with the group</div>
+      <div class="row-ctl"><button class="radio on" aria-label="I pay"></button>I pay<button class="radio" aria-label="Split evenly"></button>Split evenly</div>
+    </div></div><div class="cx-foot"><button class="btn text">Cancel</button><button class="btn fill">Add to Friday</button></div></section>` },
+  { id: "search", g: "Find", t: "Search", n: "Search field with a shortcut hint, chips, results with one action each, a toast with Undo.", body: () => `
+    ${ph("Search", "Lisbon · near Alfama")}
+    <label class="mo has-lead"><span class="lead">${ic("search")}</span><input placeholder=" " value="tapas"><span class="fl">Search places, plans, people</span><kbd>⌘K</kbd></label>
+    <div class="wrap-row"><button class="chip on">Food</button><button class="chip on">Open now</button><button class="chip">Under €30</button><button class="chip">Saved</button></div>
+    <section class="card"><div class="card-b" style="padding-top:6px">
+      ${[["Taberna da Rua das Flores", "Tapas · 6 min walk · €€", 2, "fork"], ["Cervejaria Ramiro", "Seafood · 14 min · €€€", 3, "fork"], ["Pharmácia", "Tapas · 9 min · €€", 4, "fork"], ["Time Out Market", "Food hall · 18 min · €", 5, "fork"]].map(r => `<div class="cx-res"><span class="ic-tile lg" style="--c:var(--oq-data-${r[2]})">${ic(r[3])}</span><div><b>${r[0]}</b><span>${r[1]}</span></div><button class="btn tonal sm">${ic("heart")}Save</button></div>`).join("")}
+    </div></section>`,
+    over: () => `<div class="toast"><span>Saved to Lisbon</span><button class="btn text sm">Undo</button></div>` },
+  { id: "settings", g: "You", t: "Settings", n: "Account, switches, a segmented choice, a danger button.", body: () => `
+    ${ph("Settings", "maya@contoso.com")}
+    <section class="card"><div class="card-b" style="padding-top:16px"><div class="cx-acct">${av("MS", 1)}<div style="flex:1"><b>Maya Silva</b><span>maya@contoso.com</span></div><button class="btn tonal sm">${ic("edit")}Edit</button></div></div></section>
     <div class="grid g-2e">
-      <section class="card"><div class="card-h"><h3>Stars this week</h3><span class="sp"></span><span class="badge ok"><i></i>best week yet</span></div>
-        <div class="week">${[["M", 60], ["T", 85], ["W", 40], ["T", 100], ["F", 70], ["S", 20], ["S", 0]].map(([d, v]) => `<div><i><em style="height:${v}%"></em></i>${d}</div>`).join("")}</div>
-        <div class="src note">a full bar is 5 stars</div></section>
-      <section class="card"><div class="card-h"><h3>Next reward</h3><span class="sp"></span></div>
-        <div class="card-b"><div style="display:flex;align-items:center;gap:14px;margin-bottom:12px"><span class="ic" style="width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--oq-data-3);color:#2a1d12">${ic("trophy", 'style="width:28px;height:28px"')}</span><div><b style="font-size:1.1em">Trip to the zoo</b><div class="ink2" style="font-size:.88em">8 more stars</div></div></div>
-        <div class="prog" style="height:14px;border-radius:7px"><i style="width:60%;border-radius:7px"></i></div></div>
-        <div class="acts" style="padding:0 16px 16px"><button class="btn fill lg" style="width:100%" data-toast="Great job! +1 star">${ic("check")}I did a quest!</button></div></section>
+      <section class="card"><div class="card-h"><h3>Notifications</h3></div><div class="card-b" style="display:flex;flex-direction:column;gap:12px">
+        <div class="row-ctl"><button class="switch on" aria-label="Trip changes"></button>Trip changes</div>
+        <div class="row-ctl"><button class="switch on" aria-label="Boarding"></button>Boarding and gate changes</div>
+        <div class="row-ctl"><button class="switch" aria-label="Deals"></button>Deals and tips</div></div></section>
+      <section class="card"><div class="card-h"><h3>Appearance</h3></div><div class="card-b" style="display:flex;flex-direction:column;gap:12px">
+        <div class="seg2"><i></i><button>Light</button><button>Night</button><button class="on">Auto</button></div>
+        <div class="row-ctl"><button class="check on" aria-label="Reduce motion"></button>Follow my device for motion</div></div></section>
     </div>
-  </main></div>
-  ${tabbar([["Today", "star"], ["Week", "cal"], ["Rewards", "trophy"], ["Me", "smile"]])}`;
+    <section class="card"><div class="card-h"><h3>Your data</h3></div><div class="card-b" style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+      <span class="ink2">Download everything, or delete your account and all trips you organise.</span>
+      <div class="wrap-row"><button class="btn tonal">Download my data</button><button class="btn danger">Delete account</button></div></div></section>` },
+  { id: "delete", g: "You", t: "Confirm (dialog)", n: "A confirm dialog over the page: close button, one filled verb.", body: () => SCREENS.find(s => s.id === "settings").body(),
+    over: () => `<div class="scrim"><div class="dialog" style="position:relative"><button class="xbtn" style="position:absolute;top:14px;right:14px" aria-label="Close">${ic("x")}</button><h3 style="padding-right:44px">Delete your account?</h3><p>Your 12 trips and 112 saved places go with it. Trips you were invited to stay with their organisers.</p><div class="acts"><button class="btn text">Keep my account</button><button class="btn fill">Delete account</button></div></div></div>` },
+  { id: "empty", g: "States", t: "Empty", n: "The empty state: what goes here and the one action that fills it.", body: () => `
+    ${ph("Trips", "No trips yet")}
+    <section class="card"><div class="empty"><div class="ring">${ic("plane")}</div><b>No trips yet</b>Plan your first trip and invite the people going.<div style="margin-top:12px"><button class="btn fill">${ic("plus")}New trip</button></div></div></section>` },
+  { id: "error", g: "States", t: "Error", n: "Something failed: say what, say what happens next, offer the retry.", body: () => `
+    ${ph("Trips", "Last updated 12 min ago")}
+    <section class="card"><div class="empty"><div class="ring">${ic("alert")}</div><b>We couldn't load your trips</b>You're offline. We'll try again when you're back, or you can retry now.<div style="margin-top:12px" class="wrap-row"><span class="badge bad"><i></i>offline</span><button class="btn tonal">${ic("refresh")}Try again</button></div></div></section>` },
+  { id: "loading", g: "States", t: "Loading", n: "Skeleton rows and an indeterminate bar; never zeros or a spinner on a blank page.", body: () => `
+    ${ph("Trips", "Loading…")}
+    <div class="prog indet"><i></i></div>
+    <section class="card"><div class="card-b" style="padding-top:16px;display:flex;flex-direction:column;gap:14px">${[70, 90, 55, 80, 65].map(w => `<div class="skel" style="width:${w}%"></div>`).join("")}</div></section>` },
+  /* ---------- Agent · concepts: the assistant lives in the Beacon; its work lands in place ---------- */
+  { id: "assistant", g: "Agent · concepts", t: "Assistant tab", n: "The assistant's home tab: ask, see what's running, decide what's waiting, and undo anything it did. The Beacon carries it everywhere else.", beacon: () => bcn(`<span class="ag-stack">${ring(.6)}${ring(.25)}</span>2 working<span class="ag-needs">1 needs you</span>`, `<h4>${ic("sparkle")}2 working · 1 needs you</h4>`), body: () => `
+    ${ph("Assistant", "Works in the background · asks before it spends")}
+    <section class="card"><div class="card-b" style="padding-top:16px;display:flex;flex-direction:column;gap:12px">
+      <div class="cx-ask"><label class="mo has-lead"><span class="lead">${ic("sparkle")}</span><input placeholder=" "><span class="fl">Ask Contoso to plan, book or change</span></label><button class="btn tonal icon" aria-label="Talk">${ic("mic")}</button><button class="btn fill">Ask</button></div>
+      <div class="wrap-row"><button class="chip">Dinner for 4 on Friday</button><button class="chip">Rebook me if TAP 1352 slips</button><button class="chip hide-n">Packing list for Lisbon</button><button class="chip">Split the stay with Jon</button></div></div></section>
+    <div class="grid g-2e">
+      <section class="card"><div class="card-h"><h3>Working now</h3><span class="sp"></span><span class="badge info"><i></i>2 running</span></div><div class="card-b">
+        <div class="cx-task">${ring(.6, 1)}<div><b>Booking dinner for 4 · Friday</b><span>step 3 of 5 · holding Taberna 21:30</span></div><button class="btn text sm">Stop</button></div>
+        <div class="cx-task">${ring(.25, 1)}<div><b>Watching TAP 1352</b><span>rebooks if it slips past 2 h</span></div><button class="btn text sm">Stop</button></div></div></section>
+      <section class="card"><div class="card-h"><h3>Needs you</h3><span class="sp"></span><span class="badge warn"><i></i>1 waiting</span></div><div class="card-b" style="display:flex;flex-direction:column;gap:8px">
+        <span class="ink2">Two tables fit 4 on Friday. I'm holding the first until 18:00.</span>
+        <div class="cx-pick on"><button class="radio on" aria-label="Taberna"></button><div><b>Taberna da Rua das Flores</b><span>21:30 · 6 min walk</span></div><b class="mono">€36 pp</b></div>
+        <div class="cx-pick"><button class="radio" aria-label="Ramiro"></button><div><b>Cervejaria Ramiro</b><span>20:45 · 14 min</span></div><b class="mono">€52 pp</b></div>
+        <div class="wrap-row" style="margin-top:4px"><button class="btn fill">Book Taberna · €144</button><button class="btn text">Not now</button></div></div></section>
+    </div>
+    <section class="card"><div class="card-h"><h3>Done</h3><span class="sp"></span><span class="ink2 mono" style="font-size:.85em">last 7 days</span></div><div class="card-b">
+      ${[["Moved the Kyoto hotel to Nov 13", "saved €120 · Mon"], ["Shared the packing list with Jon and Ana", "Sun"], ["Found 3 dinners near Alfama", "Sat · you saved 1"]].map(r => `<div class="cx-task"><span class="ok">${ic("check")}</span><div><b>${r[0]}</b><span>${r[1]}</span></div><button class="btn text sm">${ic("undo")}Undo</button></div>`).join("")}
+    </div><div class="src note">Every change it makes has a receipt and an Undo for 24 h</div></section>` },
+  { id: "agent-run", g: "Agent · concepts", t: "Working (live)", n: "The Beacon opens into live steps; nothing modal. The work lands where it belongs: a drafting row appears in Friday while the agent holds the table.", beacon: () => bcn(`${ring(.6)}Booking dinner<span class="mono">step 3 of 5</span>`, `<h4>${ic("sparkle")}Booking dinner for 4</h4><div class="sub2">Friday · near Memmo Alfama · ≤ €40 a head</div>
+      <ul class="steps" data-steps>${[["Searched 23 places near Alfama", "0:04"], ["Checked 4 calendars", "0:06"], ["Holding Taberna, 21:30", "0:09"], ["Ask you before booking", ""], ["Add to Friday, tell the group", ""]].map(r => `<li><i class="d"></i>${r[0]}<span>${r[1]}</span></li>`).join("")}</ul>
+      <div class="bar2"><i style="width:60%"></i></div><div class="bacts"><button class="bbtn">Stop</button><button class="bbtn">Open in Assistant</button></div>`, true),
+    body: () => SCREENS.find(s => s.id === "trip").body(`<div class="cx-it cx-draft"><span class="t">21:30</span><div><b>Dinner · Taberna da Rua das Flores</b><div class="skel" style="width:60%"></div><span class="cx-by">${ic("sparkle")}drafting · holding a table</span></div><span class="badge info"><i></i>draft</span></div>`) },
+  { id: "agent-ask", g: "Agent · concepts", t: "Needs you", n: "The agent stops before it spends. The choice comes to you in the Beacon, on whatever screen you're on; the price is on the button.", beacon: () => bcn(`<span class="ag-needs">needs you</span>Pick a table<span class="mono">2 options</span>`, `<span class="ag-needs">needs you</span><h4>${ic("fork")}Pick a table for Friday</h4><div class="sub2">both fit 4 · both walkable from Memmo</div>
+      <div class="ag-opt on" data-opt="Book Taberna · €144"><i class="r"></i><div><b>Taberna da Rua das Flores</b><span>21:30 · 6 min walk</span></div><span class="p">€36 pp</span></div>
+      <div class="ag-opt" data-opt="Book Ramiro · €208"><i class="r"></i><div><b>Cervejaria Ramiro</b><span>20:45 · 14 min walk</span></div><span class="p">€52 pp</span></div>
+      <div class="ag-note">Holding Taberna until 18:00</div><div class="bacts"><button class="bbtn pri" data-book>Book Taberna · €144</button><button class="bbtn">Not now</button></div>`, true),
+    body: () => SCREENS.find(s => s.id === "trips").body() },
+  { id: "agent-notice", g: "Agent · concepts", t: "Heads-up", n: "Nobody asked: the agent noticed a delay, re-planned the evening and shows the diff. One tap applies it.", beacon: () => bcn(`${ic("alert")}TAP 1352 +2 h<span class="mono">3 fixes ready</span>`, `<h4>${ic("alert")}TAP 1352 is 2 h late</h4><div class="sub2">now leaves 10:40 · lands 22:55</div>
+      <div class="ag-diff"><div>Airport transfer<s>21:10</s><b>23:10</b></div><div>Late check-in · Memmo<s>21:30</s><b>23:20</b></div><div>Dinner · Taberna<s>Fri 22:15</s><b>Sat 20:00</b></div></div>
+      <div class="ag-note">Memmo said yes · Taberna has Saturday free</div><div class="bacts"><button class="bbtn pri">Apply 3 changes</button><button class="bbtn">Show me</button></div>`, true),
+    body: () => SCREENS.find(s => s.id === "home").body() },
+  { id: "agent-many", g: "Agent · concepts", t: "Several at once", n: "More than one job: the compact Beacon stacks their rings; open, each is a row you can jump into.", beacon: () => bcn(`<span class="ag-stack">${ring(.6)}${ring(.25)}${ring(.8)}</span>3 working<span class="mono">1 waiting on Jon</span>`, `<h4>${ic("sparkle")}3 things in progress</h4>
+      <div class="ag-task">${ring(.6, 1)}<div><b>Booking dinner for 4</b><span>holding a table</span></div><span class="mono">3/5</span></div>
+      <div class="ag-task">${ring(.25, 1)}<div><b>Watching TAP 1352</b><span>until boarding</span></div><span class="mono">on time</span></div>
+      <div class="ag-task">${ring(.8, 1)}<div><b>Splitting the stay</b><span>waiting on Jon</span></div><span class="mono">€480</span></div>
+      <div class="bacts"><button class="bbtn">Open Assistant</button></div>`, true),
+    body: () => SCREENS.find(s => s.id === "trips").body() },
+  { id: "agent-voice", g: "Agent · concepts", t: "Talk to it", n: "Hold to talk: the Beacon is the microphone. Words appear as you speak; what it understood becomes tags you can check before it acts.", beacon: () => bcn(`${ic("mic")}<span class="ag-lv" data-lv>${"<i></i>".repeat(9)}</span><span class="mono">0:04</span>`, `<h4>${ic("mic")}Listening</h4><div class="ag-lv" data-lv>${"<i></i>".repeat(28)}</div>
+      <div class="ag-said">Move dinner to Saturday and tell Jon <em>we'll be late…</em></div>
+      <div class="ag-tags"><span>Dinner · Taberna</span><span>Fri → Sat Oct 25</span><span>Message Jon</span></div><div class="bacts"><button class="bbtn pri">Do it</button><button class="bbtn">Cancel</button></div>`, true),
+    body: () => SCREENS.find(s => s.id === "trip").body() },
+  { id: "agent-done", g: "Agent · concepts", t: "Done + undo", n: "Finished: a receipt in the Beacon with a short Undo, and the row it touched says who made it.", beacon: () => bcn(`${ic("check")}Dinner booked<span class="mono" data-count="10">Undo 0:10</span>`, `<h4>${ic("check")}Booked Taberna · Fri 21:30</h4><div class="sub2">table for 4 · conf. TBR-4471 · pay there</div>
+      <ul class="steps">${["Booked the table", "Added it to Friday", "Told Jon, Ana and Tom"].map(t => `<li><i class="d ok"></i>${t}</li>`).join("")}</ul>
+      <div class="bacts"><button class="bbtn">${ic("undo")}<span data-count="10">Undo 0:10</span></button><button class="bbtn pri">See Friday</button></div>`, true),
+    body: () => SCREENS.find(s => s.id === "trip").body(`<div class="cx-it"><span class="t">21:30</span><div><b>Taberna da Rua das Flores</b><span>table for 4</span><div class="cx-by">${ic("sparkle")}booked by your assistant · 2 min ago</div></div><span class="badge ok"><i></i>booked</span></div>`) },
+];
+
+/* ---------- card titles carry a coloured icon tile (.ic-tile, 2026-10-24) ---------- */
+const HEAD = { "Friday in Lisbon": ["cal", 1], "Budget": ["tag", 4], "Friday · arrival": ["cal", 1], "People": ["users", 3], "Notifications": ["bell", 5], "Appearance": ["brush", 6], "Your data": ["shield", 2], "Working now": ["sparkle", 1], "Needs you": ["bell", 4], "Done": ["check", 3] };
+const withIcons = h => h.replace(/<div class="card-h"><h3>([^<]+)<\/h3>/g, (m, t) => HEAD[t] ? `<div class="card-h"><h3><span class="ic-tile" style="--c:var(--oq-data-${HEAD[t][1]})">${ic(HEAD[t][0])}</span>${t}</h3>` : m);
+
+/* ---------- a frame: the real app at real size, scaled to fit ---------- */
+const DIM = { desk: [1280, 800], phone: [390, 844] };
+function screenHTML(s, kind) {
+  return withIcons( s.nav === false
+    ? `${kind === "phone" ? `<div class="cx-status"><span>9:41</span><span>●●● ▮</span></div>` : ""}<div style="flex:1;display:flex;overflow:auto">${s.body()}</div>`
+    : `${kind === "phone" ? `<div class="cx-status"><span>9:41</span><span>●●● ▮</span></div>` : ""}<div class="shell"><main class="main">${s.body()}</main></div>${tabbar(tabOn[s.id])}${topnav(navOn[s.id])}${brand}${s.beacon ? (s.beacon === true ? beacon : s.beacon()) : ""}${s.over ? s.over() : ""}`);
+}
+function frame(s, kind, scale) {
+  const [w, h] = DIM[kind], inner = screenHTML(s, kind);
+  return `<figure class="fr ${kind}"><figcaption>${themeName()} · ${s.t} · ${kind === "desk" ? "Web 1280" : "Phone 390"}</figcaption>
+    <div class="fr-clip" style="width:${Math.round(w * scale)}px;height:${Math.round(h * scale)}px;${kind === "phone" ? `border-radius:${Math.round(46 * scale)}px` : ""}">
+    <div class="fr-scale" style="width:${w}px;height:${h}px;transform:scale(${scale})"><div class="${rootCls()}" style="width:${w}px;height:${h}px">${inner}</div></div></div></figure>`;
+}
+const pairScale = avail => Math.max(.3, Math.min(.72, (avail - 60) / (1280 + 390)));
+
+/* ---------- option A: rail + stage ---------- */
+function optA() {
+  const s = SCREENS.find(x => x.id === st.screen), groups = [...new Set(SCREENS.map(x => x.g))];
+  const avail = Math.min(innerWidth, 1800) - 210 - 44;
+  return `<div class="sc-a"><nav class="sc-rail">${groups.map(g => `<h4>${g}</h4>${SCREENS.filter(x => x.g === g).map(x => `<button data-screen="${x.id}" class="${x.id === st.screen ? "on" : ""}">${x.t}</button>`).join("")}`).join("")}</nav>
+    <div class="sc-stage"><p class="sc-note"><b>${s.t}.</b> ${s.n}</p><div class="sc-pair">${frame(s, "desk", pairScale(avail))}${frame(s, "phone", pairScale(avail))}</div></div></div>`;
+}
+/* ---------- option B: storyboard ---------- */
+function optB() {
+  const sc = pairScale(Math.min(innerWidth, 1800) - 44);
+  return `<div class="sc-b"><div class="sc-jump">${SCREENS.map(x => `<a href="#row-${x.id}">${x.t}</a>`).join("")}</div>
+    ${SCREENS.map(x => `<section class="sc-row" id="row-${x.id}"><h2>${x.g} · ${x.t}</h2><p>${x.n}</p><div class="sc-pair">${frame(x, "desk", sc)}${frame(x, "phone", sc)}</div></section>`).join("")}</div>`;
+}
+/* ---------- component table: component | web | phone ---------- */
+const ROWS = [
+  ["Navigation", "Top nav pill (4 + more) on web; tab bar on phone, labels at rest, icons only while scrolling.", 120, () => `${topnav(0)}${tabbar(0)}<div class="cx-cell" style="padding-top:80px"></div>`],
+  ["Dock shell", "oq-dock: the nav pill floats at the bottom on web too; the phone is the same tab bar.", 220, () => `${brand}${topnav(0)}${tabbar(0)}`, "oq-dock"],
+  ["Brand and Beacon", "Logo on the page and the live pill; on phone the Beacon moves to the top centre, the brand hides.", 90, () => `${brand}${beacon}`],
+  ["Buttons", "Filled (one per card), tonal, text, danger, icon. Phone: at least 44 px tall.", 130, () => `<div class="cx-cell"><div class="wrap-row"><button class="btn fill">${ic("check")}Save trip</button><button class="btn tonal">Preview</button><button class="btn text">Cancel</button><button class="btn danger">Delete</button><button class="btn tonal icon" aria-label="Search">${ic("search")}</button></div></div>`],
+  ["Fields", "Floating label in the border; error as a sentence below. Phone: 16 px text.", 165, () => `<div class="cx-cell"><label class="mo"><input placeholder=" " value="Lisbon"><span class="fl">Where to</span></label><div><label class="mo err"><input placeholder=" " value="maya@"><span class="fl">Email</span></label><div class="mf-help err">That email is missing its domain.</div></div></div>`],
+  ["Select", "A field that opens a themed menu; on phone the list is an action sheet.", 230, () => `<div class="cx-cell"><button class="mo sel" style="font:inherit;color:inherit;text-align:left;border:0"><span class="fl">Kind</span><span class="val">Food</span><span class="chev">${ic("down")}</span></button></div><div class="menu" style="top:76px;left:16px"><div class="lab">Kind</div><button class="mi">${ic("plane")}Travel</button><button class="mi">${ic("bed")}Stay</button><button class="mi">${ic("check")}Food</button></div>`],
+  ["Toggles", "Switch, checkbox, radio. Same on both.", 130, () => `<div class="cx-cell"><div class="row-ctl"><button class="switch on" aria-label="a"></button>Remind me</div><div class="row-ctl"><button class="check on" aria-label="b"></button>Split<button class="radio on" aria-label="c"></button>I pay<button class="radio" aria-label="d"></button>Split evenly</div></div>`],
+  ["Segmented and tabs", "Sliding thumb on a spring.", 110, () => `<div class="cx-cell"><div><div class="seg2"><i></i><button class="on">Day</button><button>Week</button><button>Month</button></div></div><div class="tabs"><i></i><button class="on">Plans</button><button>Budget</button><button>People</button></div></div>`],
+  ["Chips and badges", "Pill = tappable filter; square mono badge = status, always with a word.", 90, () => `<div class="cx-cell"><div class="wrap-row"><button class="chip on">Food</button><button class="chip">Open now</button></div><div class="wrap-row"><span class="badge ok"><i></i>booked</span><span class="badge warn"><i></i>waitlist</span><span class="badge bad"><i></i>cancelled</span></div></div>`],
+  ["Table", "Hairline rows, mono numbers. Phone: hide-n columns drop.", 190, () => `<div class="cx-cell"><section class="card"><table class="tbl"><thead><tr><th>Trip</th><th class="hide-n">People</th><th class="num">Budget</th></tr></thead><tbody><tr><td>Lisbon</td><td class="hide-n">4</td><td class="num">€2,000</td></tr><tr><td>Kyoto</td><td class="hide-n">2</td><td class="num">€3,400</td></tr></tbody></table></section></div>`],
+  ["Stats", "4 across on web, 2 on phone.", 180, () => `<div class="cx-cell"><section class="card"><div class="stats"><div><b>7</b><span>trips</span></div><div><b>38</b><span>days away</span></div><div><b>5</b><span>countries</span></div><div><b>112</b><span>saved</span></div></div></section></div>`],
+  ["Progress and loading", "Bar, indeterminate bar, skeleton rows.", 120, () => `<div class="cx-cell"><div class="prog"><i style="width:64%"></i></div><div class="prog indet"><i></i></div><div class="skel" style="width:70%"></div></div>`],
+  ["Empty", "What goes here, and the one action that fills it.", 200, () => `<div class="cx-cell"><section class="card"><div class="empty"><div class="ring">${ic("plane")}</div><b>No trips yet</b>Plan your first trip.<div style="margin-top:10px"><button class="btn fill sm">New trip</button></div></div></section></div>`],
+  ["Menu", "Anchored under its button; on phone an action sheet with 44 px rows. Tap Actions: it opens and closes in the Gentle tier.", 230, () => `<div class="cx-cell"><div><button class="btn tonal" data-demo="menu">${ic("down")}Actions</button></div></div><div class="menu" style="top:64px;left:16px"><button class="mi">${ic("edit")}Rename<kbd>R</kbd></button><button class="mi">${ic("share")}Share link</button><hr><button class="mi danger">${ic("trash")}Delete trip</button></div>`],
+  ["Tooltip", "Hover hint on web; none on phone (aria-label instead).", 90, () => `<div class="cx-cell" style="padding-top:44px"><div><button class="btn tonal icon" aria-label="Edit">${ic("edit")}</button></div></div><div class="tip" style="top:10px;left:8px">Edit trip<kbd>E</kbd></div>`],
+  ["Dialog", "Centred; on phone the actions stack, verb on top.", 260, () => `<div class="scrim"><div class="dialog" style="position:relative"><button class="xbtn" style="position:absolute;top:14px;right:14px" aria-label="Close">${ic("x")}</button><h3 style="padding-right:44px">Delete trip?</h3><p>Kyoto and its 9 plans go for everyone.</p><div class="acts"><button class="btn text">Cancel</button><button class="btn fill">Delete trip</button></div></div></div>`],
+  ["Card and coloured icons", "Card with a title icon tile; list rows with 36 px tiles. The colour says what it is, never its state.", 250, () => `<div class="cx-cell"><section class="card"><div class="card-h"><h3><span class="ic-tile" style="--c:var(--oq-data-1)">${ic("cal")}</span>Friday in Lisbon</h3><span class="sp"></span><span class="badge ok"><i></i>booked</span></div><div class="card-b"><div class="wrap-row" style="margin-bottom:6px;gap:14px">${[["plane", 1], ["bed", 3], ["fork", 2], ["heart", 5]].map(r => `<svg class="ico ico-c" viewBox="0 0 24 24" style="--c:var(--oq-data-${r[1]})">${P[r[0]]}</svg>`).join("")}<span class="ink2" style="font-size:.85em">.ico-c</span></div>${[["fork", 2, "Taberna da Rua das Flores"], ["bed", 3, "Memmo Alfama"]].map(r => `<div class="cx-res"><span class="ic-tile lg" style="--c:var(--oq-data-${r[1]})">${ic(r[0])}</span><div><b>${r[2]}</b></div><span></span></div>`).join("")}</div></section></div>`],
+  ["Slider", "A solid fill to the value. Same on both.", 80, () => `<div class="cx-cell"><div class="cx-lab">Budget · €80</div><input type="range" class="slider" value="40" style="--v:40%" oninput="this.style.setProperty('--v', this.value + '%')"></div>`],
+  ["Avatars", "Initials on a data colour; overlap in a group.", 80, () => `<div class="cx-cell"><div class="wrap-row">${av("MS", 1)}${av("JR", 2)}${av("AK", 3)}${av("TL", 4)}</div></div>`],
+  ["Beacon · agent", "The assistant's one presence: live steps, an approval, a receipt. Tap to open; on phone it sits top centre.", 340, () => SCREENS.find(s => s.id === "agent-ask").beacon()],
+  ["Bottom sheet", "Rises from the bottom over a scrim (Settle tier), with a grabber. Same markup on web and phone.", 300, () => `<div class="scrim"><div class="sheet"><div class="grab"></div><h3 style="margin:0 0 6px">Share Lisbon</h3><p class="ink2" style="margin:0 0 14px">Anyone with the link can see the plans, not the budget.</p><div class="wrap-row"><button class="btn fill">${ic("copy")}Copy link</button><button class="btn tonal">${ic("mail")}Email</button></div></div></div>`],
+  ["Toast", "Bottom centre; on phone above the tab bar. Tap Save: Omxqua.toast shows it and fades it 2.6 s later.", 220, () => `<div class="cx-cell"><div><button class="btn tonal" data-demo="toast">${ic("heart")}Save</button></div></div><div class="toast"><span>Saved to Lisbon</span><button class="btn text sm">Undo</button></div>${tabbar(0)}`],
+];
+function optT() {
+  const cw = Math.min(innerWidth, 1800) - 44 - 190 - 48, s = Math.max(.35, Math.min(.85, (cw - 20) / (680 + 360)));
+  const cell = (r, kind) => { const w = kind === "desk" ? 680 : 360, h = r[2];
+    return `<div class="fr-clip" style="width:${Math.round(w * s)}px;height:${Math.round(h * s)}px;border-radius:${kind === "phone" ? 18 : 10}px"><div class="fr-scale" style="width:${w}px;height:${h}px;transform:scale(${s})"><div class="${r[4] ? rootCls().replace("oq-top", r[4]) : rootCls()}" style="width:${w}px;height:${h}px">${r[3]()}</div></div></div>`; };
+  return `<div class="sc-t"><p class="sc-note"><b>Every part, web and phone.</b> Everything in AGENTS.md §3–4 except the admin-only side island and sidebar. The same markup in a 680 px and a 360 px frame; the width alone decides. ${themeName()} · ${st.mode === "light" ? "Light" : "Night"}.</p>
+    <table><thead><tr><th>Component</th><th>Web</th><th>Phone</th></tr></thead><tbody>${ROWS.map(r => `<tr><td><b>${r[0]}</b><span>${r[1]}</span></td><td>${cell(r, "desk")}</td><td>${cell(r, "phone")}</td></tr>`).join("")}</tbody></table></div>`;
 }
 
-/* =========================== KIT: every control =========================== */
-function touch() {
-  const tick = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-  const row = (nm, now, mat, note) => `<div class="nm">${nm}</div><div>${now}</div><div>${mat}</div><div><span class="note">${note}</span></div>`;
-  return `${status}<main class="main">
-  <div class="ph"><div><h1>Touch</h1><div class="sub">Material micro-interactions next to ours · try each one</div></div></div>
-  <div class="tl">
-    <div class="h">Control</div><div class="h">Now</div><div class="h">Material touch</div><div class="h">Verdict</div>
-    ${row("Checkbox", `<button class="check on" data-toggle></button><button class="check" data-toggle></button>`,
-      `<span class="mh"><button class="mcheck on" data-mt><i></i>${tick}</button></span><span class="mh"><button class="mcheck" data-mt><i></i>${tick}</button></span>`,
-      `<b>Decided: ours.</b> The press-in squash is the satisfying part; the Material halo is dropped.`)}
-    ${row("Radio", `<button class="radio on" data-radio></button><button class="radio" data-radio></button>`,
-      `<span class="mh"><button class="mradio on" data-mr></button></span><span class="mh"><button class="mradio" data-mr></button></span>`,
-      `<b>Decided: ours,</b> now with the same press-in as the checkbox and a dot that springs in.`)}
-    ${row("Switch", `<button class="switch on" data-toggle></button><button class="switch" data-toggle></button>`,
-      `<button class="mswitch on" data-mt><b></b></button><button class="mswitch" data-mt><b></b></button>`,
-      `<b>Decided: ours, Apple-style.</b> Hold it: the knob stretches toward where it will go, then settles.`)}
-    ${row("Text field · filled", `<div class="field" style="width:100%;max-width:260px"><label>Package name</label><div class="input"><input placeholder="omxcore"></div></div>`,
-      `<div style="width:100%"><label class="mf"><input placeholder=" "><span class="fl">Package name</span><i class="ul"></i></label><div class="mf-help">Lowercase, used in pip install</div></div>`,
-      `<span class="fit">Saves ~22 px a field</span> (the label lives inside), which is the point of the language. The underline grows from where you clicked. <span class="clash">Watch:</span> the tinted box and bottom line are more Google than ours. <b>Dropped.</b>`)}
-    ${row("Text field · outlined", `<div class="field" style="width:100%;max-width:260px"><label>Email</label><div class="input"><input placeholder="maya@example.com"></div></div>`,
-      `<div style="width:100%"><label class="mo"><input placeholder=" "><span class="fl">Email</span></label><div class="mf-help">We only send release notes</div></div>`,
-      `<span class="fit">Best fit.</span> Our rounded field and focus ring, with Material's floating label in the border. Saves the label row. <b>Adopted: this is now the field in the Kit.</b>`)}
-    ${row("Field · error", `<div class="field" style="width:100%;max-width:260px"><label>Email</label><div class="input is-err"><input value="maya@"></div><span class="err">Missing its domain</span></div>`,
-      `<div style="width:100%"><label class="mf err"><input placeholder=" " value="maya@"><span class="fl">Email</span><i class="ul"></i></label><div class="mf-help err">Missing its domain, like maya@example.com</div></div>`,
-      `<span class="fit">Fits.</span> The label turns red with the line, so the error is seen where you're looking. Keep the sentence below.`)}
-    ${row("Button press", `<button class="btn fill">Squash</button>`,
-      `<button class="btn fill rp nosquash" data-rp>Ripple</button><button class="btn tonal rp" data-rp>Both</button>`,
-      `<b>Decided: squash.</b> No ripple anywhere.`)}
-    ${row("List row", `<div class="runs" style="padding:0;width:100%"><li style="list-style:none" class="row-demo">Release wheels<span class="badge ok" style="margin-left:auto"><i></i>passed</span></li></div>`,
-      `<div style="width:100%"><div class="rp row-demo" data-rp style="position:relative;display:flex;align-items:center;padding:10px 12px;border-radius:10px;cursor:pointer">Release wheels<span class="badge ok" style="margin-left:auto"><i></i>passed</span></div></div>`,
-      `<b>Decided: as is</b> (state-layer tint + a small squash).`)}
-  </div>
-  <div class="src note">halo, fill and drawn tick ≤ 250 ms · labels float in 200 ms · nothing bounces</div>
-  </main>`;
+/* ---------- render ---------- */
+function render() {
+  $("#themeSeg").innerHTML = THEMES.map(t => `<button data-v="${t[0]}" class="${t[0] === st.theme ? "on" : ""}"><i class="sc-sw" style="background:${t[3]}"></i>${t[1]}</button>`).join("");
+  const s = SCREENS.find(x => x.id === st.screen) || SCREENS[1];
+  $("#view").innerHTML = st.bare ? `<div class="${rootCls()}" style="width:100vw;height:100vh">${screenHTML(s, st.size)}</div>` : st.opt === "a" ? optA() : st.opt === "b" ? optB() : optT();
+  if (!st.bare) history.replaceState(null, "", `?${new URLSearchParams({ opt: st.opt, theme: st.theme, mode: st.mode, screen: st.screen })}`);
+  requestAnimationFrame(() => {
+    $$(".cx-screen .topnav").forEach(n => Omxqua.layoutTopnav(n, false));
+    $$(".cx-screen .seg2, .cx-screen .tabs, .cx-screen .tabbar").forEach(Omxqua.placeThumb);
+    $$(".cx-screen .beacon").forEach(b => Omxqua.sizeBeacon(b, false));
+  });
 }
-
-function kit() {
-  const fam = { dev: "Developer", travel: "Travel", kids: "Kids" }[state.fam] + " · " + SKINS[state.fam].find(o => o[0] === state.skin)[1];
-  return `${status}<main class="main">
-  <div class="ph"><div><h1>Kit</h1><div class="sub">${fam} · ${state.theme === "night" ? "Night" : "Light"} · every control, every state</div></div></div>
-  <div class="kit">
-    <section class="card"><div class="card-h"><h3>Buttons</h3></div><div class="card-b">
-      <div class="wrap-row"><button class="btn fill">${ic("check")}Publish</button><button class="btn tonal">Preview</button><button class="btn text">Cancel</button></div>
-      <div class="wrap-row"><button class="btn danger">Delete release</button><button class="btn tonal icon" data-tip="Search|⌘K">${ic("search")}</button><button class="btn tonal icon" data-tip="More">${ic("more")}</button><button class="btn fill" disabled>Disabled</button></div>
-      <div class="wrap-row"><button class="btn fill sm">Small</button><button class="btn fill">Default</button><button class="btn fill lg">Large</button></div>
-    </div><div class="src note">one filled button per card · verbs, not "Submit"</div></section>
-
-    <section class="card"><div class="card-h"><h3>Fields</h3></div><div class="card-b">
-      <div><label class="mo"><input placeholder=" " value="omxcore"><span class="fl">Package name</span></label><div class="mf-help">Lowercase, used in pip install</div></div>
-      <label class="mo has-lead"><span class="lead">${ic("search")}</span><input placeholder=" "><span class="fl">Search everything</span><kbd>⌘K</kbd></label>
-      <div><label class="mo err"><input placeholder=" " value="maya@"><span class="fl">Email</span></label><div class="mf-help err">That email is missing its domain, like maya@example.com</div></div>
-      <button class="mo sel" data-menu style="font:inherit;color:inherit;text-align:left;border:0"><span class="fl">Python</span><span class="val">3.11 and newer</span><span class="chev">${ic("down")}</span></button>
-    </div><div class="src note">label floats into the border · help below · errors as a sentence</div></section>
-
-    <section class="card"><div class="card-h"><h3>Choices</h3></div><div class="card-b">
-      <div class="row-ctl"><button class="switch on" data-toggle></button>Email me on release</div>
-      <div class="row-ctl"><button class="switch" data-toggle></button>Pre-releases in feed</div>
-      <div class="row-ctl"><button class="check on" data-toggle></button>Linux<button class="check on" data-toggle></button>macOS<button class="check" data-toggle></button>Windows</div>
-      <div class="row-ctl"><button class="radio on" data-radio></button>Public<button class="radio" data-radio></button>Private</div>
-      ${seg(["Day", "Week", "Month"], "Week")}
-      <input type="range" class="slider" value="40" data-slider>
-    </div><div class="src note">thumbs and toggles slide on a spring</div></section>
-
-    <section class="card"><div class="card-h"><h3>Chips, badges, tabs</h3></div><div class="card-b">
-      <div class="wrap-row"><button class="chip on">All</button><button class="chip">Stable</button><button class="chip">linux <span class="x">${ic("x", 'style="width:12px;height:12px"')}</span></button><button class="chip">${ic("plus", 'style="width:13px;height:13px"')}Filter</button></div>
-      <div class="wrap-row"><span class="badge ok"><i></i>passed</span><span class="badge warn"><i></i>running</span><span class="badge bad"><i></i>failed</span><span class="badge info"><i></i>new</span><span class="badge">v0.2.0</span></div>
-      ${tabs(["Overview", "Releases", "Settings"], "Overview")}
-    </div><div class="src note">pill = tappable · square mono badge = status</div></section>
-
-    <section class="card"><div class="card-h"><h3>Progress and loading</h3></div><div class="card-b">
-      <div class="prog"><i style="width:64%"></i></div>
-      <div class="prog indet"><i></i></div>
-      <div style="display:flex;flex-direction:column;gap:8px"><div class="skel" style="width:70%"></div><div class="skel" style="width:90%"></div><div class="skel" style="width:50%"></div></div>
-    </div><div class="src note">loading = skeleton rows, never zeros</div></section>
-
-    <section class="card"><div class="card-h"><h3>Overlays</h3></div><div class="card-b">
-      <div class="wrap-row"><button class="btn tonal" data-menu>${ic("down")}Menu</button><button class="btn tonal" data-dialog>Dialog</button><button class="btn tonal" data-sheet>Sheet</button><button class="btn tonal" data-toast="Release 0.3.0 published">Toast</button></div>
-      <div class="empty"><div class="ring">${ic("box")}</div><b>No releases yet</b>Publish your first version to see it here.<div style="margin-top:12px"><button class="btn fill sm">${ic("tag")}Publish</button></div></div>
-    </div><div class="src note">menus ease in 220 ms · panels settle · nothing bounces</div></section>
-
-    <section class="card"><div class="card-h"><h3>Table</h3></div>
-      <table class="tbl"><thead><tr><th>Name</th><th>Owner</th><th class="num">Size</th></tr></thead><tbody>
-      <tr><td>wheels-linux</td><td class="ink2">ci</td><td class="num">4.1 MB</td></tr><tr><td>wheels-macos</td><td class="ink2">ci</td><td class="num">3.8 MB</td></tr><tr><td>sdist</td><td class="ink2">abhishek</td><td class="num">0.9 MB</td></tr></tbody></table>
-      <div class="src note">hairline rows · mono numbers right-aligned</div></section>
-
-    <section class="card"><div class="card-h"><h3>Colour</h3><span class="sp"></span><span class="badge">${fam.split(" · ")[1]}</span></div><div class="card-b">
-      <div class="surfs">${[0, 1, 2, 3].map(i => `<div style="background:var(--oq-surface-${i});box-shadow:var(--oq-shadow-${Math.min(i, 3) || 1})">s${i}</div>`).join("")}</div>
-      <div class="swatches">${[1, 2, 3, 4, 5, 6].map(i => `<div><i style="background:var(--oq-data-${i})"></i><span>data-${i}</span></div>`).join("")}</div>
-      <div class="wrap-row"><span class="badge" style="background:var(--oq-accent);color:var(--oq-on-accent);border:0">accent</span><span class="badge ok"><i></i>ok</span><span class="badge warn"><i></i>warn</span><span class="badge bad"><i></i>bad</span><span class="badge info"><i></i>info</span></div>
-    </div><div class="src note">accent = one loud button + focus · data = series and kinds</div></section>
-  </div></main>`;
-}
-
-/* =========================== Pairs: desktop part ↔ its phone counterpart =========================== */
-const ROWS = {
-  dev: [["Release 0.3.0", "2 min"], ["CI · main", "passed"], ["Wheels · linux", "4.1 MB"], ["Docs build", "0:48"], ["Dependents", "212"]],
-  travel: [["TAP 1352 · JFK → LIS", "08:40"], ["Check in · Memmo", "21:30"], ["Dinner · Taberna", "22:15"], ["Castelo de São Jorge", "09:30"], ["Tram 28", "15:00"]],
-  kids: [["Read 20 minutes", "★ 3"], ["Feed the cat", "★ 1"], ["Spelling words", "★ 2"], ["Tidy your room", "★ 2"], ["Piano practice", "★ 3"]],
-};
-function pairs() {
-  const rows = ROWS[state.fam].map((r, i) => `<div class="fl-row"><i style="background:var(--oq-data-${i + 1})"></i><b>${r[0]}</b><span>${r[1]}</span></div>`).join("");
-  const bar = tabbar([...NAV[state.fam].slice(0, 3), ["More", "more"]]);
-  const brand = `<div class="brand-isl"><span class="mark">${BRAND[state.fam][0] ?? ic("plane")}</span>${BRAND[state.fam][1]}</div>`;
-  const menu = (lab, items, style) => `<div class="menu" style="${style}"><div class="lab">${lab}</div>${items}</div>`;
-  const acts = `<button class="mi">${ic("copy")}Copy link<kbd>⌘C</kbd></button><button class="mi">${ic("book")}Open details</button><button class="mi">${ic("bell")}Remind me<kbd>R</kbd></button><hr><button class="mi danger">${ic("x")}Remove</button>`;
-  const opts = `<button class="mi">3.10</button><button class="mi">${ic("check")}3.11 and newer</button><button class="mi">3.12 only</button>`;
-  const pair = (name, rule, inner, h, top) => `<section class="pair${top ? " wide" : ""}"><div class="pair-h"><h3>${name}</h3><span>${rule}</span></div><div class="pair-b">
-    <figure><div class="mini${top ? " top" : ""}" style="height:${h}px">${inner}</div><figcaption>Desktop · ${top ? "full width" : "660 px"}</figcaption></figure>
-    <figure><div class="mini mob${top ? " top" : ""}" style="height:${h}px">${inner}</div><figcaption>Phone · 360 px</figcaption></figure></div></section>`;
-  return `${status}<main class="main">
-  <div class="ph"><div><h1>Pairs</h1><div class="sub">every desktop part and its phone counterpart · same markup, the width decides</div></div></div>
-  <div class="pairs">
-  ${pair("Islands", "brand + nav pill + Beacon → Beacon on top, tab bar at the bottom (labels at rest, icons only while scrolling down); both stay put while content scrolls under the glass",
-    `<div class="mini-b">${rows}${rows}</div>${brand}${topnav(NAV[state.fam]).replace(' id="topnav"', "")}${bar}${beacon().replace(' id="beacon"', "")}`, 330, true)}
-  ${pair("Menu → action sheet", "anchored under its button → slides along the bottom edge, 44 px rows, no shortcut hints",
-    `<div class="mini-b"><div><button class="btn tonal">${ic("down")}Actions</button></div></div>${menu("Item", acts, "top:62px;left:16px")}`, 290)}
-  ${pair("Select → picker sheet", "the same field; its list opens as a sheet on phone",
-    `<div class="mini-b"><button class="mo sel" style="font:inherit;color:inherit;text-align:left;border:0"><span class="fl">Python</span><span class="val">3.11 and newer</span><span class="chev">${ic("down")}</span></button></div>${menu("Python", opts, "top:74px;left:16px")}`, 260)}
-  ${pair("Tooltip → none", "hover hint → touch has no hover: icon buttons carry aria-label, and a label goes next to anything unclear",
-    `<div class="mini-b"><div class="wrap-row" style="margin-top:36px"><button class="btn tonal icon" aria-label="Search">${ic("search")}</button><button class="btn tonal icon" aria-label="More">${ic("more")}</button></div></div><div class="tip" style="top:14px;left:6px">Search<kbd>⌘K</kbd></div>`, 120)}
-  ${pair("Dialog", "centred → still centred, actions stack full width with the verb on top",
-    `<div class="mini-b">${rows}</div><div class="scrim"><div class="dialog"><h3>Remove this?</h3><p>It goes from every list. You can undo for 10 seconds.</p><div class="acts"><button class="btn text">Cancel</button><button class="btn fill">Remove</button></div></div></div>`, 270)}
-  ${pair("Toast", "bottom centre → lifted above the tab bar",
-    `<div class="mini-b">${rows}</div><div class="toast"><span>Saved</span><button class="btn text sm">Undo</button></div>${bar}`, 260)}
-  ${pair("Table", "all columns → the hide-n columns drop; long tables scroll inside their card",
-    `<div class="mini-b"><section class="card"><table class="tbl"><thead><tr><th>Name</th><th class="hide-n">Owner</th><th class="num">Size</th></tr></thead><tbody><tr><td>wheels-linux</td><td class="ink2 hide-n">ci</td><td class="num">4.1 MB</td></tr><tr><td>wheels-macos</td><td class="ink2 hide-n">ci</td><td class="num">3.8 MB</td></tr><tr><td>sdist</td><td class="ink2 hide-n">abhishek</td><td class="num">0.9 MB</td></tr></tbody></table></section></div>`, 200)}
-  ${pair("Stats and grids", "4 across → 2 across; two-column grids stack",
-    `<div class="mini-b"><section class="card"><div class="stats"><div><b>5,912<span class="delta up">+11%</span></b><span>this week</span></div><div><b>212</b><span>dependents</span></div><div><b>0.3.0</b><span>latest</span></div><div><b>98%</b><span>passing</span></div></div></section></div>`, 200)}
-  ${pair("Fields", "same field → 16 px text on phone so iOS doesn't zoom the page on focus",
-    `<div class="mini-b"><label class="mo"><input placeholder=" " value="Lisbon"><span class="fl">Where to</span></label></div>`, 90)}
-  ${pair("Buttons", "hover tint and lift → press squash only (no hover on touch), at least 44 px tall",
-    `<div class="mini-b"><div class="wrap-row"><button class="btn fill">${ic("check")}Save trip</button><button class="btn tonal">Preview</button><button class="btn text">Cancel</button></div></div>`, 80)}
-  </div></main>`;
-}
-
-/* =========================== Beacon (live activity) =========================== */
-const ring = p => `<svg class="ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#3f3f46" stroke-width="2.5"/><circle cx="10" cy="10" r="8" fill="none" stroke="var(--oq-beacon-accent)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="${(p * 50.3).toFixed(1)} 60" transform="rotate(-90 10 10)" data-ring/></svg>`;
-function beacon() {
-  if (state.fam === "dev") return `<div class="beacon" id="beacon"><div class="bc-compact">${ring(.6)}Release wheels<span class="mono" data-bstep>3/5</span></div>
-    <div class="bc-open"><button class="x" data-bclose>${ic("x")}</button><h4>${ic("box")}Release wheels · 0.3.0rc1</h4><div class="sub2">a3f9c21 · started 2 min ago</div>
-    <ul class="steps"><li><i class="d ok"></i>Build sdist<span>0:21</span></li><li><i class="d ok"></i>Wheels · linux<span>1:04</span></li><li><i class="d ok"></i>Wheels · macOS<span>1:12</span></li><li><i class="d run"></i>Wheels · windows<span data-btime>0:38</span></li><li><i class="d"></i>Upload to PyPI<span>queued</span></li></ul>
-    <div class="bar2"><i style="width:60%" data-bbar></i></div><div class="bacts"><button class="bbtn pri">View run</button><button class="bbtn">Cancel</button></div></div></div>`;
-  if (state.fam === "travel") return `<div class="beacon" id="beacon"><div class="bc-compact"><span class="live"></span>${ic("plane")}TAP 1352<span class="mono">boards <b data-bmin>42</b> min</span></div>
-    <div class="bc-open"><button class="x" data-bclose>${ic("x")}</button><h4>${ic("plane")}JFK → LIS · TAP 1352</h4><div class="sub2">Gate B12 · Seat 14C · Group 3</div>
-    <div class="big"><span data-bmin2>42</span> min</div><div class="sub2">until boarding at 20:15 · on time</div>
-    <div class="bar2"><i style="width:30%" data-bbar></i></div><div class="bacts"><button class="bbtn pri">Boarding pass</button><button class="bbtn">Directions to gate</button></div></div></div>`;
-  return `<div class="beacon" id="beacon"><div class="bc-compact"><span class="live"></span>${ic("book")}Reading<span class="mono" data-btimer>12:04</span></div>
-    <div class="bc-open"><button class="x" data-bclose>${ic("x")}</button><h4>${ic("book")}Reading · Matilda</h4><div class="sub2">quest: read 20 minutes</div>
-    <div class="big" data-btimer2>12:04</div><div class="bar2"><i style="width:40%" data-bbar></i></div><div class="bacts"><button class="bbtn pri" data-bpause>Pause</button><button class="bbtn">+5 min</button><button class="bbtn">I finished!</button></div></div></div>`;
-}
-
-/* =========================== shared overlays =========================== */
-const overlays = `
-  <div class="menu" id="menu" hidden><div class="lab">Release</div><button class="mi">${ic("copy")}Copy install command<kbd>⌘C</kbd></button><button class="mi">${ic("book")}Open docs</button><button class="mi">${ic("git")}View on GitHub<kbd>↗</kbd></button><hr><button class="mi danger">${ic("x")}Yank 0.1.4</button></div>
-  <div class="toast" id="toast" hidden><span id="toastMsg"></span><button class="btn text sm" id="toastUndo">Undo</button></div>
-  <div class="scrim" id="scrim" hidden><div class="dialog" style="position:relative"><button class="xbtn" data-close style="position:absolute;top:14px;right:14px" aria-label="Close">${ic("x")}</button><h3 style="padding-right:44px">Publish 0.3.0?</h3><p>Wheels for linux, macOS and Windows go to PyPI. You can yank a release, but you can't reuse its version number.</p><div class="acts"><button class="btn text" data-close>Cancel</button><button class="btn fill" data-close data-toast2="0.3.0 is on PyPI">Publish 0.3.0</button></div></div></div>
-  <div class="sheet" id="sheet" hidden><div class="grab"></div><div style="display:flex;align-items:center;justify-content:space-between;margin:0 0 14px"><h3 style="margin:0;font-size:1.2em">Add to Friday</h3><button class="xbtn" data-close aria-label="Close">${ic("x")}</button></div>
-    <div style="display:flex;flex-direction:column;gap:14px"><label class="mo"><input placeholder=" "><span class="fl">What · dinner, museum, train</span></label>
-    <div class="field"><label>Kind</label>${seg(["See", "Food", "Stay", "Travel"], "See")}</div>
-    <label class="mo"><input placeholder=" " value="19:30"><span class="fl">Time</span></label>
-    <button class="btn fill lg" data-close data-toast2="Added to Friday">${ic("plus")}Add to Friday</button></div></div>
-  <div class="tip" id="tip" hidden></div>`;
-
-/* =========================== render + motion =========================== */
-/* wrap sidebar label text so the collapsed island can drop it cleanly */
-function wrapLabels() { $$(".side .nav", root).forEach(b => [...b.childNodes].forEach(n => { if (n.nodeType === 3 && n.textContent.trim()) { const sp = document.createElement("span"); sp.className = "lbl"; sp.textContent = n.textContent; n.replaceWith(sp); } })); }
-/* top nav: order = 4 visible (the 4th is the active extra if one is picked) · +N · the rest */
-/* the reusable motion lives in ../src/omxqua.js (window.Omxqua); these bind it to this page's root */
-const { placeThumb, settle, gentleIn, gentleOut, sizeBeacon } = Omxqua;
-const layoutTopnav = animate => Omxqua.layoutTopnav($("#topnav", root), animate);
-const navOpen = on => Omxqua.openTopnav($("#topnav", root), on);
-const navLater = () => Omxqua.foldTopnavLater($("#topnav", root));
-const toast = msg => Omxqua.toast($("#toast", root), msg, $("#toastMsg", root));
-root.addEventListener("pointerover", e => { const n = e.target.closest("#topnav"); if (n) Omxqua.holdTopnav(n); });
-root.addEventListener("pointerout", e => { const n = e.target.closest("#topnav"); if (n && !n.contains(e.relatedTarget) && n.classList.contains("open")) navLater(); });
-
-
-function render(animate) {
-  skinSeg(); root.className = `oq-root oq-${state.theme} oq-family-${state.fam} oq-skin-${state.skin} screen`;
-  const body = state.view === "touch" ? touch() : state.view === "kit" ? kit() : state.view === "pairs" ? pairs() : { dev: devApp, travel: travelApp, kids: kidsApp }[state.fam]();
-  root.innerHTML = body + overlays + (state.view === "app" ? beacon() : "");
-  const sh = state.view === "pairs" ? "top" : state.shell; /* pairs always shows Top islands */
-  root.classList.toggle("oq-islands", sh === "islands"); root.classList.toggle("oq-top", sh === "top"); root.classList.toggle("oq-dock", sh === "dock");
-  if (state.view === "app") root.insertAdjacentHTML("beforeend", topnav(NAV[state.fam]));
-  wrapLabels(); layoutTopnav(false);
-  if (state.view === "app") root.insertAdjacentHTML("beforeend", `<div class="brand-isl"><span class="mark">${BRAND[state.fam][0] ?? ic("plane")}</span>${BRAND[state.fam][1]}</div>`);
-  const bk = $("#beacon", root); if (bk) requestAnimationFrame(() => sizeBeacon(bk, false));
-  $$(".mini .topnav", root).forEach(n => Omxqua.layoutTopnav(n, false)); requestAnimationFrame(() => $$(".mini .beacon", root).forEach(b => sizeBeacon(b, false)));
-  requestAnimationFrame(() => { $$(".seg2, .tabs, .tabbar", root).forEach(placeThumb); });
-  root.classList.remove("oq-scrolled"); /* a fresh .main starts at the top */
-  if (animate) settle($(".main", root));
-}
-
-root.addEventListener("click", e => {
-  const t = e.target;
-  const mt = t.closest("[data-mt]"); if (mt) { mt.classList.toggle("on"); const h = mt.closest(".mh"); if (h && mt.classList.contains("on") && !reduce) { h.classList.remove("pulse"); h.offsetWidth; h.classList.add("pulse"); } return; }
-  const mr = t.closest("[data-mr]"); if (mr) { $$("[data-mr]", root).forEach(x => x.classList.toggle("on", x === mr)); const h = mr.closest(".mh"); if (h && !reduce) { h.classList.remove("pulse"); h.offsetWidth; h.classList.add("pulse"); } return; }
-  if (t.closest("[data-more]")) { navOpen(true); return; }
-  const tn = t.closest("#topnav button[data-i]"); if (tn) { $$("#topnav button[data-i]", root).forEach(x => x.classList.toggle("on", x === tn)); placeThumb(tn.parentElement); if ($("#topnav", root).classList.contains("open")) navLater(); else layoutTopnav(true); return; }
-  if (t.closest("[data-pin]")) { t.closest(".side").classList.toggle("pinned"); return; }
-  const bk = t.closest("#beacon");
-  if (t.closest("[data-bclose]")) { bk.classList.remove("open"); sizeBeacon(bk, true); return; }
-  if (t.closest("[data-bpause]")) { paused = !paused; t.closest("[data-bpause]").textContent = paused ? "Resume" : "Pause"; return; }
-  if (bk && !bk.classList.contains("open")) { bk.classList.add("open"); sizeBeacon(bk, true); return; }
-  if (!bk) { const ob = $("#beacon.open", root); if (ob) { ob.classList.remove("open"); sizeBeacon(ob, true); } }
-  const sb = t.closest(".seg2 button, .tabs button"); if (sb) { const g = sb.parentElement; $$("button", g).forEach(x => x.classList.toggle("on", x === sb)); placeThumb(g); }
-  const nav = t.closest(".nav"); if (nav) { $$(".nav", root).forEach(x => x.classList.toggle("on", x === nav)); }
-  const day = t.closest(".day"); if (day) { $$(".day", root).forEach(x => x.classList.toggle("on", x === day)); }
-  const tb = t.closest(".tabbar button"); if (tb) { $$(".tabbar button", root).forEach(x => x.classList.toggle("on", x === tb)); placeThumb(tb.parentElement); }
-  const chip = t.closest(".chip"); if (chip && !t.closest(".x")) chip.classList.toggle("on");
-  if (t.closest("[data-toggle]")) t.closest("[data-toggle]").classList.toggle("on");
-  if (t.closest("[data-radio]")) { const r = t.closest("[data-radio]"); $$("[data-radio]", r.parentElement).forEach(x => x.classList.toggle("on", x === r)); }
-  if (t.closest("[data-quest]")) { const q = t.closest("[data-quest]"); q.classList.toggle("done"); if (q.classList.contains("done")) toast("Great job! +1 star"); }
-  const menuBtn = t.closest("[data-menu]"), menu = $("#menu", root);
-  if (menuBtn) { e.stopPropagation(); const r = menuBtn.getBoundingClientRect(), b = root.getBoundingClientRect(); menu.style.left = Math.min(r.left - b.left, b.width - 240) + "px"; menu.style.top = (r.bottom - b.top + 6) + "px"; menu.hidden ? gentleIn(menu) : gentleOut(menu); return; }
-  if (!t.closest("#menu")) gentleOut(menu); else if (t.closest(".mi")) { gentleOut(menu); toast(t.closest(".mi").textContent.trim().replace(/⌘C|↗/, "").trim()); }
-  if (t.closest("[data-dialog]")) { const s = $("#scrim", root); s.hidden = false; if (!reduce) { s.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 }); $(".dialog", s).animate([{ opacity: 0, transform: "translateY(8px) scale(.98)" }, { opacity: 1, transform: "none" }], { duration: 260, easing: "cubic-bezier(.2,0,0,1)" }); } }
-  if (t.closest("[data-sheet]")) { const s = $("#scrim", root), sh = $("#sheet", root); $(".dialog", s).style.display = "none"; s.hidden = false; sh.hidden = false; requestAnimationFrame(() => $$(".seg2", sh).forEach(placeThumb)); if (!reduce) { s.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 }); sh.animate([{ transform: "translateY(40px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 320, easing: "cubic-bezier(.2,0,0,1)" }); } }
-  if (t.closest("[data-close]") || t.id === "scrim") { const s = $("#scrim", root), sh = $("#sheet", root); gentleOut(s); gentleOut(sh); setTimeout(() => { $(".dialog", s).style.display = ""; }, 160); const m = t.closest("[data-toast2]"); if (m) toast(m.dataset.toast2); }
-  const tst = t.closest("[data-toast]"); if (tst) toast(tst.dataset.toast);
-  if (t.id === "toastUndo") gentleOut($("#toast", root));
+document.addEventListener("click", e => {
+  const seg = e.target.closest(".sc-seg button");
+  if (seg) { const k = seg.parentElement.id; if (k === "optSeg") { st.opt = seg.dataset.v; $$("#optSeg button").forEach(b => b.classList.toggle("on", b === seg)); } if (k === "themeSeg") st.theme = seg.dataset.v; if (k === "modeSeg") { st.mode = seg.dataset.v; $$("#modeSeg button").forEach(b => b.classList.toggle("on", b === seg)); } render(); return; }
+  const sb = e.target.closest("[data-screen]"); if (sb) { st.screen = sb.dataset.screen; render(); return; }
+  /* inside frames: tabs, segments, chips and toggles respond like the real app */
+  const g = e.target.closest(".cx-screen .seg2 button, .cx-screen .tabs button, .cx-screen .tabbar button"); if (g) { $$("button", g.parentElement).forEach(b => b.classList.toggle("on", b === g)); Omxqua.placeThumb(g.parentElement); }
+  const c = e.target.closest(".cx-screen .chip, .cx-screen .switch, .cx-screen .check"); if (c) c.classList.toggle("on");
+  const op = e.target.closest(".cx-screen .ag-opt, .cx-screen .cx-pick"); if (op) { $$(op.classList.contains("ag-opt") ? ".ag-opt" : ".cx-pick", op.parentElement).forEach(o => { o.classList.toggle("on", o === op); const r = o.querySelector(".radio"); if (r) r.classList.toggle("on", o === op); }); const bb = op.parentElement.querySelector("[data-book]"); if (bb && op.dataset.opt) bb.textContent = op.dataset.opt; }
+  const dm = e.target.closest("[data-demo]"); if (dm) { const root = dm.closest(".cx-screen");
+    if (dm.dataset.demo === "menu") { const m = $(".menu", root); m.hidden ? Omxqua.gentleIn(m) : Omxqua.gentleOut(m); }
+    if (dm.dataset.demo === "toast") { const t = $(".toast", root); Omxqua.toast(t, "Saved to Lisbon", $("span", t)); } }
+  const bk = e.target.closest(".cx-screen .beacon"); if (bk) { bk.classList.toggle("open", !e.target.closest(".x")); Omxqua.sizeBeacon(bk, true); }
 });
-let paused = false, tick = 0;
+/* ---------- live bits in the agent concepts: steps advance, voice levels move, the Undo counts down ---------- */
+let tick = 0;
 setInterval(() => {
-  tick++; const b = $("#beacon", root); if (!b) return;
-  if (state.fam === "kids" && !paused) { const left = Math.max(0, 724 - tick), m = String(Math.floor(left / 60)).padStart(2, "0"), sec = String(left % 60).padStart(2, "0");
-    $$("[data-btimer],[data-btimer2]", b).forEach(x => x.textContent = `${m}:${sec}`); const bar = $("[data-bbar]", b); if (bar) bar.style.width = (40 + tick / 12) + "%"; }
-  if (state.fam === "dev") { const s2 = 38 + tick, el = $("[data-btime]", b); if (el) el.textContent = `0:${String(s2 % 60).padStart(2, "0")}`; }
-  if (state.fam === "travel" && tick % 6 === 0) { const mins = Math.max(0, 42 - tick / 6); $$("[data-bmin],[data-bmin2]", b).forEach(x => x.textContent = mins); }
-}, 1000);
-root.addEventListener("pointerdown", e => {
-  const mf = e.target.closest(".mf"); if (mf) { const r = mf.getBoundingClientRect(); $(".ul", mf).style.transformOrigin = `${e.clientX - r.left}px 50%`; }
-  const rp = e.target.closest("[data-rp]"); if (rp && !reduce) { const r = rp.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2.2, sp = document.createElement("span");
-    sp.className = "ripple"; Object.assign(sp.style, { width: d + "px", height: d + "px", left: e.clientX - r.left - d / 2 + "px", top: e.clientY - r.top - d / 2 + "px" }); rp.appendChild(sp); setTimeout(() => sp.remove(), 600); }
-});
-root.addEventListener("input", e => { if (e.target.matches("[data-slider]")) e.target.style.setProperty("--v", e.target.value + "%"); });
-root.addEventListener("mouseover", e => { const b = e.target.closest("[data-tip]"), tip = $("#tip", root); if (!b) return; const [a, k] = b.dataset.tip.split("|"); tip.innerHTML = a + (k ? `<kbd>${k}</kbd>` : ""); const r = b.getBoundingClientRect(), o = root.getBoundingClientRect(); tip.style.left = (r.left - o.left) + "px"; tip.style.top = (r.bottom - o.top + 6) + "px"; gentleIn(tip); });
-root.addEventListener("mouseout", e => { if (e.target.closest("[data-tip]")) gentleOut($("#tip", root)); });
-
-const bind = (id, key, data) => $(id).addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; $$(id + " button").forEach(x => x.classList.toggle("on", x === b)); state[key] = b.dataset[data];
-  if (key === "size") { $("#stage").classList.toggle("phone", state.size === "phone"); setTimeout(() => { $$(".seg2, .tabs, .tabbar", root).forEach(placeThumb); layoutTopnav(false); }, 420); }
-  else render(true); });
-bind("#famSeg", "fam", "f"); bind("#shellSeg", "shell", "h");
-document.getElementById("skinSeg").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.skin = b.dataset.k; render(true); }); bind("#viewSeg", "view", "v"); bind("#themeSeg", "theme", "t"); bind("#sizeSeg", "size", "s");
-const q = new URLSearchParams(location.search);
-if (q.get("bare")) document.body.classList.add("bare");
-if (q.get("skin")) state.skin = q.get("skin");
-for (const [k, sel, d] of [["shell", "#shellSeg", "h"], ["fam", "#famSeg", "f"], ["view", "#viewSeg", "v"], ["theme", "#themeSeg", "t"], ["size", "#sizeSeg", "s"]]) if (q.get(k)) { state[k] = q.get(k); $$(sel + " button").forEach(x => x.classList.toggle("on", x.dataset[d] === state[k])); }
-$("#stage").classList.toggle("phone", state.size === "phone");
-render(false);
+  tick++;
+  $$(".cx-screen .ag-lv i").forEach(i => i.style.height = (20 + Math.random() * 80) + "%");
+  if (!(tick % 8)) $$(".cx-screen [data-count]").forEach(c => { const n = (+c.dataset.count + 10) % 11; c.dataset.count = n; c.textContent = `Undo 0:${String(n).padStart(2, "0")}`; });
+  if (tick % 15) return;
+  $$(".cx-screen [data-steps]").forEach(ul => { const li = $$("li", ul), k = 2 + (tick / 15) % (li.length - 1);
+    li.forEach((l, i) => { l.querySelector(".d").className = "d" + (i < k ? " ok" : i === k ? " run" : ""); });
+    const bar = ul.parentElement.querySelector(".bar2 i"); if (bar) bar.style.width = Math.round(100 * (k + .5) / li.length) + "%"; });
+}, 120);
+let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(render, 150); });
+/* ?bare=1 renders one screen full size with no chrome, for iframes (home page phones): &screen= &theme= &mode= &size=phone|desk */
+const q = new URLSearchParams(location.search); for (const k of ["opt", "theme", "mode", "screen", "size"]) if (q.get(k)) st[k] = q.get(k);
+if (!THEMES.some(t => t[0] === st.theme)) st.theme = "azulejo";
+st.bare = q.has("bare"); st.size = st.size === "desk" ? "desk" : "phone"; if (st.bare) document.body.classList.add("bare");
+$$("#optSeg button").forEach(b => b.classList.toggle("on", b.dataset.v === st.opt)); $$("#modeSeg button").forEach(b => b.classList.toggle("on", b.dataset.v === st.mode));
+render();
 })();
 </script>
 </body>

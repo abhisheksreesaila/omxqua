@@ -14,7 +14,7 @@ The full reference is `AGENTS.md`: every component with its markup, the shells, 
 - Installed as a Claude Code plugin, or with the repo cloned: `../../AGENTS.md` from this skill's folder (the repo root).
 - Otherwise: https://raw.githubusercontent.com/abhisheksreesaila/omxqua/main/AGENTS.md
 - The reasons behind each rule: `LANGUAGE.md` in the same place.
-- See it live: https://abhisheksreesaila.github.io/omxqua/docs/showcase.html (every family, skin, shell and part).
+- See it live: https://abhisheksreesaila.github.io/omxqua/docs/showcase.html (Contoso, one app in every theme, web and phone side by side, plus a component | web | phone table).
 
 ## 2. Load it
 
