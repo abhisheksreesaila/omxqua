@@ -30,14 +30,11 @@ body { background: var(--background, var(--sc-bg)); color: var(--foreground, var
 .sc-rail h4 { margin: 14px 10px 6px; font: 500 11px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground, var(--sc-ink2)); }
 .sc-rail button { display: block; width: 100%; text-align: left; border: 0; background: none; font: 500 14px "Geist", sans-serif; color: inherit; padding: 8px 10px; border-radius: 10px; cursor: pointer; }
 .sc-rail button.on { background: var(--card, var(--sc-card)); box-shadow: 0 0 0 1px var(--border, var(--sc-line)); font-weight: 650; }
-.sc-stage { padding: 18px 22px 40px; }
+.sc-stage { padding: 18px 22px 50vh; display: flex; flex-direction: column; gap: 44px; }
+.sc-row { scroll-margin-top: 72px; }
 .sc-pair { display: flex; gap: 22px; align-items: flex-start; }
 .sc-note { color: var(--muted-foreground, var(--sc-ink2)); margin: 0 0 14px; max-width: 900px; }
 .sc-note b { color: var(--foreground, var(--sc-ink)); }
-/* option B: storyboard */
-.sc-b { padding: 18px 22px 60px; display: flex; flex-direction: column; gap: 34px; }
-.sc-jump { display: flex; flex-wrap: wrap; gap: 6px; }
-.sc-jump a { font: 500 12.5px "Geist", sans-serif; color: inherit; text-decoration: none; padding: 5px 11px; border-radius: 999px; background: var(--card, var(--sc-card)); box-shadow: inset 0 0 0 1px var(--border, var(--sc-line)); }
 .sc-row h2 { font: 650 17px "Geist", sans-serif; margin: 0 0 4px; letter-spacing: -.01em; }
 .sc-row p { margin: 0 0 12px; color: var(--muted-foreground, var(--sc-ink2)); }
 /* frames */
@@ -123,7 +120,7 @@ figure.fr figcaption { font: 500 11.5px "Geist Mono", monospace; color: var(--mu
 <body>
 <header class="sc-bar">
   <h1><a href="./" style="color:inherit;text-decoration:none">omxqua</a> <span>· Contoso, one app in every theme</span></h1>
-  <div class="sc-grp"><b>View</b><div class="sc-seg" id="optSeg"><button data-v="a" class="on">Screens</button><button data-v="b">All screens</button><button data-v="t">Components</button></div></div>
+  <div class="sc-grp"><b>View</b><div class="sc-seg" id="optSeg"><button data-v="a" class="on">Screens</button><button data-v="t">Components</button></div></div>
   <span class="sc-sp"></span>
   <div class="sc-grp"><b>Theme</b><div class="sc-seg" id="themeSeg"></div></div>
   <div class="sc-grp"><div class="sc-seg" id="modeSeg"><button data-v="light" class="on">Light</button><button data-v="night">Night</button></div></div>
@@ -353,19 +350,14 @@ function frame(s, kind, scale) {
 }
 const pairScale = avail => Math.max(.3, Math.min(.72, (avail - 60) / (1280 + 390)));
 
-/* ---------- option A: rail + stage ---------- */
+/* ---------- Screens: every screen stacked, scroll through them; the rail is a table of contents that follows you ---------- */
 function optA() {
-  const s = SCREENS.find(x => x.id === st.screen), groups = [...new Set(SCREENS.map(x => x.g))];
-  const avail = Math.min(innerWidth, 1800) - 210 - 44;
+  const groups = [...new Set(SCREENS.map(x => x.g))], sc = pairScale(Math.min(innerWidth, 1800) - 210 - 44);
   return `<div class="sc-a"><nav class="sc-rail">${groups.map(g => `<h4>${g}</h4>${SCREENS.filter(x => x.g === g).map(x => `<button data-screen="${x.id}" class="${x.id === st.screen ? "on" : ""}">${x.t}</button>`).join("")}`).join("")}</nav>
-    <div class="sc-stage"><p class="sc-note"><b>${s.t}.</b> ${s.n}</p><div class="sc-pair">${frame(s, "desk", pairScale(avail))}${frame(s, "phone", pairScale(avail))}</div></div></div>`;
+    <div class="sc-stage">${SCREENS.map(x => `<section class="sc-row" id="row-${x.id}" data-row="${x.id}"><h2>${x.g} · ${x.t}</h2><p>${x.n}</p><div class="sc-pair">${frame(x, "desk", sc)}${frame(x, "phone", sc)}</div></section>`).join("")}</div></div>`;
 }
-/* ---------- option B: storyboard ---------- */
-function optB() {
-  const sc = pairScale(Math.min(innerWidth, 1800) - 44);
-  return `<div class="sc-b"><div class="sc-jump">${SCREENS.map(x => `<a href="#row-${x.id}">${x.t}</a>`).join("")}</div>
-    ${SCREENS.map(x => `<section class="sc-row" id="row-${x.id}"><h2>${x.g} · ${x.t}</h2><p>${x.n}</p><div class="sc-pair">${frame(x, "desk", sc)}${frame(x, "phone", sc)}</div></section>`).join("")}</div>`;
-}
+const markRail = () => $$(".sc-rail button").forEach(b => b.classList.toggle("on", b.dataset.screen === st.screen));
+const syncURL = () => { if (!st.bare) history.replaceState(null, "", `?${new URLSearchParams({ opt: st.opt, theme: st.theme, mode: st.mode, screen: st.screen })}`); };
 /* ---------- component table: component | web | phone ---------- */
 const ROWS = [
   ["Navigation", "Top nav pill (4 + more) on web; tab bar on phone, labels at rest, icons only while scrolling.", 120, () => `${topnav(0)}${tabbar(0)}<div class="cx-cell" style="padding-top:80px"></div>`],
@@ -403,8 +395,11 @@ function optT() {
 function render() {
   $("#themeSeg").innerHTML = THEMES.map(t => `<button data-v="${t[0]}" class="${t[0] === st.theme ? "on" : ""}"><i class="sc-sw" style="background:${t[3]}"></i>${t[1]}</button>`).join("");
   const s = SCREENS.find(x => x.id === st.screen) || SCREENS[1];
-  $("#view").innerHTML = st.bare ? `<div class="${rootCls()}" style="width:100vw;height:100vh">${screenHTML(s, st.size)}</div>` : st.opt === "a" ? optA() : st.opt === "b" ? optB() : optT();
-  if (!st.bare) history.replaceState(null, "", `?${new URLSearchParams({ opt: st.opt, theme: st.theme, mode: st.mode, screen: st.screen })}`);
+  $("#view").innerHTML = st.bare ? `<div class="${rootCls()}" style="width:100vw;height:100vh">${screenHTML(s, st.size)}</div>` : st.opt === "t" ? optT() : optA();
+  syncURL();
+  /* keep your place: a link with &screen=, a theme change or a resize returns to the screen you were on */
+  if (!st.bare && st.opt === "a") { const r = $(`#row-${st.screen}`); if (st.jump && r && st.screen !== SCREENS[0].id) r.scrollIntoView(); else scrollTo(0, 0); }
+  st.jump = true;
   requestAnimationFrame(() => {
     $$(".cx-screen .topnav").forEach(n => Omxqua.layoutTopnav(n, false));
     $$(".cx-screen .seg2, .cx-screen .tabs, .cx-screen .tabbar").forEach(Omxqua.placeThumb);
@@ -414,7 +409,7 @@ function render() {
 document.addEventListener("click", e => {
   const seg = e.target.closest(".sc-seg button");
   if (seg) { const k = seg.parentElement.id; if (k === "optSeg") { st.opt = seg.dataset.v; $$("#optSeg button").forEach(b => b.classList.toggle("on", b === seg)); } if (k === "themeSeg") st.theme = seg.dataset.v; if (k === "modeSeg") { st.mode = seg.dataset.v; $$("#modeSeg button").forEach(b => b.classList.toggle("on", b === seg)); } render(); return; }
-  const sb = e.target.closest("[data-screen]"); if (sb) { st.screen = sb.dataset.screen; render(); return; }
+  const sb = e.target.closest("[data-screen]"); if (sb) { st.screen = sb.dataset.screen; markRail(); syncURL(); holdSpy(); $(`#row-${st.screen}`).scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); return; }
   /* inside frames: tabs, segments, chips and toggles respond like the real app */
   const g = e.target.closest(".cx-screen .seg2 button, .cx-screen .tabs button, .cx-screen .tabbar button"); if (g) { $$("button", g.parentElement).forEach(b => b.classList.toggle("on", b === g)); Omxqua.placeThumb(g.parentElement); }
   const c = e.target.closest(".cx-screen .chip, .cx-screen .switch, .cx-screen .check"); if (c) c.classList.toggle("on");
@@ -435,11 +430,20 @@ setInterval(() => {
     li.forEach((l, i) => { l.querySelector(".d").className = "d" + (i < k ? " ok" : i === k ? " run" : ""); });
     const bar = ul.parentElement.querySelector(".bar2 i"); if (bar) bar.style.width = Math.round(100 * (k + .5) / li.length) + "%"; });
 }, 120);
+/* scroll spy: the rail marks the screen at the top of the view */
+/* a rail click holds the spy until its scroll ends, so the rail doesn't flick through every screen on the way */
+let spy = 0, held = 0;
+const holdSpy = () => { clearTimeout(held); held = setTimeout(() => held = 0, 1500); };
+addEventListener("scrollend", () => { clearTimeout(held); held = 0; });
+addEventListener("scroll", () => { if (st.opt !== "a" || st.bare || spy || held) return; spy = requestAnimationFrame(() => { spy = 0;
+  let cur = null; for (const r of $$(".sc-row")) { if (r.getBoundingClientRect().top < 160) cur = r; else break; }
+  const id = cur ? cur.dataset.row : SCREENS[0].id; if (id !== st.screen) { st.screen = id; markRail(); syncURL(); } }); }, { passive: true });
 let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(render, 150); });
 /* ?bare=1 renders one screen full size with no chrome, for iframes (home page phones): &screen= &theme= &mode= &size=phone|desk */
 const q = new URLSearchParams(location.search); for (const k of ["opt", "theme", "mode", "screen", "size"]) if (q.get(k)) st[k] = q.get(k);
 if (!THEMES.some(t => t[0] === st.theme)) st.theme = "azulejo";
-st.bare = q.has("bare"); st.size = st.size === "desk" ? "desk" : "phone"; if (st.bare) document.body.classList.add("bare");
+if (st.opt !== "t") st.opt = "a"; /* the old ?opt=b (all screens) is now the Screens view */
+st.bare = q.has("bare"); st.jump = q.has("screen"); if (!st.jump && !st.bare) st.screen = SCREENS[0].id; st.size = st.size === "desk" ? "desk" : "phone"; if (st.bare) document.body.classList.add("bare");
 $$("#optSeg button").forEach(b => b.classList.toggle("on", b.dataset.v === st.opt)); $$("#modeSeg button").forEach(b => b.classList.toggle("on", b.dataset.v === st.mode));
 render();
 })();

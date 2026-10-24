@@ -11,8 +11,8 @@ Status: approved · built 2026-10-24
 
 ## What v1 does
 1. **One app, Contoso** (a travel planner, fictional; no private app's name or data), containing every component and the everyday screens: sign-in, home, trip list, trip detail, add/edit form, search, settings, plus empty, error and loading states. (assumed list)
-2. **Theme picker** at the top: Graphite, Azulejo, Playground, Ledger, and Light/Night. A theme changes everything tokens set: colours, fonts, corners, tap size, density. The header holds theme, Light/Night and a View switch (Screens, All screens, Components), which the table needs.
-3. **Each screen shows web and phone side by side**, picked from a list of screens on the left. No size toggle.
+2. **Theme picker** at the top: Graphite, Azulejo, Playground, Ledger, and Light/Night. A theme changes everything tokens set: colours, fonts, corners, tap size, density. The header holds theme, Light/Night and a View switch (Screens, Components), which the table needs.
+3. **Each screen shows web and phone side by side**, stacked so you scroll through them; the list on the left follows the scroll and jumps on click (changed 2026-10-24: clicking through a rail one screen at a time wasn't intuitive). No size toggle.
 4. **Component table**, its own page: three columns, component | web | phone, with each cell rendering the real part. (assumed: replaces the Pairs view)
 
 ## Not in v1
