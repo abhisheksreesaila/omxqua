@@ -257,7 +257,8 @@ addEventListener("DOMContentLoaded", () => {
   }
   fit();
   /* the framed apps scroll inside, without a scrollbar of their own */
-  $$("iframe").forEach(f => f.addEventListener("load", () => { try { const st = f.contentDocument.createElement("style"); st.textContent = "html{scrollbar-width:none}::-webkit-scrollbar{display:none}"; f.contentDocument.head.append(st); } catch (e) {} }));
+  const noBar = f => { try { const d = f.contentDocument; if (!d || !d.head || d.getElementById("nobar")) return; const st = d.createElement("style"); st.id = "nobar"; st.textContent = "html{scrollbar-width:none}::-webkit-scrollbar{display:none}"; d.head.append(st); } catch (e) {} };
+  $$("iframe").forEach(f => { f.addEventListener("load", () => noBar(f)); if (f.contentDocument && f.contentDocument.readyState === "complete") noBar(f); });
 
   /* the live parts */
   const bc = $("#bc"); requestAnimationFrame(() => O.sizeBeacon(bc, false)); document.fonts && document.fonts.ready.then(() => O.sizeBeacon(bc, false));
