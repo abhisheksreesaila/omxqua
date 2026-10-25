@@ -2,15 +2,15 @@
 
 # 🫧 omxqua
 
-### every touch, a tiny joy.
+### the best of Apple and Google, and the taste to choose.
 
 **👉 [See it live: abhisheksreesaila.github.io/omxqua](https://abhisheksreesaila.github.io/omxqua/) 👈**
 
-Press things. They press back. Best on a phone. 📱
+Google's texture, Apple's motion, and a few small joys of our own, each with a reason. 📱
 
-[![omxqua cover: every touch, a tiny joy](docs/readme/cover.png)](https://abhisheksreesaila.github.io/omxqua/)
+[![omxqua cover: the best of Apple and Google](docs/readme/cover.png)](https://abhisheksreesaila.github.io/omxqua/)
 
-[🎛️ the showcase](https://abhisheksreesaila.github.io/omxqua/docs/showcase.html) · [🖼️ landing layouts](https://abhisheksreesaila.github.io/omxqua/docs/landing.html) · [📜 changelog](CHANGELOG.md) · MIT
+[🎛️ the showcase](https://abhisheksreesaila.github.io/omxqua/docs/showcase.html) · [🔬 the research](https://abhisheksreesaila.github.io/omxqua/docs/research.html) · [🖼️ landing layouts](https://abhisheksreesaila.github.io/omxqua/docs/landing.html) · [📜 changelog](CHANGELOG.md) · MIT
 
 </div>
 
@@ -129,7 +129,7 @@ src/components.css   every reusable part, scoped under .oq-root
 src/fonts.css        @font-face for Geist, Geist Mono, Fraunces, Nunito
 src/omxqua.js        press, the self-writing logo, motion helpers (window.Omxqua)
 fonts/               the four variable woff2 files and their licences
-docs/index.html      the cover (the live site)
+docs/index.html      the cover (the live site; shares docs/site.css with research.html)
 docs/showcase.html   Contoso: one app in every theme, web + phone, all the parts
 docs/kit-v1.html     the earlier three-app kit (every family, skin and shell)
 docs/landing.html    the landing layer: Statement, Editorial, Bento

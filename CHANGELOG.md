@@ -3,6 +3,8 @@
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
 ## Unreleased
+- New cover (`docs/index.html`): dark, product-launch style. It leads with the belief (the best of Apple and Google, and the taste to choose), shows Contoso live on a phone and the web, then eight live micro-interactions, each tagged **research** (with its source) or **taste**, then the four themes as personalities (Tech, Kids, Travel, Money). `docs/research.html` is now one short card per rule in the same look; the full source list folds away. Both share `docs/site.css`.
+- The showcase opens on Playground · Night.
 - Chips have no outline: off is a light state tint with `ink-2` text, on is a 16% accent tint with ink text.
 - Coloured icons: `.ic-tile` (an icon on a 15% tint of its data colour, `.lg` = 36 px), `.ico-c`, and `--c` on `.topnav` / `.tabbar` items. New token `--oq-icon-mix` darkens the glyph toward ink in Light (88%, Kids 60%); `tests/contrast.test.cjs` checks every glyph at 3:1 on its tile, the card and the nav, in every family and skin.
 - `docs/showcase.html` is now **Contoso**: one made-up trip planner in every theme, every screen stacked to scroll through with web and phone side by side (the list on the left follows along and jumps on click), a component | web | phone table (every part in AGENTS §3–4 except the admin-only side island and sidebar), and seven agent concepts on the Beacon. `?bare=1&size=phone&screen=…&theme=…&mode=…` renders one screen for iframes. The earlier three-app kit is `docs/kit-v1.html` (the landing page still frames it).

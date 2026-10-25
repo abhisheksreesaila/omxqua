@@ -166,7 +166,7 @@ const THEMES = [
   ["playground", "Playground", "oq-family-kids", "#c2410c"],
   ["ledger", "Ledger", "oq-family-money", "#5b4bd6"],
 ];
-const st = { opt: "a", theme: "azulejo", mode: "light", screen: "home" };
+const st = { opt: "a", theme: "playground", mode: "night", screen: "home" };
 const themeName = () => THEMES.find(t => t[0] === st.theme)[1];
 const rootCls = () => `oq-root oq-${st.mode} ${THEMES.find(t => t[0] === st.theme)[2]} oq-top cx-screen`;
 
@@ -441,7 +441,7 @@ addEventListener("scroll", () => { if (st.opt !== "a" || st.bare || spy || held)
 let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(render, 150); });
 /* ?bare=1 renders one screen full size with no chrome, for iframes (home page phones): &screen= &theme= &mode= &size=phone|desk */
 const q = new URLSearchParams(location.search); for (const k of ["opt", "theme", "mode", "screen", "size"]) if (q.get(k)) st[k] = q.get(k);
-if (!THEMES.some(t => t[0] === st.theme)) st.theme = "azulejo";
+if (!THEMES.some(t => t[0] === st.theme)) st.theme = "playground";
 if (st.opt !== "t") st.opt = "a"; /* the old ?opt=b (all screens) is now the Screens view */
 st.bare = q.has("bare"); st.jump = q.has("screen"); if (!st.jump && !st.bare) st.screen = SCREENS[0].id; st.size = st.size === "desk" ? "desk" : "phone"; if (st.bare) document.body.classList.add("bare");
 $$("#optSeg button").forEach(b => b.classList.toggle("on", b.dataset.v === st.opt)); $$("#modeSeg button").forEach(b => b.classList.toggle("on", b.dataset.v === st.mode));

@@ -252,6 +252,7 @@ Not on landing pages: gradients on text, glass, autoplay video with sound, carou
 - 2026-10-21: the nav islands become frosted glass and the brand loses its pill (the logo blends into the page). Overrides "islands are solid" for the nav pill and tab bar only.
 - 2026-10-21: the phone tab bar shows labels at rest and goes icons-only while scrolling down (first tried icons only; the research says unlabeled icons get misread), and its thumb is liquid (stretches when it moves, drag to switch tabs). Phones get every effect desktop has: press, logo, thumbs; no iOS grey tap flash, no double-tap delay.
 - 2026-10-24: the showcase is one app, **Contoso** (a made-up trip planner), in every theme, with web and phone side by side per screen and a component | web | phone table. The earlier three-app kit is `docs/kit-v1.html`.
+- 2026-10-24: the cover is dark, in the style of a product launch, and leads with the belief; each micro-interaction is tagged research or taste. A theme is a personality for a kind of app (Tech, Kids, Travel, Money; later Vedic), never only a colour swap; the parts, motion and reading rules under it never change. The showcase opens on Playground · Night.
 - 2026-10-24: kept the crisp look (outlined fields, hairline rows, square mono badges, shadows on tonal buttons) over a softer tinted one; borrowed two things from it: chips without outlines (tinted, accent tint when on) and coloured icons (`.ic-tile`, coloured nav icons), tested at 3:1.
 
 ## 9. Patterns in the showcase, not yet packaged

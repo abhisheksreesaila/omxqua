@@ -2,190 +2,162 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>omxqua · the research behind it</title>
-<meta name="description" content="Why omxqua looks and moves the way it does: each rule, the study or standard behind it, and which parts are taste.">
+<title>omxqua · what the research says</title>
+<meta name="description" content="Why omxqua looks and moves the way it does: each rule in one line, what backs it, and where to read more.">
 <link rel="stylesheet" href="../src/fonts.css">
+<link rel="stylesheet" href="../src/tokens.css">
+<link rel="stylesheet" href="site.css">
+<script src="../src/omxqua.js" defer></script>
 <style>
-:root {
-  --bg: #f7f5f0; --s1: #ffffff; --ink: #121516; --ink2: #5c6466; --line: #e6e2d9; --line2: #efece5;
-  --aqua: #00737a; --on-aqua: #ffffff; --aqua-soft: #d9f3f1;
-  --res: #2b6cb0; --res-soft: #e3eefa; --std: #1f6e33; --std-soft: #e3f4e6; --pra: #9a5b00; --pra-soft: #fbefd9; --tas: #a3326b; --tas-soft: #fbe6f0;
-  --sh1: 0 1px 2px rgba(20,16,10,.06), 0 0 0 1px rgba(20,16,10,.05); --sh2: 0 8px 24px rgba(20,16,10,.10), 0 0 0 1px rgba(20,16,10,.05);
-  --sans: "Geist", system-ui, sans-serif; --mono: "Geist Mono", ui-monospace, monospace;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root { --bg: #0b0f10; --s1: #131a1b; --ink: #eef5f5; --ink2: #9aa6a8; --line: #253031; --line2: #1b2425;
-    --aqua: #3ee0d8; --on-aqua: #062a2c; --aqua-soft: #12302f;
-    --res: #8cbcf2; --res-soft: #142536; --std: #7fd492; --std-soft: #132a19; --pra: #f2bd6b; --pra-soft: #2c2210; --tas: #f29cc6; --tas-soft: #2e1622;
-    --sh1: 0 1px 0 rgba(255,255,255,.04) inset, 0 1px 2px rgba(0,0,0,.5); --sh2: 0 1px 0 rgba(255,255,255,.05) inset, 0 8px 24px rgba(0,0,0,.5); color-scheme: dark; }
-}
-* { box-sizing: border-box; }
-html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-a { color: var(--aqua); text-underline-offset: 3px; }
-.wrap { max-width: 860px; margin: 0 auto; padding: 0 22px; }
-.top { position: sticky; top: 12px; z-index: 10; display: flex; justify-content: space-between; padding: 0 14px; pointer-events: none; }
-.top a { pointer-events: auto; display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 18px 0 8px; border-radius: 999px; background: var(--s1); box-shadow: var(--sh2); color: var(--ink); text-decoration: none; font: 650 16px var(--sans); letter-spacing: -.02em; }
-.top a.kit { padding: 0 18px; font-weight: 600; font-size: 14px; color: var(--ink2); }
-.mark { width: 30px; height: 30px; border-radius: 50%; background: var(--aqua); color: var(--on-aqua); display: grid; place-items: center; font: 700 14px var(--sans); }
-header { padding: 80px 0 30px; }
-.eyebrow { font: 600 13px var(--mono); color: var(--aqua); }
-h1 { font: 800 clamp(40px, 7vw, 76px)/1 var(--sans); letter-spacing: -.05em; margin: 14px 0 0; }
-h1 span { color: var(--ink2); }
-.lede { font: 500 19px/1.55 var(--sans); color: var(--ink2); margin: 22px 0 0; max-width: 680px; }
-.key { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; }
-.key div { font-size: 14px; color: var(--ink2); display: flex; gap: 8px; align-items: center; }
-.b { display: inline-block; font: 600 11.5px var(--mono); padding: 3px 9px; border-radius: 6px; letter-spacing: .02em; white-space: nowrap; }
-.b.res { color: var(--res); background: var(--res-soft); } .b.std { color: var(--std); background: var(--std-soft); }
-.b.pra { color: var(--pra); background: var(--pra-soft); } .b.tas { color: var(--tas); background: var(--tas-soft); }
-main { display: flex; flex-direction: column; gap: 16px; padding: 20px 0 40px; }
-h2 { font: 750 26px/1.2 var(--sans); letter-spacing: -.03em; margin: 50px 0 4px; }
-article { background: var(--s1); border-radius: 18px; box-shadow: var(--sh1); padding: 22px 24px; }
-article h3 { margin: 0; font: 650 19px/1.3 var(--sans); letter-spacing: -.015em; }
-article .bs { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 0; }
-article p { margin: 12px 0 0; line-height: 1.6; color: var(--ink); }
-article p.how { color: var(--ink2); font-size: 15px; }
-article p.how b { color: var(--ink); font-weight: 600; }
-.honest { border-left: 3px solid var(--tas); }
-ol.src { padding-left: 22px; line-height: 1.6; color: var(--ink2); font-size: 15px; }
-ol.src li { margin: 0 0 8px; }
-footer { padding: 40px 0 100px; text-align: center; color: var(--ink2); font: 13px var(--mono); }
-@media (max-width: 600px) { article { padding: 18px; } header { padding-top: 50px; } }
+/* one card per rule: a big number, one line of finding, one line of what we do, then the homework */
+.key { display: grid; gap: 12px; margin: 30px 0 0; max-width: 680px; }
+.key div { display: flex; gap: 14px; align-items: baseline; font: 500 19px/1.4 var(--sans); color: var(--ink2); }
+.key b { color: var(--ink); font-weight: 600; }
+.grp { padding-top: 110px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+.rule { background: var(--t1); border-radius: 28px; box-shadow: inset 0 0 0 1px var(--line); padding: 28px; display: flex; flex-direction: column; min-height: 330px; }
+.rule .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.rule .big { font: 800 clamp(44px, 4.6vw, 60px)/1 var(--sans); letter-spacing: -.05em; margin: 22px 0 0; }
+.rule .big small { font-size: .42em; letter-spacing: -.02em; color: var(--ink2); margin-left: 6px; font-weight: 700; }
+.rule h3 { font: 650 20px/1.3 var(--sans); letter-spacing: -.02em; margin: 14px 0 0; }
+.rule p { font-size: 15.5px; line-height: 1.5; color: var(--ink2); margin: 8px 0 0; }
+.rule .read { margin-top: auto; padding-top: 22px; display: flex; flex-wrap: wrap; gap: 6px 14px; font: 13px var(--mono); }
+.rule .read a { color: var(--ink2); text-decoration: none; } .rule .read a::after { content: " ›"; } .rule .read a:hover { color: var(--ink); }
+.tag.w { color: #ff8a80; background: rgba(255,138,128,.12); }
+details { margin-top: 110px; background: var(--t1); border-radius: 28px; box-shadow: inset 0 0 0 1px var(--line); padding: 26px 30px; }
+summary { cursor: pointer; font: 650 20px var(--sans); letter-spacing: -.02em; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+summary::after { content: "+"; font: 400 26px var(--sans); color: var(--ink2); } details[open] summary::after { content: "–"; }
+details ol { margin: 18px 0 0; padding-left: 22px; font-size: 14.5px; line-height: 1.6; color: var(--ink2); columns: 2; column-gap: 40px; }
+details li { break-inside: avoid; margin-bottom: 6px; } details a { color: var(--ink); text-underline-offset: 3px; }
+.fix { text-align: center; margin-top: 34px; font: 13px var(--mono); color: var(--ink2); } .fix a { color: var(--ink); }
+@media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } details ol { columns: 1; } }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .rule { min-height: 0; } .grp { padding-top: 80px; } }
 </style>
 </head>
 <body>
-<div class="top"><a href="./"><span class="mark">oq</span>omxqua</a><a class="kit" href="showcase.html?opt=t">see every part, web and phone ›</a></div>
 
-<div class="wrap">
-<header>
-  <div class="eyebrow">the research behind it</div>
-  <h1>why it feels right. <span>and where it's just taste.</span></h1>
-  <p class="lede">Every rule in omxqua comes from somewhere. Some come from studies of real people holding real phones, some from accessibility standards, some from what platforms have learned, and some are simply our taste. Here is each one, labelled honestly, with the source so you can check it.</p>
-  <div class="key">
-    <div><span class="b res">research</span>a published study</div>
-    <div><span class="b std">standard</span>an accessibility or platform rule</div>
-    <div><span class="b pra">practice</span>what platforms do, not formally tested</div>
-    <div><span class="b tas">taste</span>our call, no evidence either way</div>
-  </div>
+<header class="top">
+  <a class="brand" href="./"><span class="mark">oq</span>omxqua</a>
+  <nav class="pill" id="pill"><i></i><a href="#touch">Touch</a><a href="#reading">Reading</a><a href="#motion">Motion</a><a href="#taste">Taste</a></nav>
+  <a class="cta sm get" href="./#get">Get omxqua</a>
 </header>
 
-<main>
-<h2>Touch</h2>
+<main class="wrap">
+  <section style="padding-top:96px">
+    <div class="eyebrow">The research</div>
+    <h1 class="rise" style="font-size:clamp(42px, 6.4vw, 88px);line-height:.98;letter-spacing:-.048em;margin-top:14px"><span>What the research says.</span> <span class="two" style="animation-delay:.12s;color:var(--dim)">In one line each.</span></h1>
+    <div class="key rise"><div style="animation-delay:.24s"><span class="tag r">research</span><span><b>A study or a standard backs it.</b> We followed it.</span></div>
+      <div style="animation-delay:.3s"><span class="tag t">taste</span><span><b>Our choice.</b> No study says it's better; we just think it feels right.</span></div></div>
+    <p class="sub rise"><span style="animation-delay:.36s">Each card links to the source. That's the homework, if you want it.</span></p>
+  </section>
 
-<article>
-  <h3>Tap targets are at least 44 px (48 px for kids)</h3>
-  <div class="bs"><span class="b res">research</span><span class="b std">standard</span></div>
-  <p>Fitts's law says the time to hit a target grows as the target gets smaller and farther away. On phones, Parhi, Karlson and Bederson tested one-handed thumb use and found targets of about 9.2 mm were large enough that people stopped making more errors or slowing down; smaller ones cost both. (For tasks with several taps in a row, about 9.6 mm.) The platform minimums, Apple's 44 pt, Android's 48 dp and WCAG's 44 × 44 px (level AAA), are conventions in the same direction but smaller: 44 pt is about 7 mm. So omxqua's 44 px is a floor, not a target.</p>
-  <p class="how"><b>In omxqua:</b> every family sets a <code>--oq-target</code>; on phones regular and large buttons and tab bar items never go below 44 px, and Kids get 48. Small buttons (<code>.sm</code>) can be smaller, except Undo in a toast. The 32 px close button has a 44 px invisible hit area. [1][2][3][4][5]</p>
-</article>
+  <section class="grp" id="touch">
+    <div class="eyebrow rv">Touch</div>
+    <div class="grid">
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">44<small>px</small></div>
+        <h3>Small targets are slow to hit and easy to miss.</h3><p>So buttons and tabs are at least 44 px on a phone, 48 for kids.</p>
+        <div class="read"><a href="https://doi.org/10.1037/h0055392">Fitts 1954</a><a href="https://doi.org/10.1145/1152215.1152260">Parhi 2006</a><a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html">WCAG 2.5.5</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">49<small>%</small></div>
+        <h3>Half of people tapping a phone use one hand.</h3><p>The thumb reaches the bottom easily, the top corners badly. So navigation lives at the bottom.</p>
+        <div class="read"><a href="https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php">Hoober 2013</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">0.1<small>s</small></div>
+        <h3>Under a tenth of a second feels instant.</h3><p>So everything squashes the moment your finger lands, before any work happens.</p>
+        <div class="read"><a href="https://www.nngroup.com/articles/response-times-3-important-limits/">Nielsen; Miller 1968</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">Labels</div>
+        <h3>Icons on their own get misread.</h3><p>So tabs keep their words, and shrink to icons only while you scroll.</p>
+        <div class="read"><a href="https://www.nngroup.com/articles/icon-usability/">NN/g, Icon usability</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">3–5<small>tabs</small></div>
+        <h3>Both Apple and Google stop at about five.</h3><p>So the tab bar holds three to five; the rest go behind “+”.</p>
+        <div class="read"><a href="https://developer.apple.com/design/human-interface-guidelines/tab-bars">Apple</a><a href="https://m3.material.io/components/navigation-bar/guidelines">Material 3</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">Floats</div>
+        <h3>Placeholder-only labels vanish as you type.</h3><p>NN/g says keep a visible label. Ours stays; floating it into the border is our taste.</p>
+        <div class="read"><a href="https://www.nngroup.com/articles/form-design-placeholders/">NN/g, Placeholders</a></div></article>
+    </div>
+  </section>
 
-<article>
-  <h3>Navigation sits at the bottom of the phone</h3>
-  <div class="bs"><span class="b res">research</span><span class="b pra">practice</span></div>
-  <p>Steven Hoober watched 1,333 people using phones in streets, airports and buses. Of those touching the screen, 49% used one hand, 36% cradled the phone in one hand and tapped with the other, and 15% used two hands. With one hand, the thumb reaches the bottom and middle of the screen easily and the top corners badly. A caveat: this was observed in 2012–13, on smaller phones, and counts grips; it doesn't measure whether bottom navigation is faster.</p>
-  <p class="how"><b>In omxqua:</b> the main navigation is a floating tab bar at the bottom on every phone screen; menus and pickers open as sheets along the bottom edge instead of hanging off a button near the top; dialogs put the main action where the thumb is. Never a hamburger menu for main navigation. [6]</p>
-</article>
+  <section class="grp" id="reading">
+    <div class="eyebrow rv">Reading</div>
+    <div class="grid">
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">4.5<small>: 1</small></div>
+        <h3>The minimum contrast for readable text.</h3><p>Every theme is tested against it, in light and night, by an automated test.</p>
+        <div class="read"><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">WCAG 1.4.3</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">1 in 12</div>
+        <h3>Men who have trouble telling some colours apart.</h3><p>So a status always carries its word, never colour alone.</p>
+        <div class="read"><a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness">NEI</a><a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">WCAG 1.4.1</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag t">taste</span><span class="tag w">research warns</span></div><div class="big">Glass</div>
+        <h3>See-through controls over busy content are harder to read.</h3><p>We like it, so we allow it only on the navigation, and it turns solid when you ask for less transparency.</p>
+        <div class="read"><a href="https://www.nngroup.com/articles/liquid-glass/">NN/g, Liquid Glass</a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-transparency">MDN</a></div></article>
+    </div>
+  </section>
 
-<article>
-  <h3>Three to five tabs, not more</h3>
-  <div class="bs"><span class="b pra">practice</span></div>
-  <p>Apple's guidelines and Material both keep bottom navigation to about five destinations, and put anything else behind "More". The idea behind it is Hick's law, which says choosing takes longer as the number of equally likely options grows; applying it to a tab count is an extrapolation, not a tested result.</p>
-  <p class="how"><b>In omxqua:</b> the tab bar holds 3 to 5 items; the desktop nav pill shows 4 and folds the rest behind <code>+N</code>. [7][8][19]</p>
-</article>
+  <section class="grp" id="motion">
+    <div class="eyebrow rv">Motion</div>
+    <div class="grid">
+      <article class="rule rv"><div class="tags"><span class="tag r">research</span></div><div class="big">Less</div>
+        <h3>Big or constant motion makes some people dizzy.</h3><p>So the more often something happens, the less it moves; “reduce motion” turns it all into a short fade.</p>
+        <div class="read"><a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html">WCAG 2.3.3</a><a href="https://www.a11yproject.com/posts/understanding-vestibular-disorders/">A11Y Project</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag t">taste</span></div><div class="big">Springs</div>
+        <h3>They feel good. No study shows they're faster.</h3><p>So they're kept to small things under your finger: press, thumbs, toggles.</p>
+        <div class="read"><a href="https://developer.apple.com/videos/play/wwdc2018/803/">Apple, Designing Fluid Interfaces</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag t">taste</span></div><div class="big">Liquid</div>
+        <h3>The tab highlight that stretches as it moves.</h3><p>Ours. No source, just joy.</p>
+        <div class="read"><a href="./#feel">Try it on the cover</a></div></article>
+    </div>
+  </section>
 
-<article>
-  <h3>Tabs keep their labels; they shrink to icons only while you scroll</h3>
-  <div class="bs"><span class="b res">research</span><span class="b pra">practice</span></div>
-  <p>Usability testing by the Nielsen Norman Group found that most icons are ambiguous on their own: people guess their meaning wrong unless the icon is nearly universal (home, search). A text label next to the icon removes the guesswork. Apple's tab bars show labels, and iOS 26 adds an opt-in setting that lets a tab bar collapse into a compact form as you scroll.</p>
-  <p class="how"><b>In omxqua:</b> we first shipped an icons-only tab bar because it looked cleaner, then reversed it the same day after reading this. Now each tab is an icon over a label at rest; scrolling down shrinks it to icons only, scrolling up brings the labels back (our own take on that idea, not a copy of Apple's). The label is always the button's accessible name. [9][8][10]</p>
-</article>
+  <section class="grp" id="taste">
+    <div class="eyebrow rv">Taste</div>
+    <div class="grid">
+      <article class="rule rv" style="grid-column:span 2"><div class="tags"><span class="tag t">taste</span></div><div class="big">Themes</div>
+        <h3>Colours, fonts, corners and skins are choices, not findings.</h3><p>Research sets the limits (contrast, one accent so the main action stands out). Inside them, we pick what suits the app.</p>
+        <div class="read"><a href="showcase.html">See every theme in the showcase</a></div></article>
+      <article class="rule rv"><div class="tags"><span class="tag t">taste</span></div><div class="big">Beacon</div>
+        <h3>One black pill for what's live.</h3><p>Showing status is research; the pill and its morph are ours.</p>
+        <div class="read"><a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Nielsen's heuristics</a></div></article>
+    </div>
+  </section>
 
-<article>
-  <h3>The tap answers within 100 ms</h3>
-  <div class="bs"><span class="b res">research</span></div>
-  <p>Response-time research going back to Robert Miller (1968), summarised by Jakob Nielsen, puts the limit for "this reacted instantly" at about 0.1 second, and the limit for keeping a train of thought at about 1 second.</p>
-  <p class="how"><b>In omxqua:</b> every tappable thing squashes the moment a finger lands, before any work happens, so the screen always answers in time even when the result takes longer. Slow work shows a skeleton, never a frozen screen or zeros. [11]</p>
-</article>
-
-<h2>Reading</h2>
-
-<article>
-  <h3>Text clears 4.5 : 1 contrast, in light and night</h3>
-  <div class="bs"><span class="b std">standard</span></div>
-  <p>WCAG 2.2 success criterion 1.4.3 sets 4.5 : 1 as the minimum contrast for body text, so people with low vision or a phone in sunlight can still read it.</p>
-  <p class="how"><b>In omxqua:</b> every family and every skin is checked by an automated test (<code>tests/contrast.test.cjs</code>) in both themes (adding the skins caught one failure, the Sticker night red, now fixed), including secondary text and status colours on every surface. [12]</p>
-</article>
-
-<article>
-  <h3>Status is never colour alone</h3>
-  <div class="bs"><span class="b std">standard</span></div>
-  <p>WCAG 1.4.1: colour can't be the only way information is shown. Many people have some colour-vision deficiency (most commonly red–green, far more often in men), so "red means failed" alone fails them.</p>
-  <p class="how"><b>In omxqua:</b> a status badge always carries the word (passed, failed, running) next to its coloured dot. [13][20]</p>
-</article>
-
-<article>
-  <h3>Phone fields use 16 px text</h3>
-  <div class="bs"><span class="b pra">practice</span></div>
-  <p>Safari on iPhone zooms the whole page in when you tap a field whose text is smaller than 16 px, and doesn't zoom back. It's well-known browser behaviour rather than a study (Apple doesn't document it), but it is the reason.</p>
-  <p class="how"><b>In omxqua:</b> fields switch to 16 px text on phone screens.</p>
-</article>
-
-<article class="honest">
-  <h3>Frosted glass, only on the navigation</h3>
-  <div class="bs"><span class="b tas">taste</span><span class="b res">the evidence leans against it</span></div>
-  <p>We like how the page shows through the nav as it scrolls. But we should be straight about the evidence: the Nielsen Norman Group's review of Apple's Liquid Glass (iOS 26) found that translucent controls over busy content hurt legibility and pull attention from the content. That is an expert review, not a controlled experiment, but it points one way.</p>
-  <p class="how"><b>How we limit the cost:</b> glass only on the nav pill and tab bar (cards, menus, dialogs and the Beacon stay solid); a strong 20 px blur and 58% of the surface colour, meant to soften what's behind into colour rather than shapes; the bare logo only frosts once content scrolls under it; and it goes fully solid if the person turns on "reduce transparency" or the browser can't blur. <b>Not yet measured:</b> text contrast on glass over the worst-case content. [14][15]</p>
-</article>
-
-<h2>Motion</h2>
-
-<article>
-  <h3>The more often something happens, the less it moves</h3>
-  <div class="bs"><span class="b std">standard</span><span class="b pra">practice</span></div>
-  <p>Large or frequent motion can make people with vestibular disorders dizzy or sick; WCAG 2.3.3 (level AAA) asks that motion triggered by interaction can be turned off. Separately, anything repeated many times a minute gets tiring if it animates.</p>
-  <p class="how"><b>In omxqua:</b> three tiers (Settle for panels, Gentle for menus, None for anything repeated or keyboard-driven); panels and pop-ups never bounce; with "reduce motion" on, every animation becomes a 150 ms fade and the press, logo and helper animations are skipped. [16][17]</p>
-</article>
-
-<article class="honest">
-  <h3>Springs, squash and the liquid tab highlight</h3>
-  <div class="bs"><span class="b tas">taste</span><span class="b pra">practice</span></div>
-  <p>Springs follow real physics, so motion starts and stops the way objects do, and Apple's designers have argued that this makes interfaces feel connected to the finger. That's a design argument, not a measured result: we know of no controlled study showing springs make people faster or more accurate. We use them because they feel good, and we keep them to small things under the finger (press, thumbs, toggles) where they cost nothing in time.</p>
-  <p class="how"><b>In omxqua:</b> springs only on press, thumbs, toggles and drag release; the stretch of the tab highlight is our own touch. [18]</p>
-</article>
-
-<article class="honest">
-  <h3>The look: families, skins, fonts, colours</h3>
-  <div class="bs"><span class="b tas">taste</span></div>
-  <p>Azulejo for travel, Playground for kids, Graphite for developers, the cream background, Geist and Fraunces: these are choices, not findings. Research constrains them (contrast, one accent so the main action stands out) but doesn't pick them.</p>
-</article>
-
-<h2>Sources</h2>
-<ol class="src">
-  <li>Fitts, P. M. (1954). The information capacity of the human motor system in controlling the amplitude of movement. <i>Journal of Experimental Psychology</i>, 47(6). <a href="https://doi.org/10.1037/h0055392">doi:10.1037/h0055392</a></li>
-  <li>Parhi, P., Karlson, A. K., Bederson, B. B. (2006). Target size study for one-handed thumb use on small touchscreen devices. <i>MobileHCI '06</i>. <a href="https://doi.org/10.1145/1152215.1152260">doi:10.1145/1152215.1152260</a></li>
-  <li>Apple. Human Interface Guidelines: Accessibility (44 × 44 pt hit targets). <a href="https://developer.apple.com/design/human-interface-guidelines/accessibility">developer.apple.com</a></li>
-  <li>Google. Android accessibility: touch target size (48 × 48 dp). <a href="https://support.google.com/accessibility/android/answer/7101858">support.google.com</a></li>
-  <li>W3C. WCAG 2.2, 2.5.5 Target Size (Enhanced) and 2.5.8 Target Size (Minimum). <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html">2.5.5</a> · <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">2.5.8</a>; see also NN/g, <a href="https://www.nngroup.com/articles/touch-target-size/">Touch Targets on Touchscreens</a></li>
-  <li>Hoober, S. (2013). How Do Users Really Hold Mobile Devices? <i>UXmatters</i>. <a href="https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php">uxmatters.com</a></li>
-  <li>Hick, W. E. (1952). On the rate of gain of information. <i>Quarterly Journal of Experimental Psychology</i>, 4(1). <a href="https://doi.org/10.1080/17470215208416600">doi:10.1080/17470215208416600</a></li>
-  <li>Apple. Human Interface Guidelines: Tab bars. <a href="https://developer.apple.com/design/human-interface-guidelines/tab-bars">developer.apple.com</a></li>
-  <li>Harley, A. (2014). Icon Usability. Nielsen Norman Group. <a href="https://www.nngroup.com/articles/icon-usability/">nngroup.com</a></li>
-  <li>Apple. SwiftUI <code>tabBarMinimizeBehavior(_:)</code>, iOS 26. <a href="https://developer.apple.com/documentation/swiftui/view/tabbarminimizebehavior(_:)">developer.apple.com</a></li>
-  <li>Nielsen, J. (1993). Response Times: The 3 Important Limits. Nielsen Norman Group. <a href="https://www.nngroup.com/articles/response-times-3-important-limits/">nngroup.com</a></li>
-  <li>W3C. WCAG 2.2, 1.4.3 Contrast (Minimum). <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">w3.org</a></li>
-  <li>W3C. WCAG 2.2, 1.4.1 Use of Color. <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">w3.org</a></li>
-  <li>Nielsen Norman Group (2025). Liquid Glass Is Cracked, and Usability Suffers in iOS 26. <a href="https://www.nngroup.com/articles/liquid-glass/">nngroup.com</a></li>
-  <li>MDN. <code>prefers-reduced-transparency</code>. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-transparency">developer.mozilla.org</a></li>
-  <li>W3C. WCAG 2.2, 2.3.3 Animation from Interactions. <a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html">w3.org</a></li>
-  <li>The A11Y Project. Understanding vestibular disorders. <a href="https://www.a11yproject.com/posts/understanding-vestibular-disorders/">a11yproject.com</a></li>
-  <li>Apple (2018). Designing Fluid Interfaces, WWDC 2018 session 803. <a href="https://developer.apple.com/videos/play/wwdc2018/803/">developer.apple.com</a></li>
-  <li>Material Design 3. Navigation bar (3 to 5 destinations). <a href="https://m3.material.io/components/navigation-bar/guidelines">m3.material.io</a></li>
-  <li>National Eye Institute. Color blindness. <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness">nei.nih.gov</a></li>
-</ol>
-<p style="color:var(--ink2);font-size:15px;line-height:1.6">Spotted a claim that goes further than its source, or a better study? <a href="https://github.com/abhisheksreesaila/omxqua/issues">Open an issue</a>; this page should only say what the evidence says.</p>
+  <details class="rv"><summary>All the sources</summary><ol>
+    <li>Fitts, P. M. (1954). The information capacity of the human motor system. <a href="https://doi.org/10.1037/h0055392">doi:10.1037/h0055392</a></li>
+    <li>Parhi, Karlson, Bederson (2006). Target size study for one-handed thumb use. <a href="https://doi.org/10.1145/1152215.1152260">doi:10.1145/1152215.1152260</a></li>
+    <li>Apple. HIG: Accessibility, 44 pt targets. <a href="https://developer.apple.com/design/human-interface-guidelines/accessibility">developer.apple.com</a></li>
+    <li>Google. Android touch target size, 48 dp. <a href="https://support.google.com/accessibility/android/answer/7101858">support.google.com</a></li>
+    <li>W3C. WCAG 2.2, target size <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html">2.5.5</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">2.5.8</a></li>
+    <li>Hoober, S. (2013). How do users really hold mobile devices? <a href="https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php">UXmatters</a></li>
+    <li>Hick, W. E. (1952). On the rate of gain of information. <a href="https://doi.org/10.1080/17470215208416600">doi:10.1080/17470215208416600</a></li>
+    <li>Apple. HIG: Tab bars. <a href="https://developer.apple.com/design/human-interface-guidelines/tab-bars">developer.apple.com</a></li>
+    <li>Material Design 3. Navigation bar. <a href="https://m3.material.io/components/navigation-bar/guidelines">m3.material.io</a></li>
+    <li>Harley, A. (2014). Icon usability. <a href="https://www.nngroup.com/articles/icon-usability/">NN/g</a></li>
+    <li>Sherwin, K. (2014). Placeholders in form fields are harmful. <a href="https://www.nngroup.com/articles/form-design-placeholders/">NN/g</a></li>
+    <li>Nielsen, J. (1993). Response times: the 3 important limits. <a href="https://www.nngroup.com/articles/response-times-3-important-limits/">NN/g</a></li>
+    <li>Nielsen, J. (1994). 10 usability heuristics. <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g</a></li>
+    <li>W3C. WCAG 2.2, <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">1.4.3 Contrast</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">1.4.1 Use of colour</a></li>
+    <li>National Eye Institute. Color blindness. <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness">nei.nih.gov</a></li>
+    <li>NN/g (2025). Liquid Glass is cracked, and usability suffers in iOS 26. <a href="https://www.nngroup.com/articles/liquid-glass/">NN/g</a></li>
+    <li>MDN. prefers-reduced-transparency. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-transparency">developer.mozilla.org</a></li>
+    <li>W3C. WCAG 2.2, <a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html">2.3.3 Animation from interactions</a></li>
+    <li>The A11Y Project. Understanding vestibular disorders. <a href="https://www.a11yproject.com/posts/understanding-vestibular-disorders/">a11yproject.com</a></li>
+    <li>Apple (2018). Designing Fluid Interfaces, WWDC session 803. <a href="https://developer.apple.com/videos/play/wwdc2018/803/">developer.apple.com</a></li>
+  </ol></details>
+  <p class="fix">A card says more than its source? <a href="https://github.com/abhisheksreesaila/omxqua/issues">Open an issue</a>. This page should only say what the evidence says.</p>
 </main>
-</div>
-<footer>omxqua · MIT · <a href="./">home</a> · <a href="showcase.html">showcase</a> · <a href="showcase.html?opt=t">components</a> · <a href="landing.html">landing</a></footer>
+<footer>omxqua · MIT · <a href="./">home</a> · <a href="showcase.html">showcase</a> · <a href="showcase.html?opt=t">components</a></footer>
+
+<script>
+addEventListener("DOMContentLoaded", () => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pillThumb = () => { const on = $("#pill a.on"), t = $("#pill i"); if (!on) { t.style.width = 0; return; } t.style.left = on.offsetLeft + "px"; t.style.width = on.offsetWidth + "px"; };
+  const secs = ["touch", "reading", "motion", "taste"].map(id => document.getElementById(id));
+  const spy = () => { const cur = secs.filter(s => s.getBoundingClientRect().top < innerHeight * .45).pop();
+    $$("#pill a").forEach(a => a.classList.toggle("on", !!cur && a.getAttribute("href") === "#" + cur.id)); pillThumb(); };
+  addEventListener("scroll", spy, { passive: true }); addEventListener("resize", pillThumb);
+  $$("#pill a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); $(a.getAttribute("href")).scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .1 });
+  $$(".rv").forEach(el => io.observe(el));
+});
+</script>
 </body>
 </html>

@@ -2,441 +2,286 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>omxqua · every touch, a tiny joy</title>
-<meta name="description" content="omxqua: a small, touch-native design language for the web and the phone. Press things. They press back.">
+<title>omxqua · the best of Apple and Google, and the taste to choose</title>
+<meta name="description" content="omxqua is a design language for the web and the phone: Google's texture, Apple's motion, and a few small joys of our own. Each one has a reason.">
 <link rel="stylesheet" href="../src/fonts.css">
+<link rel="stylesheet" href="../src/tokens.css">
+<link rel="stylesheet" href="../src/components.css">
+<link rel="stylesheet" href="site.css">
+<script src="../src/omxqua.js" defer></script>
 <style>
-/* fonts come from ../src/fonts.css */
+/* the shared chrome (black, Geist, header, headings) is in site.css */
+/* hero: the belief on the left, the real app on the right */
+.hero { padding: 96px 0 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+.lede { font: 500 clamp(22px, 2.5vw, 31px)/1.25 var(--sans); letter-spacing: -.018em; margin: 26px 0 0; max-width: 620px; }
+.lede b { font-weight: 600; }
+.ctas { display: flex; gap: 22px; align-items: center; margin-top: 34px; flex-wrap: wrap; }
+.dev { width: 300px; height: 636px; border-radius: 52px; padding: 9px; background: #1a1a1c; box-shadow: inset 0 0 0 1px #2c2c2f, 0 40px 120px rgba(255,173,102,.10); justify-self: center; position: relative; }
+.dev .scr { width: 282px; height: 618px; border-radius: 44px; overflow: hidden; background: #171221; }
+.dev iframe { width: 390px; height: 855px; border: 0; transform: scale(.7231); transform-origin: 0 0; display: block; }
 
-/* ---------- tokens (light by default, casual cream; aqua is the one accent) ---------- */
-:root {
-  --bg: #f7f5f0; --s1: #ffffff; --s2: #ffffff; --ink: #121516; --ink2: #5c6466; --line: #e6e2d9; --line2: #efece5; --state: 18 21 22;
-  --aqua: #00737a; --on-aqua: #ffffff; --aqua-soft: #d9f3f1; --hi: #00737a;
-  --pop1: #f08c00; --pop2: #7048e8; --pop3: #e0457b; --pop4: #2b8a3e;
-  --sh1: 0 1px 2px rgba(20,16,10,.06), 0 0 0 1px rgba(20,16,10,.05); --sh2: 0 8px 24px rgba(20,16,10,.10), 0 0 0 1px rgba(20,16,10,.05); --sh3: 0 24px 60px rgba(20,16,10,.18), 0 0 0 1px rgba(20,16,10,.06);
-  --spring: linear(0, 0.02, 0.071, 0.142, 0.226, 0.316, 0.407, 0.494, 0.577, 0.653, 0.72, 0.78, 0.831, 0.875, 0.911, 0.94, 0.964, 0.983, 0.997, 1.007, 1.014, 1.019, 1.021, 1.023, 1.023, 1.022, 1.02, 1.018, 1.017, 1.014, 1.012, 1.01, 1.009, 1.007, 1.006, 1.004, 1.003, 1.002, 1.002, 1.001, 1);
-  --soft: linear(0, 0.023, 0.079, 0.154, 0.237, 0.322, 0.405, 0.482, 0.553, 0.617, 0.674, 0.723, 0.766, 0.803, 0.835, 0.862, 0.885, 0.905, 0.921, 0.935, 0.946, 0.955, 0.963, 0.97, 0.975, 0.98, 0.983, 0.986, 0.989, 0.991, 0.993, 0.994, 0.995, 0.996, 0.997, 0.997, 0.998, 0.998, 0.999, 0.999, 1);
-  --ease: cubic-bezier(.2,0,0,1);
-  --sans: "Geist", system-ui, sans-serif; --mono: "Geist Mono", ui-monospace, monospace;
-  color-scheme: light;
+/* the product frame: the whole app, live */
+.frame { margin: 120px auto 0; border-radius: 22px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line), 0 50px 140px rgba(0,0,0,.6); background: #171221; position: relative; }
+.frame .bar { display: flex; gap: 7px; padding: 13px 16px; background: var(--t1); border-bottom: 1px solid var(--line); }
+.frame .bar i { width: 11px; height: 11px; border-radius: 50%; background: #2c2c2f; }
+.frame .clip { overflow: hidden; }
+.frame iframe { width: 1280px; height: 800px; border: 0; transform-origin: 0 0; display: block; }
+
+/* the belief: three columns */
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+.col { background: var(--t1); border-radius: 28px; padding: 30px; box-shadow: inset 0 0 0 1px var(--line); display: flex; flex-direction: column; }
+.col .from { font: 600 12.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); display: flex; align-items: center; gap: 9px; }
+.col .from i { width: 9px; height: 9px; border-radius: 50%; }
+.col h3 { font: 750 30px/1.08 var(--sans); letter-spacing: -.035em; margin: 18px 0 0; }
+.col p { color: var(--ink2); font-size: 17px; margin: 14px 0 0; }
+.col ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 9px; font-size: 16px; }
+.col li { display: flex; gap: 10px; align-items: baseline; } .col li::before { content: "+"; font-family: var(--mono); color: var(--ink2); }
+.col li.no { color: var(--ink3); } .col li.no::before { content: "×"; }
+.col .foot { margin-top: auto; padding-top: 22px; font: 12.5px var(--mono); color: var(--ink3); }
+
+/* the little things: a bento of live parts, each with its reason */
+.bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 56px; }
+.tile { grid-column: span 2; background: var(--t1); border-radius: 28px; box-shadow: inset 0 0 0 1px var(--line); padding: 14px 14px 24px; display: flex; flex-direction: column; }
+.tile.w3 { grid-column: span 3; } .tile.w4 { grid-column: span 4; } .tile.w6 { grid-column: span 6; }
+.tile h3 { font: 700 23px/1.15 var(--sans); letter-spacing: -.028em; margin: 20px 12px 0; }
+.tile p { margin: 8px 12px 0; color: var(--ink2); font-size: 16px; line-height: 1.5; }
+.why { margin: 16px 12px 0; display: grid; gap: 8px; font-size: 14px; line-height: 1.45; color: var(--ink2); }
+.why div { display: flex; gap: 10px; align-items: baseline; }
+.why a { color: var(--ink2); text-decoration-color: var(--ink3); text-underline-offset: 3px; }
+/* a stage is a real omxqua root (Playground · Night); contain:layout pins its fixed islands to it */
+.stage { height: 230px; border-radius: 18px; overflow: hidden; position: relative; container-type: inline-size; contain: layout; display: grid; place-items: center; background: var(--oq-surface-0); font-family: var(--oq-font); color: var(--oq-ink); }
+.stage.tall { height: 300px; }
+.stage .hint { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; font: 12px var(--oq-font-mono); color: var(--oq-ink-2); pointer-events: none; }
+.stage .row { display: flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.stage .tbig { width: 132px; height: 92px; border-radius: 22px; border: 0; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-1); color: var(--oq-ink); font: 600 15px var(--oq-font); display: grid; place-items: center; cursor: pointer; }
+.stage .switch.xl { transform: scale(1.6); margin: 0 18px; }
+.stage .phone { width: 360px; height: 100%; position: relative; container-type: inline-size; contain: layout; overflow: hidden; }
+.stage .bigmark { width: 104px; height: 104px; border-radius: 50%; font-size: 40px; }
+.stage .targets { display: flex; gap: 14px; align-items: flex-end; }
+.stage .targets span { display: grid; gap: 8px; justify-items: center; font: 11.5px var(--oq-font-mono); color: var(--oq-ink-2); }
+.stage .targets button { border: 0; border-radius: 999px; background: var(--oq-accent); color: var(--oq-on-accent); font: 600 13px var(--oq-font); padding: 0 16px; cursor: pointer; box-shadow: var(--oq-shadow-1); }
+.tiers { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.tiers .card { width: 210px; padding: 14px 16px; border: 0; text-align: left; color: var(--oq-ink); font: inherit; cursor: pointer; }
+.tiers .card b { display: block; font-size: 15px; } .tiers .card span { font-size: 13px; color: var(--oq-ink-2); }
+.toast.cover { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); }
+
+/* themes: the same app, four personalities */
+.themes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 56px; }
+.th { text-align: center; }
+.th .dev { width: 100%; max-width: 250px; height: auto; aspect-ratio: 300 / 636; padding: 8px; border-radius: 44px; box-shadow: inset 0 0 0 1px #2c2c2f; }
+.th .dev .scr { width: 100%; height: 100%; border-radius: 37px; position: relative; }
+.th .dev iframe { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.th b { display: block; margin-top: 18px; font: 700 19px var(--sans); letter-spacing: -.02em; }
+.th span { display: block; font: 12.5px var(--mono); color: var(--ink2); margin-top: 4px; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; }
+.split .col p { font-size: 16.5px; }
+.next { margin-top: 18px; font: 13px var(--mono); color: var(--ink2); text-align: center; }
+
+/* leads into the showcase */
+.doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+.door { background: var(--t1); border-radius: 28px; box-shadow: inset 0 0 0 1px var(--line); padding: 30px; text-decoration: none; display: flex; flex-direction: column; gap: 10px; min-height: 220px; }
+.door b { font: 700 26px/1.1 var(--sans); letter-spacing: -.03em; } .door span { color: var(--ink2); font-size: 16.5px; }
+.door em { margin-top: auto; font: 500 15px var(--sans); font-style: normal; } .door em::after { content: " ›"; }
+.install { display: inline-flex; align-items: center; gap: 12px; margin-top: 32px; padding: 8px 8px 8px 22px; border-radius: 999px; background: var(--t1); box-shadow: inset 0 0 0 1px var(--line); font: 14.5px var(--mono); color: #e4e4e7; max-width: 100%; }
+.install span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.install button { height: 38px; padding: 0 16px; border-radius: 999px; border: 0; background: #232326; font: 600 13px var(--sans); cursor: pointer; }
+.end { text-align: center; padding-bottom: 40px; } .end h2 { margin-left: auto; margin-right: auto; } .end .sub { margin-left: auto; margin-right: auto; }
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; } .dev { margin-top: 20px; }
+  .three, .doors, .split { grid-template-columns: 1fr; } .themes { grid-template-columns: 1fr 1fr; }
+  .bento { grid-template-columns: 1fr; } .tile, .tile.w3, .tile.w4, .tile.w6 { grid-column: auto; }
+  .frame { margin-top: 80px; }
 }
-:root.night { --bg: #0b0f10; --s1: #131a1b; --s2: #1a2324; --ink: #eef5f5; --ink2: #9aa6a8; --line: #253031; --line2: #1b2425; --state: 238 245 245;
-  --aqua: #3ee0d8; --on-aqua: #062a2c; --aqua-soft: #12302f; --hi: #3ee0d8;
-  --sh1: 0 1px 0 rgba(255,255,255,.04) inset, 0 1px 2px rgba(0,0,0,.5); --sh2: 0 1px 0 rgba(255,255,255,.05) inset, 0 8px 24px rgba(0,0,0,.5); --sh3: 0 1px 0 rgba(255,255,255,.06) inset, 0 24px 60px rgba(0,0,0,.65); color-scheme: dark; }
-* { box-sizing: border-box; }
-html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-body { transition: background .4s var(--ease), color .4s var(--ease); }
-button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-a { color: inherit; }
-.mono { font-family: var(--mono); }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
-section { padding: 120px 0; }
-.ico { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-
-/* ---------- top islands ---------- */
-.isles { position: sticky; top: 12px; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; padding: 0 14px; pointer-events: none; }
-.isles > * { pointer-events: auto; }
-.isl { background: var(--s2); box-shadow: var(--sh2); border-radius: 999px; }
-.brand { justify-self: start; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 16px 0 7px; border: 0; font: 650 17px var(--sans); letter-spacing: -.02em; }
-.mark { width: 32px; height: 32px; border-radius: 50%; background: var(--aqua); color: var(--on-aqua); display: grid; place-items: center; }
-.mark svg { width: 100%; height: 100%; overflow: visible; }
-.mark text { fill: currentColor; stroke: currentColor; stroke-width: .8; stroke-dasharray: 120; paint-order: stroke; font: 700 16px var(--sans); }
-.navpill { display: flex; padding: 5px; position: relative; }
-.navpill a { position: relative; z-index: 1; text-decoration: none; font: 600 14px var(--sans); color: var(--ink2); padding: 9px 16px; border-radius: 999px; transition: color .2s; white-space: nowrap; }
-.navpill a.on { color: var(--on-aqua); }
-.navpill i { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--aqua); transition: left .3s var(--spring), width .3s var(--spring); }
-.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
-.beacon { height: 46px; display: flex; align-items: center; gap: 10px; padding: 0 16px 0 14px; border: 0; background: #0b0b0d; color: #f4f4f5; font: 600 14px var(--sans); border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,.28); }
-.beacon .dot { width: 8px; height: 8px; border-radius: 50%; background: #3ee0d8; box-shadow: 0 0 0 4px rgba(62,224,216,.25); }
-.beacon b { font: 500 13px var(--mono); color: #a1a1aa; font-weight: 500; }
-.themebtn { width: 46px; height: 46px; border: 0; display: grid; place-items: center; }
-
-/* ---------- hero ---------- */
-.hero { padding: 90px 0 60px; text-align: center; }
-.kicker { display: inline-flex; gap: 8px; align-items: center; font: 600 13px var(--mono); color: var(--hi); background: var(--aqua-soft); padding: 7px 14px; border-radius: 999px; border: 0; }
-h1 { font: 800 clamp(52px, 10vw, 136px)/.92 var(--sans); letter-spacing: -.055em; margin: 22px 0 0; }
-h1 .q { color: var(--aqua); display: inline-block; }
-.lede { font: 500 clamp(19px, 2.2vw, 25px)/1.4 var(--sans); color: var(--ink2); max-width: 680px; margin: 22px auto 0; letter-spacing: -.01em; }
-.lede b { color: var(--ink); font-weight: 600; }
-.ctas { display: flex; gap: 12px; justify-content: center; align-items: center; margin-top: 30px; flex-wrap: wrap; }
-.cta { height: 52px; padding: 0 26px; border: 0; border-radius: 999px; background: var(--aqua); color: var(--on-aqua); font: 650 17px var(--sans); box-shadow: var(--sh1); display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-.more { font: 600 17px var(--sans); color: var(--hi); text-decoration: none; padding: 12px 8px; border: 0; background: none; }
-.more::after { content: " ›"; }
-
-/* the playground: real components, scattered, all pressable */
-.play { margin: 64px auto 0; max-width: 980px; position: relative; display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; text-align: left; }
-.p { background: var(--s1); border-radius: 22px; box-shadow: var(--sh1); padding: 18px; display: flex; flex-direction: column; gap: 12px; }
-.p .t { font: 600 12px var(--mono); color: var(--ink2); text-transform: lowercase; }
-.p1 { grid-column: span 4; } .p2 { grid-column: span 4; } .p3 { grid-column: span 4; } .p4 { grid-column: span 5; } .p5 { grid-column: span 7; }
-.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
-.btn { height: 42px; padding: 0 18px; border: 0; border-radius: 999px; font: 600 15px var(--sans); display: inline-flex; align-items: center; gap: 8px; }
-.btn.fill { background: var(--aqua); color: var(--on-aqua); box-shadow: var(--sh1); }
-.btn.tonal { background: rgb(var(--state) / .06); }
-.switch { width: 46px; height: 28px; border-radius: 999px; border: 0; padding: 0; background: var(--line); position: relative; transition: background .25s; flex: none; }
-.switch::after { content: ""; position: absolute; left: 3px; top: 3px; width: 22px; height: 22px; border-radius: 11px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: transform .3s var(--spring), width .3s var(--spring); }
-.switch:active::after { width: 28px; } .switch.on { background: var(--aqua); } .switch.on::after { transform: translateX(18px); } .switch.on:active::after { transform: translateX(12px); }
-.check { width: 24px; height: 24px; border: 0; padding: 0; border-radius: 7px; background: none; box-shadow: inset 0 0 0 2px var(--ink2); display: grid; place-items: center; flex: none; transition: box-shadow .2s, background .2s; }
-.check svg { width: 16px; height: 16px; fill: none; stroke: var(--on-aqua); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 20; stroke-dashoffset: 20; transition: stroke-dashoffset .25s var(--ease) .05s; }
-.check.on { background: var(--aqua); box-shadow: none; } .check.on svg { stroke-dashoffset: 0; }
-.chip { height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: rgb(var(--state) / .06); font: 600 14px var(--sans); }
-.chip.on { background: var(--aqua); color: var(--on-aqua); }
-.seg { display: inline-flex; padding: 4px; border-radius: 999px; background: rgb(var(--state) / .06); position: relative; }
-.seg button { position: relative; z-index: 1; border: 0; background: none; height: 34px; padding: 0 16px; border-radius: 999px; font: 600 14px var(--sans); color: var(--ink2); transition: color .2s; }
-.seg button.on { color: var(--ink); }
-.seg i { position: absolute; top: 4px; bottom: 4px; border-radius: 999px; background: var(--s2); box-shadow: var(--sh1); transition: left .32s var(--spring), width .32s var(--spring); }
-.fld { position: relative; display: block; height: 54px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); background: var(--s1); transition: box-shadow .2s; cursor: text; }
-.fld:focus-within { box-shadow: inset 0 0 0 2px var(--aqua); }
-.fld input { all: unset; position: absolute; inset: 0; padding: 0 16px; font: 500 16px var(--sans); color: var(--ink); width: 100%; box-sizing: border-box; }
-.fld span { position: absolute; left: 12px; top: 17px; padding: 0 4px; background: var(--s1); color: var(--ink2); transform-origin: 0 0; transition: transform .2s var(--ease), color .2s; pointer-events: none; font-size: 16px; }
-.fld input:focus + span, .fld input:not(:placeholder-shown) + span { transform: translateY(-25px) scale(.76); }
-.fld input:focus + span { color: var(--hi); }
-.src { font: 12.5px var(--mono); color: var(--ink2); display: flex; gap: 8px; align-items: center; border-top: 1px solid var(--line2); padding-top: 10px; margin-top: auto; }
-.src::before { content: "$"; opacity: .6; }
-/* mini beacon that morphs open */
-.mbeacon { align-self: flex-start; border: 0; background: #0b0b0d; color: #f4f4f5; border-radius: 22px; overflow: hidden; padding: 0; text-align: left; transition: width .46s var(--soft), height .46s var(--soft), border-radius .46s var(--soft); position: relative; box-shadow: 0 10px 26px rgba(0,0,0,.28); }
-.mbeacon .c, .mbeacon .o { position: absolute; left: 0; top: 0; transition: opacity .2s; white-space: nowrap; }
-.mbeacon .c { display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 16px 0 12px; font: 600 14px var(--sans); }
-.mbeacon .c em { font: 500 13px var(--mono); font-style: normal; color: #a1a1aa; }
-.mbeacon .o { width: 300px; padding: 14px 16px 16px; opacity: 0; }
-.mbeacon.open { border-radius: 26px; } .mbeacon.open .c { opacity: 0; } .mbeacon.open .o { opacity: 1; transition-delay: .12s; }
-.mbeacon .big { font: 700 34px var(--sans); letter-spacing: -.04em; margin: 6px 0 8px; font-variant-numeric: tabular-nums; }
-.mbeacon .bar { height: 6px; border-radius: 3px; background: #27272a; overflow: hidden; } .mbeacon .bar i { display: block; height: 100%; width: 40%; background: #3ee0d8; border-radius: 3px; transition: width .9s linear; }
-.mbeacon small { font: 12px var(--mono); color: #a1a1aa; }
-
-/* ---------- sections ---------- */
-.eyebrow { font: 600 13px var(--mono); color: var(--hi); letter-spacing: .06em; text-transform: lowercase; }
-h2 { font: 800 clamp(38px, 6vw, 76px)/1 var(--sans); letter-spacing: -.05em; margin: 12px 0 0; }
-h2 .two { color: var(--ink2); }
-.sub { font: 500 20px/1.5 var(--sans); color: var(--ink2); max-width: 640px; margin: 18px 0 0; }
-
-/* touch-native squish pad */
-.squishwrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center; margin-top: 46px; }
-.pad { height: 340px; border-radius: 40px; background: var(--aqua); position: relative; overflow: hidden; touch-action: none; cursor: grab; box-shadow: var(--sh2); }
-.pad:active { cursor: grabbing; }
-.blob { position: absolute; width: 150px; height: 150px; left: calc(50% - 75px); top: calc(50% - 75px); border-radius: 50%; background: var(--on-aqua); opacity: .95; will-change: transform; }
-.pad .hint { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font: 600 14px var(--mono); color: var(--on-aqua); opacity: .85; pointer-events: none; }
-.facts { display: grid; gap: 14px; }
-.fact { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; background: var(--s1); border-radius: 20px; box-shadow: var(--sh1); border: 0; text-align: left; width: 100%; }
-.fact .n { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; color: #fff; flex: none; }
-.fact b { display: block; font-size: 16px; } .fact span { color: var(--ink2); font-size: 14.5px; line-height: 1.45; }
-
-/* borrowed, honestly */
-.borrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 46px; }
-.bcard { background: var(--s1); border-radius: 26px; box-shadow: var(--sh1); padding: 24px; display: flex; flex-direction: column; gap: 14px; min-height: 360px; }
-.bcard .from { display: flex; align-items: center; gap: 10px; font: 600 13px var(--mono); color: var(--ink2); }
-.bcard .from i { width: 10px; height: 10px; border-radius: 50%; }
-.bcard h3 { font: 750 26px/1.1 var(--sans); letter-spacing: -.03em; margin: 0; }
-.bcard p { margin: 0; color: var(--ink2); font-size: 15.5px; line-height: 1.5; }
-.bcard .demo { margin-top: auto; background: var(--bg); border-radius: 18px; padding: 18px; display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; min-height: 112px; }
-.term { width: 100%; font: 13px/1.6 var(--mono); color: #d4d4d8; background: #0b0b0d; border-radius: 14px; padding: 14px 16px; text-align: left; }
-.term .pr { color: #3ee0d8; } .term .k { color: #f5a524; }
-.cursor { display: inline-block; width: 8px; height: 15px; background: #3ee0d8; vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.ours { margin-top: 16px; background: var(--s1); border-radius: 26px; box-shadow: var(--sh1); padding: 24px; }
-.own { display: grid; grid-template-columns: 1fr 1.45fr 1fr; gap: 14px; margin-top: 18px; }
-.oc .stage { background: var(--bg); border-radius: 18px; height: 150px; display: grid; place-items: center; overflow: hidden; }
-.oc .growpill button { padding: 0 12px; }
-.oc h4 { margin: 16px 4px 0; font: 700 18px var(--sans); letter-spacing: -.02em; }
-.oc p { margin: 6px 4px 0; font-size: 15px; }
-.minibar { display: flex; gap: 6px; align-items: center; }
-.minibar .mi { background: var(--s2); box-shadow: var(--sh2); border-radius: 999px; height: 34px; display: flex; align-items: center; gap: 2px; padding: 0 4px; font: 600 12px var(--sans); color: var(--ink2); }
-.minibar .mk { width: 26px; height: 26px; border-radius: 50%; background: var(--aqua); color: var(--on-aqua); display: grid; place-items: center; font: 700 11px var(--sans); }
-.minibar .nv b { padding: 6px 9px; border-radius: 999px; font-weight: 600; } .minibar .nv b.on { background: var(--aqua); color: var(--on-aqua); }
-.minibar .bk { background: #0b0b0d; color: #f4f4f5; padding: 0 11px 0 9px; gap: 7px; font: 500 12px var(--mono); }
-.minibar .bk .dot { width: 7px; height: 7px; border-radius: 50%; background: #3ee0d8; }
-.bigmark { width: 104px; height: 104px; border-radius: 50%; border: 0; background: var(--aqua); color: var(--on-aqua); padding: 0; box-shadow: var(--sh2); }
-.bigmark svg { width: 100%; height: 100%; overflow: visible; display: block; }
-.bigmark text { fill: currentColor; stroke: currentColor; stroke-width: .6; stroke-dasharray: 120; paint-order: stroke; font: 700 16px var(--sans); }
-.ours h3 { margin: 6px 0 0; font: 750 26px/1.15 var(--sans); letter-spacing: -.03em; }
-.ours p { margin: 8px 0 0; color: var(--ink2); }
-.growpill { display: flex; padding: 5px; border-radius: 999px; background: var(--s2); box-shadow: var(--sh2); position: relative; overflow: hidden; transition: width .5s var(--soft); white-space: nowrap; }
-.growpill button { position: relative; z-index: 1; border: 0; background: none; height: 36px; padding: 0 15px; border-radius: 999px; font: 600 14px var(--sans); color: var(--ink2); flex: none; }
-.growpill button.on { color: var(--on-aqua); }
-.growpill i { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--aqua); transition: left .3s var(--spring), width .3s var(--spring); }
-.growpill .more2 { font: 600 13px var(--mono); }
-
-
-/* example apps on phones */
-.phones { display: flex; gap: 22px; justify-content: center; margin-top: 50px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 6px 26px; }
-.phone { flex: none; scroll-snap-align: center; text-align: center; }
-.phone .dev { width: 338px; height: 710px; border-radius: 54px; padding: 9px; background: #0b0b0d; box-shadow: var(--sh3), inset 0 0 0 1px #2a2a2e; position: relative; }
-.phone .scr { width: 320px; height: 692px; border-radius: 46px; overflow: hidden; position: relative; background: var(--s1); }
-.phone iframe { width: 390px; height: 844px; border: 0; transform: scale(.8205); transform-origin: 0 0; display: block; }
-.phone .isle { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 84px; height: 24px; border-radius: 999px; background: #0b0b0d; z-index: 2; pointer-events: none; }
-.phone b { display: block; margin-top: 18px; font: 700 17px var(--sans); letter-spacing: -.02em; }
-.phone span { color: var(--ink2); font: 13px var(--mono); }
-.phone .full { display: block; margin-top: 6px; color: var(--hi); font: 600 14px var(--sans); text-decoration: none; }
-.getnote { color: var(--ink2); font: 14px var(--mono); margin: 14px 0 0; } .getnote a { color: var(--hi); }
-.phones-note { text-align: center; color: var(--ink2); font: 13px var(--mono); margin-top: 6px; }
-
-/* light as a feather */
-.nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 46px; }
-.num { background: var(--s1); border-radius: 22px; box-shadow: var(--sh1); padding: 22px; border: 0; text-align: left; }
-.num b { display: block; font: 800 clamp(40px, 5vw, 64px)/1 var(--sans); letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
-.num b small { font-size: .45em; letter-spacing: -.02em; color: var(--ink2); margin-left: 4px; }
-.num span { color: var(--ink2); font-size: 15px; display: block; margin-top: 8px; }
-
-/* readable: a live size + contrast toy */
-.read { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 46px; }
-.rcard { background: var(--s1); border-radius: 26px; box-shadow: var(--sh1); padding: 24px; }
-.sample { font-size: var(--fs, 17px); line-height: 1.55; transition: font-size .3s var(--soft); margin: 14px 0 0; }
-input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(var(--aqua), var(--aqua)) 0/var(--v, 30%) 100% no-repeat, var(--line); }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--s2); box-shadow: var(--sh2), 0 0 0 1px var(--line); transition: transform .3s var(--spring); }
-input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
-input[type=range]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: var(--s2); border: 0; box-shadow: var(--sh2); }
-.ratio { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
-.ratio b { font: 800 56px/1 var(--sans); letter-spacing: -.05em; }
-.fam { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-
-/* get it */
-.get { text-align: center; }
-.install { display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding: 8px 8px 8px 20px; border-radius: 999px; background: #0b0b0d; color: #e4e4e7; font: 14.5px var(--mono); box-shadow: var(--sh2); max-width: 100%; min-width: 0; }
-.install span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.install button { height: 38px; padding: 0 16px; border-radius: 999px; border: 0; background: #27272a; color: #f4f4f5; font: 600 13px var(--sans); }
-footer { padding: 40px 0 120px; text-align: center; color: var(--ink2); font: 13px var(--mono); }
-footer a { color: var(--hi); }
-
-.toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 90; background: #0b0b0d; color: #f4f4f5; padding: 12px 18px; border-radius: 999px; font: 600 14px var(--sans); box-shadow: 0 14px 40px rgba(0,0,0,.35); }
-.toast[hidden] { display: none; }
-
-/* reveals */
-.rv { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-.rv.in { opacity: 1; transform: none; }
-.rise > * { opacity: 0; transform: translateY(18px); animation: rise .9s var(--ease) forwards; }
-@keyframes rise { to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .rv, .rise > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; } .cursor { animation: none; } }
-
-@media (max-width: 860px) {
-  .navpill { display: none; } .isles { grid-template-columns: 1fr auto; }
-  .play { grid-template-columns: 1fr; } .p1, .p2, .p3, .p4, .p5 { grid-column: auto; }
-  .squishwrap, .borrow, .read { grid-template-columns: 1fr; } .nums { grid-template-columns: 1fr 1fr; }
-  .own { grid-template-columns: 1fr; } section { padding: 80px 0; }
-  .beacon b { display: none; }
-}
+@media (max-width: 560px) { .install button { height: 44px; } .themes { gap: 12px; } .tiers .card { width: 100%; } }
 </style>
 </head>
 <body>
 
-<header class="isles">
-  <button class="isl brand" id="brand" aria-label="omxqua, press me"><span class="mark" id="mark"><svg viewBox="0 0 40 40"><text x="20" y="25.5" text-anchor="middle">oq</text></svg></span>omxqua</button>
-  <nav class="isl navpill" id="navpill"><i></i><a href="#touch" class="on">touch</a><a href="#borrowed">borrowed</a><a href="#apps">apps</a><a href="#light">light</a><a href="#read">readable</a><a href="#get">get it</a></nav>
-  <div class="right">
-    <button class="isl themebtn" id="theme" aria-label="switch light and night"><svg class="ico" viewBox="0 0 24 24" id="themeIco"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
-    <button class="beacon" id="hb" data-toast="the Beacon: what's live right now. here, your place on the page. in an app, a build, a flight or a quest."><span class="dot"></span><span id="hbs">reading</span><b id="hbp">0%</b></button>
-  </div>
+<header class="top">
+  <a class="brand" href="#"><span class="mark">oq</span>omxqua</a>
+  <nav class="pill" id="pill"><i></i><a href="#belief">Belief</a><a href="#feel">The little things</a><a href="#themes">Themes</a><a href="#see">See it</a></nav>
+  <a class="cta sm get" href="#get">Get omxqua</a>
 </header>
 
-<main>
-<section class="hero"><div class="wrap">
-  <div class="rise"><button class="kicker" data-toast="v0.1.0, fresh out of the oven"><svg class="ico" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>a design language, open source</button></div>
-  <h1 class="rise"><span style="animation-delay:.08s">every touch,</span><br><span style="animation-delay:.18s">a tiny <span class="q">joy.</span></span></h1>
-  <p class="lede rise"><span style="animation-delay:.3s">omxqua is a small, touch-native design language for the web and the phone. <b>Press things. They press back.</b></span></p>
-  <div class="ctas rise"><a class="cta" style="animation-delay:.4s" href="https://github.com/abhisheksreesaila/omxqua"><svg class="ico" viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2m12 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>grab it on GitHub</a><a class="more" style="animation-delay:.48s" href="showcase.html">play with the full kit</a></div>
-
-  <div class="play">
-    <div class="p p1 rv"><span class="t">buttons squish</span><div class="row"><button class="btn fill" data-toast="nice press">press me</button><button class="btn tonal">me too</button></div><span class="src">every button, same spring</span></div>
-    <div class="p p2 rv"><span class="t">toggles feel it</span><div class="row"><button class="switch on" data-tog aria-label="toggle"></button><button class="check on" data-tog aria-label="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button><button class="check" data-tog aria-label="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div><span class="src">hold the switch: it stretches</span></div>
-    <div class="p p3 rv"><span class="t">pick one</span><div class="seg" data-seg><i></i><button class="on">day</button><button>week</button><button>month</button></div><span class="src">the thumb slides on a spring</span></div>
-    <div class="p p4 rv"><span class="t">labels float</span><label class="fld"><input placeholder=" "><span>your email</span></label><span class="src">borrowed from google, kept the rounds</span></div>
-    <div class="p p5 rv"><span class="t">the beacon: live things live up top</span>
-      <button class="mbeacon" id="mb"><span class="c"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#3ee0d8;box-shadow:0 0 0 4px rgba(62,224,216,.25)"></span>reading<em data-t>12:04</em></span>
-        <span class="o"><span style="font:650 15px var(--sans)">reading · matilda</span><br><small>tap again to fold it back</small><div class="big" data-t>12:04</div><div class="bar"><i id="mbbar"></i></div></span></button>
-      <span class="src">tap it. it grows, then it folds back</span></div>
-  </div>
-</div></section>
-
-<section id="touch"><div class="wrap">
-  <div class="eyebrow rv">touch native</div>
-  <h2 class="rv">made for fingers. <span class="two">mice welcome.</span></h2>
-  <p class="sub rv">No hover-only tricks. Everything answers a press within a frame, follows your finger while you hold it, and springs home when you let go.</p>
-  <div class="squishwrap">
-    <div class="pad rv" id="pad"><div class="blob" id="blob"></div><div class="hint">press, hold, drag. it's squishy</div></div>
-    <div class="facts">
-      <button class="fact rv"><span class="n" style="background:var(--pop1)"><svg class="ico" viewBox="0 0 24 24"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1 9H6z"/></svg></span><span><b>one press, everywhere</b><span>Small things squish more, big tiles less. Same feel on a laptop trackpad and a phone screen.</span></span></button>
-      <button class="fact rv"><span class="n" style="background:var(--pop2)"><svg class="ico" viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/></svg></span><span><b>targets you can't miss</b><span>36 to 48 px depending on the app. Kids get the biggest.</span></span></button>
-      <button class="fact rv"><span class="n" style="background:var(--pop3)"><svg class="ico" viewBox="0 0 24 24"><path d="M3 12c3-6 6-6 9 0s6 6 9 0"/></svg></span><span><b>liquid, not bouncy</b><span>Small things spring. Panels settle in quietly. Nothing wobbles while you read.</span></span></button>
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <div class="eyebrow rv in">A design language · web and phone · open source</div>
+      <h1 class="rise"><span>omxqua</span></h1>
+      <p class="lede rise"><span style="animation-delay:.15s"><b>The best of Apple and Google, and the taste to choose.</b> <span class="two">Google's texture. Apple's motion. A few small joys of our own, each one with a reason.</span></span></p>
+      <div class="ctas rise"><span style="animation-delay:.3s"><a class="cta" href="#get">Get omxqua</a></span><span style="animation-delay:.36s"><a class="more" href="#feel">Feel the little things</a></span></div>
     </div>
+    <div class="dev rv in"><div class="scr"><iframe src="showcase.html?bare=1&size=phone&screen=home&theme=playground&mode=night" title="Contoso, a made-up trip planner, live on a phone" loading="eager"></iframe></div></div>
   </div>
-</div></section>
 
-<section id="borrowed"><div class="wrap">
-  <div class="eyebrow rv">borrowed, honestly</div>
-  <h2 class="rv">the best bits. <span class="two">none of the baggage.</span></h2>
-  <p class="sub rv">Good ideas from three places we love, rebuilt from scratch with open fonts and our own names.</p>
-  <div class="borrow">
-    <div class="bcard rv"><span class="from"><i style="background:#a1a1aa"></i>from apple</span><h3>springs and a live island</h3><p>Motion with weight. A pill up top that grows when something is happening. The switch knob that stretches when you hold it.</p>
-      <div class="demo"><button class="switch" data-tog aria-label="toggle"></button><button class="beacon" style="height:40px" data-toast="that's the beacon"><span class="dot"></span>boards<b>42 min</b></button></div></div>
-    <div class="bcard rv"><span class="from"><i style="background:#4285f4"></i>from google</span><h3>texture and floating labels</h3><p>Solid, tonal surfaces with one soft shadow. No glass, no blur. Labels that live inside the field and float up when you type.</p>
-      <div class="demo"><label class="fld" style="width:100%"><input placeholder=" "><span>package name</span></label></div></div>
-    <div class="bcard rv"><span class="from"><i style="background:#3ee0d8"></i>from the terminal</span><h3>for dev tools: the command behind it</h3><p>In developer apps, numbers go in mono and a card can end in the command that does the same thing, one copy away. Travel and kids apps leave it out.</p>
-      <div class="demo"><div class="term"><span class="pr">$</span> mxc serve qwen2.5-0.5b <span class="k">--gpu 0</span><br><span style="color:#71717a">serving on :8443 · 38 ms p50</span><br><span class="pr">$</span> <span class="cursor"></span></div></div></div>
-  </div>
-  <div class="ours rv">
-    <span class="eyebrow">and a few of our own</span><h3>three things you won't find in a kit.</h3>
-    <div class="own">
-      <div class="oc"><div class="stage"><div class="minibar"><span class="mi"><span class="mk">oq</span></span><span class="mi nv"><b class="on">home</b><b>trips</b><b>map</b></span><span class="mi bk"><span class="dot"></span>42 min</span></div></div>
-        <h4>top islands</h4><p>Brand left, nav in the middle, what's live on the right. No sidebar eating a third of the screen. This page's header is one: look up.</p></div>
-      <div class="oc"><div class="stage"><div class="growpill" id="grow"><i></i><button class="on" data-i="0">home</button><button data-i="1">trips</button><button data-i="2">map</button><button data-i="3">money</button><button data-i="4" class="x">photos</button><button data-i="5" class="x">people</button><button class="more2" data-more>+2</button></div></div>
-        <h4>a nav pill that grows</h4><p>Shows four. Tap <b>+2</b> for the rest. It stays open while you use it, then folds back on its own.</p></div>
-      <div class="oc"><div class="stage"><button class="bigmark" id="bigmark" aria-label="write the logo again"><svg viewBox="0 0 40 40"><text x="20" y="25.5" text-anchor="middle">oq</text></svg></button></div>
-        <h4>a logo that writes itself</h4><p>On load, and every time you tap it. Go on, tap it.</p></div>
+  <div class="frame rv" id="frame"><div class="bar"><i></i><i></i><i></i></div><div class="clip" id="clip"><iframe id="webapp" src="showcase.html?bare=1&size=desk&screen=home&theme=playground&mode=night" title="Contoso on the web, live" loading="lazy"></iframe></div></div>
+  <p class="cap rv">Contoso, a made-up trip planner · Playground · night · the real app, not a screenshot</p>
+
+  <!-- the belief -->
+  <section id="belief">
+    <div class="eyebrow rv">The belief</div>
+    <h2 class="rv">Two schools. <span class="two">One taste.</span></h2>
+    <p class="sub rv">Google gets texture right. Apple gets motion right. <b>We take what each does best, say no to the rest, and add what we think is missing.</b></p>
+    <div class="three">
+      <div class="col rv"><span class="from"><i style="background:#8ab4ff"></i>From Google</span><h3>Texture you can trust.</h3><p>Material's surfaces: solid, tonal, one soft shadow. You always know what floats and what sits.</p>
+        <ul><li>Solid surfaces, one shadow scale</li><li>State tints on hover and press</li><li>The label that floats into the border</li><li class="no">Ripples and halos</li><li class="no">Filled and underlined fields</li></ul><span class="foot">material 3</span></div>
+      <div class="col rv"><span class="from"><i style="background:#f5f5f7"></i>From Apple</span><h3>Motion with weight.</h3><p>Springs instead of curves. Things squash under your finger and settle like objects do.</p>
+        <ul><li>Real springs, not ease-in-out</li><li>A squash on every press</li><li>A switch that leans as you hold it</li><li class="no">Glass on everything</li><li class="no">Their fonts, icons and names</li></ul><span class="foot">human interface guidelines</span></div>
+      <div class="col rv"><span class="from"><i style="background:#ffad66"></i>Ours</span><h3>The taste to choose.</h3><p>The parts neither school has, and one rule that keeps the rest calm.</p>
+        <ul><li>The Beacon: what's live, up top</li><li>A tab highlight that moves like liquid</li><li>A logo that writes itself</li><li>The more often it happens, the less it moves</li></ul><span class="foot">omxqua</span></div>
     </div>
-  </div>
-</div></section>
+  </section>
 
-<section id="apps"><div class="wrap">
-  <div class="eyebrow rv">example apps</div>
-  <h2 class="rv">one app, any theme. <span class="two">go on, tap them.</span></h2>
-  <p class="sub rv">Contoso, a made-up trip planner, in three of the four themes. Same screens, same parts; the theme changes colour, type, corners and tap size. Live, on a phone: scroll them, tap them. The black pill at the top is the Beacon, showing what's live in the app.</p>
-  <div class="phones">
-    <div class="phone rv"><div class="dev"><div class="scr"><iframe src="showcase.html?bare=1&size=phone&screen=home&theme=graphite&mode=night" title="Contoso, Graphite theme" loading="lazy"></iframe></div></div><b>Contoso · Graphite</b><a class="full" href="showcase.html?opt=a&screen=home&theme=graphite&mode=night" target="_blank" rel="noopener">open in the showcase ›</a><span>graphite · night</span></div>
-    <div class="phone rv"><div class="dev"><div class="scr"><iframe src="showcase.html?bare=1&size=phone&screen=home&theme=azulejo&mode=light" title="Contoso, Azulejo theme" loading="lazy"></iframe></div></div><b>Contoso · Azulejo</b><a class="full" href="showcase.html?opt=a&screen=home&theme=azulejo&mode=light" target="_blank" rel="noopener">open in the showcase ›</a><span>azulejo · light</span></div>
-    <div class="phone rv"><div class="dev"><div class="scr"><iframe src="showcase.html?bare=1&size=phone&screen=home&theme=playground&mode=light" title="Contoso, Playground theme" loading="lazy"></iframe></div></div><b>Contoso · Playground</b><a class="full" href="showcase.html?opt=a&screen=home&theme=playground&mode=light" target="_blank" rel="noopener">open in the showcase ›</a><span>playground · light</span></div>
-  </div>
-  <p class="phones-note rv">real pages, not screenshots · <a href="showcase.html" style="color:var(--hi)">open the showcase ›</a></p>
-</div></section>
+  <!-- the little things -->
+  <section id="feel">
+    <div class="eyebrow rv">The little things</div>
+    <h2 class="rv">Every touch, a tiny joy. <span class="two">Each one has a reason.</span></h2>
+    <p class="sub rv">These are the real parts, live. Press them. <b>Under each, why it works:</b> <span class="tag r">research</span> when a study backs it, <span class="tag t">taste</span> when it's simply what we think feels right.</p>
 
-<section id="light"><div class="wrap">
-  <div class="eyebrow rv">light as a feather</div>
-  <h2 class="rv">no framework. <span class="two">no build step.</span></h2>
-  <p class="sub rv">Three small files and a font. Copy them into any project, link them, done. Apps never change unless you update them.</p>
-  <div class="nums">
-    <button class="num rv"><b><span data-count="10">0</span><small>KB</small></b><span>tokens: colour, shape, motion</span></button>
-    <button class="num rv"><b><span data-count="5">0</span><small>KB</small></b><span>script: press, logo, beacon</span></button>
-    <button class="num rv"><b><span data-count="0">0</span></b><span>dependencies</span></button>
-    <button class="num rv"><b><span data-count="3">0</span></b><span>families: dev, travel, kids</span></button>
-  </div>
-</div></section>
+    <div class="bento">
+      <div class="tile w4 rv">
+        <div class="stage oq-root oq-night oq-family-kids"><div class="row"><button class="btn tonal icon" aria-label="Like"><svg class="ico" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><button class="btn fill">Save trip</button><button class="tbig">Lisbon<br>3 days</button></div><span class="hint">press and hold each one</span></div>
+        <h3>Everything presses back.</h3><p>Every button, chip, tile and logo squashes under your finger and springs home. Small things squash more, big things less, so it feels the same at every size.</p>
+        <div class="why"><div><span class="tag r">research</span><span>An answer within 100 ms feels instant, so the squash starts on touch, before the click. <a href="https://www.nngroup.com/articles/response-times-3-important-limits/">Nielsen; Miller 1968</a></span></div><div><span class="tag t">taste</span><span>The squash itself, and how much it scales with size.</span></div></div>
+      </div>
+      <div class="tile rv">
+        <div class="stage oq-root oq-night oq-family-kids"><button class="switch xl on" aria-label="Remind me" aria-pressed="true"></button><span class="hint">hold it, then let go</span></div>
+        <h3>The switch leans.</h3><p>Hold it and the knob stretches toward where it's going, then settles.</p>
+        <div class="why"><div><span class="tag t">taste</span><span>From Apple. No halo, no ripple.</span></div></div>
+      </div>
 
-<section id="read"><div class="wrap">
-  <div class="eyebrow rv">readable by default</div>
-  <h2 class="rv">easy on the eyes. <span class="two">day or night.</span></h2>
-  <div class="read">
-    <div class="rcard rv"><span class="t mono" style="color:var(--ink2);font-size:12.5px">drag to resize the text</span>
-      <input type="range" min="14" max="26" value="17" id="fs" aria-label="text size">
-      <p class="sample" id="sample">Every piece of text clears a 4.5 to 1 contrast in light and night. Numbers line up in tables. One sans for words, one mono for numbers.</p></div>
-    <div class="rcard rv"><span class="t mono" style="color:var(--ink2);font-size:12.5px">contrast, ink on this card</span>
-      <div class="ratio"><b id="ratio">17.9</b><span class="mono" style="color:var(--ink2)">: 1 · needs 4.5</span></div>
-      <div class="fam"><button class="chip on" data-theme="light">light</button><button class="chip" data-theme="night">night</button></div>
-      <p style="color:var(--ink2);margin:16px 0 0">Families pick a skin: <b style="color:var(--ink)">graphite</b> for developers, <b style="color:var(--ink)">azulejo</b> for travel, <b style="color:var(--ink)">playground</b> for kids.</p></div>
-  </div>
-  <p class="rv" style="text-align:center;margin:40px 0 0"><a class="more" href="research.html">why these rules? the research behind each one, and which parts are just taste ›</a></p>
-</div></section>
+      <div class="tile w3 rv">
+        <div class="stage tall oq-root oq-night oq-family-kids"><div class="phone oq-root oq-night oq-family-kids oq-top"><nav class="tabbar"><i class="tb-thumb"></i>
+          <button class="on" aria-label="Home"><svg class="ico" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Home</button>
+          <button aria-label="Trips"><svg class="ico" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Trips</button>
+          <button aria-label="Assistant"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Ask</button>
+          <button aria-label="Me"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</button></nav>
+          <span class="hint" style="top:40%;bottom:auto">hold the bar and slide along it</span></div></div>
+        <h3>The highlight is liquid.</h3><p>Tap a tab and the highlight stretches on its way there. Hold the bar and slide: it lifts, follows your thumb and drops where you let go.</p>
+        <div class="why"><div><span class="tag r">research</span><span>Labels stay on the tabs: icons alone get misread. They only shrink to icons while you scroll down. <a href="https://www.nngroup.com/articles/icon-usability/">NN/g</a></span></div><div><span class="tag r">research</span><span>At the bottom, where the thumb already is. <a href="https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php">Hoober 2013</a></span></div><div><span class="tag t">taste</span><span>The stretch and the drag are ours.</span></div></div>
+      </div>
+      <div class="tile w3 rv">
+        <div class="stage tall oq-root oq-night oq-family-kids"><div style="width:min(300px,86%);display:grid;gap:14px"><label class="mo" style="max-width:none"><input placeholder=" "><span class="fl">Where to?</span></label><label class="mo" style="max-width:none"><input placeholder=" " value="Lisbon, Portugal"><span class="fl">From</span></label></div><span class="hint">click into the empty one</span></div>
+        <h3>The label never leaves.</h3><p>It sits inside the field, then floats up into the border as you type, so you never forget what the box was for.</p>
+        <div class="why"><div><span class="tag r">research</span><span>Placeholder-only labels vanish as you type and strain memory; a label should stay visible. <a href="https://www.nngroup.com/articles/form-design-placeholders/">NN/g</a></span></div><div><span class="tag t">taste</span><span>Floating it into the border is Google's way, which we like, with rounder corners and a real outline.</span></div></div>
+      </div>
 
-<section id="get" class="get"><div class="wrap">
-  <div class="eyebrow rv">get it</div>
-  <h2 class="rv">it's just taste. <span class="two">take it.</span></h2>
-  <p class="sub rv" style="margin-left:auto;margin-right:auto">MIT licensed. Fonts are open (SIL OFL). No trademarks borrowed, only good ideas.</p>
-  <div class="rv"><div class="install"><span>/plugin install omxqua --marketplace abhisheksreesaila/omxqua</span><button data-copy="/plugin install omxqua --marketplace abhisheksreesaila/omxqua">copy</button></div></div>
-  <p class="getnote rv">that's the skill for Claude Code. using another agent? <a href="https://github.com/abhisheksreesaila/omxqua#use-it">there's a prompt to paste</a>. by hand? <a href="https://github.com/abhisheksreesaila/omxqua">git clone it</a>.</p>
-  <div class="ctas rv"><a class="cta" href="https://github.com/abhisheksreesaila/omxqua">star it on GitHub</a><a class="more" href="landing.html">see the landing layouts</a></div>
-</div></section>
+      <div class="tile w4 rv">
+        <div class="stage tall oq-root oq-night oq-family-kids"><div class="phone oq-root oq-night oq-family-kids oq-top" style="width:600px"><div class="beacon" id="bc"><div class="bc-compact"><span class="live"></span><svg class="ico" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>TAP 1352<span class="mono" data-left>boards 42 min</span></div>
+          <div class="bc-open"><button class="x" aria-label="Close"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button><h4><svg class="ico" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>JFK → LIS · TAP 1352</h4><div class="sub2">Gate B12 · Seat 14C</div><div class="big" data-big>42 min</div><div class="bar2"><i style="width:30%"></i></div><div class="bacts"><button class="bbtn pri">Boarding pass</button><button class="bbtn">Directions to gate</button></div></div></div>
+          <span class="hint">tap the pill</span></div></div>
+        <h3>What's live, lives up top.</h3><p>The Beacon is one black pill for the one thing happening now: a flight, a build, an agent at work. Tap it and it grows into a card; tap away and it folds back.</p>
+        <div class="why"><div><span class="tag r">research</span><span>Show the status of what's going on, always, in the same place. <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Nielsen's first heuristic</a></span></div><div><span class="tag t">taste</span><span>The morph, and the rule that nothing in it bounces.</span></div></div>
+      </div>
+      <div class="tile rv">
+        <div class="stage tall oq-root oq-night oq-family-kids"><span class="mark bigmark">oq</span><span class="hint">tap it</span></div>
+        <h3>A logo that writes itself.</h3><p>On load, and every time you press it.</p>
+        <div class="why"><div><span class="tag t">taste</span><span>Pure joy. No study needed.</span></div></div>
+      </div>
+
+      <div class="tile w3 rv">
+        <div class="stage oq-root oq-night oq-family-kids"><div class="targets"><span><button style="height:34px">Tech</button>34 px</span><span><button style="height:40px">Travel</button>40 px</span><span><button style="height:48px">Kids</button>48 px</span></div></div>
+        <h3>Big enough for a thumb.</h3><p>Buttons and tabs are at least 44 px on a phone; kids get 48. Dense desktop tools may go down to 34.</p>
+        <div class="why"><div><span class="tag r">research</span><span>The smaller and further a target, the slower and more error-prone it is to hit. <a href="https://doi.org/10.1037/h0055392">Fitts 1954</a>; <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html">WCAG 2.5.5</a></span></div></div>
+      </div>
+      <div class="tile w3 rv">
+        <div class="stage oq-root oq-night oq-family-kids"><div class="tiers"><button class="card" data-tier="settle"><b>A panel</b><span>Settle: rises 12 px, 280 ms</span></button><button class="card" data-tier="gentle"><b>A menu or toast</b><span>Gentle: 220 ms, no bounce</span></button></div><div class="toast cover" hidden><span></span></div></div>
+        <h3>The more often it happens, the less it moves.</h3><p>Panels settle, menus ease in, and anything you do many times a minute doesn't move at all.</p>
+        <div class="why"><div><span class="tag r">research</span><span>Large or constant motion makes some people dizzy; with "reduce motion" on, everything becomes a short fade. <a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html">WCAG 2.3.3</a></span></div><div><span class="tag t">taste</span><span>The three tiers and their timings.</span></div></div>
+      </div>
+    </div>
+    <p class="cap rv" style="margin-top:28px"><a href="research.html" style="color:var(--ink)">Every rule, its source, and which parts are only taste ›</a></p>
+  </section>
+
+  <!-- themes -->
+  <section id="themes">
+    <div class="eyebrow rv">Themes</div>
+    <h2 class="rv">One base. <span class="two">Any personality.</span></h2>
+    <p class="sub rv">A theme is the topping, picked to suit the app: <b>colour, type, corners, size and texture.</b> Underneath, every theme is the same language.</p>
+    <div class="themes">
+      <div class="th rv"><div class="dev"><div class="scr"><iframe data-fit src="showcase.html?bare=1&size=phone&screen=home&theme=graphite&mode=night" title="Contoso in the Tech theme" loading="lazy"></iframe></div></div><b>Tech</b><span>Graphite · mono-forward · 34 px</span></div>
+      <div class="th rv"><div class="dev"><div class="scr"><iframe data-fit src="showcase.html?bare=1&size=phone&screen=home&theme=playground&mode=night" title="Contoso in the Kids theme" loading="lazy"></iframe></div></div><b>Kids</b><span>Playground · round, roomy · 48 px</span></div>
+      <div class="th rv"><div class="dev"><div class="scr"><iframe data-fit src="showcase.html?bare=1&size=phone&screen=home&theme=azulejo&mode=light" title="Contoso in the Travel theme" loading="lazy"></iframe></div></div><b>Travel</b><span>Azulejo · paper, Fraunces · 40 px</span></div>
+      <div class="th rv"><div class="dev"><div class="scr"><iframe data-fit src="showcase.html?bare=1&size=phone&screen=home&theme=ledger&mode=night" title="Contoso in the Money theme" loading="lazy"></iframe></div></div><b>Money</b><span>Ledger · tabular numbers · 40 px</span></div>
+    </div>
+    <div class="split">
+      <div class="col rv"><span class="from"><i style="background:#ffad66"></i>A theme changes</span><p>Colours and the one accent, the type face, how round the corners are, how big things are to tap, how tight the spacing is, and the texture of the surfaces.</p></div>
+      <div class="col rv"><span class="from"><i style="background:#f5f5f7"></i>A theme never changes</span><p>How each part is built, how it presses and moves, the motion budget, and the reading rules: 4.5 to 1 for text, 3 to 1 for icons, never colour alone.</p></div>
+    </div>
+    <p class="next rv">Next: Vedic, for an app about the Vedas. A new kind of app gets a new theme; the language stays the same.</p>
+  </section>
+
+  <!-- see it -->
+  <section id="see">
+    <div class="eyebrow rv">See it</div>
+    <h2 class="rv">Every part. <span class="two">Web and phone, side by side.</span></h2>
+    <div class="doors">
+      <a class="door rv" href="showcase.html"><b>The showcase</b><span>Contoso, screen by screen, web and phone together. Starts in Playground · Night; switch themes up top.</span><em>Open it</em></a>
+      <a class="door rv" href="showcase.html?opt=t"><b>Every component</b><span>A table: the part, how it looks on the web, how it looks on a phone.</span><em>See the table</em></a>
+      <a class="door rv" href="research.html"><b>The research</b><span>Each rule, the study or guideline behind it, and what's only taste.</span><em>Read it</em></a>
+    </div>
+  </section>
+
+  <section id="get" class="end">
+    <div class="eyebrow rv">Get it</div>
+    <h2 class="rv">It's just taste. <span class="two">Take it.</span></h2>
+    <p class="sub rv">Four small files and open fonts. No framework, no build step. MIT licensed.</p>
+    <div class="rv"><div class="install"><span>/plugin install omxqua --marketplace abhisheksreesaila/omxqua</span><button data-copy="/plugin install omxqua --marketplace abhisheksreesaila/omxqua">Copy</button></div></div>
+    <div class="ctas rv" style="justify-content:center"><a class="cta" href="https://github.com/abhisheksreesaila/omxqua">Get it on GitHub</a></div>
+  </section>
 </main>
-<footer>omxqua · MIT · made with springs · <a href="showcase.html">showcase</a> · <a href="research.html">research</a> · <a href="landing.html">landing</a></footer>
-<div class="toast" id="toast" hidden></div>
+<footer>omxqua · MIT · fonts SIL OFL · <a href="showcase.html">showcase</a> · <a href="research.html">research</a></footer>
 
 <script>
-(() => {
-const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const SPRING = getComputedStyle(document.documentElement).getPropertyValue("--spring").trim();
+addEventListener("DOMContentLoaded", () => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const O = window.Omxqua, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* 1. one press for everything: squash on down, spring home on release; amount follows size */
-addEventListener("pointerdown", e => {
-  const el = e.target.closest("button, a.cta, a.more, .fld, .fact, .num");
-  if (!el || reduce || e.button > 0 || el.id === "pad") return;
-  const w = el.getBoundingClientRect().width, s = w <= 48 ? .88 : w <= 260 ? .95 : .98;
-  el.getAnimations().forEach(a => a.id === "press" && a.cancel());
-  const a = el.animate([{ scale: "1" }, { scale: String(s) }], { duration: 110, easing: "ease-out", fill: "forwards" }); a.id = "press";
-  const up = () => { removeEventListener("pointerup", up); removeEventListener("pointercancel", up); const b = el.animate([{ scale: String(s) }, { scale: "1" }], { duration: 340, easing: SPRING }); b.id = "press"; a.cancel(); };
-  addEventListener("pointerup", up); addEventListener("pointercancel", up);
-}, true);
+  /* thumbs: header pill and the tab bar */
+  const pillThumb = () => { const on = $("#pill a.on"), t = $("#pill i"); if (!on) { t.style.width = 0; return; } t.style.left = on.offsetLeft + "px"; t.style.width = on.offsetWidth + "px"; };
+  const thumbs = () => { $$(".tabbar").forEach(O.placeThumb); pillThumb(); };
+  thumbs(); document.fonts && document.fonts.ready.then(thumbs); addEventListener("resize", () => { thumbs(); fit(); });
 
-/* 2. the logo writes itself, on load and on every press */
-function writeLogo(m = $("#mark")) { if (reduce) return; $("text", m).animate([{ strokeDashoffset: 120, fillOpacity: 0 }, { strokeDashoffset: 0, fillOpacity: 0, offset: .75 }, { strokeDashoffset: 0, fillOpacity: 1 }], { duration: 950, easing: "cubic-bezier(.4,0,.2,1)" }); }
-setTimeout(writeLogo, 300); $("#brand").addEventListener("click", () => writeLogo());
-$("#bigmark").addEventListener("click", () => writeLogo($("#bigmark")));
-new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => writeLogo($("#bigmark")), 400); o.disconnect(); } }), { threshold: .6 }).observe($("#bigmark"));
+  /* the header pill follows the section you're reading */
+  const secs = ["belief", "feel", "themes", "see"].map(id => document.getElementById(id));
+  const spy = () => { const cur = secs.filter(s => s.getBoundingClientRect().top < innerHeight * .45).pop();
+    $$("#pill a").forEach(a => a.classList.toggle("on", !!cur && a.getAttribute("href") === "#" + cur.id)); pillThumb(); };
+  addEventListener("scroll", spy, { passive: true });
 
-/* 3. toasts */
-let tt; function toast(m) { const t = $("#toast"); t.textContent = m; clearTimeout(tt); if (t.hidden) { t.hidden = false; if (!reduce) t.animate([{ opacity: 0, transform: "translate(-50%, 10px)" }, { opacity: 1, transform: "translate(-50%, 0)" }], { duration: 220, easing: "cubic-bezier(.2,0,0,1)" }); } tt = setTimeout(() => t.hidden = true, 1800); }
+  /* iframes scale to their frames */
+  function fit() {
+    const clip = $("#clip"), s = clip.clientWidth / 1280; $("#webapp").style.transform = `scale(${s})`; clip.style.height = 800 * s + "px";
+    $$("iframe[data-fit]").forEach(f => { const w = f.parentElement.clientWidth, s2 = w / 390; f.style.width = "390px"; f.style.height = f.parentElement.clientHeight / s2 + "px"; f.style.transform = `scale(${s2})`; });
+  }
+  fit();
+  /* the framed apps scroll inside, without a scrollbar of their own */
+  $$("iframe").forEach(f => f.addEventListener("load", () => { try { const st = f.contentDocument.createElement("style"); st.textContent = "html{scrollbar-width:none}::-webkit-scrollbar{display:none}"; f.contentDocument.head.append(st); } catch (e) {} }));
 
-/* 4. sliding thumbs (nav pill, segmented, growing pill) */
-const thumb = g => { const on = $(".on", g), t = $(":scope > i", g); if (on && t) { t.style.left = on.offsetLeft + "px"; t.style.width = on.offsetWidth + "px"; } };
-const allThumbs = () => $$("#navpill, [data-seg], #grow").forEach(thumb);
-addEventListener("load", allThumbs); addEventListener("resize", allThumbs); document.fonts && document.fonts.ready.then(allThumbs);
+  /* the live parts */
+  const bc = $("#bc"); requestAnimationFrame(() => O.sizeBeacon(bc, false)); document.fonts && document.fonts.ready.then(() => O.sizeBeacon(bc, false));
+  let left = 42 * 60;
+  setInterval(() => { left = left > 60 ? left - 1 : 42 * 60; const m = Math.ceil(left / 60); $("[data-left]").textContent = `boards ${m} min`; $("[data-big]").textContent = `${m} min`; }, 1000);
+  document.addEventListener("click", e => {
+    const t = e.target;
+    const tb = t.closest(".tabbar button"); if (tb) { $$("button", tb.parentElement).forEach(b => b.classList.toggle("on", b === tb)); O.placeThumb(tb.parentElement); }
+    const sw = t.closest(".stage .switch"); if (sw) { sw.classList.toggle("on"); sw.setAttribute("aria-pressed", sw.classList.contains("on")); }
+    if (t.closest("#bc .x")) { bc.classList.remove("open"); O.sizeBeacon(bc, true); }
+    else if (t.closest("#bc")) { if (!bc.classList.contains("open")) { bc.classList.add("open"); O.sizeBeacon(bc, true); } }
+    else if (bc.classList.contains("open")) { bc.classList.remove("open"); O.sizeBeacon(bc, true); }
+    const tier = t.closest("[data-tier]");
+    if (tier) { const stage = tier.closest(".stage");
+      if (tier.dataset.tier === "settle") O.settle(tier); else O.toast($(".toast", stage), "Saved to Lisbon, 3 days");
+    }
+    const cp = t.closest("[data-copy]"); if (cp) { navigator.clipboard && navigator.clipboard.writeText(cp.dataset.copy).catch(() => {}); cp.textContent = "Copied"; setTimeout(() => cp.textContent = "Copy", 1400); }
+  });
+  $$("#pill a, a[href^='#']").forEach(a => a.addEventListener("click", e => { const id = a.getAttribute("href"); if (id.length < 2) return; e.preventDefault(); document.querySelector(id).scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }));
 
-/* nav pill follows the section you're reading */
-const secs = ["touch", "borrowed", "apps", "light", "read", "get"].map(id => document.getElementById(id));
-const navIO = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; $$("#navpill a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id)); thumb($("#navpill")); }), { rootMargin: "-45% 0px -50% 0px" });
-secs.forEach(s => s && navIO.observe(s));
-const hbName = { touch: "touch", borrowed: "borrowed", apps: "apps", light: "light", read: "readable", get: "get it" };
-const hb = () => { const h = document.documentElement, p = Math.round(100 * h.scrollTop / Math.max(1, h.scrollHeight - innerHeight));
-  const cur = secs.filter(s => s && s.getBoundingClientRect().top < innerHeight * .5).pop();
-  $("#hbs").textContent = cur ? hbName[cur.id] : "reading"; $("#hbp").textContent = p + "%"; };
-addEventListener("scroll", hb, { passive: true }); hb();
-$$("#navpill a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); document.querySelector(a.getAttribute("href")).scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }));
-
-/* 5. clicks */
-document.addEventListener("click", e => {
-  const t = e.target;
-  const tog = t.closest("[data-tog]"); if (tog) tog.classList.toggle("on");
-  const sb = t.closest("[data-seg] button"); if (sb) { $$("button", sb.parentElement).forEach(x => x.classList.toggle("on", x === sb)); thumb(sb.parentElement); }
-  const ts = t.closest("[data-toast]"); if (ts) toast(ts.dataset.toast);
-  const cp = t.closest("[data-copy]"); if (cp) { navigator.clipboard && navigator.clipboard.writeText(cp.dataset.copy).catch(() => {}); cp.textContent = "copied"; setTimeout(() => cp.textContent = "copy", 1400); }
-  const th = t.closest("[data-theme]"); if (th) setTheme(th.dataset.theme);
-  const gm = t.closest("[data-more]"); if (gm) growOpen(true);
-  const gb = t.closest("#grow button[data-i]"); if (gb) { $$("#grow button[data-i]").forEach(x => x.classList.toggle("on", x === gb)); thumb($("#grow")); growLater(); }
-  const mb = t.closest("#mb"); if (mb) { mb.classList.toggle("open"); sizeMB(true); }
-  const ch = t.closest(".chip:not([data-theme])"); if (ch) ch.classList.toggle("on");
+  /* sections rise once as they come in */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+  $$(".rv:not(.in)").forEach(el => io.observe(el));
 });
-
-/* 6. the mini beacon: morphs between compact and open; the timer updates in place */
-function sizeMB(anim) { const b = $("#mb"), open = b.classList.contains("open"), el = $(open ? ".o" : ".c", b);
-  const w = open ? el.offsetWidth : el.scrollWidth, h = open ? el.offsetHeight : 42;
-  if (!anim || reduce) { b.style.transition = "none"; b.style.width = w + "px"; b.style.height = h + "px"; b.offsetWidth; b.style.transition = ""; } else { b.style.width = w + "px"; b.style.height = h + "px"; } }
-sizeMB(false); document.fonts && document.fonts.ready.then(() => sizeMB(false));
-let left = 724; setInterval(() => { left = left > 0 ? left - 1 : 724; const s = `${String(Math.floor(left / 60)).padStart(2, "0")}:${String(left % 60).padStart(2, "0")}`; $$("#mb [data-t]").forEach(x => x.textContent = s); $("#mbbar").style.width = (100 - left / 7.24) + "%"; }, 1000);
-
-/* 7. the growing pill: 4 + "+2"; opens, stays while you use it, folds back 3.5 s after you leave */
-let gt; const grow = $("#grow");
-function growSize(anim) { const btns = $$("button[data-i]", grow), more = $("[data-more]", grow), open = grow.classList.contains("open");
-  btns.forEach((b, i) => b.style.order = i < 4 || open ? i : 20 + i); more.style.order = open ? 99 : 4;
-  more.style.opacity = open ? 0 : 1; more.style.pointerEvents = open ? "none" : "";
-  const w = (open ? btns : btns.slice(0, 4)).reduce((a, b) => a + b.offsetWidth, 0) + (open ? 0 : more.offsetWidth) + 10;
-  if (!anim || reduce) { grow.style.transition = "none"; grow.style.width = w + "px"; grow.offsetWidth; grow.style.transition = ""; } else grow.style.width = w + "px";
-  requestAnimationFrame(() => thumb(grow)); }
-function growOpen(on) { clearTimeout(gt); grow.classList.toggle("open", on); growSize(true); if (on) growLater(); }
-function growLater() { clearTimeout(gt); gt = setTimeout(() => { if (!grow.matches(":hover")) growOpen(false); else growLater(); }, 3500); }
-grow.addEventListener("pointerleave", () => grow.classList.contains("open") && growLater());
-growSize(false); document.fonts && document.fonts.ready.then(() => growSize(false));
-
-/* 8. the squish pad: the blob follows your finger and stretches with speed, then springs home */
-const pad = $("#pad"), blob = $("#blob"); let drag = null, last = null;
-pad.addEventListener("pointerdown", e => { pad.setPointerCapture(e.pointerId); const r = pad.getBoundingClientRect(); drag = { r }; last = { x: e.clientX, y: e.clientY, t: performance.now() }; blob.getAnimations().forEach(a => a.cancel()); move(e); });
-pad.addEventListener("pointermove", e => drag && move(e));
-function move(e) { const { r } = drag, x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2, now = performance.now(), dt = Math.max(16, now - last.t);
-  const vx = (e.clientX - last.x) / dt, vy = (e.clientY - last.y) / dt, sp = Math.min(1.2, Math.hypot(vx, vy)), ang = Math.atan2(vy, vx) * 180 / Math.PI;
-  last = { x: e.clientX, y: e.clientY, t: now };
-  blob.style.transform = `translate(${x * .6}px, ${y * .6}px) rotate(${ang}deg) scale(${1 + sp * .45}, ${1 - sp * .28}) rotate(${-ang}deg) scale(.86)`; }
-const release = () => { if (!drag) return; drag = null; const from = blob.style.transform; blob.style.transform = "";
-  if (!reduce) blob.animate([{ transform: from }, { transform: "none" }], { duration: 700, easing: getComputedStyle(document.documentElement).getPropertyValue("--soft").trim() }); };
-pad.addEventListener("pointerup", release); pad.addEventListener("pointercancel", release);
-
-/* 9. readable toys */
-const fs = $("#fs"); const setFs = () => { $("#sample").style.setProperty("--fs", fs.value + "px"); fs.style.setProperty("--v", ((fs.value - 14) / 12 * 100) + "%"); }; fs.addEventListener("input", setFs); setFs();
-function lum(c) { const m = c.match(/\d+(\.\d+)?/g).slice(0, 3).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }); return .2126 * m[0] + .7152 * m[1] + .0722 * m[2]; }
-function ratio() { const card = $(".rcard"), a = lum(getComputedStyle(card).color), b = lum(getComputedStyle(card).backgroundColor), r = (Math.max(a, b) + .05) / (Math.min(a, b) + .05); $("#ratio").textContent = r.toFixed(1); }
-function setTheme(t) { document.documentElement.classList.toggle("night", t === "night"); $$("[data-theme]").forEach(c => c.classList.toggle("on", c.dataset.theme === t)); setTimeout(ratio, 450); writeLogo(); }
-$("#theme").addEventListener("click", () => setTheme(document.documentElement.classList.contains("night") ? "light" : "night"));
-setTimeout(ratio, 100);
-
-/* 10. reveals + count-ups (once, on scroll) */
-const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add("in"); io.unobserve(e.target);
-  $$("[data-count]", e.target).forEach(n => { const to = +n.dataset.count, t0 = performance.now(), d = reduce ? 0 : 1100; const st = t => { const p = d ? Math.min(1, (t - t0) / d) : 1; n.textContent = Math.round(to * (1 - (1 - p) ** 3)); if (p < 1) requestAnimationFrame(st); }; requestAnimationFrame(st); }); }), { threshold: .2 });
-$$(".rv").forEach(el => io.observe(el)); if (reduce) $$(".rv").forEach(el => el.classList.add("in"));
-})();
 </script>
 </body>
 </html>
