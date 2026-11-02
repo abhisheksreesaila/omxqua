@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>omxqua · what the research says</title>
 <meta name="description" content="Why omxqua looks and moves the way it does: each rule in one line, what backs it, and where to read more.">
+<link rel="icon" href="favicon-qua.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../src/fonts.css">
 <link rel="stylesheet" href="../src/tokens.css">
 <link rel="stylesheet" href="site.css">
@@ -24,14 +25,14 @@
 .rule h3 { font: 650 20px/1.3 var(--sans); letter-spacing: -.02em; margin: 14px 0 0; }
 .rule p { font-size: 15.5px; line-height: 1.5; color: var(--ink2); margin: 8px 0 0; }
 .rule .read { margin-top: auto; padding-top: 22px; display: flex; flex-wrap: wrap; gap: 6px 14px; font: 13px var(--mono); }
-.rule .read a { color: var(--ink2); text-decoration: none; } .rule .read a::after { content: " ›"; } .rule .read a:hover { color: var(--ink); }
+.rule .read a { color: var(--ink2); text-decoration: none; } .rule .read a::after { content: " ›"; } .rule .read a:hover { color: var(--qua); }
 .tag.w { color: #ff8a80; background: rgba(255,138,128,.12); }
 details { margin-top: 110px; background: var(--t1); border-radius: 28px; box-shadow: inset 0 0 0 1px var(--line); padding: 26px 30px; }
 summary { cursor: pointer; font: 650 20px var(--sans); letter-spacing: -.02em; list-style: none; display: flex; justify-content: space-between; align-items: center; }
 summary::after { content: "+"; font: 400 26px var(--sans); color: var(--ink2); } details[open] summary::after { content: "–"; }
 details ol { margin: 18px 0 0; padding-left: 22px; font-size: 14.5px; line-height: 1.6; color: var(--ink2); columns: 2; column-gap: 40px; }
-details li { break-inside: avoid; margin-bottom: 6px; } details a { color: var(--ink); text-underline-offset: 3px; }
-.fix { text-align: center; margin-top: 34px; font: 13px var(--mono); color: var(--ink2); } .fix a { color: var(--ink); }
+details li { break-inside: avoid; margin-bottom: 6px; } details a { color: var(--qua); text-underline-offset: 3px; }
+.fix { text-align: center; margin-top: 34px; font: 13px var(--mono); color: var(--ink2); } .fix a { color: var(--qua); }
 @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } details ol { columns: 1; } }
 @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .rule { min-height: 0; } .grp { padding-top: 80px; } }
 </style>
@@ -39,7 +40,7 @@ details li { break-inside: avoid; margin-bottom: 6px; } details a { color: var(-
 <body>
 
 <header class="top">
-  <a class="brand" href="./"><span class="mark">oq</span>omxqua</a>
+  <a class="brand" href="./"><span class="mark"><svg class="lm lm-qua" viewBox="0 0 24 24" aria-hidden="true"><rect class="f shad" x="6.5" y="7.5" width="13" height="13" rx="3.5"/><rect class="f front" x="4.5" y="4.5" width="13" height="13" rx="3.5"/><circle class="gl" cx="8" cy="8" r="1.3"/></svg></span>omxqua</a>
   <nav class="pill" id="pill"><i></i><a href="#touch">Touch</a><a href="#reading">Reading</a><a href="#motion">Motion</a><a href="#taste">Taste</a></nav>
   <a class="cta sm get" href="./#get">Get omxqua</a>
 </header>
@@ -47,7 +48,7 @@ details li { break-inside: avoid; margin-bottom: 6px; } details a { color: var(-
 <main class="wrap">
   <section style="padding-top:96px">
     <div class="eyebrow">The research</div>
-    <h1 class="rise" style="font-size:clamp(42px, 6.4vw, 88px);line-height:.98;letter-spacing:-.048em;margin-top:14px"><span>What the research says.</span> <span class="two" style="animation-delay:.12s;color:var(--dim)">In one line each.</span></h1>
+    <h1 class="rise" style="font-size:clamp(42px, 6.4vw, 88px);line-height:.98;letter-spacing:-.048em;margin-top:14px"><span>What the research says.</span> <span class="two" style="animation-delay:.12s;color:var(--qua)">In one line each.</span></h1>
     <div class="key rise"><div style="animation-delay:.24s"><span class="tag r">research</span><span><b>A study or a standard backs it.</b> We followed it.</span></div>
       <div style="animation-delay:.3s"><span class="tag t">taste</span><span><b>Our choice.</b> No study says it's better; we just think it feels right.</span></div></div>
     <p class="sub rise"><span style="animation-delay:.36s">Each card links to the source. That's the homework, if you want it.</span></p>
