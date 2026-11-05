@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Next · omxqua proposals, November 2026</title>
+<link rel="stylesheet" href="../../src/fonts.css">
+<link rel="stylesheet" href="../../src/tokens.css">
+<link rel="stylesheet" href="../../src/components.css">
+<style>
+/* Proposal fonts (SIL OFL 1.1, fonts/LICENSE-geist.txt). They live next to this page until one is picked into the package. */
+@font-face { font-family: "Geist Serif"; src: url(fonts/geist-serif-variable.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Geist Pixel"; src: url(fonts/geist-pixel-variable.woff2) format("woff2"); font-display: swap; }
+/* page chrome: neutral; only the cells are themed (same as clarity.html) */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 22px; font: 14px/1.45 "Geist", system-ui, sans-serif; color: #18181b; background: #ececea; -webkit-font-smoothing: antialiased; }
+h1.pg { font: 600 26px/1.15 "Geist", sans-serif; letter-spacing: -.035em; margin: 0 0 4px; text-wrap: balance; }
+.lede { margin: 0 0 16px; max-width: 760px; opacity: .8; text-wrap: pretty; }
+.top { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 0 0 14px; }
+.top b { font: 500 11px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .08em; opacity: .65; }
+.seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px #d9d9d5; }
+.seg button { border: 0; background: none; font: 550 12.5px "Geist", sans-serif; color: inherit; opacity: .7; padding: 5px 11px; border-radius: 999px; cursor: pointer; }
+.seg button.on { background: #18181b; color: #fff; opacity: 1; }
+.cmp { width: 100%; border-collapse: separate; border-spacing: 0 10px; table-layout: fixed; }
+.cmp th { text-align: left; font: 500 10.5px "Geist Mono", monospace; text-transform: uppercase; letter-spacing: .07em; opacity: .65; padding: 0 6px; }
+.cmp td { vertical-align: top; padding: 0 6px; }
+.cmp td.k b { display: block; font-size: 14px; }
+.cmp td.k span { display: block; font-size: 12.5px; opacity: .8; margin-top: 3px; text-wrap: pretty; }
+.cmp .verdict { display: block; margin-top: 6px; font: 500 11.5px "Geist Mono", monospace; }
+.cmp .src-l { display: block; margin-top: 6px; font: 11px "Geist Mono", monospace; opacity: .6; }
+.cell { border-radius: 12px; padding: 16px; min-height: 100%; display: flex; flex-direction: column; gap: 12px; background: var(--oq-surface-1); color: var(--oq-ink); container-type: inline-size; }
+.cell > small { font: 500 10.5px var(--oq-font-mono); color: var(--oq-ink-2); }
+.m { font: 500 10.5px var(--oq-font-mono); color: var(--oq-ink-2); }
+@media (max-width: 900px) {
+  .cmp, .cmp thead, .cmp tbody { display: block; } .cmp col { display: none; }
+  .cmp tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
+  .cmp th:first-child { display: none; } .cmp td, .cmp th { padding: 0; } .cmp td.k { grid-column: 1 / -1; margin-bottom: 2px; }
+}
+
+/* ---------- row content ---------- */
+.ttl { font: 650 30px/1.08 var(--oq-font-display); letter-spacing: -.035em; margin: 0; }
+.ttl + .sub { font: 12.5px var(--oq-font-mono); color: var(--oq-ink-2); }
+.amt { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+.amt b { display: block; font-size: 26px; font-weight: 600; letter-spacing: -.035em; line-height: 1.1; }
+.amt span { font: 11.5px var(--oq-font-mono); color: var(--oq-ink-2); }
+.amt .tbl { grid-column: 1 / -1; margin-top: 6px; } .amt .tbl td { padding: 7px 0; } .amt .tbl th { padding: 6px 0; }
+.p-mono .amt b, .p-mono .amt .num { font-family: var(--oq-font-mono); letter-spacing: -.02em; }
+.p-sans .amt b, .p-sans .amt .num { font-family: var(--oq-font); font-variant-numeric: tabular-nums; }
+.lab { font: 500 10.5px var(--oq-font-mono); color: var(--oq-ink-2); text-transform: uppercase; letter-spacing: .07em; }
+.springs { display: grid; gap: 12px; }
+.springs .wrap-row { gap: 10px; }
+.mini { background: var(--oq-surface-0); border-radius: var(--oq-radius-card); padding: 12px; display: grid; gap: 8px; }
+.mini .row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--r-in, 10px); background: var(--oq-surface-1); font-size: .92em; }
+.mini .row .ic-tile { --s: 26px; }
+.p-today .mini .row { --r-in: 8px; }
+.p-next .mini { padding: 10px; } .p-next .mini .row { --r-in: calc(var(--oq-radius-card) - 10px); } /* concentric: inner = outer − padding */
+/* split button: today two separate buttons; proposed a connected pair (M3 Expressive): 2 px gap, small inner corners, the chevron turns while its menu is open */
+.split { display: inline-flex; gap: 2px; }
+.split .btn:first-child { border-radius: 999px 6px 6px 999px; }
+.split .btn:last-child { border-radius: 6px 999px 999px 6px; width: calc(var(--h) - 4px); padding: 0; }
+.split .btn:last-child .ico { transition: rotate 200ms var(--oq-ease-in); }
+.split.open .btn:last-child .ico { rotate: 180deg; }
+.split .btn.fill:last-child { box-shadow: var(--oq-shadow-1); }
+/* tooltips: today none packaged; proposed first tip after 500 ms, its neighbours instantly while one is showing */
+.tipbar { position: relative; display: flex; gap: 6px; padding-top: 34px; }
+.tipbar .tip { top: 0; transform: translateX(-50%); }
+</style>
+</head>
+<body>
+<h1 class="pg">omxqua next: six proposals from the November research</h1>
+<p class="lede">Each row shows today next to the proposal, live in every theme. Press, hover and tab around: the motion rows are the point. Sources: Vercel (Geist Serif, Web Interface Guidelines), Apple WWDC23 springs and WWDC25 concentric shapes, Google's M3 Expressive tokens, Emil Kowalski. Pick per row; nothing here is in the package yet.</p>
+<div class="top">
+  <b>Theme</b><div class="seg" id="th"><button data-v="graphite">Graphite</button><button data-v="azulejo" class="on">Azulejo</button><button data-v="playground">Playground</button><button data-v="ledger">Ledger</button></div>
+  <div class="seg" id="md"><button data-v="light" class="on">Light</button><button data-v="night">Night</button></div>
+</div>
+<table class="cmp"><colgroup><col style="width:26%"><col><col></colgroup>
+<thead><tr><th>What · why</th><th>Today</th><th>Proposed</th></tr></thead>
+<tbody id="rows"></tbody></table>
+
+<script src="../../src/omxqua.js"></script>
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const P = { chev: '<path d="m6 9 6 6 6-6"/>', plane: '<path d="M2 16l20-6-20-6 4 6z"/>', bed: '<path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/>', fork: '<path d="M7 3v8a2 2 0 0 0 4 0V3M9 11v10M17 3c-2 0-3 2-3 5s1 4 3 4v9"/>',
+  copy: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>', share: '<path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/>', trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>', pin: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>' };
+const ic = n => `<svg class="ico" viewBox="0 0 24 24">${P[n]}</svg>`;
+const TH = { graphite: "oq-family-dev", azulejo: "oq-family-travel oq-skin-azulejo", playground: "oq-family-kids", ledger: "oq-family-money" };
+const st = { th: "azulejo", md: "light" };
+
+/* A spring in Apple's terms (WWDC23): a perceived duration and a bounce. stiffness = (2π/d)², damping ratio = 1 − bounce.
+   Sampled into a CSS linear() curve; returns the curve and how long it takes to settle within 0.1%. */
+function spring(d, bounce) {
+  const w0 = 2 * Math.PI / d, z = 1 - bounce, x = t => {
+    if (z >= 1) return 1 - Math.exp(-w0 * t) * (1 + w0 * t);
+    const wd = w0 * Math.sqrt(1 - z * z); return 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + z * w0 / wd * Math.sin(wd * t)); };
+  let T = 0.02; while (T < 3 && !(Math.abs(1 - x(T)) < 1e-3 && Math.abs(1 - x(T + .05)) < 1e-3)) T += 0.01;
+  const pts = Array.from({ length: 41 }, (_, i) => +x(T * i / 40).toFixed(3)); pts[40] = 1;
+  return { curve: `linear(${pts.join(", ")})`, ms: Math.round(T * 1000) };
+}
+/* Today's fast spring (k380 c30) is a 0.32 s spring with bounce 0.23; slow (k260 c16) is 0.39 s with bounce 0.5.
+   Proposed: spatial fast 0.30 s · 0.15 (Apple "snappy"), spatial default 0.45 s · 0, and slow capped at bounce 0.2. */
+const NEXT = { fast: spring(.30, .15), slow: spring(.42, .2) };
+const nextVars = `--oq-spring-fast:${NEXT.fast.curve};--oq-spring-fast-dur:${NEXT.fast.ms}ms;--oq-spring-slow:${NEXT.slow.curve};--oq-spring-slow-dur:${NEXT.slow.ms}ms;`;
+
+const tipbar = () => `<div class="tipbar">${[["copy", "Copy link"], ["share", "Share"], ["pin", "Pin to map"], ["trash", "Delete"]].map(b => `<button class="btn tonal icon sm" data-tip="${b[1]}" aria-label="${b[1]}">${ic(b[0])}</button>`).join("")}<div class="tip" hidden></div></div>`;
+
+const ROWS = [
+  { k: "Display face: Geist Serif", r: "Vercel released Geist Serif on Oct 30. It has Geist's cap height and x-height, so a title can switch faces without lines moving, and the family stays one family. It could replace Fraunces on Azulejo and the editorial landing. Its one axis changes the dots: a heart on Playground. One weight for now (100–900 is planned).", v: "Proposed: Geist Serif as --oq-font-display for Travel and editorial; hearts for Kids titles only", s: "vercel.com/blog/introducing-geist-serif",
+    html: f => { const dots = st.th === "playground" ? 100 : 0, face = f === "next" ? `style="--oq-font-display:'Geist Serif';font-variation-settings:'ELSH' ${dots};font-weight:400;letter-spacing:-.02em"` : "";
+      return `<div><h2 class="ttl" ${face}>Friday in Lisbon, three nights in Alfama</h2><div class="sub">Oct 24 – 27 · 4 travellers · €1,840 of €2,000</div></div><small>${f === "next" ? `Geist Serif · ELSH ${dots}${dots ? " (hearts)" : ""}` : "today: " + (st.th === "azulejo" ? "Fraunces" : "Geist") + " (this theme's display face)"}</small>`; } },
+  { k: "Numbers: Sans with tabular figures, Mono for IDs", r: "Vercel's own rule: Sans for numbers and KPIs, Mono for code, paths and IDs. Geist Sans has tabular figures (tnum), so columns still line up, and big amounts read calmer than mono. Today, Ledger sets every amount in mono.", v: "Proposed: amounts and stats in Geist tnum; Mono for codes, commands, IDs, times", s: "vercel.com/design.md · Geist tnum (checked in our woff2)",
+    html: f => `<div class="amt"><div><b>$4,281.90</b><span>spent in October</span></div><div><b>$1,118.10</b><span>left of $5,400</span></div>
+      <table class="tbl"><tbody><tr><td>Rent · ACH 0041</td><td class="num">$2,100.00</td></tr><tr><td>Groceries · 14 charges</td><td class="num">$611.48</td></tr><tr><td>Flights · TAP 1352</td><td class="num">$1,111.11</td></tr></tbody></table></div>` },
+  { k: "Springs in duration + bounce", r: "Apple tunes springs by how long they feel and how much they bounce; careful above 0.4. Our fast spring bounces 0.23 and our slow one 0.5, which reads wobbly on anything bigger than a thumb. Proposed: fast 0.30 s · 0.15 (Apple's 'snappy'), slow capped at 0.2, and colour or opacity never bounces (Material's 'effects' springs). Press, tap the segments, flip the switch.", v: "Proposed: tokens written as duration + bounce, generated into linear(); slow bounce 0.5 → 0.2", s: "WWDC23 'Animate with springs' · M3 ExpressiveMotionTokens",
+    html: f => `<div class="springs"><div class="seg2"><i></i><button class="on">Day</button><button>Week</button><button>Month</button></div>
+      <div class="wrap-row"><button class="switch on" aria-pressed="true" aria-label="Notify"></button><button class="radio on" aria-label="A"></button><button class="radio" aria-label="B"></button><button class="btn fill sm">Press me</button><button class="btn tonal sm" data-jump>Drop a card</button></div>
+      <div class="jump card" style="padding:10px 12px;font-size:.92em">Dinner · Taberna da Rua das Flores</div></div>
+      <small>${f === "next" ? `fast 0.30 s · bounce 0.15 → settles ${NEXT.fast.ms} ms · slow 0.42 s · 0.2 → ${NEXT.slow.ms} ms` : "fast k380 c30 (0.32 s · 0.23) · slow k260 c16 (0.39 s · 0.5)"}</small>` },
+  { k: "Concentric corners", r: "Apple (WWDC25) and Vercel's guidelines: a shape inside another uses the outer radius minus the padding between them, so the curves run parallel. Today inner rows use a fixed 8 px whatever the card's radius, which looks pinched on Playground's 22 px cards.", v: "Proposed: --oq-radius-inner = card radius − padding; rows, tiles and inner panels use it", s: "WWDC25 session 356 · vercel.com/design/guidelines",
+    html: f => `<div class="mini">${[["plane", 1, "TAP 1352 · JFK → LIS"], ["bed", 3, "Memmo Alfama · 3 nights"], ["fork", 4, "Taberna · table for 4"]].map(r => `<div class="row"><span class="ic-tile" style="--c:var(--oq-data-${r[1]})">${ic(r[0])}</span>${r[2]}</div>`).join("")}</div>` },
+  { k: "Split button", r: "Material 3 Expressive's connected group: one action and its options as one shape, 2 px apart, small inner corners, the chevron turning while the menu is open. It keeps 'one filled button per card' honest when the main verb has variants (Publish · Publish as draft).", v: "Proposed: .split (connected pair); everything else stays a plain pill", s: "material-components-android ButtonGroup.md",
+    html: f => f === "next" ? `<div><div class="split"><button class="btn fill">Book Friday</button><button class="btn fill" data-split aria-label="More ways to book">${ic("chev")}</button></div></div><small>tap the chevron</small>` : `<div class="wrap-row"><button class="btn fill">Book Friday</button><button class="btn tonal icon" aria-label="More ways to book">${ic("chev")}</button></div>` },
+  { k: "Tooltip timing", r: "Kowalski and Vercel: the first tooltip waits (we use 500 ms) so a passing pointer doesn't flash it; once one is showing, its neighbours appear instantly with no animation. Today the timing is left to each app.", v: "Proposed: Omxqua.tips(container): delay the first, instant for peers, 125 ms fade", s: "emilkowal.ski/ui/7-practical-animation-tips · vercel.com/design/guidelines",
+    html: f => tipbar() + `<small>${f === "next" ? "hover one, then slide along the row" : "every tip waits and fades in"}</small>` },
+];
+
+function render() {
+  const root = f => `oq-root oq-${st.md} ${TH[st.th]} cell p-${f} ${f === "next" ? "p-sans" : st.th === "ledger" ? "p-mono" : "p-sans"}`;
+  $("#rows").innerHTML = ROWS.map((r, i) => `<tr><td class="k"><b>${r.k}</b><span>${r.r}</span><span class="verdict">→ ${r.v}</span><span class="src-l">${r.s}</span></td>${["today", "next"].map(f => `<td><div class="${root(f)}" data-f="${f}" ${f === "next" && i === 2 ? `style="${nextVars}"` : ""}>${r.html(f)}</div></td>`).join("")}</tr>`).join("");
+  /* row 2 (numbers): today = mono only where the family says so (Ledger); show mono in "today" for every theme so the difference is visible */
+  $$("#rows tr:nth-child(2) .p-today").forEach(c => { c.classList.remove("p-sans"); c.classList.add("p-mono"); });
+  requestAnimationFrame(() => $$(".seg2").forEach(Omxqua.placeThumb));
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".seg button"); if (b) { st[b.parentElement.id] = b.dataset.v; $$("button", b.parentElement).forEach(x => x.classList.toggle("on", x === b)); render(); return; }
+  const g = e.target.closest(".seg2 button"); if (g) { $$("button", g.parentElement).forEach(x => x.classList.toggle("on", x === g)); Omxqua.placeThumb(g.parentElement); }
+  const sw = e.target.closest(".cell .switch"); if (sw) { sw.classList.toggle("on"); sw.setAttribute("aria-pressed", sw.classList.contains("on")); }
+  const rd = e.target.closest(".cell .radio"); if (rd) $$(".radio", rd.parentElement).forEach(x => x.classList.toggle("on", x === rd));
+  const sp = e.target.closest("[data-split]"); if (sp) sp.parentElement.classList.toggle("open");
+  /* a card drops in on the slow spring: the bigger, rarer move */
+  const j = e.target.closest("[data-jump]"); if (j) { const cell = j.closest(".cell"), card = $(".jump", cell), cs = getComputedStyle(cell);
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) card.animate([{ transform: "translateY(-28px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: parseFloat(cs.getPropertyValue("--oq-spring-slow-dur")) || 520, easing: cs.getPropertyValue("--oq-spring-slow").trim() }); }
+});
+/* tooltips: today = 500 ms wait and a 220 ms fade every time; next = wait only for the first, then instant until the pointer leaves the row */
+let tipTimer, warm = false;
+document.addEventListener("pointerover", e => {
+  const t = e.target.closest("[data-tip]"); if (!t) return;
+  const bar = t.closest(".tipbar"), tip = $(".tip", bar), next = bar.closest(".p-next");
+  clearTimeout(tipTimer);
+  const show = animate => { tip.textContent = t.dataset.tip; tip.hidden = false; tip.style.left = (t.offsetLeft + t.offsetWidth / 2) + "px";
+    if (animate) tip.animate([{ opacity: 0, scale: ".97" }, { opacity: 1, scale: "1" }], { duration: next ? 125 : 220, easing: "cubic-bezier(.2,0,0,1)" }); };
+  if (next && warm) show(false); else { tip.hidden = true; tipTimer = setTimeout(() => { show(true); if (next) warm = true; }, 500); }
+});
+document.addEventListener("pointerout", e => {
+  const bar = e.target.closest(".tipbar"); if (!bar || bar.contains(e.relatedTarget)) return;
+  clearTimeout(tipTimer); warm = false; Omxqua.gentleOut($(".tip", bar));
+});
+const q = new URLSearchParams(location.search); if (q.get("theme")) st.th = q.get("theme"); if (q.get("mode")) st.md = q.get("mode");
+$$("#th button").forEach(x => x.classList.toggle("on", x.dataset.v === st.th)); $$("#md button").forEach(x => x.classList.toggle("on", x.dataset.v === st.md));
+render();
+})();
+</script>
+</body>
+</html>

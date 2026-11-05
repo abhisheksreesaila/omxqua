@@ -51,7 +51,7 @@ Colour rules: one accent per app, used only for the one loud button per card and
 
 ## 3. Components
 
-Every part below has hover, press, focus and disabled states built in. Press is never CSS: `omxqua.js` squashes anything tappable (see Motion). Icons are `<svg class="ico" viewBox="0 0 24 24">` with Lucide-style strokes (1.7, round caps).
+Every part below has hover, press, focus and disabled states built in. Focus is a 2 px accent ring 2 px clear of the part, keyboard only (`:focus-visible`); never remove it. Press is never CSS: `omxqua.js` squashes anything tappable (see Motion). Icons are `<svg class="ico" viewBox="0 0 24 24">` with Lucide-style strokes (1.7, round caps).
 
 ### Buttons: `.btn` + `.fill | .tonal | .text | .danger`, sizes `.sm | .lg`, `.icon`
 ```html
@@ -144,8 +144,8 @@ Loading is skeleton rows, never zeros. Empty: `.empty` with `.ring` icon, `<b>` 
 <div class="scrim" hidden><div class="dialog" style="position:relative"><button class="xbtn" style="position:absolute;top:14px;right:14px" aria-label="Close">…</button><h3>Publish 0.3.0?</h3><p>…</p><div class="acts"><button class="btn text">Cancel</button><button class="btn fill">Publish 0.3.0</button></div></div></div>
 <div class="sheet" hidden><div class="grab"></div>…</div>
 ```
-- Menus and tips are absolutely placed by you (below the trigger, 6 px gap), opened with `Omxqua.gentleIn(el)` and closed with `Omxqua.gentleOut(el)`. Themed, never the browser's list.
-- Toast: `Omxqua.toast(toastEl, "Release 0.3.0 published", msgSpan)`; it fades out 2.6 s after the last call. Offer Undo.
+- Menus and tips are absolutely placed by you (below the trigger, 6 px gap), opened with `Omxqua.gentleIn(el, trigger)` (pass the trigger and it grows from that side) and closed with `Omxqua.gentleOut(el)`. Themed, never the browser's list.
+- Toast: `Omxqua.toast(toastEl, "Release 0.3.0 published", msgSpan)`; it fades out 2.6 s after the last call and is read out by screen readers (`role="status"`). Offer Undo.
 - Dialog and sheet sit over `.scrim`; the sheet rises 40 px over 320 ms (Settle tier). Their open/close glue is still inline in the showcase (section 9).
 
 ### Coloured icons: `.ic-tile`, `.ico-c`, nav items with `--c`

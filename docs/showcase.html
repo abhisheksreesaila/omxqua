@@ -416,7 +416,7 @@ document.addEventListener("click", e => {
   const c = e.target.closest(".cx-screen .chip, .cx-screen .switch, .cx-screen .check"); if (c) c.classList.toggle("on");
   const op = e.target.closest(".cx-screen .ag-opt, .cx-screen .cx-pick"); if (op) { $$(op.classList.contains("ag-opt") ? ".ag-opt" : ".cx-pick", op.parentElement).forEach(o => { o.classList.toggle("on", o === op); const r = o.querySelector(".radio"); if (r) r.classList.toggle("on", o === op); }); const bb = op.parentElement.querySelector("[data-book]"); if (bb && op.dataset.opt) bb.textContent = op.dataset.opt; }
   const dm = e.target.closest("[data-demo]"); if (dm) { const root = dm.closest(".cx-screen");
-    if (dm.dataset.demo === "menu") { const m = $(".menu", root); m.hidden ? Omxqua.gentleIn(m) : Omxqua.gentleOut(m); }
+    if (dm.dataset.demo === "menu") { const m = $(".menu", root); m.hidden ? Omxqua.gentleIn(m, dm) : Omxqua.gentleOut(m); }
     if (dm.dataset.demo === "toast") { const t = $(".toast", root); Omxqua.toast(t, "Saved to Lisbon", $("span", t)); } }
   const bk = e.target.closest(".cx-screen .beacon"); if (bk) { bk.classList.toggle("open", !e.target.closest(".x")); Omxqua.sizeBeacon(bk, true); }
 });

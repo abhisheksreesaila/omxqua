@@ -50,7 +50,7 @@
 .oq-root.oq-compact { --oq-radius-card: 12px; --oq-target: 34px; }
 
 /* ---- themes: depth = tone + one shadow scale; no gradients. Glass only on the nav islands (components.css) ---- */
-.oq-root.oq-night {
+.oq-root.oq-night { color-scheme: dark; /* native scrollbars, form controls and autofill match the theme */
   --oq-surface-0: #0b0b0d; --oq-surface-1: #151518; --oq-surface-2: #1d1d21; --oq-surface-3: #25252a;
   --oq-ink: #ededef; --oq-ink-2: #a9a9b1; --oq-ink-faint: #3a3a40; /* faint is never text */
   --oq-line: #2a2a30; --oq-line-2: #202025;
@@ -63,7 +63,7 @@
   --oq-data-1: #8b7bff; --oq-data-2: #3aa0ff; --oq-data-3: #2bc3ad; --oq-data-4: #ff8a3d; --oq-data-5: #f2555a; --oq-data-6: #e0b400;
   --oq-icon-mix: 100%;
 }
-.oq-root.oq-light {
+.oq-root.oq-light { color-scheme: light;
   --oq-surface-0: #eeeef1; --oq-surface-1: #ffffff; --oq-surface-2: #ffffff; --oq-surface-3: #ffffff;
   --oq-ink: #0b0b0d; --oq-ink-2: #5b5b63; --oq-ink-faint: #c9c9cf;
   --oq-line: #e3e3e8; --oq-line-2: #efeff2;

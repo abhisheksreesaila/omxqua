@@ -3,6 +3,12 @@
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
 ## Unreleased
+- Focus ring: every button, link, `[tabindex]`, slider and `summary` gets a 2 px accent outline 2 px clear of it on keyboard focus (`:focus-visible`), inset on menu and table rows, the Beacon's accent on the Beacon. The docs promised focus states; only fields had one.
+- Type: headings balance their lines, prose avoids a lone last word, and stats, deltas, badges, the Beacon's numbers and `kbd` use tabular figures.
+- `color-scheme` on Night and Light (native scrollbars and form controls match); menus, sheets and the scrim contain their own scroll.
+- The radio dot grows from half size and fades in, never from `scale(0)`.
+- `Omxqua.gentleIn(el, trigger)` grows the pop-up from its trigger; toasts are announced (`role="status"`, `aria-live="polite"`); the press springs back over `--oq-spring-fast-dur`.
+- `docs/design/next.html` + `next.md`: November research (Geist Serif, Vercel's guidelines, Apple and Material 3 Expressive springs, concentric corners) and six proposals shown today vs proposed, live in every theme. Geist Serif and Geist Pixel sit in `docs/design/fonts/` until one is picked.
 - New cover (`docs/index.html`): dark, product-launch style. It leads with the belief (the best of Apple and Google, and the taste to choose), shows Contoso live on a phone and the web, then eight live micro-interactions, each tagged **research** (with its source) or **taste**, then the four themes as personalities (Tech, Kids, Travel, Money). `docs/research.html` is now one short card per rule in the same look; the full source list folds away. Both share `docs/site.css`.
 - The showcase opens on Playground · Night.
 - Chips have no outline: off is a light state tint with `ink-2` text, on is a 16% accent tint with ink text.

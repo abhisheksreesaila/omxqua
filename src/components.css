@@ -183,7 +183,15 @@
 .oq-root button { font: inherit; color: inherit; cursor: pointer; }
 .oq-root { -webkit-tap-highlight-color: transparent; } /* iOS grey tap flash off: our squash and state tint are the feedback */
 .oq-root :is(button, a, [data-press]) { touch-action: manipulation; } /* no double-tap zoom delay */
+/* Focus ring: the accent, 2 px, 2 px clear of the part, keyboard only (:focus-visible). Follows the part's own radius. */
+:where(.oq-root) :is(button, a, [tabindex]:not([tabindex="-1"]), input[type="range"], summary):focus-visible { outline: 2px solid var(--oq-accent); outline-offset: 2px; }
+:where(.oq-root) :is(.menu .mi, .tbl tr):focus-visible { outline-offset: -2px; } /* inside a container: drawn inside, never clipped */
+:where(.oq-root) .beacon :focus-visible { outline-color: var(--oq-beacon-accent); } /* the Beacon is near-black in both themes */
 :where(.oq-root) .mono { font-family: var(--oq-font-mono); }
+/* type: headings balance their lines, prose avoids a lone last word, numbers that change never shift sideways */
+:where(.oq-root) :is(h1, h2, h3, h4, .empty b) { text-wrap: balance; }
+:where(.oq-root) :is(p, .sub, .mf-help, .empty) { text-wrap: pretty; }
+:where(.oq-root) :is(.stats b, .delta, .badge, .beacon .big, .beacon .mono, kbd) { font-variant-numeric: tabular-nums; }
 :where(.oq-root) .ink2 { color: var(--oq-ink-2); }
 :where(.oq-root) .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 .oq-family-kids .ico { width: 18px; height: 18px; stroke-width: 2; }
@@ -242,8 +250,8 @@
 :where(.oq-root) .check.on { background: var(--oq-accent); box-shadow: none; }
 :where(.oq-root) .check.on::after { content: ""; width: 9px; height: 5px; border-left: 2px solid var(--oq-on-accent); border-bottom: 2px solid var(--oq-on-accent); transform: rotate(-45deg) translate(1px,-1px); }
 :where(.oq-root) .radio { width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--oq-ink-2); display: inline-grid; place-items: center; border: 0; background: none; padding: 0; flex: none; transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast); }
-:where(.oq-root) .radio::after { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--oq-accent); transform: scale(0); transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast); }
-:where(.oq-root) .radio.on { box-shadow: inset 0 0 0 1.5px var(--oq-accent); } :where(.oq-root) .radio.on::after { transform: scale(1); }
+:where(.oq-root) .radio::after { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--oq-accent); opacity: 0; transform: scale(.5); transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast), opacity .12s; } /* never from scale(0) */
+:where(.oq-root) .radio.on { box-shadow: inset 0 0 0 1.5px var(--oq-accent); } :where(.oq-root) .radio.on::after { opacity: 1; transform: scale(1); }
 :where(.oq-root) .row-ctl { display: flex; align-items: center; gap: 10px; font-size: .92em; }
 :where(.oq-root) .seg2 { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--oq-surface-0); box-shadow: inset 0 0 0 1px var(--oq-line); position: relative; }
 :where(.oq-root) .seg2 button { border: 0; background: none; height: calc(var(--oq-target) - 8px); padding: 0 14px; border-radius: 999px; font-size: .9em; font-weight: 500; color: var(--oq-ink-2); position: relative; z-index: 1; transition: color .2s; }
@@ -291,7 +299,7 @@
 :where(.oq-root) .skel { height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--oq-line-2), var(--oq-line), var(--oq-line-2)); background-size: 200% 100%; animation: skel 1.6s linear infinite; }
 @keyframes skel { from { background-position: 100% 0; } to { background-position: -100% 0; } }
 /* overlays */
-:where(.oq-root) .menu { position: absolute; z-index: 40; background: var(--oq-surface-2); border-radius: var(--oq-radius-menu); box-shadow: var(--oq-shadow-3); padding: 6px; min-width: 220px; }
+:where(.oq-root) .menu { position: absolute; z-index: 40; overscroll-behavior: contain; background: var(--oq-surface-2); border-radius: var(--oq-radius-menu); box-shadow: var(--oq-shadow-3); padding: 6px; min-width: 220px; }
 :where(.oq-root) .menu[hidden] { display: none; }
 :where(.oq-root) .menu .mi { display: flex; align-items: center; gap: 10px; width: 100%; border: 0; background: none; text-align: left; padding: 8px 10px; border-radius: 8px; font-size: .93em; }
 :where(.oq-root) .menu .mi:hover { background: rgb(var(--oq-state) / .08); }
@@ -303,13 +311,13 @@
 :where(.oq-root) .tip kbd { font: 11px var(--oq-font-mono); opacity: .7; margin-left: 6px; }
 :where(.oq-root) .toast { position: absolute; z-index: 50; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--oq-surface-3); box-shadow: var(--oq-shadow-3); border-radius: 12px; padding: 10px 10px 10px 14px; display: flex; gap: 12px; align-items: center; font-size: .92em; white-space: nowrap; }
 :where(.oq-root) .toast[hidden] { display: none; }
-:where(.oq-root) .scrim { position: absolute; inset: 0; z-index: 60; background: rgba(0,0,0,.42); display: grid; place-items: center; }
+:where(.oq-root) .scrim { position: absolute; inset: 0; z-index: 60; overscroll-behavior: contain; background: rgba(0,0,0,.42); display: grid; place-items: center; }
 :where(.oq-root) .scrim[hidden] { display: none; }
 :where(.oq-root) .dialog { box-sizing: border-box; width: min(420px, calc(100% - 32px)); background: var(--oq-surface-3); border-radius: calc(var(--oq-radius-card) + 4px); box-shadow: var(--oq-shadow-3); padding: 20px; }
 :where(.oq-root) .dialog h3 { margin: 0 0 6px; font-size: 1.15em; }
 :where(.oq-root) .dialog p { margin: 0 0 18px; color: var(--oq-ink-2); line-height: 1.5; }
 :where(.oq-root) .dialog .acts { display: flex; justify-content: flex-end; gap: 8px; }
-:where(.oq-root) .sheet { position: absolute; z-index: 61; left: 0; right: 0; bottom: 0; background: var(--oq-surface-1); border-radius: 26px 26px 0 0; box-shadow: var(--oq-shadow-3); padding: 10px 20px 24px; }
+:where(.oq-root) .sheet { position: absolute; z-index: 61; overscroll-behavior: contain; left: 0; right: 0; bottom: 0; background: var(--oq-surface-1); border-radius: 26px 26px 0 0; box-shadow: var(--oq-shadow-3); padding: 10px 20px 24px; }
 :where(.oq-root) .sheet[hidden] { display: none; }
 :where(.oq-root) .grab { width: 38px; height: 5px; border-radius: 3px; background: var(--oq-line); margin: 0 auto 14px; }
 :where(.oq-root) .empty { text-align: center; padding: 26px 16px; color: var(--oq-ink-2); }

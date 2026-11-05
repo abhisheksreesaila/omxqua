@@ -10,6 +10,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const PRESS = "button, a.cta, a.more, [data-press], .tile, .blk, .day, .row, .row-demo, .chip, .nav, .mark, .brand-isl, .brand";
   const spring = el => getComputedStyle(el).getPropertyValue("--oq-spring-fast").trim() || "cubic-bezier(.2,.9,.3,1.15)";
+  const springMs = el => parseFloat(getComputedStyle(el).getPropertyValue("--oq-spring-fast-dur")) || 320;
   const amount = el => { const w = el.getBoundingClientRect().width; return w <= 48 ? 0.9 : w <= 260 ? 0.96 : 0.985; };
 
   addEventListener("pointerdown", e => {
@@ -22,7 +23,7 @@
     const a = el.animate([rest, down], { duration: 110, easing: "ease-out", fill: "forwards" }); a.id = "oq-press";
     const up = () => {
       removeEventListener("pointerup", up); removeEventListener("pointercancel", up);
-      const b = el.animate([down, rest], { duration: 320, easing: spring(el) }); b.id = "oq-press"; a.cancel();
+      const b = el.animate([down, rest], { duration: springMs(el), easing: spring(el) }); b.id = "oq-press"; a.cancel();
     };
     addEventListener("pointerup", up); addEventListener("pointercancel", up);
     if (el.matches(".mark, .brand, .brand-isl")) writeLogo(el.matches(".mark") ? el : el.querySelector(".mark"));
@@ -135,13 +136,23 @@
   }
   /* Settle tier: a panel or view arrives (fade + 12px rise, 280 ms, decelerating). */
   function settle(el) { if (!reduce) el.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 280, easing: "cubic-bezier(.2,0,0,1)" }); }
-  /* Gentle tier: menus, popovers, tooltips ease in over 220 ms and fade out in 150 ms (then [hidden]). */
-  function gentleIn(el) { el.hidden = false; if (!reduce) el.animate([{ opacity: 0, transform: "translateY(-4px) scale(.97)" }, { opacity: 1, transform: "none" }], { duration: 220, easing: "cubic-bezier(.2,0,0,1)" }); }
+  /* Gentle tier: menus, popovers, tooltips ease in over 220 ms and fade out in 150 ms (then [hidden]).
+     Pass the trigger and the pop-up grows from it (transform-origin on the trigger's side), not from its own centre. */
+  function gentleIn(el, trigger) {
+    el.hidden = false; el.style.transformOrigin = ""; let dy = -4; /* drops in from above, or rises if it opened above its trigger */
+    if (trigger) { const t = trigger.getBoundingClientRect(), r = el.getBoundingClientRect(), below = t.top + t.height / 2 < r.top + r.height / 2;
+      el.style.transformOrigin = `${Math.max(0, Math.min(r.width, t.left + t.width / 2 - r.left))}px ${below ? 0 : r.height}px`; if (!below) dy = 4; }
+    if (!reduce) el.animate([{ opacity: 0, transform: `translateY(${dy}px) scale(.97)` }, { opacity: 1, transform: "none" }], { duration: 220, easing: "cubic-bezier(.2,0,0,1)" }); }
   function gentleOut(el) { if (el.hidden) return; if (reduce) { el.hidden = true; return; } el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 150, easing: "cubic-bezier(.3,0,1,1)" }).onfinish = () => el.hidden = true; }
   /* Toast: shows msg in msgEl, rises in if it was hidden, fades out 2.6 s after the last call. */
   const toastTimers = new WeakMap();
   function toast(el, msg, msgEl = el.firstElementChild) {
-    msgEl.textContent = msg; clearTimeout(toastTimers.get(el));
+    /* read out, never stealing focus. A live region that appears already holding its text is often missed,
+       so the first time it becomes live the text lands a frame later (put role="status" in your markup to skip this). */
+    el._oqMsg = msg;
+    if (!el.hasAttribute("role")) { el.setAttribute("role", "status"); el.setAttribute("aria-live", "polite"); msgEl.textContent = ""; requestAnimationFrame(() => msgEl.textContent = el._oqMsg); }
+    else msgEl.textContent = msg;
+    clearTimeout(toastTimers.get(el));
     if (el.hidden) { el.hidden = false; if (!reduce) el.animate([{ opacity: 0, transform: "translate(-50%, 8px)" }, { opacity: 1, transform: "translate(-50%, 0)" }], { duration: 220, easing: "cubic-bezier(.2,0,0,1)" }); }
     toastTimers.set(el, setTimeout(() => gentleOut(el), 2600));
   }
