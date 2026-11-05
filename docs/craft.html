@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The details · omxqua</title>
+<meta name="description" content="Every omxqua component, live, with the small decisions behind it: the numbers, and why.">
+<link rel="icon" href="favicon-qua.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="../src/fonts.css">
+<link rel="stylesheet" href="../src/tokens.css">
+<link rel="stylesheet" href="../src/components.css">
+<link rel="stylesheet" href="site.css">
+<script src="../src/omxqua.js" defer></script>
+<style>
+/* the shared chrome (black, Geist, header, headings) is in site.css; this page adds the details */
+.hero { padding: 96px 0 0; }
+.hero h1 { font-size: clamp(64px, 10vw, 148px); }
+.lede { font: 500 clamp(22px, 2.5vw, 31px)/1.25 var(--sans); letter-spacing: -.018em; margin: 26px 0 0; max-width: 760px; }
+.lede b { font-weight: 600; }
+/* controls: theme, mode, slow motion; they follow you down the page */
+.ctl { position: sticky; top: 70px; z-index: 50; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 40px 0 0; padding: 12px 0; background: var(--bg); }
+.seg { display: inline-flex; padding: 4px; gap: 2px; border-radius: 999px; background: var(--t1); box-shadow: inset 0 0 0 1px var(--line); }
+.seg button { border: 0; background: none; color: var(--ink2); font: 500 14px var(--sans); padding: 8px 14px; border-radius: 999px; cursor: pointer; min-height: 36px; }
+.seg button.on { background: color-mix(in srgb, var(--qua) 16%, var(--t1)); color: var(--qua); }
+.slow { border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; height: 44px; padding: 0 18px; border-radius: 999px; background: var(--t1); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink2); font: 500 14px var(--sans); }
+.slow i { width: 9px; height: 9px; border-radius: 50%; background: var(--dim); transition: background .2s; }
+.slow[aria-pressed="true"] { color: var(--qua); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--qua) 50%, transparent); } .slow[aria-pressed="true"] i { background: var(--qua); }
+.ctl :focus-visible { outline: 2px solid var(--qua); outline-offset: 3px; }
+
+/* a chapter, then its details */
+.chap { padding-top: 150px; }
+.chap > h2 { max-width: 18ch; }
+.dt { display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; margin-top: 84px; }
+.dt:nth-of-type(even) .stage { order: 2; }
+.num { font: 600 12.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); }
+.dt .copy h3 { font: 750 clamp(30px, 3.4vw, 44px)/1.04 var(--sans); letter-spacing: -.04em; margin: 12px 0 0; text-wrap: balance; }
+.dt .copy h3 .two { color: var(--ink3); }
+.dt .copy p { color: var(--ink2); font-size: 18px; margin: 18px 0 0; text-wrap: pretty; }
+.dt .copy p b { color: var(--ink); font-weight: 600; }
+.specs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 18px; margin: 30px 0 0; padding: 26px 0 0; border-top: 1px solid var(--line); }
+.specs div { display: grid; gap: 4px; }
+.specs b { font: 700 34px/1 var(--sans); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.specs b small { font-size: .5em; letter-spacing: -.01em; font-weight: 600; margin-left: 2px; }
+.specs span { font: 13px/1.4 var(--mono); color: var(--ink2); }
+.why { margin: 24px 0 0; display: grid; gap: 9px; font-size: 14.5px; line-height: 1.5; color: var(--ink2); }
+.why div { display: flex; gap: 10px; align-items: baseline; }
+.why a { color: var(--ink2); text-decoration-color: var(--ink3); text-underline-offset: 3px; }
+
+/* a stage is a real omxqua root; contain:layout pins its fixed islands to it */
+.stage { min-height: 380px; border-radius: 28px; overflow: hidden; position: relative; container-type: inline-size; contain: layout; display: grid; place-items: center; padding: 40px 28px 56px;
+  background: var(--oq-surface-0); font-family: var(--oq-font); color: var(--oq-ink); font-size: var(--oq-text); box-shadow: inset 0 0 0 1px var(--line); }
+.stage .hint { position: absolute; left: 0; right: 0; bottom: 16px; text-align: center; font: 12px var(--oq-font-mono); color: var(--oq-ink-2); pointer-events: none; }
+.stage .line { display: flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.stage .col { display: grid; gap: 14px; width: min(340px, 100%); }
+.stage .switch.xl { transform: scale(1.6); margin: 0 20px; }
+.stage .phone { width: 380px; max-width: 100%; height: 380px; margin: -40px -28px -56px; position: relative; container-type: inline-size; contain: layout; overflow: hidden; background: var(--oq-surface-0); }
+.stage .phone .main { position: absolute; inset: 0; overflow: auto; padding: 42px 16px 120px; display: grid; gap: 12px; align-content: start; }
+.stage .phone .main .card { padding: 14px 16px; }
+.stage .phone .main .skel { margin: 4px 0; }
+.stage .phone.desk { width: 100%; max-width: 560px; }
+.stage .phone .beacon .bc-open { width: min(400px, calc(100cqw - 24px)); box-sizing: border-box; } /* the open card fits a narrow stage */
+.stage .bigmark { width: 120px; height: 120px; border-radius: 50%; font-size: 46px; }
+.stage .card.demo { width: min(380px, 100%); }
+.stage:not(.oq-family-dev) .card.demo .src { display: none; } /* only Developer cards end in a source line */
+.stage .mini-dialog { position: relative; width: min(360px, 100%); }
+.stage .menu.demo { position: absolute; }
+.stage .tipwrap { position: relative; display: inline-flex; }
+.stage .tipwrap .tip { bottom: calc(100% + 8px); left: 50%; translate: -50% 0; }
+.stage .toast { bottom: 54px; }
+.stage .scrim { border-radius: 0; }
+.stage .sheet { padding-bottom: 28px; }
+.stage .tbl { min-width: 300px; }
+.stage .stats { min-width: 300px; }
+
+@media (max-width: 980px) {
+  .dt { grid-template-columns: 1fr; gap: 28px; margin-top: 64px; } .dt:nth-of-type(even) .stage { order: 0; }
+  .chap { padding-top: 110px; }
+}
+@media (max-width: 560px) { .ctl { position: static; } .stage { min-height: 340px; border-radius: 22px; padding: 32px 16px 52px; } .stage .phone { margin: -32px -16px -52px; height: 340px; } .specs b { font-size: 28px; } .seg button { padding: 8px 11px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark"><svg class="lm lm-qua" viewBox="0 0 24 24" aria-hidden="true"><rect class="f shad" x="6.5" y="7.5" width="13" height="13" rx="3.5"/><rect class="f front" x="4.5" y="4.5" width="13" height="13" rx="3.5"/><circle class="gl" cx="8" cy="8" r="1.3"/></svg></span>omxqua</a>
+  <nav class="pill" id="pill"><i></i><a href="#touch">Touch</a><a href="#move">Move</a><a href="#read">Read</a><a href="#popup">Pop up</a><a href="#live">Live</a><a href="#everyone">Everyone</a></nav>
+  <a class="cta sm get" href="index.html#get">Get omxqua</a>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow rv in">The details · every component, live</div>
+    <h1 class="rise"><span>Sweat the</span> <span style="animation-delay:.08s">small stuff.</span></h1>
+    <p class="lede rise"><span style="animation-delay:.15s"><b>Seventeen parts, and hundreds of decisions you'll never notice.</b> <span class="two">You'd miss every one of them if it were gone. Here they are, with the numbers and the reasons.</span></span></p>
+  </div>
+  <div class="ctl" role="group" aria-label="Page controls">
+    <div class="seg" id="th" role="group" aria-label="Theme"><button data-v="kids" class="on">Playground</button><button data-v="travel oq-skin-azulejo">Azulejo</button><button data-v="dev">Graphite</button><button data-v="money">Ledger</button></div>
+    <div class="seg" id="md" role="group" aria-label="Mode"><button data-v="night" class="on">Night</button><button data-v="light">Light</button></div>
+    <button class="slow" id="slow" aria-pressed="false"><i></i>Slow motion ×5</button>
+  </div>
+  <div id="chapters"></div>
+  <p class="cap rv" style="margin-top:110px"><a href="research.html" style="color:var(--ink)">Every rule and its source ›</a> &nbsp;·&nbsp; <a href="showcase.html" style="color:var(--ink)">The whole app, every theme ›</a></p>
+</main>
+
+<footer>omxqua · MIT · <a href="index.html">the cover</a> · <a href="https://github.com/abhisheksreesaila/omxqua">github</a></footer>
+
+<script>
+addEventListener("DOMContentLoaded", () => {
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const O = window.Omxqua, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const P = { heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>', x: '<path d="M6 6l12 12M18 6 6 18"/>', check: '<path d="M20 6 9 17l-5-5"/>',
+  home: '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>', map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>', spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>', me: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  down: '<path d="m6 9 6 6 6-6"/>', copy: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>', share: '<path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/>', trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>', plane: '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+  inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/>', pin: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>' };
+const ic = n => `<svg class="ico" viewBox="0 0 24 24">${P[n]}</svg>`;
+const R = (t, href, src) => `<div><span class="tag r">research</span><span>${t}${href ? ` <a href="${href}">${src}</a>` : ""}</span></div>`;
+const T = t => `<div><span class="tag t">taste</span><span>${t}</span></div>`;
+const S = (v, u, l) => `<div><b>${v}${u ? `<small>${u}</small>` : ""}</b><span>${l}</span></div>`;
+const tabbar = `<nav class="tabbar"><i class="tb-thumb"></i><button class="on" aria-label="Home">${ic("home")}Home</button><button aria-label="Trips">${ic("map")}Trips</button><button aria-label="Ask">${ic("spark")}Ask</button><button aria-label="Me">${ic("me")}Me</button></nav>`;
+const filler = Array.from({ length: 7 }, (_, i) => `<div class="card"><b>${["Friday in Lisbon", "Kyoto in November", "Reykjavík, 3 nights", "Mexico City", "Porto day trip", "Sintra", "Home"][i]}</b><div class="skel" style="width:${60 + (i * 13) % 35}%"></div></div>`).join("");
+
+const CH = [
+ { id: "touch", eye: "Touch", h: `Under your finger. <span class="two">Every single time.</span>`, items: [
+  { n: "Button", h: `Pressed, it gives. <span class="two">Let go, it springs home.</span>`,
+    stage: `<div class="line"><button class="btn tonal icon" aria-label="Like">${ic("heart")}</button><button class="btn fill">Save trip</button><button class="btn tonal">Preview</button><button class="btn text">Cancel</button><button class="btn tonal" disabled>Booked</button></div><span class="hint">press and hold · hover · Tab to it</span>`,
+    p: `The squash starts the moment you touch, <b>110 ms down, before the click even registers</b>, then rides a real spring home. Small buttons squash to 0.90, most to 0.96, wide ones only to 0.985, so every size feels the same weight. Hover lifts the filled button 1 px onto a deeper shadow. And there's only ever one filled button in a card, so your eye knows where to go.`,
+    specs: [S("0.90", "", "squash at 48 px and under"), S("0.985", "", "squash on wide buttons"), S("1", "px", "lift on hover"), S("45", "%", "opacity when it can't be pressed")],
+    why: [R("An answer within 100 ms feels instant.", "https://www.nngroup.com/articles/response-times-3-important-limits/", "Nielsen"), T("How much it squashes, and that it scales with size.")] },
+  { n: "Close", h: `Always a circle. <span class="two">Always in the same place.</span>`,
+    stage: `<div class="dialog mini-dialog"><button class="xbtn" style="position:absolute;top:14px;right:14px" aria-label="Close">${ic("x")}</button><h3>Leave this trip?</h3><p>You can join again from the invite link.</p><div class="acts"><button class="btn text">Stay</button><button class="btn fill">Leave Lisbon</button></div></div>`,
+    p: `A 32 px circle with the cross dead centre, drawn a little heavier than other icons so it reads at that size. It sits 14 px from the top and right, <b>on the same line as the title</b>, in every dialog. On a phone the circle stays 32 px but the touch area grows to 44. Never a text "✕" floating off to one side.`,
+    specs: [S("32", "px", "circle"), S("44", "px", "touch area on a phone"), S("16", "px", "cross, stroke 2"), S("14", "px", "from the top and right")],
+    why: [R("Targets you can hit with a thumb: 44 px.", "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html", "WCAG 2.5.5"), T("The circle, and its fixed place.")] },
+  { n: "Chips", h: `On looks on. <span class="two">Not just a different colour.</span>`,
+    stage: `<div class="line" data-chips><button class="chip on">Food</button><button class="chip on">Open now</button><button class="chip">Under €30</button><button class="chip">Saved</button></div><span class="hint">tap to filter</span>`,
+    p: `Off is a whisper of grey. On is a tint of the accent, and the label <b>gets bolder, 500 to 600</b>, so "on" still reads for anyone who can't tell the colours apart. No outlines: a row of filters stays quiet until you use it.`,
+    specs: [S("6", "%", "tint when off"), S("16", "%", "accent tint when on"), S("500→600", "", "weight when on"), S("0", "", "outlines")],
+    why: [R("Never colour alone to show a state.", "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html", "WCAG 1.4.1"), T("Tinted, no outline (owner pick, Oct 24).")] },
+  { n: "Switch · checkbox · radio", h: `The switch leans <span class="two">toward where it's going.</span>`,
+    stage: `<div class="line"><button class="switch xl on" aria-label="Remind me" aria-pressed="true"></button><button class="check on" aria-label="Linux"></button><button class="check" aria-label="Mac"></button><span style="width:10px"></span><button class="radio on" aria-label="Public"></button><button class="radio" aria-label="Private"></button></div><span class="hint">hold the switch, then let go</span>`,
+    p: `Hold the switch and the knob <b>stretches from 18 to 24 px</b>, in the direction it's about to travel. Let go and it slides across on a spring. Checkboxes and radios press in like buttons do. The radio's dot grows from half size and fades in, because nothing in nature appears out of nothing.`,
+    specs: [S("18→24", "px", "knob stretch while held"), S("16", "px", "travel"), S("300", "ms", "spring home"), S("0.5", "", "where the radio dot starts")],
+    why: [R("Never animate from scale(0); start at 0.5 or more.", "https://emilkowal.ski/ui/7-practical-animation-tips", "Kowalski"), T("The lean comes from Apple. No halo, no ripple.")] },
+  { n: "Field", h: `The label never leaves. <span class="two">It steps out of your way.</span>`,
+    stage: `<div class="col"><label class="mo"><input placeholder=" "><span class="fl">Where to?</span></label><label class="mo"><input placeholder=" " value="Lisbon, Portugal"><span class="fl">From</span></label><div><label class="mo err"><input placeholder=" " value="maya@example"><span class="fl">Email</span></label><div class="mf-help err">That email is missing its ending, like maya@example.com</div></div></div><span class="hint">click into the empty one</span>`,
+    p: `The label sits inside the field like a hint, then <b>floats up into a gap in the border</b>, shrinking to 75%, so you never forget what the box was for. Focus thickens the border from 1 to 2 px in the accent. A mistake turns the border red and says, in a whole sentence, how to fix it. On a phone the text is 16 px, so the page never zooms when you tap in.`,
+    specs: [S("75", "%", "label size, floated"), S("200", "ms", "float, slowing as it lands"), S("1→2", "px", "border on focus"), S("16", "px", "text on a phone")],
+    why: [R("Labels that vanish as you type strain memory.", "https://www.nngroup.com/articles/form-design-placeholders/", "NN/g"), T("Floating into the border is Google's; the round corners are ours.")] },
+  { n: "Slider", h: `Hold it, it grows. <span class="two">So your thumb never hides it.</span>`,
+    stage: `<div class="col"><input type="range" class="slider" value="62" style="--v:62%" aria-label="Budget" data-slider><div class="line" style="justify-content:space-between;font:12px var(--oq-font-mono);color:var(--oq-ink-2)"><span>€0</span><span data-sv>€1,240</span><span>€2,000</span></div></div><span class="hint">drag it</span>`,
+    p: `The knob is 20 px and <b>grows 15% while you hold it</b>, so you can see it around your finger. The track fills solid to the value with a hard edge; besides the loading shimmer, it's the only gradient omxqua allows. The number beside it uses tabular figures, so it doesn't wobble as it changes.`,
+    specs: [S("20", "px", "knob"), S("1.15", "×", "while held"), S("6", "px", "track"), S("2", "", "gradients allowed, in all")],
+    why: [T("The grow on hold, and the hard-edged fill.")] },
+ ]},
+ { id: "move", eye: "Move", h: `Getting around. <span class="two">Liquid, never lost.</span>`, items: [
+  { n: "Segmented · tabs", h: `It doesn't slide. <span class="two">It flows.</span>`,
+    stage: `<div class="col" style="justify-items:center"><div class="seg2"><i></i><button class="on">Day</button><button>Week</button><button>Month</button><button>Year</button></div><div class="tabs" style="width:100%"><i></i><button class="on">Plans</button><button>Budget</button><button>People</button></div></div><span class="hint">jump from Day to Year</span>`,
+    p: `The highlight <b>stretches as it travels</b>, up to 35% wider the further it goes, then settles in 420 ms. Two jobs get two shapes: a segmented control changes how this page looks, so it's a pill; tabs take you to another page, so they're an underline.`,
+    specs: [S("35", "%", "most it stretches"), S("420", "ms", "to settle"), S("2", "px", "tab underline"), S("2", "", "shapes for two jobs")],
+    why: [R("Tabs and view switches do different things; give them different looks.", "https://m3.material.io/components/tabs/guidelines", "Material 3"), T("The liquid stretch.")] },
+  { n: "Tab bar", h: `Labels when you look. <span class="two">Icons when you scroll.</span>`,
+    stage: `<div class="phone oq-root oq-top" data-th><div class="main">${filler}</div>${tabbar}</div><span class="hint" style="bottom:auto;top:12px">scroll the list · hold the bar and slide</span>`,
+    p: `Icon and label at rest. Scroll down past 60 px and it <b>shrinks to icons</b>; scroll up 12 px and the labels come back. Hold the bar and slide: the highlight lifts, follows your thumb and drops where you let go. It's frosted glass, like the nav pill on a laptop and nothing else in omxqua, and it turns solid if you've asked for less transparency. Never a hamburger.`,
+    specs: [S("60", "px", "down before it shrinks"), S("12", "px", "up to bring labels back"), S("58", "%", "opaque, the frost"), S("44", "px", "smallest tab")],
+    why: [R("Icons alone get misread; keep the labels.", "https://www.nngroup.com/articles/icon-usability/", "NN/g"), R("At the bottom, where the thumb already is.", "https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php", "Hoober 2013"), T("The drag, and the stretch.")] },
+ ]},
+ { id: "read", eye: "Read", h: `Calm surfaces. <span class="two">Numbers that hold still.</span>`, items: [
+  { n: "Card", h: `Lit from above. <span class="two">One shadow, never more.</span>`,
+    stage: `<section class="card demo"><div class="card-h"><h3>Downloads</h3><span class="sp"></span><span class="badge">main</span></div><div class="card-b"><div class="stats" style="grid-template-columns:1fr 1fr;min-width:0"><div style="padding:6px 0"><b>5,912<span class="delta up">+11%</span></b><span>this week</span></div><div style="padding:6px 16px"><b>48.2k</b><span>all time</span></div></div></div><div class="src">pypistats recent omxcore <button class="cp">copy</button></div></section>`,
+    p: `At night a card gets a <b>1 px highlight on its top edge</b>, as if lit from above, plus one soft shadow. By day, a hairline ring and a shadow with a 2 px blur. Corners follow the personality: 10 px for Azulejo's crisp tiles, 12 for tools, 16 for money, 22 for kids. Developer cards end with the command that made them, so nothing is magic (switch to Graphite).`,
+    specs: [S("1", "px", "top highlight at night"), S("10–22", "px", "corners, by personality"), S("1", "", "shadow scale"), S("$", "", "the source line")],
+    why: [T("Material's tonal surfaces with Apple's restraint: depth from tone, not stacked shadows.")] },
+  { n: "Numbers · status", h: `Numbers that hold still. <span class="two">Status you can read.</span>`,
+    stage: `<div class="col" style="width:min(380px,100%)"><div class="stats" style="grid-template-columns:1fr 1fr;min-width:0"><div style="padding:4px 0"><b data-tick>1,111</b><span>live count</span></div><div style="padding:4px 16px"><b>€1,840</b><span>of €2,000</span></div></div><table class="tbl"><thead><tr><th>Release</th><th>Status</th><th class="num">Size</th></tr></thead><tbody><tr><td>0.3.0</td><td><span class="badge ok"><i></i>passed</span></td><td class="num">1.21 MB</td></tr><tr><td>0.2.9</td><td><span class="badge bad"><i></i>failed</span></td><td class="num">0.98 MB</td></tr></tbody></table></div><span class="hint">the count is live</span>`,
+    p: `Every number that can change uses <b>tabular figures</b>: a 1 is as wide as an 8, so a live counter never jitters and columns line up. Amounts sit right-aligned on hairline rows. Status is a word with a dot, on a square-cornered badge, never a colour on its own.`,
+    specs: [S("1", "=8", "every digit, the same width"), S("1", "px", "hairline rows"), S("4→2", "", "stat columns on a phone"), S("word", "", "+ dot, never colour alone")],
+    why: [R("Status needs a word, not just a colour.", "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html", "WCAG 1.4.1"), R("Tabular figures for any number that changes or stacks.", "https://vercel.com/design/guidelines", "Vercel")] },
+  { n: "Loading · empty", h: `Never a zero <span class="two">that isn't true.</span>`,
+    stage: `<div class="line" style="align-items:stretch;width:100%"><div class="card" style="flex:1;min-width:150px;padding:16px;display:grid;gap:10px;align-content:start"><div class="skel" style="width:55%"></div><div class="skel"></div><div class="skel" style="width:80%"></div><div class="skel" style="width:40%;height:28px;border-radius:14px;margin-top:6px"></div></div><div class="card" style="flex:1;min-width:170px"><div class="empty"><div class="ring">${ic("inbox")}</div><b>No releases yet</b>Publish your first version to see it here.<div style="margin-top:12px"><button class="btn fill sm">Publish</button></div></div></div></div>`,
+    p: `While it loads you see <b>the shape of what's coming</b>, shimmering every 1.6 s, never a 0 that looks like real data. When there's truly nothing, you get one ring, one line, and the one button that fills it.`,
+    specs: [S("1.6", "s", "shimmer"), S("0", "", "fake zeros"), S("1", "", "action when empty"), S("1", "", "line of help")],
+    why: [R("A placeholder that looks like data is mistaken for data.", "https://www.nngroup.com/articles/skeleton-screens/", "NN/g"), T("The one-action empty state.")] },
+ ]},
+ { id: "popup", eye: "Pop up", h: `In, said, gone. <span class="two">Never a bounce.</span>`, items: [
+  { n: "Menu", h: `It grows from <span class="two">what you tapped.</span>`,
+    stage: `<div style="position:relative;width:min(300px,100%);height:250px"><button class="btn tonal" data-menu>${ic("down")}Actions</button><div class="menu demo" hidden style="top:52px;left:0"><div class="lab">Lisbon</div><button class="mi">${ic("copy")}Copy link<kbd>⌘C</kbd></button><button class="mi">${ic("share")}Share<kbd>⌘S</kbd></button><hr><button class="mi danger">${ic("trash")}Delete trip</button></div></div><span class="hint">open and close it</span>`,
+    p: `It eases in over <b>220 ms, from the edge nearest the button</b>: a fade, a 4 px drop and a 3% scale. It leaves faster than it came, a 150 ms fade, because you're done with it. It never bounces: it isn't under your finger. On a phone the same menu becomes a sheet along the bottom with 44 px rows.`,
+    specs: [S("220", "ms", "in"), S("150", "ms", "out, faster"), S("3", "%", "scale, from the trigger"), S("44", "px", "rows on a phone")],
+    why: [R("Pop-ups grow from where they came from.", "https://emilkowal.ski/ui/7-practical-animation-tips", "Kowalski"), T("The motion budget: the more often it happens, the less it moves.")] },
+  { n: "Tooltip · toast", h: `Says it once. <span class="two">Then gets out of the way.</span>`,
+    stage: `<div class="line"><span class="tipwrap"><button class="btn tonal icon" aria-label="Search" data-tipbtn>${ic("search")}</button><span class="tip" hidden>Search<kbd>⌘K</kbd></span></span><button class="btn fill" data-toast>Save to Lisbon</button></div><div class="toast" hidden><span></span><button class="btn text sm">Undo</button></div><span class="hint">hover the icon · save</span>`,
+    p: `A toast rises 8 px, <b>stays 2.6 s after the last message</b> and always offers Undo. Screen readers announce it without moving your focus; on a phone it sits above the tab bar. A tooltip is inverted ink with the shortcut beside it, and there are none on touch screens: every icon button carries its name instead.`,
+    specs: [S("2.6", "s", "after the last message"), S("1", "", "Undo, always"), S("8", "px", "rise"), S("0", "", "tooltips on touch")],
+    why: [R("Status messages are announced without stealing focus.", "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html", "WCAG 4.1.3"), R("Undo beats \"are you sure?\".", "https://www.nngroup.com/articles/user-control-and-freedom/", "NN/g")] },
+  { n: "Dialog · sheet", h: `Calm when it matters. <span class="two">The verb on the button.</span>`,
+    stage: `<div class="line"><button class="btn tonal" data-open="dialog">Open a dialog</button><button class="btn tonal" data-open="sheet">Open a sheet</button></div>
+      <div class="scrim" hidden data-layer="dialog"><div class="dialog" style="position:relative"><button class="xbtn" style="position:absolute;top:14px;right:14px" aria-label="Close" data-close>${ic("x")}</button><h3>Publish 0.3.0?</h3><p>Everyone who installs omxcore gets this version.</p><div class="acts"><button class="btn text" data-close>Cancel</button><button class="btn fill" data-close>Publish 0.3.0</button></div></div></div>
+      <div class="scrim" hidden data-layer="sheet" data-close-bg></div><div class="sheet" hidden data-layer="sheet"><div class="grab"></div><h3 style="margin:0 0 6px">Share Lisbon</h3><p class="ink2" style="margin:0 0 14px">Anyone with the link sees the plans, not the budget.</p><div class="wrap-row"><button class="btn fill" data-close>${ic("copy")}Copy link</button><button class="btn tonal" data-close>Done</button></div></div>`,
+    p: `The button says what will happen: <b>"Publish 0.3.0", never "OK"</b>. On a laptop the verb sits on the right; on a phone the buttons stack full width with the verb on top, where your thumb is. A sheet rises 40 px over 320 ms with a grabber, and settles without a bounce.`,
+    specs: [S("40", "px", "sheet rise"), S("320", "ms", "to settle"), S("42", "%", "scrim"), S("1", "", "specific verb")],
+    why: [R("Label buttons with the action, not OK or Yes.", "https://www.nngroup.com/articles/ok-cancel-or-cancel-ok/", "NN/g"), T("Panels settle; they never spring.")] },
+ ]},
+ { id: "live", eye: "Live", h: `What's happening now. <span class="two">And who made this.</span>`, items: [
+  { n: "Beacon", h: `What's live <span class="two">lives up top.</span>`,
+    stage: `<div class="phone desk oq-root oq-top" data-th style="height:380px"><div class="beacon" id="bc"><div class="bc-compact"><span class="live"></span>${ic("plane")}TAP 1352<span class="mono" data-left>boards 42 min</span></div><div class="bc-open"><button class="x" aria-label="Close">${ic("x")}</button><h4>${ic("plane")}JFK → LIS · TAP 1352</h4><div class="sub2">Gate B12 · Seat 14C</div><div class="big" data-big>42 min</div><div class="bar2"><i style="width:30%"></i></div><div class="bacts"><button class="bbtn pri">Boarding pass</button><button class="bbtn">Directions</button></div></div></div><span class="hint">tap the pill</span></div>`,
+    p: `One black pill for <b>the one thing happening right now</b>: a flight, a build, an agent at work. It's near-black in both themes, so it reads as "now", not as part of the page. Tap it and the width, height and corners morph together over 460 ms, with no overshoot; the text cross-fades in 120 ms behind the shape so it never squeezes. Its one number ticks in place.`,
+    specs: [S("460", "ms", "morph"), S("0", "", "overshoot"), S("120", "ms", "text waits for the shape"), S("3", "", "actions at most")],
+    why: [R("Always show the status of what's going on.", "https://www.nngroup.com/articles/ten-usability-heuristics/", "Nielsen #1"), T("The morph, and that nothing in it bounces.")] },
+  { n: "Logo", h: `A logo <span class="two">that writes itself.</span>`,
+    stage: `<span class="mark bigmark">oq</span><span class="hint">tap it</span>`,
+    p: `Every mark <b>draws its letters as a line, then fills them in</b>, once when the page opens and every time you press it. Three quarters of the time is the pen, one quarter the ink. It doesn't bounce, and with reduced motion it simply sits there, finished.`,
+    specs: [S("0.9", "s", "to write"), S("75", "%", "pen, then ink"), S("0", "", "bounce"), S("1", "", "line of JS to replay")],
+    why: [T("Pure joy. No study needed.")] },
+ ]},
+ { id: "everyone", eye: "Everyone", h: `Every hand. <span class="two">Every eye.</span>`, items: [
+  { n: "Focus · motion · contrast", h: `Built for keyboards, <span class="two">and for anyone motion makes dizzy.</span>`,
+    stage: `<div class="col" style="justify-items:center"><div class="line"><button class="btn tonal">Back</button><button class="btn fill">Book Friday</button><button class="chip on">Food</button><button class="switch on" aria-label="Remind me" aria-pressed="true"></button></div><span style="font:12px var(--oq-font-mono);color:var(--oq-ink-2)">click here, then press Tab</span></div>`,
+    p: `Press Tab and a <b>2 px ring in the accent</b> appears 2 px clear of whatever you're on, following its shape; click with a mouse and it stays away. Turn on "reduce motion" and every movement becomes a 150 ms fade, and everything still opens in the right place. Every text clears 4.5:1 and every icon 3:1, in every theme, checked automatically on every change.`,
+    specs: [S("2", "px", "focus ring, 2 px clear"), S("150", "ms", "fades with reduced motion"), S("4.5", ":1", "text contrast, tested"), S("3", ":1", "icon contrast, tested")],
+    why: [R("A visible focus at least 2 px thick.", "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html", "WCAG 2.4.13"), R("Motion can make people ill; let them turn it off.", "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html", "WCAG 2.3.3")] },
+ ]},
+];
+
+let k = 0;
+$("#chapters").innerHTML = CH.map(c => `<section class="chap" id="${c.id}"><div class="eyebrow rv">${c.eye}</div><h2 class="rv">${c.h}</h2>${c.items.map(d => { k++; return `
+  <article class="dt"><div class="stage oq-root rv" data-th>${d.stage}</div>
+  <div class="copy rv"><div class="num">${String(k).padStart(2, "0")} · ${d.n}</div><h3>${d.h}</h3><p>${d.p}</p><div class="specs">${d.specs.join("")}</div><div class="why">${d.why.join("")}</div></div></article>`; }).join("")}</section>`).join("");
+
+/* theme and mode: every stage (and the phones inside them) is a real omxqua root */
+const st = { th: "kids", md: "night" };
+const theme = () => { $$("[data-th]").forEach(el => { el.className = el.className.replace(/\boq-(night|light|family-\w+|skin-\w+)\b/g, "").trim() + ` oq-${st.md} oq-family-${st.th}`; }); requestAnimationFrame(layout); };
+const layout = () => { $$(".tabbar, .seg2, .tabs").forEach(O.placeThumb); pillThumb(); const bc = $("#bc"); if (bc) O.sizeBeacon(bc, false); };
+$$(".seg").forEach(g => g.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; st[g.id] = b.dataset.v; $$("button", g).forEach(x => x.classList.toggle("on", x === b)); theme(); }));
+theme(); document.fonts && document.fonts.ready.then(layout); addEventListener("resize", layout);
+
+/* slow motion: every running animation and transition, CSS or script, plays at a fifth of the speed */
+let slow = false; const slowed = new WeakSet();
+const slowLoop = () => { if (!slow) return; document.getAnimations().forEach(a => { if (!slowed.has(a)) { slowed.add(a); a.playbackRate = .2; } }); requestAnimationFrame(slowLoop); };
+$("#slow").addEventListener("click", e => { slow = !slow; e.currentTarget.setAttribute("aria-pressed", slow); if (slow) slowLoop(); else document.getAnimations().forEach(a => a.playbackRate = 1); });
+
+/* the header pill follows the chapter you're reading */
+const pillThumb = () => { const on = $("#pill a.on"), t = $("#pill i"); if (!on) { t.style.width = 0; return; } t.style.left = on.offsetLeft + "px"; t.style.width = on.offsetWidth + "px"; };
+const secs = CH.map(c => document.getElementById(c.id));
+addEventListener("scroll", () => { const cur = secs.filter(s => s.getBoundingClientRect().top < innerHeight * .45).pop(); $$("#pill a").forEach(a => a.classList.toggle("on", !!cur && a.getAttribute("href") === "#" + cur.id)); pillThumb(); }, { passive: true });
+$$("#pill a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); document.querySelector(a.getAttribute("href")).scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }));
+
+/* the live parts */
+const bc = $("#bc"); let left = 42 * 60, n = 1111;
+setInterval(() => { left = left > 60 ? left - 1 : 42 * 60; const m = Math.ceil(left / 60); $("[data-left]").textContent = `boards ${m} min`; $("[data-big]").textContent = `${m} min`;
+  n = n >= 8888 ? 1111 : n + 1111; $("[data-tick]").textContent = n.toLocaleString("en"); }, 1000);
+const sl = $("[data-slider]"); sl.addEventListener("input", () => { sl.style.setProperty("--v", sl.value + "%"); $("[data-sv]").textContent = "€" + Math.round(sl.value * 20).toLocaleString("en"); });
+const tipb = $("[data-tipbtn]"), tip = tipb.nextElementSibling; let tt;
+tipb.addEventListener("pointerenter", () => { tt = setTimeout(() => O.gentleIn(tip), 500); }); tipb.addEventListener("pointerleave", () => { clearTimeout(tt); O.gentleOut(tip); });
+document.addEventListener("click", e => {
+  const t = e.target, stage = t.closest(".stage");
+  const tb = t.closest(".tabbar button"); if (tb) { $$("button", tb.parentElement).forEach(b => b.classList.toggle("on", b === tb)); O.placeThumb(tb.parentElement); }
+  const g = t.closest(".seg2 button, .tabs button"); if (g) { $$("button", g.parentElement).forEach(b => b.classList.toggle("on", b === g)); O.placeThumb(g.parentElement); }
+  const c = t.closest(".stage .chip"); if (c) c.classList.toggle("on");
+  const sw = t.closest(".stage .switch"); if (sw) { sw.classList.toggle("on"); sw.setAttribute("aria-pressed", sw.classList.contains("on")); }
+  const ck = t.closest(".stage .check"); if (ck) ck.classList.toggle("on");
+  const rd = t.closest(".stage .radio"); if (rd) $$(".radio", rd.parentElement).forEach(x => x.classList.toggle("on", x === rd));
+  const mb = t.closest("[data-menu]"), menu = stage && $(".menu.demo", stage);
+  if (mb) { menu.hidden ? O.gentleIn(menu, mb) : O.gentleOut(menu); } else if (menu && !menu.hidden && !t.closest(".menu")) O.gentleOut(menu); else if (t.closest(".menu .mi")) O.gentleOut(menu);
+  if (t.closest("[data-toast]")) O.toast($(".toast", stage), "Saved to Lisbon, 3 days");
+  const op = t.closest("[data-open]"); if (op) { $$(`[data-layer="${op.dataset.open}"]`, stage).forEach(l => { l.hidden = false; if (l.matches(".sheet") && !reduce) l.animate([{ opacity: 0, transform: "translateY(40px)" }, { opacity: 1, transform: "none" }], { duration: 320, easing: "cubic-bezier(.2,0,0,1)" }); else if (l.matches(".scrim") && !reduce) l.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 }); }); const d = $(`[data-layer="${op.dataset.open}"] .dialog`, stage); if (d) O.gentleIn(d); }
+  if (t.closest("[data-close]") || t.matches("[data-close-bg]") || (t.matches(".scrim") && !t.closest(".dialog"))) $$("[data-layer]", stage).forEach(l => O.gentleOut(l));
+  if (t.closest("#bc .x")) { bc.classList.remove("open"); O.sizeBeacon(bc, true); }
+  else if (t.closest("#bc")) { if (!bc.classList.contains("open")) { bc.classList.add("open"); O.sizeBeacon(bc, true); } }
+  else if (bc.classList.contains("open")) { bc.classList.remove("open"); O.sizeBeacon(bc, true); }
+});
+
+/* sections rise once as they come in */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+$$(".rv:not(.in)").forEach(el => io.observe(el));
+});
+</script>
+</body>
+</html>

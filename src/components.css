@@ -260,7 +260,8 @@
 :where(.oq-root) .slider { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(var(--oq-accent), var(--oq-accent)) 0/var(--v, 40%) 100% no-repeat, var(--oq-line); }
 :where(.oq-root) .slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--oq-surface-2); box-shadow: var(--oq-shadow-2), 0 0 0 1px var(--oq-line); transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast); }
 :where(.oq-root) .slider:active::-webkit-slider-thumb { transform: scale(1.15); }
-:where(.oq-root) .slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--oq-surface-2); border: 0; box-shadow: var(--oq-shadow-2); }
+:where(.oq-root) .slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--oq-surface-2); border: 0; box-shadow: var(--oq-shadow-2); transition: transform var(--oq-spring-fast-dur) var(--oq-spring-fast); }
+:where(.oq-root) .slider:active::-moz-range-thumb { transform: scale(1.15); } /* Firefox grows too */
 /* tabs */
 :where(.oq-root) .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--oq-line); position: relative; }
 :where(.oq-root) .tabs button { border: 0; background: none; padding: 10px 12px; font-size: .92em; font-weight: 500; color: var(--oq-ink-2); }

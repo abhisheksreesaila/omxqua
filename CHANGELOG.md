@@ -3,6 +3,7 @@
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
 ## Unreleased
+- `docs/craft.html`, **The details**: all seventeen parts live, each with an Apple-style headline, the exact numbers behind it (squash, timings, sizes) and why (research or taste). A theme switch restyles every part, and **Slow motion ×5** slows every animation on the page so you can watch the springs. Linked from the cover.
 - Focus ring: every button, link, `[tabindex]`, slider and `summary` gets a 2 px accent outline 2 px clear of it on keyboard focus (`:focus-visible`), inset on menu and table rows, the Beacon's accent on the Beacon. The docs promised focus states; only fields had one.
 - Type: headings balance their lines, prose avoids a lone last word, and stats, deltas, badges, the Beacon's numbers and `kbd` use tabular figures.
 - `color-scheme` on Night and Light (native scrollbars and form controls match); menus, sheets and the scrim contain their own scroll.
