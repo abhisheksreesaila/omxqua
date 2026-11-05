@@ -81,7 +81,7 @@
 .next { margin-top: 18px; font: 13px var(--mono); color: var(--ink2); text-align: center; }
 
 /* leads into the showcase */
-.doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+.doors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 56px; }
 .door { background: var(--t1); border-radius: 28px; box-shadow: inset 0 0 0 1px var(--line); padding: 30px; text-decoration: none; display: flex; flex-direction: column; gap: 10px; min-height: 220px; }
 .door b { font: 700 26px/1.1 var(--sans); letter-spacing: -.03em; } .door span { color: var(--ink2); font-size: 16.5px; }
 .door em { margin-top: auto; font: 500 15px var(--sans); font-style: normal; } .door em::after { content: " ›"; }
@@ -221,6 +221,7 @@
     <div class="doors">
       <a class="door rv" href="showcase.html"><b>The showcase</b><span>Contoso, screen by screen, web and phone together. Starts in Playground · Night; switch themes up top.</span><em>Open it</em></a>
       <a class="door rv" href="showcase.html?opt=t"><b>Every component</b><span>A table: the part, how it looks on the web, how it looks on a phone.</span><em>See the table</em></a>
+      <a class="door rv" href="craft.html"><b>The details</b><span>All seventeen parts, live, with the numbers behind each one and why. Try slow motion.</span><em>See the details</em></a>
       <a class="door rv" href="research.html"><b>The research</b><span>Each rule, the study or guideline behind it, and what's only taste.</span><em>Read it</em></a>
     </div>
   </section>
@@ -228,12 +229,12 @@
   <section id="get" class="end">
     <div class="eyebrow rv">Get it</div>
     <h2 class="rv">It's just taste. <span class="two">Take it.</span></h2>
-    <p class="sub rv">Four small files and open fonts. No framework, no build step. MIT licensed.</p>
+    <p class="sub rv">Four small files and open fonts. No framework, no build step. MIT licensed. <b>One line gives Claude Code the skill</b>; any other agent can copy <code style="font:0.9em var(--mono)">skills/omxqua</code>.</p>
     <div class="rv"><div class="install"><span>/plugin install omxqua --marketplace abhisheksreesaila/omxqua</span><button data-copy="/plugin install omxqua --marketplace abhisheksreesaila/omxqua">Copy</button></div></div>
-    <div class="ctas rv" style="justify-content:center"><a class="cta" href="https://github.com/abhisheksreesaila/omxqua">Get it on GitHub</a></div>
+    <div class="ctas rv" style="justify-content:center"><a class="cta" href="https://github.com/abhisheksreesaila/omxqua">Get it on GitHub</a><a class="more" href="https://github.com/abhisheksreesaila/omxqua/releases/latest">What's new in the latest release</a></div>
   </section>
 </main>
-<footer>omxqua · MIT · fonts SIL OFL · <a href="showcase.html">showcase</a> · <a href="research.html">research</a></footer>
+<footer>omxqua · MIT · fonts SIL OFL · <a href="showcase.html">showcase</a> · <a href="craft.html">details</a> · <a href="research.html">research</a></footer>
 
 <script>
 addEventListener("DOMContentLoaded", () => {
