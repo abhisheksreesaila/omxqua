@@ -15,16 +15,17 @@ The full reference is `AGENTS.md`: every component with its markup, the shells, 
 - Otherwise: https://raw.githubusercontent.com/abhisheksreesaila/omxqua/main/AGENTS.md
 - The reasons behind each rule: `LANGUAGE.md` in the same place.
 - See it live: https://abhisheksreesaila.github.io/omxqua/docs/showcase.html (Contoso, one app in every theme, web and phone side by side, plus a component | web | phone table).
+- Every component in detail, with its numbers and why: https://abhisheksreesaila.github.io/omxqua/docs/craft.html
 
 ## 2. Load it
 
 Trying it out or prototyping: link it from jsDelivr, pinned to a tag (the fonts come along):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/components.css">
-<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.5/src/omxqua.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.6/src/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.6/src/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.6/src/components.css">
+<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.6/src/omxqua.js" defer></script>
 ```
 
 Shipping it: vendor the files into the project so nothing loads from a third party. Copy `src/` and `fonts/` side by side (for example `static/omxqua/src` and `static/omxqua/fonts`), or run `bin/omxqua-sync <dest-dir> --ref <tag>` from a clone. Keep the four links in the same order.
@@ -35,8 +36,8 @@ Ask, or decide from the brief, and say which you picked:
 
 | Choice | Options | Default |
 |---|---|---|
-| Family | `oq-family-dev` (tools, packages, consoles) · `oq-family-travel` (trips, places) · `oq-family-kids` (children's apps) | the closest one |
-| Skin (optional) | travel: `oq-skin-azulejo`, `oq-skin-golden` · kids: `oq-skin-sticker`, `oq-skin-crayon` | none |
+| Family | `oq-family-dev` (tools, packages, consoles) · `oq-family-travel` (trips, places) · `oq-family-kids` (children's apps) · `oq-family-money` (accounts, spending, budgets) | the closest one |
+| Skin (optional) | travel: `oq-skin-azulejo`, `oq-skin-golden` · kids: `oq-skin-sticker`, `oq-skin-crayon` | travel: `oq-skin-azulejo`; kids: none (base Playground) |
 | Theme | `oq-night` · `oq-light` | follow the system |
 | Shell | `oq-top` (top islands) · `oq-dock` (nav pill at the bottom) | `oq-top` |
 
@@ -52,9 +53,10 @@ The app's root element also needs `container-type: inline-size; position: relati
 - One accent per app, used only for the one filled button in a card and the focus ring. One `.fill` per card, with a specific verb ("Start a trip", not "Submit").
 - `omxqua.js` owns press. Never write `:active { transform: scale(…) }`.
 - Motion budget: springs only for small things under the finger. Panels and details settle (fade + 12 px, no bounce); menus and toasts get a gentle 220 ms; repeated or live items get none.
+- Focus is a 2 px accent ring, keyboard only (`:focus-visible`), built in. Never remove it. Open menus with `Omxqua.gentleIn(menu, trigger)` so they grow from their button.
 - Developer apps only: numbers in mono, and each card ends in a mono source line (the command or query behind it). Travel and Kids leave it out.
 - Close buttons are `.xbtn`. Status always comes with a word, never colour alone. Touch targets: dev 34 px, travel 40 px, kids 48 px.
-- Never: glass, blur, gradients on chrome, emoji as icons (use Lucide-style SVGs), ripples, a sidebar for a new app, Apple or Microsoft fonts, icons or names (no SF Pro, "Dynamic Island", "Liquid Glass").
+- Never: glass or blur (except the nav pill and phone tab bar, which are frosted), gradients on chrome, emoji as icons (use Lucide-style SVGs), ripples, a sidebar for a new app, Apple or Microsoft fonts, icons or names (no SF Pro, "Dynamic Island", "Liquid Glass").
 
 ## 5. Before you say it's done
 

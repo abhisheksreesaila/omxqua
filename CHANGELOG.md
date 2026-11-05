@@ -2,7 +2,9 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
-## Unreleased
+## v0.1.6 · 2026-11-05
+- Fix: the skill and README pinned `@v0.1.5`, a tag that was never pushed, so the jsDelivr links 404'd. Everything now pins v0.1.6, and `tests/release.test.cjs` keeps the pins, the plugin version and this changelog in step.
+- The skill knows the Money family, the picked skins, the focus ring, `gentleIn(menu, trigger)`, the nav-glass exception and the details page.
 - `docs/craft.html`, **The details**: all seventeen parts live, each with an Apple-style headline, the exact numbers behind it (squash, timings, sizes) and why (research or taste). A theme switch restyles every part, and **Slow motion ×5** slows every animation on the page so you can watch the springs. Linked from the cover.
 - Focus ring: every button, link, `[tabindex]`, slider and `summary` gets a 2 px accent outline 2 px clear of it on keyboard focus (`:focus-visible`), inset on menu and table rows, the Beacon's accent on the Beacon. The docs promised focus states; only fields had one.
 - Type: headings balance their lines, prose avoids a lone last word, and stats, deltas, badges, the Beacon's numbers and `kbd` use tabular figures.
