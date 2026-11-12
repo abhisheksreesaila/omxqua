@@ -126,12 +126,14 @@ The root element also needs `container-type: inline-size; position: relative`. T
 ```
 src/tokens.css       every --oq-* value: core, themes, families, skins, accents
 src/components.css   every reusable part, scoped under .oq-root
+src/landing.css      opt-in product page parts (lp- classes): hero tint and wave, line drawings, bento, roadmap, under the hood
 src/fonts.css        @font-face for Geist, Geist Mono, Fraunces, Nunito
 src/omxqua.js        press, the self-writing logo, motion helpers (window.Omxqua)
 fonts/               the four variable woff2 files and their licences
 docs/index.html      the cover (the live site; shares docs/site.css with research.html)
 docs/showcase.html   Contoso: one app in every theme, web + phone, all the parts
 docs/kit-v1.html     the earlier three-app kit (every family, skin and shell)
+docs/product-page.html  the product page pattern, live (src/landing.css)
 docs/landing.html    the landing layer: Statement, Editorial, Bento
 AGENTS.md            the reference agents (and people) build from
 LANGUAGE.md          the rules and why

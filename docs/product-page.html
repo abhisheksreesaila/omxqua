@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" class="oq-root oq-night oq-family-dev">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product page · omxqua</title>
+<meta name="description" content="The product page pattern, live: hero tint and line wave, feature drawings, a number bento, a quote, Now / Next / Beyond and under the hood.">
+<link rel="icon" href="favicon-qua.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../src/fonts.css">
+<link rel="stylesheet" href="../src/tokens.css">
+<link rel="stylesheet" href="../src/components.css">
+<link rel="stylesheet" href="../src/landing.css">
+<script src="../src/omxqua.js" defer></script>
+<style>
+/* page frame only; every part below comes from src/landing.css. Contoso Data is made up. */
+html { container-type: inline-size; background: var(--oq-surface-0); color: var(--oq-ink); }
+body { margin: 0; font: 16px/1.5 var(--oq-font); --lp-c: #3ccf6e; --lp-c2: #5fd4c8; }
+section { padding: 96px 16px; overflow-x: clip; } .in { max-width: 1120px; margin: 0 auto; }
+.c { text-align: center; } .c .lp-kick { justify-content: center; }
+h1 { margin: 18px 0 0; font: 800 clamp(48px, 9vw, 112px)/.95 var(--oq-font-display); letter-spacing: -.05em; }
+h2 { margin: 14px 0 40px; font: 800 clamp(34px, 5vw, 64px)/1 var(--oq-font-display); letter-spacing: -.045em; text-wrap: balance; }
+.two { color: var(--oq-ink-2); } .lede { max-width: 34em; margin: 22px auto 0; font-size: 20px; color: var(--oq-ink-2); }
+.tag { font: 600 11px var(--oq-font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--oq-ink-2); }
+.chipico { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--lp-c) 18%, var(--oq-surface-2)); color: var(--lp-c); font: 700 13px var(--oq-font-mono); }
+.base .chipico { background: none; box-shadow: inset 0 0 0 1px var(--oq-line); color: var(--oq-ink-2); font-size: 11px; }
+</style>
+</head>
+<body>
+
+<section class="lp-hero c"><canvas class="lp-wave" aria-hidden="true"></canvas><div class="in">
+  <div class="lp-kick">Product page · opt in</div>
+  <h1>Ask your data. <span class="two">Get a chart.</span></h1>
+  <p class="lede">Contoso Data is a made-up app that stands in for a real product. A tint of its colour sits behind the words, and a faint wave of lines drifts in a band below them while they're on screen.</p>
+  <p style="margin-top:28px"><button class="btn fill lg">Try Contoso Data</button> <button class="btn text lg">Watch the film ›</button></p>
+</div></section>
+
+<section><div class="in">
+  <div class="c"><div class="lp-kick">Three ideas</div><h2>Everything in one place. <span class="two">Two ways that shows.</span></h2></div>
+  <article class="lp-feat">
+    <div>
+      <div class="k">1 · One program</div>
+      <h3>From your file to the screen, in one step.</h3>
+      <dl><div><dt>What it means</dt><dd>The rows load once and <b>the chart is drawn from where they already are.</b></dd></div>
+      <div class="diff"><dt>The difference</dt><dd>Nothing is copied between programs, so a change shows up as you make it.</dd></div></dl>
+    </div>
+    <figure class="lp-gfx" aria-hidden="true">
+      <svg viewBox="0 0 520 260">
+        <circle class="glow" cx="260" cy="130" r="92"/>
+        <path class="ln" d="M70 130 H200"/><path class="ln" d="M320 130 H450"/>
+        <path class="dot" pathLength="1" d="M70 130 H200" style="--d:2.2s;--w:0s"/><path class="dot" pathLength="1" d="M320 130 H450" style="--d:2.2s;--w:1.1s"/>
+        <g class="chip"><rect x="20" y="112" width="100" height="36" rx="10"/><text x="70" y="130">your file</text></g>
+        <g class="chip"><rect x="200" y="80" width="120" height="100" rx="16"/><text x="260" y="118">one program</text><text class="s" x="260" y="142">load · sum · draw</text></g>
+        <g class="chip"><rect x="400" y="80" width="100" height="100" rx="12"/></g>
+        <rect class="bar" x="418" y="128" width="12" height="40" style="--i:0"/><rect class="bar" x="436" y="108" width="12" height="60" style="--i:1"/><rect class="bar" x="454" y="138" width="12" height="30" style="--i:2"/><rect class="bar" x="472" y="118" width="12" height="50" style="--i:3"/>
+      </svg>
+      <figcaption>The rows load once; <b>only the answer moves.</b></figcaption>
+    </figure>
+  </article>
+  <article class="lp-feat flip">
+    <div>
+      <div class="k">2 · Agent ready</div>
+      <h3>One set of controls, for you and your agent.</h3>
+      <dl><div><dt>What it means</dt><dd>Every button is also <b>a tool with a name</b> an agent can call.</dd></div>
+      <div class="diff"><dt>The difference</dt><dd>No screenshots and no guessing: a disabled button isn't on the list.</dd></div></dl>
+    </div>
+    <figure class="lp-gfx" aria-hidden="true">
+      <svg viewBox="0 0 520 260">
+        <g class="chip"><rect x="200" y="20" width="120" height="40" rx="20"/><text x="260" y="40">agent</text></g>
+        <path class="ln" d="M260 60 C260 110 80 100 80 160"/><path class="ln" d="M260 60 C260 110 200 110 200 160"/><path class="ln" d="M260 60 C260 110 320 110 320 160"/><path class="ln da" d="M260 60 C260 110 440 100 440 160"/>
+        <path class="dot" pathLength="1" d="M260 60 C260 110 80 100 80 160" style="--d:2.6s"/><path class="dot" pathLength="1" d="M260 60 C260 110 320 110 320 160" style="--d:2.6s;--w:1.3s"/>
+        <g class="pill" style="--i:0"><rect x="30" y="160" width="100" height="32" rx="16"/><text x="80" y="176">open-file</text></g>
+        <g class="pill" style="--i:1"><rect x="150" y="160" width="100" height="32" rx="16"/><text x="200" y="176">add-chart</text></g>
+        <g class="pill" style="--i:2"><rect x="270" y="160" width="100" height="32" rx="16"/><text x="320" y="176">ask</text></g>
+        <g class="pill off"><rect x="390" y="160" width="100" height="32" rx="16"/><text x="440" y="176">undo · off</text></g>
+      </svg>
+      <figcaption>A different shape for a different idea: <b>a fan of tools.</b></figcaption>
+    </figure>
+  </article>
+</div></section>
+
+<section><div class="in">
+  <div class="c"><div class="lp-kick">In numbers</div><h2>The details, <span class="two">measured.</span></h2></div>
+  <div class="lp-bento">
+    <div class="big"><div class="lp-kick">Rows in one sheet</div><div><b class="n">10M</b><p style="margin-top:18px">Made-up numbers for a made-up app. Yours each name their source.</p></div></div>
+    <div><b class="n">2<small>ms</small></b><h3>A chart redrawn</h3><p>When you change its title</p></div>
+    <div><b class="n">40<small>/s</small></b><h3>Files read</h3><p>Of the kind you already have</p></div>
+    <div><b class="n">12</b><h3>Sources joined</h3><p>On one sheet</p></div>
+    <div><b class="n">1</b><h3>Program</h3><p>From the file to the screen</p></div>
+  </div>
+  <p class="lp-src">every number on a real page names the script and commit it came from</p>
+</div></section>
+
+<section class="c"><div class="in">
+  <div class="lp-kick">What people say</div>
+  <figure class="lp-quote" style="margin-top:32px">
+    <blockquote>“The quote goes here word for word, never trimmed into something it didn't say.”</blockquote>
+    <figcaption><b>A Person</b><span>Why their opinion matters, in one line</span><span>Where they said it, linked, and when</span></figcaption>
+  </figure>
+</div></section>
+
+<section><div class="in">
+  <div class="c"><div class="lp-kick">Roadmap</div><h2>Now. Next. <span class="two">Beyond.</span></h2></div>
+  <div class="lp-road">
+    <div><span class="badge ok"><i></i>live</span><h3>Now</h3><p class="means">What you can use today.</p><ul><li><b>Sheets and charts</b><span>Open a file, ask in a sentence.</span></li><li><b>Agents drive it</b><span>Every control is a tool.</span></li></ul></div>
+    <div><span class="badge info"><i></i>building</span><h3>Next</h3><p class="means">What we're building, in this order.</p><ul><li><b>In your browser</b><span>Nothing to install.</span></li><li><b>Audio becomes rows</b><span>Search and cut sound.</span></li></ul></div>
+    <div class="beyond"><span class="badge"><i></i>not built</span><h3>Beyond</h3><p class="means">Where the ideas lead. None of this exists yet.</p><ul><li><span class="k">A factory</span><b>“Why did line 3 slow down?”</b><span>Asked of its own sensors.</span></li><li><span class="k">Everywhere</span><b>The same app in your pocket.</b><span>One codebase, every screen.</span></li></ul></div>
+  </div>
+</div></section>
+
+<section><div class="in">
+  <div class="c"><div class="lp-kick">Under the hood</div><h2>Made of parts <span class="two">you can use too.</span></h2></div>
+  <div class="lp-stack">
+    <div class="lp-layers">
+      <div class="lp-layer top"><span class="chipico">CD</span><div class="nm"><span>The app</span><b>Contoso Data</b></div><p>Everything below is what makes it work.</p></div>
+      <a class="lp-layer" style="--lp-c:#c084fc" href="#"><span class="chipico">LK</span><div class="nm"><span>The look</span><b>omxqua</b></div><p>The design language. <b>This page is drawn in it.</b></p><span class="go">Its site</span></a>
+      <a class="lp-layer" style="--lp-c:#ff5d6c" href="#"><span class="chipico">FW</span><div class="nm"><span>The framework</span><b>Contoso UI</b></div><p>Write the app once; <b>every button is a tool.</b></p><span class="go">Its site</span></a>
+      <a class="lp-layer" style="--lp-c:#4aa8ff" href="#"><span class="chipico">EN</span><div class="nm"><span>The engine</span><b>Contoso SQL</b></div><p>Queries over the files you already have.</p><span class="go">Its site</span></a>
+      <div class="lp-layer base"><span class="chipico">os</span><p>The platform it all runs on, named and credited, dashed because it isn't ours.</p></div>
+    </div>
+    <a class="lp-also" style="--lp-c:#ff9f40" href="#"><span class="chipico">CM</span><span class="role">Also from Contoso</span><h3>Contoso Models</h3><p>A sister product, said in two lines: what it does and who it's for.</p><p>One line on how it connects to this one.</p><span class="go">Meet Contoso Models</span></a>
+  </div>
+</div></section>
+
+<script>addEventListener("DOMContentLoaded", () => { Omxqua.playOnView(); Omxqua.lineWave(document.querySelector(".lp-wave")); });</script>
+</body>
+</html>

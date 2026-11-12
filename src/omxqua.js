@@ -4,7 +4,7 @@
       An element (or its skin) can set --oq-press: ledge to sink 4 px instead (the Kids Sticker skin).
    2. Logo: .mark writes itself on press (its letters or icon are drawn as a stroke, then filled).
    3. Helpers on window.Omxqua for the moving parts: segmented thumbs, gentle menus, toasts,
-      the Beacon morph and the Top nav pill (see AGENTS.md).
+      the Beacon morph, the Top nav pill, and the landing drawings and line wave (see AGENTS.md).
    Opt out with data-nopress. Respects prefers-reduced-motion. */
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -183,5 +183,38 @@
   function openTopnav(nav, on) { if (!nav) return; holdTopnav(nav); if (nav.classList.contains("open") === on) return; nav.classList.toggle("open", on); layoutTopnav(nav, true); }
   function foldTopnavLater(nav, ms = 3500) { if (!nav) return; holdTopnav(nav); navTimers.set(nav, setTimeout(() => openTopnav(nav, false), ms)); }
 
-  window.Omxqua = Object.assign(window.Omxqua || {}, { writeLogo, placeThumb, settle, gentleIn, gentleOut, toast, sizeBeacon, layoutTopnav, openTopnav, foldTopnavLater, holdTopnav });
+  /* Landing (src/landing.css): playOnView gives every .lp-gfx a .play class while it's on screen, so its drawing moves only
+     then (never under reduced motion). lineWave draws a faint wave of lines on a canvas in its CSS color and --lp-c2,
+     drifting only while visible; under reduced motion it's drawn once, still. */
+  function playOnView(root = document) {
+    if (reduce) return;
+    const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("play", e.isIntersecting)), { threshold: .35 });
+    root.querySelectorAll(".lp-gfx").forEach(g => io.observe(g));
+  }
+  function lineWave(cv, lines = 34) {
+    if (!cv) return;
+    const c = cv.getContext("2d"), cs = getComputedStyle(cv), c1 = cs.color, c2 = cs.getPropertyValue("--lp-c2").trim() || c1;
+    const draw = t => {
+      const w = cv.clientWidth, h = cv.clientHeight, dpr = Math.min(2, devicePixelRatio || 1);
+      if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+      c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
+      const g = c.createLinearGradient(0, 0, w, 0); g.addColorStop(0, c1); g.addColorStop(1, c2);
+      c.strokeStyle = g; c.globalAlpha = .5; c.lineWidth = 1;
+      for (let i = 0; i < lines; i++) {
+        const k = i / (lines - 1); c.beginPath();
+        for (let x = 0; x <= w + 8; x += 8) {
+          const u = x / w, env = Math.sin(u * Math.PI * 2.1 + t * .22 + k * 1.7);
+          const y = h * .55 + h * .2 * Math.sin(u * Math.PI * 2.6 + t * .3 + k * .8) * env + h * .05 * Math.sin(u * Math.PI * 6 - t * .18 + k * 2.2);
+          x ? c.lineTo(x, y) : c.moveTo(x, y);
+        }
+        c.stroke();
+      }
+    };
+    if (reduce) { draw(3); addEventListener("resize", () => draw(3)); return; }
+    let on = false, raf = 0;
+    const loop = ms => { draw(ms / 1000); raf = on ? requestAnimationFrame(loop) : 0; };
+    new IntersectionObserver(es => { on = es[0].isIntersecting; if (on && !raf) raf = requestAnimationFrame(loop); }).observe(cv);
+  }
+
+  window.Omxqua = Object.assign(window.Omxqua || {}, { writeLogo, placeThumb, settle, gentleIn, gentleOut, toast, sizeBeacon, layoutTopnav, openTopnav, foldTopnavLater, holdTopnav, playOnView, lineWave });
 })();

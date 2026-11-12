@@ -10,7 +10,7 @@ The person's one design language for every app, phone and web (chosen 2026-10-20
 An app only adds to the layer above it, never overrides it.
 
 1. **Core** (every app): texture, shape, type, colour, motion, shells, everyday parts, states. Everything below.
-2. **Patterns** (opt in): Explore and Console, at the end. New patterns are added there, not to the core.
+2. **Patterns** (opt in): Explore, Console and Product page, at the end. New patterns are added there, not to the core.
 3. **App layer**: one line in the project's `CLAUDE.md`:
    `Design: omxqua · accent ink · density compact · shell sidebar · patterns console`
 
@@ -129,6 +129,7 @@ Same family, fonts and colours as the app, turned up: the app is quiet and dense
 - **Motion happens on scroll, never on idle:** the hero's words rise in once (staggered, ~70 ms apart); sections rise 28 px as they enter; the product frame unfolds (scale 0.82 → 1, corners 40 → 14 px) while sticky; one read-along paragraph lights up word by word; numbers count up once. Reduced motion: everything static and visible.
 - **Show the real app,** live in a frame (`docs/showcase.html?bare=1&screen=home&theme=…`), never a fake screenshot. Bento tiles hold real components (Beacon, quest tiles, charts).
 - **Gradient syntax is fine for solid fills and loading states** (a slider track filled to its value, a skeleton shimmer); the ban is on decorative colour gradients on chrome or text.
+- **One exception, landing pages only** (owner, 2026-11-11, "a tinge of gradient" in the hero): a soft radial tint of the product colour behind content (the hero, the biggest number, the Beyond column, a sister product). Never on text, buttons or nav. See Pattern: Product page.
 - **Not on landing pages:** gradients on text, glass, autoplay video with sound, carousels, cookie walls in front of the hero.
 
 ## Pattern: Explore (opt in)
@@ -144,6 +145,17 @@ For watching and running things (mxconsole, abode).
 2. Live status: one lane per running thing (dot, name, trace, two numbers); state as dot + word.
 3. No editable sentence on action forms (owner, 2026-10-20: it read as "very weird" on Serve a model). An action form is a normal form: a pick-list of options with fit badges, segmented controls for settings, a labelled meter for the cost (memory, quota), and a footer with a one-line plain summary + the one filled button with a specific verb. The CLI twin is the source line under it.
 4. One signature moment per page; the rest stays quiet.
+
+## Pattern: Product page (opt in)
+For a product's landing page (omxlabs.tech, 2026-11-11). Parts in `src/landing.css` (`lp-` classes, coloured by `--lp-c`), motion in `omxqua.js`. Borrowed principles from nuitee.com, kept our own look.
+1. **The order:** say what it is once, in plain words (explain a technical word once, then stop repeating it) → three primary features under one theme → secondary features as numbers → what someone known said → Now / Next / Beyond → under the hood.
+2. **Hero:** a tint of the product colour behind the words (`.lp-hero`) and a faint line wave in a masked band at the bottom, never crossing the text (`.lp-wave` + `Omxqua.lineWave`).
+3. **Features as line drawings that blend into the page** (`.lp-feat` rows alternating sides, `.lp-gfx` with no box): thin lines, chips, travelling dots, one caption line. **The drawing shows only what the feature does,** never today's problem path, and **each feature gets its own shape** (a chip, a fan of tools, a real sheet), so three drawings never look alike. Real screenshots cropped into the drawing beat invented ones. They move only while on screen (`Omxqua.playOnView`); under reduced motion they're still.
+4. **Each feature says what it means, then how it's different:** a `dl` with "What it means" and a tinted "The difference".
+5. **Numbers in a bento** (`.lp-bento`, the biggest first and tinted), every number with its source on a mono line under it (`.lp-src`).
+6. **A quote as said** (`.lp-quote`): verbatim, then the person, why they matter, and where they said it, linked. Never stretch what it was about.
+7. **Roadmap in three columns** (`.lp-road`): Now (live), Next (building, in order), Beyond (tinted, labelled "not built").
+8. **Under the hood** (`.lp-stack`): the product on top, the parts it's made of below, each its own product in its own colour linking to its site; the platform dashed at the base; a sister product beside it (`.lp-also`). Cross-sells by showing what the product is made of.
 
 ## Reference
 mxconsole concept (desktop + phone, Night + Light, motion budget applied): `~/Projects/mxstudio/docs/design/universal/mxconsole-concept.html`.

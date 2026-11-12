@@ -225,10 +225,25 @@ Same family, fonts and colours as the app, turned up: huge display type (hero `c
 
 Not on landing pages: gradients on text, glass, autoplay video with sound, carousels, cookie walls in front of the hero.
 
+**Product page parts (opt in, `src/landing.css`, link it after components.css):** `lp-` classes coloured by `--lp-c` (default: the accent; set it per section or per layer). Rules in LANGUAGE.md, Pattern: Product page.
+
+| Part | Markup | Notes |
+|---|---|---|
+| Kicker | `<div class="lp-kick">Under the hood</div>` | dot + mono label over a title |
+| Hero tint + wave | `<section class="lp-hero"><canvas class="lp-wave" aria-hidden="true"></canvas>…</section>` | `Omxqua.lineWave(canvas)`; colours from `--lp-c` → `--lp-c2`; drifts only while visible |
+| Feature row | `<article class="lp-feat [flip]"><div>…<dl><div><dt>What it means</dt><dd>…</dd></div><div class="diff"><dt>The difference</dt><dd>…</dd></div></dl></div><figure class="lp-gfx">…</figure></article>` | `.flip` puts the drawing first |
+| Line drawing | `<figure class="lp-gfx"><svg viewBox>…</svg><figcaption>…</figcaption></figure>` | primitives `.ln(.da)`, `.chip`, `.pill(.off)`, `.bar`, `.glow`, `.dot` (path with `pathLength="1"`, `--d`, `--w`); stagger with `--i`; `Omxqua.playOnView()` adds `.play` on screen; clip the section's `overflow-x` |
+| Numbers | `<div class="lp-bento"><div class="big">…<b class="n">100M</b>…</div><div><b class="n">0.6<small>ms</small></b><h3>…</h3><p>…</p></div>…</div><p class="lp-src">…</p>` | biggest first; every number sourced |
+| Quote | `<figure class="lp-quote"><blockquote>…</blockquote><figcaption><b>Name</b><span>who</span><span>where, linked</span></figcaption></figure>` | verbatim |
+| Roadmap | `<div class="lp-road"><div>…<h3>Now</h3><p class="means">…</p><ul><li><b>…</b><span>…</span></li></ul></div>…<div class="beyond">…</div></div>` | Beyond is tinted; `li .k` labels a Beyond item |
+| Under the hood | `<div class="lp-stack"><div class="lp-layers"><div class="lp-layer top">…</div><a class="lp-layer" style="--lp-c:…" href>…<div class="nm"><span>role</span><b>name</b></div><p>…</p><span class="go">Its site</span></a>…<div class="lp-layer base">…</div></div><a class="lp-also">…</a></div>` | each layer its own colour; platform dashed at the base |
+
+Live: `docs/product-page.html`.
+
 ## 7. Never
 
 - Glass, blur or translucency anywhere except the nav islands (nav pill, tab bar).
-- Gradients on chrome or text. Allowed: the slider's solid fill and the skeleton shimmer.
+- Gradients on chrome or text. Allowed: the slider's solid fill, the skeleton shimmer, and on landing pages a soft radial tint behind content (`src/landing.css`).
 - Emoji as icons. Use Lucide-style SVGs (vendor the real Lucide SVGs with its ISC licence).
 - Apple or Microsoft fonts, icons or names: no SF Pro, SF Symbols, New York, Segoe UI, Fluent; no "Dynamic Island", "Liquid Glass", "Live Activities", "Mica", "Acrylic". Ours are Beacon, Nav island, Settle.
 - Ripples or Material halos. Feedback is squash + a state-layer tint.
@@ -253,6 +268,7 @@ Not on landing pages: gradients on text, glass, autoplay video with sound, carou
 - 2026-10-21: the phone tab bar shows labels at rest and goes icons-only while scrolling down (first tried icons only; the research says unlabeled icons get misread), and its thumb is liquid (stretches when it moves, drag to switch tabs). Phones get every effect desktop has: press, logo, thumbs; no iOS grey tap flash, no double-tap delay.
 - 2026-10-24: the showcase is one app, **Contoso** (a made-up trip planner), in every theme, with web and phone side by side per screen and a component | web | phone table. The earlier three-app kit is `docs/kit-v1.html`.
 - 2026-10-24: the cover is dark, in the style of a product launch, and leads with the belief; each micro-interaction is tagged research or taste. A theme is a personality for a kind of app (Tech, Kids, Travel, Money; later Vedic), never only a colour swap; the parts, motion and reading rules under it never change. The showcase opens on Playground · Night.
+- 2026-11-11: product pages (omxlabs.tech): borrowed nuitee.com's principles, kept our look. A tinge of gradient in the hero and a faint line wave; features as line drawings blended into the page that show only what each feature does, each in its own shape; numbers in a bento; Now / Next / Beyond; under the hood. Packaged as `src/landing.css` and `Omxqua.playOnView` / `Omxqua.lineWave`.
 - 2026-10-24: kept the crisp look (outlined fields, hairline rows, square mono badges, shadows on tonal buttons) over a softer tinted one; borrowed two things from it: chips without outlines (tinted, accent tint when on) and coloured icons (`.ic-tile`, coloured nav icons), tested at 3:1.
 
 ## 9. Patterns in the showcase, not yet packaged
