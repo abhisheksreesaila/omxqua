@@ -153,7 +153,7 @@ For a product's landing page (omxlabs.tech, 2026-11-11). Parts in `src/landing.c
 3. **Features as line drawings that blend into the page** (`.lp-feat` rows alternating sides, `.lp-gfx` with no box): thin lines, chips, travelling dots, one caption line. **The drawing shows only what the feature does,** never today's problem path, and **each feature gets its own shape** (a chip, a fan of tools, a real sheet), so three drawings never look alike. Real screenshots cropped into the drawing beat invented ones. They move only while on screen (`Omxqua.playOnView`); under reduced motion they're still.
 4. **Each feature says what it means, then how it's different:** a `dl` with "What it means" and a tinted "The difference".
 5. **Numbers in a bento** (`.lp-bento`, the biggest first and tinted), every number with its source on a mono line under it (`.lp-src`).
-6. **A quote as said** (`.lp-quote`): verbatim, then the person, why they matter, and where they said it, linked. Never stretch what it was about.
+6. **One quote, as said** (`.lp-quote`, set in italics): verbatim, then the person, why they matter, and where they said it, linked. One testimonial on the page, quiet: it shows the work has been seen, it isn't the pitch. Don't repeat the name elsewhere on the page, and never stretch what it was about.
 7. **Roadmap in three columns** (`.lp-road`): Now (live), Next (building, in order), Beyond (tinted, labelled "not built").
 8. **Under the hood** (`.lp-stack`): the product on top, the parts it's made of below, each its own product in its own colour linking to its site; the platform dashed at the base; a sister product beside it (`.lp-also`). Cross-sells by showing what the product is made of.
 

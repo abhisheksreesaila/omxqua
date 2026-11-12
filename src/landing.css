@@ -73,7 +73,7 @@
 
 /* 5 · quote: the words as said, then who said it (name, why they matter, where they said it, linked) */
 :where(.oq-root) .lp-quote { max-width: 980px; margin: 0 auto; padding: 48px 52px; border-radius: 30px; text-align: left; background: var(--oq-surface-1); box-shadow: 0 0 0 1px var(--oq-line); }
-:where(.oq-root) .lp-quote blockquote { margin: 0; font: 600 clamp(22px, 2.5vw, 33px)/1.32 var(--oq-font-display); letter-spacing: -.025em; text-wrap: pretty; }
+:where(.oq-root) .lp-quote blockquote { margin: 0; font: italic 500 clamp(22px, 2.5vw, 33px)/1.32 var(--oq-font-display); letter-spacing: -.025em; text-wrap: pretty; }
 :where(.oq-root) .lp-quote figcaption { margin-top: 26px; display: grid; gap: 4px; font-size: 15px; color: var(--oq-ink-2); }
 :where(.oq-root) .lp-quote figcaption b { color: var(--oq-ink); font-size: 17px; font-weight: 650; } :where(.oq-root) .lp-quote figcaption a { color: inherit; text-underline-offset: 3px; }
 

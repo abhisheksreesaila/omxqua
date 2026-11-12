@@ -2,9 +2,10 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
-## Unreleased
+## v0.1.7 · 2026-11-12
 - **Product page pattern** (opt in), from omxlabs.tech: `src/landing.css` (`lp-` classes coloured by `--lp-c`): a hero tint and line wave, feature rows with "What it means / The difference", line drawings that blend into the page (travelling dots, chips, pills, bars), a number bento with a source line, a quote card, Now / Next / Beyond columns, and an under-the-hood stack that links out to each part's own site. Rules in LANGUAGE.md (Pattern: Product page), markup in AGENTS §6, live in `docs/product-page.html`.
 - `omxqua.js`: `Omxqua.playOnView()` (drawings move only while on screen, never under reduced motion) and `Omxqua.lineWave(canvas)` (drifts only while visible; drawn once, still, under reduced motion).
+- The quote is set in italics and the page carries one testimonial, quietly (owner, 2026-11-12).
 - Landing pages may use a soft radial tint of the product colour behind content (owner, 2026-11-11); gradients on text, buttons and nav stay banned.
 
 ## v0.1.6 · 2026-11-05
