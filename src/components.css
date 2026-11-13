@@ -411,3 +411,10 @@
 :where(.oq-root) .oq-flat .btn.fill, :where(.oq-root) .oq-flat .btn.tonal { box-shadow: none; }
 :where(.oq-root) .oq-flat .btn.fill:hover { box-shadow: none; transform: none; }
 :where(.oq-root) .oq-flat .btn.tonal { background: rgb(var(--oq-state) / .06); }
+
+/* Reading mode prose (.oq-read, tokens.css): serif headings at a calm weight, body at a reading measure. */
+:where(.oq-read) { font-family: var(--oq-font); font-size: var(--oq-text); line-height: 1.6; }
+:where(.oq-read) :is(h1, h2, h3) { font-family: var(--oq-font-display); font-weight: 500; letter-spacing: -.01em; line-height: 1.15; text-wrap: balance; }
+:where(.oq-read) p { max-width: 68ch; text-wrap: pretty; }
+:where(.oq-read) .oq-big { font: 400 clamp(96px, 17vw, 196px)/.85 var(--oq-font-display); letter-spacing: -.04em; font-variant-numeric: lining-nums; }
+:where(.oq-read) blockquote { font: italic 400 1.35em/1.4 var(--oq-font-display); margin: 0; }

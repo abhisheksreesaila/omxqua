@@ -9,7 +9,7 @@ Don't invent values. Every colour, radius, size and curve is a `--oq-*` token in
 Copy the package into your project with `bin/omxqua-sync <dest-dir>` (see README), then link the four files in this order:
 
 ```html
-<link rel="stylesheet" href="omxqua/src/fonts.css">       <!-- Geist, Geist Mono, Fraunces, Nunito (self-hosted) -->
+<link rel="stylesheet" href="omxqua/src/fonts.css">       <!-- Geist, Geist Mono, Fraunces, Nunito, Newsreader, Inter (self-hosted) -->
 <link rel="stylesheet" href="omxqua/src/tokens.css">      <!-- every --oq-* value: themes, families, skins, accents -->
 <link rel="stylesheet" href="omxqua/src/components.css">  <!-- every reusable part, scoped under .oq-root -->
 <script src="omxqua/src/omxqua.js" defer></script>        <!-- press, logo, motion helpers on window.Omxqua (the logo's look is in components.css) -->
@@ -44,6 +44,8 @@ A family sets surfaces, accent, data palette and character for Night and Light. 
 | `golden` | travel | peach / espresso, rounder (cards 22, title 34) | #ffb45c / #a34a0a |
 | `sticker` | kids | Nunito, chunky ledge shadows, buttons and tiles press down 4 px (`--oq-press: ledge`) | #4fb3ff / #1971c2 |
 | `crayon` | kids | Nunito, pastel tiles tinted with their own colour, berry accent, cards 28 | #ff8fb8 / #c2185b |
+
+**Reading mode:** add `oq-read` to the root of a page made for long reading (a story, report, grant write-up, landing copy) or to one reading section inside an app: Newsreader headings and big numbers, Inter body at 16 px, Geist Mono unchanged. It works with any family or skin. App UI stays on Geist.
 
 **Picked looks (owner, 2026-10-21): Travel apps use `oq-skin-azulejo`; Kids apps use the base Playground (no skin class).** Coast, Golden hour, Sticker and Crayon stay available as alternates. Without a skin class you get the family's base look.
 

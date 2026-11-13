@@ -30,6 +30,8 @@ An app only adds to the layer above it, never overrides it.
 ## Type
 One sans for words, one mono for numbers, ids, paths, commands and every source line; both ship with the app. Tabular, right-aligned numbers in tables. An app may pick its pair (Geist + Geist Mono, Inter + JetBrains Mono).
 
+**Reading mode** (`oq-read`, owner 2026-11-13): long reading (story pages, reports, grant write-ups, landing copy, an article inside an app) sets headings and big numbers in **Newsreader** (serif, optical sizes) and body in **Inter** at 16 px, line-height 1.6, about 68 characters a line. Mono stays Geist Mono. App UI (tables, toolbars, chips, settings) stays on Geist: dense screens read faster in it. One huge serif number may open a story page (`.oq-big`).
+
 ## Colour
 - **One accent per app**, set by its family (below) or `oq-app-ink | teal | amber | violet | sage | rose`. `ink` is near-black in Light, near-white in Night. The accent fills the one loud button per card and the focus ring, nothing else.
 - **Data palette** (`--oq-data-1..6`), separate from the accent: chart series, model signals, kinds. A thing keeps its data colour everywhere.
@@ -108,7 +110,7 @@ Patterns (sidebars, tab bars, segmented controls, sheets, a status pill) are con
 - Never use: SF Symbols, SF Pro or New York fonts (Apple licence limits them to Apple platforms), Segoe UI or Fluent icons, Apple or Microsoft screenshots, sounds or wallpapers.
 - Never name ours after theirs: no "Dynamic Island", "Liquid Glass", "Live Activities", "Mica", "Acrylic". Ours are **Beacon**, **Nav island**, **Settle**.
 - Don't copy a signature shape pixel for pixel (Apple's notch-hugging island geometry); the Beacon floats below the top edge with its own size, radius and content rules.
-- Everything we ship is open: Geist and Geist Mono, Fraunces, Nunito (SIL OFL 1.1); icons drawn in Lucide's style (Lucide is ISC; vendor the real Lucide SVGs with its licence when building); Material's guidelines are free to use. Keep each licence file next to its font (`fonts/`).
+- Everything we ship is open: Geist and Geist Mono, Fraunces, Nunito, Newsreader, Inter (SIL OFL 1.1); icons drawn in Lucide's style (Lucide is ISC; vendor the real Lucide SVGs with its licence when building); Material's guidelines are free to use. Keep each licence file next to its font (`fonts/`).
 
 ## Micro-interactions (decided 2026-10-20)
 - **One press for everything (`src/omxqua.js`):** every tappable thing (buttons, chips, tabs, day chips, rows, tiles, nav items, the logo) squashes on pointer-down and springs back on release; the amount follows size (≤ 48 px 0.90 · ≤ 260 px 0.96 · larger 0.985). Never write per-component `:active` scale rules. A skin may set `--oq-press: ledge` to sink 4 px instead (Sticker). Opt out with `data-nopress`.

@@ -172,3 +172,10 @@
 @media (prefers-reduced-motion: reduce) {
   .oq-root *, .oq-root *::before, .oq-root *::after { transition-duration: 150ms !important; transition-timing-function: ease-out !important; animation-duration: 150ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* =====================================================================
+   READING MODE (owner, 2026-11-13): long reading gets a serif display and a reading sans.
+   Add oq-read to the root of a story page, report, grant write-up or landing copy, or to one long-reading section
+   inside an app. Apps stay on Geist: dense UI reads faster in it. Mono stays Geist Mono everywhere.
+   ===================================================================== */
+.oq-read { --oq-font-display: "Newsreader", Georgia, "Times New Roman", serif; --oq-font: "Inter", system-ui, sans-serif; --oq-text: 16px; }

@@ -127,7 +127,7 @@ The root element also needs `container-type: inline-size; position: relative`. T
 src/tokens.css       every --oq-* value: core, themes, families, skins, accents
 src/components.css   every reusable part, scoped under .oq-root
 src/landing.css      opt-in product page parts (lp- classes): hero tint and wave, line drawings, bento, roadmap, under the hood
-src/fonts.css        @font-face for Geist, Geist Mono, Fraunces, Nunito
+src/fonts.css        @font-face for Geist, Geist Mono, Fraunces, Nunito, Newsreader, Inter
 src/omxqua.js        press, the self-writing logo, motion helpers (window.Omxqua)
 fonts/               the four variable woff2 files and their licences
 docs/index.html      the cover (the live site; shares docs/site.css with research.html)
