@@ -53,3 +53,26 @@ for (const [fam, skin] of [["dev"], ["travel"], ["travel", "azulejo"], ["travel"
     }
   });
 }
+// Restrained glass (2026-11-15): .oq-glass is surface-1 at --oq-glass-card-mix over the sky (.oq-sky, three stops); the sections pill is
+// surface-2 at --oq-glass-mix. Text sits on the sky itself (the page title), on a glass card and on the pill: 4.5:1 everywhere along the sky.
+const pv = (sel, name) => { const m = css.match(new RegExp(sel.replace(/\./g, "\\.") + "\\s*\\{([^}]*)\\}")); const v = m && m[1].match(new RegExp(`--oq-${name}:\\s*([\\d.]+)%`)); return v ? +v[1] / 100 : null; };
+const core = pv(".oq-root", "glass-mix");
+for (const [fam, skin] of [["dev"], ["travel"], ["travel", "azulejo"], ["travel", "golden"], ["kids"], ["kids", "sticker"], ["kids", "crayon"], ["money"]]) for (const theme of ["night", "light"]) {
+  test(`${fam}${skin ? " · " + skin : ""} · ${theme}: text 4.5:1 on the sky, a glass card and the sections pill`, () => {
+    const t = { ...block(`.oq-root.oq-${theme}`), ...block(`.oq-family-${fam}.oq-${theme}`), ...(skin ? block(`.oq-family-${fam}.oq-skin-${skin}.oq-${theme}`) : {}) };
+    const card = pv(`.oq-root.oq-${theme}`, "glass-card-mix"), prose = pv(`.oq-root.oq-${theme}`, "glass-prose-mix");
+    assert.ok(card && prose && core, "glass mixes missing");
+    assert.ok(prose > card, "a card holding reading text is more solid than a plain glass card");
+    const sky = [];  // the gradient: sky-1 at 0, sky-2 at 55%, sky-3 at 100%, sampled every 10%
+    for (let i = 0; i <= 10; i++) { const p = i / 10; sky.push(p <= .55 ? mix(t["sky-2"], t["sky-1"], p / .55) : mix(t["sky-3"], t["sky-2"], (p - .55) / .45)); }
+    for (const s of sky) {
+      for (const k of ["ink", "ink-2"]) {
+        assert.ok(ratio(t[k], s) >= 4.5, `${k} on the sky ${s}: ${ratio(t[k], s).toFixed(2)}`);
+        const g = mix(t["surface-1"], s, card);
+        assert.ok(ratio(t[k], g) >= 4.5, `${k} on a glass card over ${s}: ${ratio(t[k], g).toFixed(2)}`);
+        const pill = mix(t["surface-2"], s, core);
+        assert.ok(ratio(t[k], pill) >= 4.5, `${k} on the sections pill over ${s}: ${ratio(t[k], pill).toFixed(2)}`);
+      }
+    }
+  });
+}

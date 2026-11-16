@@ -26,11 +26,11 @@ It's just my taste, borrowed honestly and rebuilt from scratch:
 
 | from | we took | we left |
 |---|---|---|
-| 🍎 Apple | springs, motion with weight, a live pill up top | the glass, the fonts, the names |
+| 🍎 Apple | springs, motion with weight, a live pill up top, a restrained frosted card over a sky | the glass everywhere else, the fonts, the names |
 | 🤖 Google | solid tonal surfaces, one soft shadow, floating labels | the ripples |
 | 💻 the terminal | mono numbers, the command behind each card (dev apps only) | the green-on-black |
 
-Plain HTML, CSS and JS. No framework, no build step, 16 KB gzipped (plus fonts).
+Plain HTML, CSS and JS. No framework, no build step, about 25 KB gzipped (plus fonts).
 
 ## 🎨 One feel, three families
 
@@ -69,14 +69,15 @@ Build this UI in omxqua, a touch-native design language (Material texture, Liqui
 Before writing any markup, read the reference:
 https://raw.githubusercontent.com/abhisheksreesaila/omxqua/main/AGENTS.md
 Link these four files in this order, pinned to a tag:
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/fonts.css
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/tokens.css
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/components.css
-https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/omxqua.js (defer)
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/fonts.css
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/tokens.css
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/components.css
+https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/omxqua.js (defer)
 Put the root classes on <html>: oq-root, oq-light or oq-night, a family
 (oq-family-dev for tools, oq-family-travel for trips, oq-family-kids for children, oq-family-money for money apps),
 and oq-top for the top-island shell. Use only the classes and --oq-* tokens in the
-reference. One filled button per card, no glass, no gradients, no emoji icons,
+reference. One filled button per card, no glass (except an oq-glass card over oq-sky),
+no gradients, no emoji icons,
 no :active scale rules. Check it at 390 px wide and on desktop, in light and night.
 
 What I want: <describe the screen>
@@ -87,10 +88,10 @@ What I want: <describe the screen>
 Four links and a class:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/components.css">
-<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/omxqua.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/components.css">
+<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/omxqua.js" defer></script>
 
 <html class="oq-root oq-light oq-family-travel oq-top">
 ```
@@ -106,7 +107,7 @@ Vendor the files so nothing loads from a third party. Copy `src/` and `fonts/` s
 
 ```sh
 bin/omxqua-sync static/                 # -> static/omxqua/{src,fonts,VERSION}, latest tag
-bin/omxqua-sync static/ --ref v0.1.7    # a specific tag
+bin/omxqua-sync static/ --ref v0.1.8    # a specific tag
 ```
 
 ```html

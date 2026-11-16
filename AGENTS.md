@@ -125,6 +125,15 @@ The track is a solid fill to `--v` (the one allowed gradient syntax).
 ```
 Rule (Developer family): **every card ends in a mono source line** (the query, the command, the file). Travel and Kids leave it out, or use `.src.note` when something was left out. `.src` prints `$`; `.src.note` prints `↳` for a plain note ("3 of 14 shown").
 
+### Glass card: `.oq-glass` over `.oq-sky` (restrained glass, 2026-11-15)
+```html
+<html class="oq-root oq-light oq-family-travel oq-top oq-sky">        <!-- or put .oq-sky on one band of the page -->
+<section class="card oq-glass"><div class="card-b"><span class="ink2">Nights</span><b>4</b></div></section>
+<section class="card oq-glass prose"><div class="card-h"><h3>Why Alfama</h3></div><div class="card-b"><p>…paragraphs…</p></div></section>
+```
+- `.oq-sky` draws the sky (`--oq-sky-1..3`); `.oq-glass` frosts only inside it (off a sky it is an opaque card). Glass holds short words; a card of paragraphs adds `.prose` (near-opaque). A glass card inside glass or the pill turns solid. Under `prefers-reduced-transparency` every glass card is solid.
+- Menus, dialogs and sheets stay opaque over the sky. Text on the sky, a glass card and the pill is tested at 4.5:1 in every family and skin.
+
 ### Table: `.tbl` (`th.num`, `td.num`) · Stats: `.stats` + `.delta.up | .down`
 ```html
 <table class="tbl"><thead><tr><th>Name</th><th class="num">Size</th></tr></thead><tbody><tr><td>sdist</td><td class="num">0.9 MB</td></tr></tbody></table>
@@ -187,7 +196,16 @@ All shells share one markup; root classes pick the layout.
 - **Phone (container ≤ 640 px), every shell:** the floating tab bar `.tabbar` (3 to 5 items, **icon + label at rest, icons only while scrolling down**: `omxqua.js` sets `.oq-tabs-min` on the root as `.main` or the page scrolls down past 60 px and clears it on the way up; keep the label text and `aria-label` in each button; accent thumb `.tb-thumb` via `Omxqua.placeThumb`) at the bottom. The thumb is liquid: it stretches as it moves, and you can hold the bar and slide (the thumb lifts, follows the finger and drops on the tab you let go over; `omxqua.js` clicks that tab for you); `.side`, `.topnav` and `.brand-isl` hide; grids stack. Never a hamburger for main nav.
 - **Phone counterparts (container ≤ 640 px, same markup):** menu and select list → action sheet along the bottom edge (44 px rows, no shortcut hints; closing on a tap outside is your JS, as on desktop); tooltip → none (icon buttons carry `aria-label`); dialog → actions stack full width, verb on top; toast → above the tab bar; fields → 16 px text (iOS zooms below that); buttons → at least 44 px tall (`.sm` excepted, except Undo in a toast); `.xbtn` keeps its 32 px circle with a 44 px hit area. Touch screens (`hover: none`) get no hover lift or tint. See them side by side in the showcase's **Components** view (`showcase.html?opt=t`): component | web | phone.
 - **Brand (`.brand-isl`):** `.mark` (letters or an icon) and the name in the display face, sitting straight on the page: no pill, no shadow. Once content scrolls under it (`.main` or the page scrolled past 4 px), `omxqua.js` adds `.oq-scrolled` to the root and the brand frosts over with the nav glass, so the name stays readable.
-- **Glass:** the nav pill and tab bar are frosted (`--oq-glass-mix` 58% of surface-2, `--oq-glass-blur`); they fall back to solid surface-2 under reduced transparency.
+- **Glass:** the nav pill, tab bar and sections pill are frosted (`--oq-glass-mix` 58% of surface-2, `--oq-glass-blur`); they fall back to solid surface-2 under reduced transparency. Cards may be frosted only over a sky (`.oq-glass`, §3).
+- **Sections pill (`.oq-sections`) + avatar (`.oq-account`), for an app with 2 to 4 main places** (2026-11-15; LANGUAGE.md, Pattern: Sections). Use instead of `.topnav` and `.tabbar`, with the brand island:
+  ```html
+  <nav class="oq-sections" aria-label="Sections"><a href="/plan" aria-current="page">Plan</a><a href="/book">Book</a><a href="/family">Family</a></nav>
+  <div class="oq-account">
+    <button data-oq-menu aria-haspopup="menu" aria-expanded="false" aria-controls="acct" aria-label="Maya Silva: account menu"><span class="avatar" style="background:var(--oq-data-1)">MS</span></button>
+    <div class="menu" role="menu" id="acct" aria-label="Account" hidden><div class="lab">Maya Silva</div><a class="mi" role="menuitem" tabindex="-1" href="/settings">Settings</a><hr><button class="mi" role="menuitem" tabindex="-1">Sign out</button></div>
+  </div>
+  ```
+  Frosted like the nav islands; the current section is `aria-current` in the accent. Laptop: centred 14 px from the top, the avatar top right (the Beacon moves left of it). Phone: the pill floats at the foot (safe-area aware, 48 px items), the avatar is 48 px. `omxqua.js` wires every `[data-oq-menu]`: click or Enter opens on the first item, arrows wrap, Home/End, Escape closes and refocuses the avatar, Tab or a tap outside closes. The menu grows out of the avatar on a phone (`Omxqua.grow(el, trigger)`) and fades on a laptop; it stays under the avatar on a phone (not the action sheet). `Omxqua.openMenu(button)` / `Omxqua.closeMenu(refocus)` drive it from code.
 - **Side island (`oq-islands`) and Sidebar (no shell class):** dense admin tools only. The island is a 64 px vertical pill that widens to 224 px on hover; `.pin-btn[data-pin]` toggles `.side.pinned`. Wrap each nav label in `<span class="lbl">`. Add `oq-sidebar-only` to hide the Beacon.
 
 ### Beacon (one per app, hidden when nothing is live)
@@ -244,7 +262,7 @@ Live: `docs/product-page.html`.
 
 ## 7. Never
 
-- Glass, blur or translucency anywhere except the nav islands (nav pill, tab bar).
+- Glass, blur or translucency anywhere except the nav islands (nav pill, tab bar, sections pill) and `.oq-glass` cards over `.oq-sky`. Never glass on glass, never glass behind paragraphs (`.prose`).
 - Gradients on chrome or text. Allowed: the slider's solid fill, the skeleton shimmer, and on landing pages a soft radial tint behind content (`src/landing.css`).
 - Emoji as icons. Use Lucide-style SVGs (vendor the real Lucide SVGs with its ISC licence).
 - Apple or Microsoft fonts, icons or names: no SF Pro, SF Symbols, New York, Segoe UI, Fluent; no "Dynamic Island", "Liquid Glass", "Live Activities", "Mica", "Acrylic". Ours are Beacon, Nav island, Settle.
@@ -271,6 +289,7 @@ Live: `docs/product-page.html`.
 - 2026-10-24: the showcase is one app, **Contoso** (a made-up trip planner), in every theme, with web and phone side by side per screen and a component | web | phone table. The earlier three-app kit is `docs/kit-v1.html`.
 - 2026-10-24: the cover is dark, in the style of a product launch, and leads with the belief; each micro-interaction is tagged research or taste. A theme is a personality for a kind of app (Tech, Kids, Travel, Money; later Vedic), never only a colour swap; the parts, motion and reading rules under it never change. The showcase opens on Playground · Night.
 - 2026-11-11: product pages (omxlabs.tech): borrowed nuitee.com's principles, kept our look. A tinge of gradient in the hero and a faint line wave; features as line drawings blended into the page that show only what each feature does, each in its own shape; numbers in a bento; Now / Next / Beyond; under the hood. Packaged as `src/landing.css` and `Omxqua.playOnView` / `Omxqua.lineWave`.
+- 2026-11-15: restrained glass and the sections pill, from GitAway (owner: "I like the restrained glass effect on the cards, and the navigation pattern"; Apple "does it too much"). `.oq-sky` + `.oq-glass` (frosted only over a sky, `.prose` for reading, never glass on glass, solid under reduced transparency) and `.oq-sections` + `.oq-account` for apps with 2 to 4 places. Overrides "no glass on cards" for cards over a sky only.
 - 2026-10-24: kept the crisp look (outlined fields, hairline rows, square mono badges, shadows on tonal buttons) over a softer tinted one; borrowed two things from it: chips without outlines (tinted, accent tint when on) and coloured icons (`.ic-tile`, coloured nav icons), tested at 3:1.
 
 ## 9. Patterns in the showcase, not yet packaged
@@ -290,5 +309,5 @@ These live only in `docs/kit-v1.html`, the earlier three-app kit (inline CSS, de
 2. **Touch targets:** at least the family's `--oq-target`: Developer 34 px, Travel 40 px, Kids 48 px (base 36 px; 44 px on consumer phone screens).
 3. **Phone at 390 px:** tab bar visible, nothing overflows sideways, grids stacked, cards scroll inside.
 4. **Reduced motion:** turn it on in DevTools (Rendering → prefers-reduced-motion); nothing springs, everything still opens in the right place.
-5. **Rules:** one filled button per card, Developer cards end in a source line, no glass, gradients, emoji icons or `:active` scale rules.
+5. **Rules:** one filled button per card, Developer cards end in a source line, no glass (except the nav islands and `.oq-glass` over `.oq-sky`), no gradients (except the sky), emoji icons or `:active` scale rules.
 6. **Compare:** put it next to `docs/showcase.html` in the same theme (`?opt=a&theme=azulejo&mode=light&screen=home`); every screen there shows web and phone side by side.

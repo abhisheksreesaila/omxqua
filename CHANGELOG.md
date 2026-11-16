@@ -2,7 +2,14 @@
 
 All notable changes to omxqua. Versions follow [semver](https://semver.org); each release is a git tag.
 
-## Unreleased
+## v0.1.8 · 2026-11-15
+- **Restrained glass** (owner, 2026-11-15, from GitAway's v2: "I like the restrained glass effect on the cards"): `.oq-sky` draws a soft sky gradient (`--oq-sky-1..3`, Light and Night) and `.oq-glass` frosts a card over it (`surface-1` at `--oq-glass-card-mix` 62% / 80%, `--oq-glass-card-blur` 22 px with saturate, a hairline light border `--oq-glass-line`, `shadow-2`). Off a sky it is an ordinary opaque card; a glass card inside glass or the pill is solid; `.oq-glass.prose` (`--oq-glass-prose-mix` 90% / 92%) holds reading text; solid under `prefers-reduced-transparency` or without blur. Frosted rules are root-level, so a skin's card rule (Crayon, Azulejo Light) can't turn them opaque. Rules in LANGUAGE.md (Texture), markup in AGENTS §3.
+- **Sections pill and avatar menu** (Pattern: Sections, for apps with 2 to 4 places): `.oq-sections` (frosted like the nav islands, `aria-current` in the accent, centred at the top on a laptop, floating at the foot of a phone with 48 px items and the safe area) and `.oq-account` (the avatar, 44 / 48 px, top right; the Beacon steps left of it). The account menu stays under the avatar on a phone instead of becoming the bottom action sheet.
+- `omxqua.js`: every `[data-oq-menu]` button opens its `role="menu"` (click, Enter, ArrowDown or ArrowUp), with arrows that wrap, Home/End, Escape that returns focus, and Tab or a tap outside to close; `Omxqua.openMenu`, `Omxqua.closeMenu`, and `Omxqua.grow(el, trigger, out)`: grows out of the trigger on a phone (`--oq-spring`, no overshoot), a calm fade on a laptop, nothing under reduced motion. Section links get the press.
+- Sticker Light gets a paler sky (`--oq-sky-1`, `--oq-sky-2`): its `ink-2` fell to 4.07:1 at the top of the shared sky.
+- Tests: `tests/contrast.test.cjs` checks ink and ink-2 on the sky, a glass card and the pill along the whole gradient in every family and skin; `tests/patterns.test.cjs` checks the glass rules (only over a sky, never glass on glass, reduced transparency, no blur), the phone targets and safe area, and the account menu's keys and motion in a small fake DOM.
+- Showcase: a **Patterns · Sky, glass and sections** screen (web and phone, every theme, the avatar menu live) and two rows in the Components table. Screenshots in `docs/readme/glass-sections-*.png`.
+- Size: the four core files are about 24.8 KB gzipped, up from 22.3 KB (the README's "16 KB" had been out of date; it now says about 25 KB).
 - **Reading mode** (`oq-read`, owner 2026-11-13): long reading gets Newsreader (serif display, optical sizes) and Inter (body, 16 px, 1.6), Geist Mono unchanged; apps stay on Geist. Fonts self-hosted in `fonts/` (SIL OFL 1.1, Latin). Rules in LANGUAGE.md (Type), use in AGENTS §2. First used on the omxcore robotics story page.
 
 ## v0.1.7 · 2026-11-12

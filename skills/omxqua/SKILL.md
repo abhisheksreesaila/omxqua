@@ -1,6 +1,6 @@
 ---
 name: omxqua
-description: Build or restyle web and phone UI in omxqua, a touch-native design language (Material texture, Liquid motion; opaque surfaces, springs, no glass). Use when the user asks for omxqua, for an app, page, screen or component "in omxqua", or when a project's CLAUDE.md or AGENTS.md says its design language is omxqua.
+description: Build or restyle web and phone UI in omxqua, a touch-native design language (Material texture, Liquid motion; opaque surfaces, springs, glass only on the nav and over a sky). Use when the user asks for omxqua, for an app, page, screen or component "in omxqua", or when a project's CLAUDE.md or AGENTS.md says its design language is omxqua.
 ---
 
 # omxqua
@@ -22,10 +22,10 @@ The full reference is `AGENTS.md`: every component with its markup, the shells, 
 Trying it out or prototyping: link it from jsDelivr, pinned to a tag (the fonts come along):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/components.css">
-<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.7/src/omxqua.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/components.css">
+<script src="https://cdn.jsdelivr.net/gh/abhisheksreesaila/omxqua@v0.1.8/src/omxqua.js" defer></script>
 ```
 
 Shipping it: vendor the files into the project so nothing loads from a third party. Copy `src/` and `fonts/` side by side (for example `static/omxqua/src` and `static/omxqua/fonts`), or run `bin/omxqua-sync <dest-dir> --ref <tag>` from a clone. Keep the four links in the same order.
@@ -40,6 +40,7 @@ Ask, or decide from the brief, and say which you picked:
 | Skin (optional) | travel: `oq-skin-azulejo`, `oq-skin-golden` · kids: `oq-skin-sticker`, `oq-skin-crayon` | travel: `oq-skin-azulejo`; kids: none (base Playground) |
 | Theme | `oq-night` · `oq-light` | follow the system |
 | Shell | `oq-top` (top islands) · `oq-dock` (nav pill at the bottom) | `oq-top` |
+| Navigation | the nav pill and tab bar (5+ places) · the sections pill `.oq-sections` + avatar menu `.oq-account` (2 to 4 places) | by the number of main places |
 
 ```html
 <html class="oq-root oq-light oq-family-travel oq-top">
@@ -56,7 +57,8 @@ The app's root element also needs `container-type: inline-size; position: relati
 - Focus is a 2 px accent ring, keyboard only (`:focus-visible`), built in. Never remove it. Open menus with `Omxqua.gentleIn(menu, trigger)` so they grow from their button.
 - Developer apps only: numbers in mono, and each card ends in a mono source line (the command or query behind it). Travel and Kids leave it out.
 - Close buttons are `.xbtn`. Status always comes with a word, never colour alone. Touch targets: dev 34 px, travel 40 px, kids 48 px.
-- Never: glass or blur (except the nav pill and phone tab bar, which are frosted), gradients on chrome, emoji as icons (use Lucide-style SVGs), ripples, a sidebar for a new app, Apple or Microsoft fonts, icons or names (no SF Pro, "Dynamic Island", "Liquid Glass").
+- Restrained glass: a frosted `.oq-glass` card only over a sky (`.oq-sky`), short words on it; a card of paragraphs is `.oq-glass.prose`; never glass on glass. Menus stay opaque.
+- Never: glass or blur (except the nav pill, tab bar and sections pill, and `.oq-glass` over `.oq-sky`), gradients on chrome, emoji as icons (use Lucide-style SVGs), ripples, a sidebar for a new app, Apple or Microsoft fonts, icons or names (no SF Pro, "Dynamic Island", "Liquid Glass").
 
 ## 5. Before you say it's done
 

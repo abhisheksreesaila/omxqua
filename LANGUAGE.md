@@ -10,13 +10,20 @@ The person's one design language for every app, phone and web (chosen 2026-10-20
 An app only adds to the layer above it, never overrides it.
 
 1. **Core** (every app): texture, shape, type, colour, motion, shells, everyday parts, states. Everything below.
-2. **Patterns** (opt in): Explore, Console and Product page, at the end. New patterns are added there, not to the core.
+2. **Patterns** (opt in): Explore, Console, Product page and Sections, at the end. New patterns are added there, not to the core.
 3. **App layer**: one line in the project's `CLAUDE.md`:
    `Design: omxqua · accent ink · density compact · shell sidebar · patterns console`
 
 ## Texture
 - Depth is tone plus one shadow scale: page `surface-0`; cards `surface-1` + `shadow-1`; menus and popovers `surface-2` + `shadow-2`; the nav islands frosted glass (below); dialogs and the palette `surface-3` + `shadow-3` over a scrim.
-- **Glass on the nav islands only** (decided 2026-10-21): the top nav pill and the tab bar are `surface-2` at 58% with a 20 px backdrop blur, so the page shows through as it scrolls under. Cards, menus, sheets, dialogs and the Beacon stay opaque. Solid again under `prefers-reduced-transparency` or where the browser can't blur.
+- **Glass on the nav islands** (decided 2026-10-21): the top nav pill, the tab bar and the sections pill are `surface-2` at 58% with a 20 px backdrop blur, so the page shows through as it scrolls under. Menus, sheets, dialogs and the Beacon stay opaque. Solid again under `prefers-reduced-transparency` or where the browser can't blur.
+- **Restrained glass: one frosted card, only over a sky** (owner, 2026-11-15, from GitAway: "I like the restrained glass effect on the cards"; Apple "does it too much"). A deliberate, narrow exception to opaque surfaces. A page (or one band of it) may draw a sky, `.oq-sky`: a soft vertical gradient (`--oq-sky-1..3`: sky blue, lilac, a warm horizon by day; navy to plum at night), the one gradient allowed behind app content. Over it, a card may be frosted, `.oq-glass`: `surface-1` at 62% (Light) or 80% (Night) with a 22 px blur and saturate, a hairline light border and one soft shadow (`shadow-2`). The rules:
+    - **Only over a sky.** Off a sky, `.oq-glass` is an ordinary opaque card (the CSS does this), so glass never lands over busy content.
+    - **Never glass on glass.** A glass card inside a glass card or the pill is solid `surface-2` (the CSS does this too).
+    - **Never behind long reading text.** Glass holds short words: a label and a number, a pill, a title. A card holding paragraphs is near-opaque, `.oq-glass.prose` (90% / 92%).
+    - **Text stays 4.5:1** on the sky itself (page titles sit on it), on a glass card and on the pill, all along the gradient, in every family and skin (`tests/contrast.test.cjs`). Sticker Light gets a paler sky because its `ink-2` is the lightest.
+    - **`prefers-reduced-transparency`** (and a browser that can't blur): every glass card and the pill turn solid.
+    - Menus stay opaque even over a sky: they open over cards, and that would be glass on glass.
 - **Every part has a phone counterpart** (decided 2026-10-21), from the same markup: menus and selects open as an action sheet along the bottom, tooltips give way to `aria-label`, dialog actions stack full width, toasts sit above the tab bar, fields use 16 px text, buttons are at least 44 px tall, and touch screens get no hover effects. The islands stick (`position: fixed`); the bare logo frosts once content scrolls under it. The showcase's Components view shows each pair.
 - **Phone tab bar: labels at rest, icons only while scrolling down** (decided 2026-10-21, revised the same day: icons alone get guessed wrong, see `docs/research.html`). At rest each tab is a 22 px icon over a 10.5 px label (68 × 52 px); scrolling down past 60 px shrinks it to icons only (54 × 44 px, never below the family target), scrolling up or reaching the top brings the labels back (our take on iOS 26's opt-in collapsing tab bar). The label stays the accessible name. Its thumb is liquid: it stretches along the way when it moves and settles with a small wobble, and the bar can be dragged (thumb lifts and follows the finger, release picks the tab).
 - **No gradients on chrome**, on any platform.
@@ -159,11 +166,19 @@ For a product's landing page (omxlabs.tech, 2026-11-11). Parts in `src/landing.c
 7. **Roadmap in three columns** (`.lp-road`): Now (live), Next (building, in order), Beyond (tinted, labelled "not built").
 8. **Under the hood** (`.lp-stack`): the product on top, the parts it's made of below, each its own product in its own colour linking to its site; the platform dashed at the base; a sister product beside it (`.lp-also`). Cross-sells by showing what the product is made of.
 
+## Pattern: Sections (opt in)
+For an app with **2 to 4 main places** (GitAway: Plan, Book, Family), 2026-11-15. Five or more places, or places that change, use the Top nav pill or the tab bar instead.
+1. **One frosted pill of sections** (`.oq-sections`, links or buttons): the current place is `aria-current="page"` in the accent fill with `on-accent` text. Words, no icons: two to four words read faster than icons.
+2. **Where it sits:** centred in the top bar on a laptop (the brand left, the avatar right); floating at the foot of a phone, above the home indicator (`env(safe-area-inset-bottom)`), with 48 px items. Content gets bottom room so the pill never covers the last line. It is the phone's tab bar for these apps; never a hamburger.
+3. **The avatar** (`.oq-account`, top right, a 44 px target on a laptop, 48 px on a phone) opens the account menu: who is signed in, a few places (your family, settings) and Sign out. It is a `role="menu"` with `role="menuitem"` rows (48 px on a phone): Enter, Space or ArrowDown opens it on the first row (ArrowUp on the last), the arrows move and wrap, Home and End jump, Escape closes and puts focus back on the avatar, Tab or a tap outside closes. `omxqua.js` does all of this for any `[data-oq-menu]` button.
+4. **Motion:** on a phone the menu grows out of the avatar (clipped to the avatar and let out on `--oq-spring`, no overshoot) and folds back into it; on a laptop it is a calm fade (`--oq-gentle-in`, no drop, no scale). Unlike other phone menus it is not a bottom action sheet: it belongs to the avatar, so it stays under it. Reduced motion: it just appears.
+5. **Press:** the section links and the avatar squash like every other control (`omxqua.js`).
+
 ## Reference
 mxconsole concept (desktop + phone, Night + Light, motion budget applied): `~/Projects/mxstudio/docs/design/universal/mxconsole-concept.html`.
 
 ## What it isn't
-- Not Liquid Glass: only the nav islands are glass; every control, card and pop-up is opaque.
+- Not Liquid Glass: only the nav islands are glass, plus one restrained frosted card over a sky; every control, other card and pop-up is opaque.
 - Not flat Material: springs, morphs and shape-on-press are half the language.
 - Not motion everywhere: the budget decides, and most things don't morph.
 

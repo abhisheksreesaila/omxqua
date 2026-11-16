@@ -132,13 +132,46 @@
 }
 /* ---- Nav islands are frosted glass (2026-10-21): the page shows through as it scrolls under. Only the nav pill and tab bar;
    cards, menus, sheets and the Beacon stay opaque. Solid again when the browser can't blur or the person asks for less transparency. ---- */
-:where(.oq-root) :is(.topnav, .tabbar) { background: color-mix(in srgb, var(--oq-surface-2) var(--oq-glass-mix), transparent) !important;
+:where(.oq-root) :is(.topnav, .tabbar, .oq-sections) { background: color-mix(in srgb, var(--oq-surface-2) var(--oq-glass-mix), transparent) !important;
   -webkit-backdrop-filter: var(--oq-glass-blur); backdrop-filter: var(--oq-glass-blur);
   box-shadow: inset 0 0 0 1px rgb(var(--oq-state) / .09), 0 8px 28px rgba(0,0,0,.14) !important; }
 .oq-root.oq-scrolled .brand-isl { background: color-mix(in srgb, var(--oq-surface-2) var(--oq-glass-mix), transparent);
   -webkit-backdrop-filter: var(--oq-glass-blur); backdrop-filter: var(--oq-glass-blur); box-shadow: inset 0 0 0 1px rgb(var(--oq-state) / .09), 0 8px 28px rgba(0,0,0,.14); }
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { :where(.oq-root) :is(.topnav, .tabbar), .oq-root.oq-scrolled .brand-isl { background: var(--oq-surface-2) !important; } }
-@media (prefers-reduced-transparency: reduce) { :where(.oq-root) :is(.topnav, .tabbar), .oq-root.oq-scrolled .brand-isl { background: var(--oq-surface-2) !important; -webkit-backdrop-filter: none; backdrop-filter: none; } }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { :where(.oq-root) :is(.topnav, .tabbar, .oq-sections), .oq-root.oq-scrolled .brand-isl { background: var(--oq-surface-2) !important; } }
+@media (prefers-reduced-transparency: reduce) { :where(.oq-root) :is(.topnav, .tabbar, .oq-sections), .oq-root.oq-scrolled .brand-isl { background: var(--oq-surface-2) !important; -webkit-backdrop-filter: none; backdrop-filter: none; } }
+/* ---- Restrained glass (2026-11-15): a frosted card, only over a sky. Never glass on glass; a card holding reading text is
+   near-opaque (.prose); text stays 4.5:1 (tests/contrast.test.cjs). Off a sky, .oq-glass is an ordinary opaque card. ---- */
+.oq-root.oq-sky, :where(.oq-root) .oq-sky { background: linear-gradient(180deg, var(--oq-sky-1), var(--oq-sky-2) 55%, var(--oq-sky-3)); }
+:where(.oq-root) .oq-glass { background: var(--oq-surface-1); border-radius: var(--oq-radius-card); box-shadow: inset 0 0 0 1px var(--oq-line), var(--oq-shadow-2); }
+.oq-root.oq-sky .oq-glass, .oq-root .oq-sky .oq-glass { background: color-mix(in srgb, var(--oq-surface-1) var(--oq-glass-card-mix), transparent); outline: 0; /* root-level: frosted wins over a skin's card */
+  -webkit-backdrop-filter: var(--oq-glass-card-blur); backdrop-filter: var(--oq-glass-card-blur); box-shadow: inset 0 0 0 1px var(--oq-glass-line), var(--oq-shadow-2); }
+.oq-root.oq-sky .oq-glass.prose, .oq-root .oq-sky .oq-glass.prose { background: color-mix(in srgb, var(--oq-surface-1) var(--oq-glass-prose-mix), transparent); }
+.oq-root :is(.oq-glass, .oq-sections) .oq-glass, .oq-root :is(.oq-glass, .oq-sections) .oq-glass.prose { background: var(--oq-surface-2); -webkit-backdrop-filter: none; backdrop-filter: none; } /* never glass on glass */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .oq-root .oq-glass { background: var(--oq-surface-1) !important; } }
+@media (prefers-reduced-transparency: reduce) { .oq-root .oq-glass { background: var(--oq-surface-1) !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; } }
+/* ---- Sections pill (2026-11-15): 2 to 4 main places, the current one aria-current in the accent. Centred at the top on a laptop,
+   floating at the foot of a phone. The avatar (.oq-account) sits top right and opens the account menu (omxqua.js, data-oq-menu). ---- */
+:where(.oq-root) .oq-sections { display: flex; position: fixed; z-index: 30; top: 14px; left: 50%; transform: translateX(-50%); gap: 2px; padding: 5px; border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--oq-glass-line), var(--oq-shadow-2); } /* its glass and fallbacks: the nav-island rules above */
+:where(.oq-root) .oq-sections :is(a, button) { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: max(40px, var(--oq-target)); padding: 0 18px; border: 0; border-radius: 999px;
+  background: none; color: var(--oq-ink); font: 600 14px var(--oq-font); text-decoration: none; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color .2s, color .2s; }
+:where(.oq-root) .oq-sections :is(a, button):hover { background: rgb(var(--oq-state) / .08); }
+:where(.oq-root) .oq-sections [aria-current]:not([aria-current="false"]) { background: var(--oq-accent); color: var(--oq-on-accent); box-shadow: var(--oq-shadow-1); }
+:where(.oq-root) .oq-account { position: fixed; z-index: 36; top: 14px; right: 16px; }
+:where(.oq-root) .oq-account > button { display: grid; place-items: center; width: max(44px, var(--oq-target)); height: max(44px, var(--oq-target)); padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+:where(.oq-root) .oq-account > button .avatar { width: 36px; height: 36px; font-size: 13px; box-shadow: var(--oq-shadow-1); }
+:where(.oq-root) .oq-account .menu { top: calc(100% + 6px); right: 0; left: auto; }
+.oq-top:has(.oq-account) .beacon { right: 76px; }
+@container (max-width: 640px) {
+  :where(.oq-root) .oq-sections { top: auto; bottom: max(14px, calc(env(safe-area-inset-bottom) + 8px)); left: 0; right: 0; margin: 0 auto; width: fit-content; max-width: calc(100% - 24px); box-sizing: border-box; transform: none; }
+  :where(.oq-root) .oq-sections :is(a, button) { min-height: 48px; min-width: 48px; padding: 0 16px; flex: 0 1 auto; font-size: 15px; }
+  .oq-root:has(.oq-sections) .main { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  :where(.oq-root) .oq-account { top: 8px; right: 10px; }
+  :where(.oq-root) .oq-account > button { width: 48px; height: 48px; }
+  /* the account menu stays under the avatar on a phone and grows out of it (not the bottom action sheet) */
+  :where(.oq-root) .oq-account .menu { position: absolute; top: calc(100% + 6px) !important; left: auto !important; right: 0; bottom: auto; min-width: min(240px, calc(100cqw - 20px)); border-radius: var(--oq-radius-menu); }
+  :where(.oq-root) .oq-account .menu .mi { min-height: 48px; }
+}
 :where(.oq-root) .topnav .tb-thumb { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--oq-accent); box-shadow: var(--oq-shadow-1); transition: left var(--oq-spring-fast-dur) var(--oq-spring-fast), width var(--oq-spring-fast-dur) var(--oq-spring-fast); }
 :where(.oq-root) .topnav button { position: relative; z-index: 1; flex: none; border: 0; background: none; display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 15px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--oq-ink-2); transition: color .2s, transform var(--oq-spring-fast-dur) var(--oq-spring-fast), opacity .25s; }
 :where(.oq-root) .topnav button:hover { color: var(--oq-ink); }

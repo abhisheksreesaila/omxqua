@@ -1,14 +1,15 @@
-/* omxqua · omxqua.js (no dependencies, ~4 KB)
+/* omxqua · omxqua.js (no dependencies, ~7.5 KB gzipped)
    1. Press: every tappable thing squashes on pointer-down and springs back on release.
       The amount follows the size, so it feels the same everywhere: small 0.90 · medium 0.96 · large 0.985.
       An element (or its skin) can set --oq-press: ledge to sink 4 px instead (the Kids Sticker skin).
    2. Logo: .mark writes itself on press (its letters or icon are drawn as a stroke, then filled).
    3. Helpers on window.Omxqua for the moving parts: segmented thumbs, gentle menus, toasts,
       the Beacon morph, the Top nav pill, and the landing drawings and line wave (see AGENTS.md).
+   4. Menus from a button (the avatar's, data-oq-menu): open, close, keys, focus; grow from the button on a phone.
    Opt out with data-nopress. Respects prefers-reduced-motion. */
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const PRESS = "button, a.cta, a.more, [data-press], .tile, .blk, .day, .row, .row-demo, .chip, .nav, .mark, .brand-isl, .brand";
+  const PRESS = "button, a.cta, a.more, .oq-sections a, [data-press], .tile, .blk, .day, .row, .row-demo, .chip, .nav, .mark, .brand-isl, .brand";
   const spring = el => getComputedStyle(el).getPropertyValue("--oq-spring-fast").trim() || "cubic-bezier(.2,.9,.3,1.15)";
   const springMs = el => parseFloat(getComputedStyle(el).getPropertyValue("--oq-spring-fast-dur")) || 320;
   const amount = el => { const w = el.getBoundingClientRect().width; return w <= 48 ? 0.9 : w <= 260 ? 0.96 : 0.985; };
@@ -183,6 +184,58 @@
   function openTopnav(nav, on) { if (!nav) return; holdTopnav(nav); if (nav.classList.contains("open") === on) return; nav.classList.toggle("open", on); layoutTopnav(nav, true); }
   function foldTopnavLater(nav, ms = 3500) { if (!nav) return; holdTopnav(nav); navTimers.set(nav, setTimeout(() => openTopnav(nav, false), ms)); }
 
+  /* Grow: on a phone (its .oq-root 640 px or narrower) the pop-up grows out of its trigger and folds back into it, clipped to the
+     trigger's rectangle and let out on --oq-spring (no overshoot); on a laptop it is a calm fade. Reduced motion: it just appears. */
+  const css = (el, n) => getComputedStyle(el).getPropertyValue(n).trim();
+  const ms = (el, n, d) => parseFloat(css(el, n)) || d;
+  const isPhone = el => { const r = el.closest(".oq-root"); return (r ? r.clientWidth : innerWidth) <= 640; };
+  function clipTo(el, src) { /* the trigger's rectangle as an inset() on el, in el's own px (frames may be scaled) */
+    const r = el.getBoundingClientRect(), s = src.getBoundingClientRect(), k = el.offsetWidth ? r.width / el.offsetWidth : 1, c = (v, m) => Math.max(0, Math.min(v, m - 1)) / k;
+    return `inset(${c(s.top - r.top, r.height)}px ${c(r.right - s.right, r.width)}px ${c(r.bottom - s.bottom, r.height)}px ${c(s.left - r.left, r.width)}px round ${s.height / 2 / k}px)`;
+  }
+  function grow(el, src, out) {
+    el.getAnimations().forEach(a => a.cancel());
+    if (!out) el.hidden = false;
+    const done = () => { if (out && el._oqOut) el.hidden = true; }; el._oqOut = out;
+    if (reduce || !el.animate) return done();
+    const phone = src && isPhone(el), r = parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, full = `inset(0px 0px 0px 0px round ${r}px)`;
+    const kf = phone ? [{ clipPath: clipTo(el, src), opacity: .4 }, { clipPath: full, opacity: 1 }] : [{ opacity: 0 }, { opacity: 1 }];
+    const a = el.animate(out ? kf.reverse() : kf, out ? { duration: ms(el, "--oq-gentle-out", 150), easing: css(el, "--oq-ease-out"), fill: "forwards" }
+      : phone ? { duration: ms(el, "--oq-spring-dur", 450), easing: css(el, "--oq-spring") } : { duration: ms(el, "--oq-gentle-in", 220), easing: css(el, "--oq-ease-in") });
+    a.onfinish = done;
+  }
+  /* Menus: <button data-oq-menu aria-haspopup="menu" aria-expanded="false" aria-controls="m"> opens <div class="menu" role="menu" id="m" hidden>
+     whose items are role="menuitem". Click toggles; ArrowDown or ArrowUp on the button opens it at the first or last item; inside,
+     the arrows move (and wrap), Home and End jump, Escape closes and puts focus back on the button; Tab, a pick or a tap outside closes. */
+  let menuOn = null;
+  const items = m => [...m.querySelectorAll('[role="menuitem"]:not([disabled])')];
+  function openMenu(b, last) {
+    const m = document.getElementById(b.getAttribute("aria-controls")); if (!m) return;
+    closeMenu(); menuOn = { m, b }; b.setAttribute("aria-expanded", "true"); grow(m, b);
+    const l = items(m), f = last ? l[l.length - 1] : l[0]; if (f) f.focus({ preventScroll: true });
+  }
+  function closeMenu(refocus) {
+    if (!menuOn) return; const { m, b } = menuOn; menuOn = null;
+    b.setAttribute("aria-expanded", "false"); grow(m, b, true); if (refocus) b.focus({ preventScroll: true });
+  }
+  addEventListener("click", e => {
+    const b = e.target.closest && e.target.closest("[data-oq-menu]");
+    if (b) { menuOn && menuOn.b === b ? closeMenu(true) : openMenu(b); return; }
+    if (menuOn && (!menuOn.m.contains(e.target) || e.target.closest('[role="menuitem"]'))) closeMenu(false);
+  });
+  addEventListener("keydown", e => {
+    const b = e.target.closest && e.target.closest("[data-oq-menu]");
+    if (b && !menuOn && (e.key === "ArrowDown" || e.key === "ArrowUp")) { e.preventDefault(); openMenu(b, e.key === "ArrowUp"); return; }
+    if (!menuOn) return;
+    const l = items(menuOn.m), i = l.indexOf(document.activeElement), go = j => { e.preventDefault(); if (l.length) l[(j + l.length) % l.length].focus(); };
+    if (e.key === "Escape") { e.preventDefault(); closeMenu(true); }
+    else if (e.key === "ArrowDown") go(i + 1);
+    else if (e.key === "ArrowUp") go(i < 0 ? -1 : i - 1);
+    else if (e.key === "Home") go(0);
+    else if (e.key === "End") go(-1);
+    else if (e.key === "Tab") closeMenu(false);
+  });
+
   /* Landing (src/landing.css): playOnView gives every .lp-gfx a .play class while it's on screen, so its drawing moves only
      then (never under reduced motion). lineWave draws a faint wave of lines on a canvas in its CSS color and --lp-c2,
      drifting only while visible; under reduced motion it's drawn once, still. */
@@ -216,5 +269,5 @@
     new IntersectionObserver(es => { on = es[0].isIntersecting; if (on && !raf) raf = requestAnimationFrame(loop); }).observe(cv);
   }
 
-  window.Omxqua = Object.assign(window.Omxqua || {}, { writeLogo, placeThumb, settle, gentleIn, gentleOut, toast, sizeBeacon, layoutTopnav, openTopnav, foldTopnavLater, holdTopnav, playOnView, lineWave });
+  window.Omxqua = Object.assign(window.Omxqua || {}, { writeLogo, placeThumb, settle, gentleIn, gentleOut, toast, sizeBeacon, layoutTopnav, openTopnav, foldTopnavLater, holdTopnav, playOnView, lineWave, grow, openMenu, closeMenu });
 })();

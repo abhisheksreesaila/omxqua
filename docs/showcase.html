@@ -115,6 +115,9 @@ figure.fr figcaption { font: 500 11.5px "Geist Mono", monospace; color: var(--mu
 .cx-task .ag-ring { transform: rotate(-90deg); } .cx-task .ag-ring circle { fill: none; stroke-width: 2.6; } .cx-task .ag-ring .bg { stroke: var(--oq-line); } .cx-task .ag-ring .fg { stroke: var(--oq-accent); stroke-linecap: round; }
 .cx-task .ok { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--oq-surface-2); } .cx-task .ok .ico { width: 15px; height: 15px; }
 .cx-pick { display: grid; grid-template-columns: 18px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: var(--oq-radius-in, 12px); box-shadow: inset 0 0 0 1px var(--oq-line); } .cx-pick.on { box-shadow: inset 0 0 0 1.5px var(--oq-accent); }
+.cx-glance { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; } .cx-glance span { color: var(--oq-ink-2); font-size: .9em; } .cx-glance b { font: 650 30px/1 var(--oq-font-display); letter-spacing: -.03em; }
+.cx-prose p { margin: 0 0 10px; line-height: 1.6; max-width: 62ch; } .cx-prose p:last-child { margin: 0; }
+.cx-status ~ .oq-account { top: 50px; } /* the phone frame's status bar stands in for the safe area */
 .cx-pick b { display: block; font-weight: 600; } .cx-pick span { color: var(--oq-ink-2); font-size: .9em; }
 </style>
 </head>
@@ -184,6 +187,11 @@ const beacon = `<div class="beacon"><div class="bc-compact"><span class="live"><
   <div class="bc-open"><button class="x" aria-label="Close">${ic("x")}</button><h4>${ic("plane")}JFK → LIS · TAP 1352</h4><div class="sub2">Gate B12 · Seat 14C</div><div class="big">42 min</div><div class="bar2"><i style="width:30%"></i></div><div class="bacts"><button class="bbtn pri">Boarding pass</button><button class="bbtn">Directions</button></div></div></div>`;
 const bcn = (compact, open, on = false) => `<div class="beacon${on ? " open" : ""}"><div class="bc-compact">${compact}</div><div class="bc-open"><button class="x" aria-label="Close">${ic("x")}</button>${open}</div></div>`;
 const ring = (p, big) => { const r = big ? 11 : 7.5, c = 2 * Math.PI * r, z = big ? 28 : 20; return `<svg class="ag-ring" viewBox="0 0 ${z} ${z}" width="${z}" height="${z}"><circle class="bg" cx="${z / 2}" cy="${z / 2}" r="${r}"/><circle class="fg" cx="${z / 2}" cy="${z / 2}" r="${r}" stroke-dasharray="${c.toFixed(2)}" stroke-dashoffset="${(c * (1 - p)).toFixed(2)}"/></svg>`; };
+/* the sections pattern (2026-11-15): 2 to 4 places in a frosted pill + the avatar's menu; each frame gets its own menu id */
+let mid = 0;
+const sections = on => `<nav class="oq-sections" aria-label="Sections">${["Plan", "Book", "Family"].map((t, i) => `<a href="#${t.toLowerCase()}"${i === on ? ' aria-current="page"' : ""}>${t}</a>`).join("")}</nav>`;
+const account = () => { const id = `acct-${++mid}`; return `<div class="oq-account"><button data-oq-menu aria-haspopup="menu" aria-expanded="false" aria-controls="${id}" aria-label="Maya Silva: account menu"><span class="avatar" style="background:var(--oq-data-1)">MS</span></button>
+  <div class="menu" role="menu" id="${id}" aria-label="Account" hidden><div class="lab">Maya Silva</div><button class="mi" role="menuitem" tabindex="-1">${ic("users")}Your family</button><button class="mi" role="menuitem" tabindex="-1">${ic("gear")}Settings</button><hr><button class="mi" role="menuitem" tabindex="-1">${ic("key")}Sign out</button></div></div>`; };
 const av = (t, c) => `<span class="avatar" style="background:var(--oq-data-${c})">${t}</span>`;
 const ph = (h, sub, acts = "") => `<div class="ph"><div><h1>${h}</h1><div class="sub">${sub}</div></div><span class="sp"></span><div class="acts">${acts}</div></div>`;
 
@@ -330,6 +338,12 @@ const SCREENS = [
       <ul class="steps">${["Booked the table", "Added it to Friday", "Told Jon, Ana and Tom"].map(t => `<li><i class="d ok"></i>${t}</li>`).join("")}</ul>
       <div class="bacts"><button class="bbtn">${ic("undo")}<span data-count="10">Undo 0:10</span></button><button class="bbtn pri">See Friday</button></div>`, true),
     body: () => SCREENS.find(s => s.id === "trip").body(`<div class="cx-it"><span class="t">21:30</span><div><b>Taberna da Rua das Flores</b><span>table for 4</span><div class="cx-by">${ic("sparkle")}booked by your assistant · 2 min ago</div></div><span class="badge ok"><i></i>booked</span></div>`) },
+  { id: "sky", g: "Patterns", t: "Sky, glass and sections", root: "oq-sky", chrome: "sections", n: "Restrained glass: frosted cards over a sky, short words on them; the reading text sits on a near-opaque card. The sections pill (Plan, Book, Family) is centred at the top on web and floats at the foot on a phone; tap the avatar for its menu.", body: () => `
+    ${ph("Lisbon", "Oct 24 – 28 · 4 travellers · Alfama")}
+    <div class="grid g-3">${[["Nights", "4"], ["Budget left", "€1,240"], ["Plans", "9 of 12"]].map(r => `<section class="card oq-glass"><div class="cx-glance"><span>${r[0]}</span><b>${r[1]}</b></div></section>`).join("")}</div>
+    <section class="card oq-glass prose"><div class="card-h"><h3>Why Alfama</h3></div><div class="card-b cx-prose">
+      <p>The oldest quarter, on the hill below the castle: steep lanes, tiled fronts and small squares where the trams turn. Everything on Friday is a short walk from the flat, and the viewpoint at Santa Luzia is two minutes up the street.</p>
+      <p>It is quiet after eleven, except on Saturdays, when the fado houses on Rua de São Miguel stay open late.</p></div></section>` },
 ];
 
 /* ---------- card titles carry a coloured icon tile (.ic-tile, 2026-10-24) ---------- */
@@ -341,13 +355,14 @@ const DIM = { desk: [1280, 800], phone: [390, 844] };
 function screenHTML(s, kind) {
   return withIcons( s.nav === false
     ? `${kind === "phone" ? `<div class="cx-status"><span>9:41</span><span>●●● ▮</span></div>` : ""}<div style="flex:1;display:flex;overflow:auto">${s.body()}</div>`
+    : s.chrome === "sections" ? `${kind === "phone" ? `<div class="cx-status"><span>9:41</span><span>●●● ▮</span></div>` : ""}<div class="shell"><main class="main">${s.body()}</main></div>${sections(0)}${account()}${brand}`
     : `${kind === "phone" ? `<div class="cx-status"><span>9:41</span><span>●●● ▮</span></div>` : ""}<div class="shell"><main class="main">${s.body()}</main></div>${tabbar(tabOn[s.id])}${topnav(navOn[s.id])}${brand}${s.beacon ? (s.beacon === true ? beacon : s.beacon()) : ""}${s.over ? s.over() : ""}`);
 }
 function frame(s, kind, scale) {
   const [w, h] = DIM[kind], inner = screenHTML(s, kind);
   return `<figure class="fr ${kind}"><figcaption>${themeName()} · ${s.t} · ${kind === "desk" ? "Web 1280" : "Phone 390"}</figcaption>
     <div class="fr-clip" style="width:${Math.round(w * scale)}px;height:${Math.round(h * scale)}px;${kind === "phone" ? `border-radius:${Math.round(46 * scale)}px` : ""}">
-    <div class="fr-scale" style="width:${w}px;height:${h}px;transform:scale(${scale})"><div class="${rootCls()}" style="width:${w}px;height:${h}px">${inner}</div></div></div></figure>`;
+    <div class="fr-scale" style="width:${w}px;height:${h}px;transform:scale(${scale})"><div class="${rootCls()} ${s.root || ""}" style="width:${w}px;height:${h}px">${inner}</div></div></div></figure>`;
 }
 const pairScale = avail => Math.max(.3, Math.min(.72, (avail - 60) / (1280 + 390)));
 
@@ -382,6 +397,8 @@ const ROWS = [
   ["Avatars", "Initials on a data colour; overlap in a group.", 80, () => `<div class="cx-cell"><div class="wrap-row">${av("MS", 1)}${av("JR", 2)}${av("AK", 3)}${av("TL", 4)}</div></div>`],
   ["Beacon · agent", "The assistant's one presence: live steps, an approval, a receipt. Tap to open; on phone it sits top centre.", 340, () => SCREENS.find(s => s.id === "agent-ask").beacon()],
   ["Bottom sheet", "Rises from the bottom over a scrim (Settle tier), with a grabber. Same markup on web and phone.", 300, () => `<div class="scrim"><div class="sheet"><div class="grab"></div><h3 style="margin:0 0 6px">Share Lisbon</h3><p class="ink2" style="margin:0 0 14px">Anyone with the link can see the plans, not the budget.</p><div class="wrap-row"><button class="btn fill">${ic("copy")}Copy link</button><button class="btn tonal">${ic("mail")}Email</button></div></div></div>`],
+  ["Restrained glass", "oq-sky + oq-glass: frosted cards only over a sky, short words on them; reading text on a near-opaque card (.prose). Never glass on glass; solid under reduced transparency.", 380, () => `<div class="cx-cell"><div class="grid g-2e">${[["Nights", "4"], ["Budget left", "€1,240"]].map(r => `<section class="card oq-glass"><div class="cx-glance"><span>${r[0]}</span><b>${r[1]}</b></div></section>`).join("")}</div><section class="card oq-glass prose"><div class="card-b cx-prose" style="padding-top:14px"><p>Steep lanes, tiled fronts and small squares where the trams turn; everything on Friday is a short walk away.</p></div></section></div>`, "oq-top oq-sky"],
+  ["Sections and account", "oq-sections: 2 to 4 places, the current one aria-current in the accent; top centre on web, at the foot on a phone (48 px). Tap the avatar: its menu fades in on web and grows from it on a phone; arrows, Home/End, Escape.", 340, () => `${brand}${sections(0)}${account()}`, "oq-top oq-sky"],
   ["Toast", "Bottom centre; on phone above the tab bar. Tap Save: Omxqua.toast shows it and fades it 2.6 s later.", 220, () => `<div class="cx-cell"><div><button class="btn tonal" data-demo="toast">${ic("heart")}Save</button></div></div><div class="toast"><span>Saved to Lisbon</span><button class="btn text sm">Undo</button></div>${tabbar(0)}`],
 ];
 function optT() {
@@ -396,7 +413,7 @@ function optT() {
 function render() {
   $("#themeSeg").innerHTML = THEMES.map(t => `<button data-v="${t[0]}" class="${t[0] === st.theme ? "on" : ""}"><i class="sc-sw" style="background:${t[3]}"></i>${t[1]}</button>`).join("");
   const s = SCREENS.find(x => x.id === st.screen) || SCREENS[1];
-  $("#view").innerHTML = st.bare ? `<div class="${rootCls()}" style="width:100vw;height:100vh">${screenHTML(s, st.size)}</div>` : st.opt === "t" ? optT() : optA();
+  $("#view").innerHTML = st.bare ? `<div class="${rootCls()} ${s.root || ""}" style="width:100vw;height:100vh">${screenHTML(s, st.size)}</div>` : st.opt === "t" ? optT() : optA();
   syncURL();
   /* keep your place: a link with &screen=, a theme change or a resize returns to the screen you were on */
   if (!st.bare && st.opt === "a") { const r = $(`#row-${st.screen}`); if (st.jump && r && st.screen !== SCREENS[0].id) r.scrollIntoView(); else scrollTo(0, 0); }
@@ -414,6 +431,7 @@ document.addEventListener("click", e => {
   /* inside frames: tabs, segments, chips and toggles respond like the real app */
   const g = e.target.closest(".cx-screen .seg2 button, .cx-screen .tabs button, .cx-screen .tabbar button"); if (g) { $$("button", g.parentElement).forEach(b => b.classList.toggle("on", b === g)); Omxqua.placeThumb(g.parentElement); }
   const c = e.target.closest(".cx-screen .chip, .cx-screen .switch, .cx-screen .check"); if (c) c.classList.toggle("on");
+  const sl = e.target.closest(".cx-screen .oq-sections a"); if (sl) { e.preventDefault(); $$("a", sl.parentElement).forEach(a => a === sl ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current")); }
   const op = e.target.closest(".cx-screen .ag-opt, .cx-screen .cx-pick"); if (op) { $$(op.classList.contains("ag-opt") ? ".ag-opt" : ".cx-pick", op.parentElement).forEach(o => { o.classList.toggle("on", o === op); const r = o.querySelector(".radio"); if (r) r.classList.toggle("on", o === op); }); const bb = op.parentElement.querySelector("[data-book]"); if (bb && op.dataset.opt) bb.textContent = op.dataset.opt; }
   const dm = e.target.closest("[data-demo]"); if (dm) { const root = dm.closest(".cx-screen");
     if (dm.dataset.demo === "menu") { const m = $(".menu", root); m.hidden ? Omxqua.gentleIn(m, dm) : Omxqua.gentleOut(m); }
